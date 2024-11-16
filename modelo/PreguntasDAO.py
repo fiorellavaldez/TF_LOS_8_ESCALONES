@@ -1,44 +1,140 @@
 import psycopg2
+from psycopg2.extras import RealDictCursor
+from preguntaRonda import  preguntaRonda 
+from preguntaDesempate import preguntaDesempate
 from .bd import Database
-import hashlib
+import random
 
-class PreguntasDAO:
+
+class PreguntaDAO:
     def __init__(self):
         self.__bd = Database()
-    
 
     def get_all_preguntas(self):
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * FROM preguntas")
             return cursor.fetchall()
 
+    
     def get_pregunta(self, id_pregunta):
-        with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * FROM preguntas WHERE id_pregunta = %s", (id_pregunta,))
-            return cursor.fetchone()
+        with self.__bd.cursor(cursor_factory=RealDictCursor) as cursor:
+            query = "SELECT * FROM preguntas WHERE id_pregunta = %s"
+            cursor.execute(query, (id_pregunta,))
+            result = cursor.fetchone()
+            if result:
+                if result['tipo_pregunta'] == 'Ronda':
+                    pregunta = preguntaRonda(
+                        tema=result['id_tema_pregunta'],
+                        enunciado=result['enunciado_pregunta'],
+                        opcionA=result['rta_a'],
+                        opcionB=result['rta_b'],
+                        opcionC=result['rta_c'],
+                        opcionD=result['rta_d'],
+                        opcionCorrecta=result['rta_correcta']
+                    )
+                else:
+                    pregunta = preguntaDesempate(
+                        tema=result['id_tema_pregunta'],
+                        enunciado=result['enunciado_pregunta'],
+                        respuestaCorrecta=result['rta_correcta']
+                       # estado
+                    )
+                #pregunta._estado = result['estado_pregunta']
+                return pregunta
+            return None
 
-    def agregar_pregunta(self, pregunta): #ID PREGUNTA TIENE QUE SER AUTO INCREMENTAL, pregunta que entra como parametro es un objeto tipo pregunta
+    def agregar_pregunta(self, pregunta):
         with self.__bd.cursor() as cursor:
-            cursor.execute(
-                """INSERT INTO preguntas (enunciado_pregunta, rta_a, rta_b, rta_c, rta_d, rta_correcta, tipo_pregunta, estado_pregunta, id_tema_pregunta) 
-                VALUES ( %s, %s, %s, %s, %s, %s, %s, %s)""",
-                (pregunta.get_enunciado_pregunta(), pregunta.get_rta_a(), pregunta.get_rta_b(), pregunta.get_rta_c(), pregunta.get_rta_d(), pregunta.get_rta_correcta(), pregunta.get_tipo_pregunta(), pregunta.get_estado_pregunta(), pregunta.get_id_tema_pregunta())
-            )
-            indice_preg = cursor.execute ("SELECT MAX(id_pregunta) FROM preguntas ") #selecciona el maximo indice
-            pregunta.set_id_pregunta (int(indice_preg)) #esto lo que hace es incrementar el indice porque los id son tipo serial
+            if isinstance(pregunta, preguntaRonda):
+                query = """
+                    INSERT INTO preguntas (enunciado_pregunta, rta_a, rta_b, rta_c, rta_d, rta_correcta, tipo_pregunta, estado_pregunta, id_tema)
+                    VALUES (%s, %s, %s, %s, %s, %s, 'Ronda', %s, %s) RETURNING id_pregunta
+                """
+                cursor.execute(query, (
+                    pregunta.get_enunciado(),
+                    pregunta.get_opcionA(),
+                    pregunta.get_opcionB(),
+                    pregunta.get_opcionC(),
+                    pregunta.get_opcionD(),
+                    pregunta.get_opcionCorrecta(),
+                    pregunta.get_estado(),
+                    pregunta.get_idtema()
+                ))
+            elif isinstance(pregunta, preguntaDesempate):
+                query = """
+                    INSERT INTO preguntas (enunciado_pregunta, rta_correcta, tipo_pregunta, estado_pregunta, id_tema)
+                    VALUES (%s, %s, 'Desempate', %s, %s) RETURNING id_pregunta
+                """
+                cursor.execute(query, (
+                    pregunta.get_enunciado(),
+                    pregunta.get_respuestaCorrecta(),
+                    pregunta.get_estado(),
+                    pregunta.get_idtema()
+                ))
             self.__bd.commit()
+            return cursor.fetchone()[0]
 
-    def actualizar_pregunta(self, pregunta):
+    def actualizar_pregunta(self, id_pregunta, pregunta):
         with self.__bd.cursor() as cursor:
-            cursor.execute(
-                """UPDATE preguntas SET enunciado_pregunta = %s, rta_a = %s, rta_b = %s, rta_c = %s, rta_d = %s, rta_correcta = %s, tipo_pregunta = %s, estado_pregunta = %s , id_tema_pregunta = %s 
-                WHERE id_pregunta = %s""",
-                (pregunta.get_enunciado_pregunta(), pregunta.get_rta_a(), pregunta.get_rta_b(), pregunta.get_rta_c(), pregunta.get_rta_d(), pregunta.get_rta_correcta(), pregunta.get_tipo_pregunta(), pregunta.get_estado_pregunta(), pregunta.get_id_tema_pregunta(), pregunta.get_id_pregunta())
-            )
-            
+            if isinstance(pregunta, preguntaRonda):
+                query = """
+                    UPDATE preguntas SET enunciado_pregunta = %s, rta_a = %s, rta_b = %s, rta_c = %s, rta_d = %s, rta_correcta = %s, estado_pregunta = %s, id_tema_pregunta = %s
+                    WHERE id_pregunta = %s
+                """
+                cursor.execute(query, (
+                    pregunta.get_enunciado(),
+                    pregunta.get_opcionA(),
+                    pregunta.get_opcionB(),
+                    pregunta.get_opcionC(),
+                    pregunta.get_opcionD(),
+                    pregunta.get_opcionCorrecta(),
+                    pregunta.get_estado(),
+                    pregunta.get_idtema(),
+                    id_pregunta
+                ))
+            elif isinstance(pregunta, preguntaDesempate):
+                query = """
+                    UPDATE preguntas SET enunciado_pregunta = %s, rta_correcta = %s, estado_pregunta = %s, id_tema_pregunta = %s
+                    WHERE id_pregunta = %s
+                """
+                cursor.execute(query, (
+                    pregunta.get_enunciado(),
+                    pregunta.get_respuestaCorrecta(),
+                   pregunta.get_estado(),
+                    pregunta.get_idtema(),
+                    id_pregunta
+                ))
             self.__bd.commit()
 
     def borrar_pregunta(self, id_pregunta):
         with self.__bd.cursor() as cursor:
             cursor.execute("UPDATE preguntas SET estado_pregunta FALSE WHERE id_pregunta = %s", (id_pregunta,))
             self.__bd.commit()
+
+
+
+    def temas_partida (self): #Agarramos la informacion de tablas de teams y seleccionamos 8 temas al azar y los guardamos en una lista
+        temas = self.get_all_temas()
+        lista_temas_partida = []
+        random.shuffle(temas)
+        for i in range (0,9):
+            lista_temas_partida.append(temas.pop())
+        return lista_temas_partida    
+    
+    def devolver_preg_ronda (self, id_tema): #posible id tema
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema_pregunta = %s", (id_tema,))
+            return cursor.fetchall()
+        
+    def devolver_pregunta_desempate (self, id_tema): #posible id tema
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema_pregunta = %s", (id_tema,))
+            return cursor.fetchall()
+
+
+#La clase RealDictCursor es una subclase de cursor proporcionada por psycopg2, una librería de Python para interactuar con bases de datos PostgreSQL.
+#Esta clase permite que los resultados de las consultas se devuelvan como diccionarios en lugar de tuplas, 
+#lo que puede hacer que el acceso a los datos sea más intuitivo.
+
+#La función isinstance en Python se utiliza para verificar si un objeto es una instancia de una clase o de una tupla de clases.
+#  Esto es útil cuando quieres asegurarte de que una variable o un objeto es del tipo que esperas antes de realizar ciertas operaciones sobre él

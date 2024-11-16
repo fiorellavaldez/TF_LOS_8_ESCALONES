@@ -1,4 +1,6 @@
-from Pregunta import Pregunta
+from .PreguntasDAO import PreguntasDAO
+
+from preguntaRonda import Pregunta
 
 class preguntaRonda(Pregunta):
     def __init__(self, tema, enunciado, opcionA, opcionB, opcionC, opcionD, opcionCorrecta):
@@ -8,6 +10,7 @@ class preguntaRonda(Pregunta):
         self.__opcionC = opcionC
         self.__opcionD = opcionD
         self.__opcionCorrecta = opcionCorrecta
+        
     
     # Getters
     def get_opcionA(self):
@@ -20,7 +23,16 @@ class preguntaRonda(Pregunta):
         return self.__opcionD
     def get_opcionCorrecta(self):
         return self.__opcionCorrecta
-
+    def get_enunciado (self):
+        return self._enunciado  
+    def get_idPregunta(self):
+        return self._idPregunta
+    def get_idtema (self):
+        return self._tema
+    def set_idtema (self, idtema):
+        self._tema = idtema
+    def get_estado (self):
+        return self._estado
     # Setters
     def set_opcionA(self, opcionA):
         self.__opcionA = opcionA
@@ -32,6 +44,14 @@ class preguntaRonda(Pregunta):
         self.__opcionD = opcionD
     def set_opcionCorrecta(self, opcionCorrecta):
         self.__opcionCorrecta = opcionCorrecta
+    def set_enunciado(self, enunciado):
+        self._enunciado = enunciado
+    def set_idPregunta(self, id_pregunta):
+        self._id_pregunta = id_pregunta
+    def set_estado (self, estado):
+        self._estado = estado
+##############
+
 
     def responder(self,opcion):
         if opcion == self.__respuestaCorrecta:
