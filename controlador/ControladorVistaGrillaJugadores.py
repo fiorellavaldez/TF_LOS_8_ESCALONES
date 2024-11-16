@@ -1,10 +1,10 @@
-from vista.VistaSeleccionDeJugadores import Ui_MainWindow
+from vista.VistaGrillaJugadores import Ui_MainWindow
 from controlador.ControladorVistaSeleccionarJugadores import ControladorVistaSeleccionarJugadores
 from controlador.ControladorVistaJugadorNuevo import ControladorVistaJugadorNuevo
 from controlador.ControladorVistaJuego import ControladorVistaJuego
 from PyQt6 import QtWidgets
 
-class ControladorVistaSeleccionDeJugadores:
+class ControladorVistaGrillaJugadores:
 
     def __init__(self, controlador_anterior):
         self.__controlador_anterior = controlador_anterior

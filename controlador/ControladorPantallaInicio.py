@@ -1,5 +1,5 @@
 from controlador.ControladorVistaConfiguracion import ControladorVistaConfiguracion
-from controlador.ControladorVistaSeleccionDeJugadores import ControladorVistaSeleccionDeJugadores
+from controlador.ControladorVistaGrillaJugadores import ControladorVistaGrillaJugadores
 from vista.VistaPantallaInicio import Ui_MainWindow
 from PyQt6 import QtWidgets
 
@@ -18,7 +18,7 @@ class ControladorPantallaInicio:
         
     def __nueva_partida(self):
         self.MainWindow.close()
-        self.controlador_nueva_partida=ControladorVistaSeleccionDeJugadores(self)
+        self.controlador_nueva_partida=ControladorVistaGrillaJugadores(self)
     '''
     def __continuar(self):
         self.MainWindow.close()
