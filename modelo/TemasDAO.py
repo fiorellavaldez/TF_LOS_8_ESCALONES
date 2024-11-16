@@ -3,16 +3,21 @@ from .bd import Database
 import hashlib
 import random
 
+#################### ESTRUCTURA #################################
+# TEMAS = id_tema(pk) + nombre_tema
+#################################################################
+
 class TemasDAO:
     def __init__(self):
         self.__bd = Database()
 
+    ################################ LECTURA ####################################
     def get_all_temas(self):
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * FROM temas")
             return cursor.fetchall()
 
-    def get_tema(self, id_tema):
+    def get_tema(self, id_tema): 
         with self.__bd.cursor() as cursor:
             cursor.execute(
                 "SELECT id_tema, nombre_tema FROM temas WHERE id_tema = %s", 
@@ -20,6 +25,16 @@ class TemasDAO:
                 )
             return cursor.fetchone()
 
+    def temas_partida (self): #Devuelve lista con 8 temas
+        temas = self.get_all_temas()
+        lista_temas_partida = []
+        random.shuffle(temas)
+        for i in range (0,9):
+            lista_temas_partida.append(temas.pop())
+        return lista_temas_partida    
+    
+
+    ################################ CREAR ####################################
     def agregar_tema(self, tema):
         with self.__bd.cursor() as cursor:
             cursor.execute(
@@ -27,7 +42,8 @@ class TemasDAO:
                 (tema,)
                 )
             cursor.connection.commit()
-
+            
+    ################################ ACTUALIZAR ####################################
     def actualizar_tema(self, id, tema):
         with self.__bd.cursor() as cursor:
             cursor.execute(
@@ -36,14 +52,6 @@ class TemasDAO:
                 )
             cursor.connection.commit()
 
-    def temas_partida (self): #Agarramos la informacion de tablas de teams y seleccionamos 8 temas al azar y los guardamos en una lista
-        temas = self.get_all_temas()
-        lista_temas_partida = []
-        random.shuffle(temas)
-        for i in range (0,9):
-            lista_temas_partida.append(temas.pop())
-        return lista_temas_partida    
-    
 
 
     #def borrar_tema(self, id_tema):
