@@ -130,7 +130,7 @@ class PreguntaDAO:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
-        for i in range (0,19):
+        for i in range (0,4):
             lista_preguntas_desempate.append(preguntas_desempate)
 
 
