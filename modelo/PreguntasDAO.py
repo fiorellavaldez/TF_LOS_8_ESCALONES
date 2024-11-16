@@ -4,7 +4,7 @@ from preguntaRonda import  preguntaRonda
 from preguntaDesempate import preguntaDesempate
 from .bd import Database
 import random
-
+from Tema import  Tema
 
 class PreguntaDAO:
     def __init__(self):
@@ -113,6 +113,26 @@ class PreguntaDAO:
 
 
 
+
+    
+    def devolver_preg_ronda (self, id_tema): #posible id tema
+        lista_preguntas_ronda = []
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema= %s", (id_tema,))
+            preguntas_ronda = cursor.fetchall()
+        random.shuffle(preguntas_ronda)
+        for i in range (0,19):
+            lista_preguntas_ronda.append(preguntas_ronda)
+        
+    def devolver_pregunta_desempate (self, id_tema): #posible id tema
+        lista_preguntas_desempate = []
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
+            preguntas_desempate = cursor.fetchall()
+        random.shuffle(preguntas_desempate)
+        for i in range (0,19):
+            lista_preguntas_desempate.append(preguntas_desempate)
+
     def temas_partida (self): #Agarramos la informacion de tablas de teams y seleccionamos 8 temas al azar y los guardamos en una lista
         temas = self.get_all_temas()
         lista_temas_partida = []
@@ -120,18 +140,6 @@ class PreguntaDAO:
         for i in range (0,9):
             lista_temas_partida.append(temas.pop())
         return lista_temas_partida    
-    
-    def devolver_preg_ronda (self, id_tema): #posible id tema
-        with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema_pregunta = %s", (id_tema,))
-            return cursor.fetchall()
-        
-    def devolver_pregunta_desempate (self, id_tema): #posible id tema
-        with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema_pregunta = %s", (id_tema,))
-            return cursor.fetchall()
-
-
 #La clase RealDictCursor es una subclase de cursor proporcionada por psycopg2, una librería de Python para interactuar con bases de datos PostgreSQL.
 #Esta clase permite que los resultados de las consultas se devuelvan como diccionarios en lugar de tuplas, 
 #lo que puede hacer que el acceso a los datos sea más intuitivo.

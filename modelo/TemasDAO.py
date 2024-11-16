@@ -44,15 +44,7 @@ class TemasDAO:
             lista_temas_partida.append(temas.pop())
         return lista_temas_partida    
     
-    def devolver_preg_ronda (self, id_tema): #posible id tema
-        with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema_pregunta = %s", (id_tema,))
-            return cursor.fetchall()
-        
-    def devolver_pregunta_desempate (self, id_tema): #posible id tema
-        with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema_pregunta = %s", (id_tema,))
-            return cursor.fetchall()
+
 
     #def borrar_tema(self, id_tema):
        # with self.connection.cursor() as cursor:

@@ -1,5 +1,5 @@
-from .PreguntasDAO import PreguntasDAO
-
+#from .PreguntasDAO import PreguntasDAO
+#eso me parece qye bi va
 from preguntaRonda import Pregunta
 
 class preguntaRonda(Pregunta):
