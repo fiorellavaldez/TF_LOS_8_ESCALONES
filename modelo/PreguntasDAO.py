@@ -122,7 +122,7 @@ class PreguntaDAO:
             preguntas_ronda = cursor.fetchall()
         random.shuffle(preguntas_ronda)
         for i in range (0,19):
-            lista_preguntas_ronda.append(preguntas_ronda)
+            lista_preguntas_ronda.append(preguntas_ronda.pop())
         
     def devolver_pregunta_desempate (self, id_tema): #posible id tema
         lista_preguntas_desempate = []
@@ -131,7 +131,7 @@ class PreguntaDAO:
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
         for i in range (0,19):
-            lista_preguntas_desempate.append(preguntas_desempate)
+            lista_preguntas_desempate.append(preguntas_desempate.pop())
 
 
 #La clase RealDictCursor es una subclase de cursor proporcionada por psycopg2, una librería de Python para interactuar con bases de datos PostgreSQL.
