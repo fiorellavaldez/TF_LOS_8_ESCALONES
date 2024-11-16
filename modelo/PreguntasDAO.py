@@ -133,13 +133,7 @@ class PreguntaDAO:
         for i in range (0,19):
             lista_preguntas_desempate.append(preguntas_desempate)
 
-    def temas_partida (self): #Agarramos la informacion de tablas de teams y seleccionamos 8 temas al azar y los guardamos en una lista
-        temas = self.get_all_temas()
-        lista_temas_partida = []
-        random.shuffle(temas)
-        for i in range (0,9):
-            lista_temas_partida.append(temas.pop())
-        return lista_temas_partida    
+
 #La clase RealDictCursor es una subclase de cursor proporcionada por psycopg2, una librería de Python para interactuar con bases de datos PostgreSQL.
 #Esta clase permite que los resultados de las consultas se devuelvan como diccionarios en lugar de tuplas, 
 #lo que puede hacer que el acceso a los datos sea más intuitivo.
