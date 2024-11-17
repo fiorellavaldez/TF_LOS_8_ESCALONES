@@ -1,5 +1,5 @@
 import psycopg2
-from psycopg2.extras import RealDictCursor
+from psycopg2.extras import DictCursor
 from modelo.preguntaRonda import  preguntaRonda 
 from modelo.preguntaDesempate import preguntaDesempate
 from .bd import Database
@@ -18,35 +18,22 @@ class PreguntaDAO:
     ############################### LECTURA ####################################
     def get_all_preguntas(self):
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * FROM preguntas")
+            cursor.execute("SELECT * FROM preguntas WHERE estado_pregunta = TRUE") #Para que solo seleccione las preguntas "disponibles"
             return cursor.fetchall()
 
-    def get_pregunta(self, id_pregunta):
-        with self.__bd.cursor() as cursor:
-            query = "SELECT * FROM preguntas WHERE id_pregunta = %s"
-            cursor.execute(query, (id_pregunta,))
-            result = cursor.fetchone()
-            if result:
-                if result['tipo_pregunta'] == 'Ronda':
-                    pregunta = preguntaRonda(
-                        pregunta.set_idtema(result['id_tema_pregunta']),
-                        pregunta.set_enunciado(result['enunciado_pregunta']),
-                        pregunta.set_opcionA(result['rta_a']),
-                        pregunta.set_opcionB(result['rta_b']),
-                        pregunta.set_opcionC(result['rta_c']),
-                        pregunta.set_opcionD(result['rta_d']),
-                        pregunta.set_opcionCorrecta(result['rta_correcta'])
-                    )
-                else:
-                    pregunta = preguntaDesempate(
-                        pregunta.set_idtema(result['id_tema_pregunta']),
-                        pregunta.set_enunciado(result['enunciado_pregunta']),
-                        pregunta.set_respuestaCorrecta(result['rta_correcta'])
-                        
-                    )
-                
-                return pregunta
-            return None
+ #Por ahora no se usan   
+    def get_pregunta_ronda(self, id_pregunta): 
+        with self.__bd.cursor() as cursor: 
+            query = "SELECT * FROM preguntas WHERE id_pregunta = %s and tipo_pregunta = 'M'" 
+            cursor.execute(query, (id_pregunta,)) 
+            return cursor.fetchone() 
+        
+    def get_pregunta_desempate(self, id_pregunta): 
+        with self.__bd.cursor() as cursor: 
+            query = "SELECT * FROM preguntas WHERE id_pregunta = %s and tipo_pregunta = 'D'" 
+            cursor.execute(query, (id_pregunta,)) 
+            return cursor.fetchone() 
+ 
 
     def devolver_preg_ronda (self, id_tema): #Ver si se usa
         lista_preguntas_ronda = []
@@ -146,7 +133,7 @@ class PreguntaDAO:
     ################################ ELIMINAR ####################################
     def borrar_pregunta(self, id_pregunta):
         with self.__bd.cursor() as cursor:
-            cursor.execute("UPDATE preguntas SET estado_pregunta FALSE WHERE id_pregunta = %s", (id_pregunta,))
+            cursor.execute("UPDATE preguntas SET estado_pregunta = FALSE WHERE id_pregunta = %s", (id_pregunta,))
             cursor.connection.commit()
 
 

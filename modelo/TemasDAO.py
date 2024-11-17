@@ -4,7 +4,7 @@ import hashlib
 import random
 
 #################### ESTRUCTURA #################################
-# TEMAS = id_tema(pk) + nombre_tema
+# TEMAS = id_tema(pk) + nombre_tema + estado_tema
 #################################################################
 
 class TemasDAO:
@@ -53,8 +53,8 @@ class TemasDAO:
             cursor.connection.commit()
 
 
-
-    #def borrar_tema(self, id_tema):
-       # with self.connection.cursor() as cursor:
-        #    cursor.execute("DELETE FROM temas WHERE id_tema = %s", (id_tema,))
-         #   self.connection.commit() COMO NO SE TIENE QUE BORRAR INFO Y TEMAS NO TIENE UN ESTADO PARA PONERLO EN FALSO ENTONCES EL METODO BORRAR CREO QUE NO VA EN TEMA
+    ##################################### BORRAR #########################################
+    def borrar_tema(self, id_tema):
+        with self.__bd.cursor() as cursor:
+            cursor.execute(" UPDATE temas SET estado_tema = FALSE WHERE id_tema = %s", (id_tema,))
+            cursor.connection.commit()

@@ -32,8 +32,8 @@ class EscalonDAO:
             cursor.execute(query, (escalon.get_tema(), escalon.get_estado(), escalon.get_nro_escalon()))
             cursor.connection.commit()
 
-    def borrar_escalon(self, nro_escalon):
+    def borrar_escalon(self, nro_escalon): 
         with self.__bd.cursor() as cursor:
-            query = "UPDATE escalon_partida SET id_tema = %s, estado = %s WHERE nro_escalon = %s"
+            query = "UPDATE escalon_partida SET estado = FALSE WHERE nro_escalon = %s"
             cursor.execute(query, (nro_escalon,))
             cursor.connection.commit()
