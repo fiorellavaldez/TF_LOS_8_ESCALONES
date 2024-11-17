@@ -83,7 +83,7 @@
 #             print(f"Error al cargar preguntas: {e}")
 
 from vista.VistaConfiguracionModificarPreguntasDeRonda import Ui_MainWindow
-from controlador.ControladorVistaConfiguracionPreguntasEditarPreguntaDeRondaEspecifica import ControladorVistaConfiguracionPreguntasEditarPreguntaDeRondaEspecifica
+from controlador.ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica import ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica
 from modelo.PreguntasDAO import PreguntaDAO
 from PyQt6 import QtWidgets
 from PyQt6.QtCore import QStringListModel
@@ -110,7 +110,7 @@ class ControladorVistaConfiguracionModificarPreguntasRonda:
 
     def __agregar_pregunta(self):
         self.MainWindow.hide()
-        self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeRondaEspecifica(self)
+        self.controlador_siguiente = ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica(self)
 
     def __llenar_listview(self):
         """Llena el QListView con las preguntas del tema."""

@@ -91,6 +91,15 @@ class Ui_MainWindow(object):
 
     def get_tableWidget(self):
         return self.tableWidget
+    
+    
+    def aviso_repeticion_jugador(self,nombre):
+        msg=QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Jugador Ya Seleccionado")
+        msg.setText(f'Jugador {nombre} ya ha sido seleccionado ')
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
 
 if __name__ == "__main__":

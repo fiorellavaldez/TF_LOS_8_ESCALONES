@@ -98,12 +98,11 @@ class PreguntaDAO:
             return cursor.fetchone()[0]
 
     ################################ ACTUALIZAR ####################################
-    def actualizar_pregunta(self, id_pregunta, pregunta):
+    def actualizar_pregunta_ronda(self, pregunta):
         with self.__bd.cursor() as cursor:
-            if isinstance(pregunta, preguntaRonda):
                 query = """
                     UPDATE preguntas SET enunciado_pregunta = %s, rta_a = %s, rta_b = %s, rta_c = %s, rta_d = %s, rta_correcta = %s, estado_pregunta = %s, id_tema_pregunta = %s
-                    WHERE id_pregunta = %s
+                    WHERE id_pregunta = %s and tipo_pregunta = 'M'
                 """
                 cursor.execute(query, (
                     pregunta.get_enunciado(),
@@ -114,21 +113,23 @@ class PreguntaDAO:
                     pregunta.get_opcionCorrecta(),
                     pregunta.get_estado(),
                     pregunta.get_idtema(),
-                    id_pregunta
+                    pregunta.get_idPregunta()
                 ))
-            elif isinstance(pregunta, preguntaDesempate):
+                cursor.connection.commit()
+    def actualizar_pregunta_desempate(self, pregunta):
+        with self.__bd.cursor() as cursor:
                 query = """
                     UPDATE preguntas SET enunciado_pregunta = %s, rta_correcta = %s, estado_pregunta = %s, id_tema_pregunta = %s
-                    WHERE id_pregunta = %s
+                    WHERE id_pregunta = %s and tipo_pregunta = 'D'
                 """
                 cursor.execute(query, (
                     pregunta.get_enunciado(),
                     pregunta.get_respuestaCorrecta(),
                    pregunta.get_estado(),
                     pregunta.get_idtema(),
-                    id_pregunta
+                    pregunta.get_idpregunta()
                 ))
-            cursor.connection.commit()
+                cursor.connection.commit()
 
     ################################ ELIMINAR ####################################
     def borrar_pregunta(self, id_pregunta):
