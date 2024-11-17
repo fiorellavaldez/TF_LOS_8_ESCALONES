@@ -1,6 +1,6 @@
 from vista.VistaConfiguracionModificarTema import Ui_MainWindow
 from vista.VistaTemaNuevo import Ui_MainWindow
-from vista.VistaEliminarTema import Ui_MainWindow
+from vista.VistaEliminarTema import VistaEliminarTema
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QTableWidgetItem, QMessageBox
 from PyQt6.QtCore import Qt
