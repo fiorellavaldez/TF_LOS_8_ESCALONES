@@ -35,6 +35,7 @@ class Ui_MainWindow(object):
         #lista_jugadores
         self.lista = lista_jugadores #debería estar en privado
 
+        
         self.tableWidget = QtWidgets.QTableWidget(len(self.lista), 2)
         self.tableWidget.setHorizontalHeaderLabels(["Nombre", "Avatar"])
 
@@ -50,10 +51,11 @@ class Ui_MainWindow(object):
             label_avatar.setPixmap(pixmap.scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
             label_avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
             self.tableWidget.setCellWidget(row, 1, label_avatar)
-
+        
+        
         # self.tableWidget.resizeColumnsToContents()
         self.tableWidget.resizeRowsToContents()
-
+        
         for i in range(self.tableWidget.columnCount()):
             self.tableWidget.horizontalHeader().setSectionResizeMode(i, QHeaderView.ResizeMode.Stretch)
 
@@ -87,12 +89,6 @@ class Ui_MainWindow(object):
     def get_button_aceptar(self):
         return self.bt_aceptar
     
-    # def muestra_jugadores_en_tabla(self):
-
-    def get_tableWidget(self):
-        return self.tableWidget
-    
-    
     def aviso_repeticion_jugador(self,nombre):
         msg=QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -100,8 +96,8 @@ class Ui_MainWindow(object):
         msg.setText(f'Jugador {nombre} ya ha sido seleccionado ')
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
-
-
+        
+    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
