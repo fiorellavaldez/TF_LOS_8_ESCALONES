@@ -41,6 +41,7 @@ class Ui_MainWindow(object):
         for row, (id, nombre, avatar_path) in enumerate(self.lista):
             # Columna nombres
             item_nombre = QtWidgets.QTableWidgetItem(nombre)
+            item_nombre.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
             item_nombre.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             self.tableWidget.setItem(row, 0, item_nombre)
             # Columna avatares
