@@ -1,12 +1,13 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 class WidgetJugador(QtWidgets.QWidget):
-    def __init__(self, parent, nombre:str, avatar:str, img_r1:str, img_r2:str):
-        super().__init__(parent)
+    def __init__(self, nombre:str, avatar:str):
+        super().__init__() #sacamos el parentttt
         self.nombre = nombre
         self.avatar = avatar
-        self.r1 = img_r1
-        self.r2 = img_r2
+        self.r1 = "vista/img/vacio.png"
+        self.r2 = "vista/img/vacio.png"
+        self.setParent(None)
         self.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Preferred))
         self.setMaximumSize(QtCore.QSize(60, 16777215))
         self.setup()

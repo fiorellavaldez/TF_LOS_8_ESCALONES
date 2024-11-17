@@ -71,7 +71,7 @@ class ControladorVistaGrillaJugadores:
 
     def __iniciar_partida(self):
         self.MainWindow.hide()
-        self.controlador_iniciar_partida = ControladorVistaJuego(self)
+        self.controlador_iniciar_partida = ControladorVistaJuego(self, self.__lista_jugadores)
 
     def __volver_menu(self):
         self.MainWindow.close()

@@ -11,6 +11,7 @@ class Escalon():
     
     def get_jugadores(self):
         return self.__jugadores
+
     def set_jugadores(self, listaJugadores):
         self.__jugadores = listaJugadores
 

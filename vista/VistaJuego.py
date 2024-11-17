@@ -33,7 +33,7 @@ from vista.WidgetJugador import WidgetJugador
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow, lista_jugadores):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(952, 673)
         MainWindow.setMaximumSize(QtCore.QSize(952, 673))
@@ -339,25 +339,41 @@ class Ui_MainWindow(object):
         self.ly_escalon1.addWidget(self.tematica_escalon1)
 
         #JUGADORES
-        self.wd_j1 = WidgetJugador(self.wd_escalon1, "Fiorella", "vista/img/fi.jpg", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j2 = WidgetJugador(self.wd_escalon1, "Tania", "vista/img/ta.png", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j3 = WidgetJugador(self.wd_escalon1, "Dayana", "vista/img/da.jpg", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j4 = WidgetJugador(self.wd_escalon1, "Carlos", "vista/img/edna.jpg", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j5 = WidgetJugador(self.wd_escalon1, "Bruno", "vista/img/avatar_azul.png", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j6 = WidgetJugador(self.wd_escalon1, "Alexis", "vista/img/al.jpg", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j7 = WidgetJugador(self.wd_escalon1, "Facundo", "vista/img/fa.jpg", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j8 = WidgetJugador(self.wd_escalon1, "Kadir", "vista/img/ka.jpg", "vista/img/vacio.png","vista/img/vacio.png")
-        self.wd_j9 = WidgetJugador(self.wd_escalon1, "Ignacio", "vista/img/jarr.jpg", "vista/img/vacio.png","vista/img/vacio.png")
+        self.wd_j1 = WidgetJugador( "Fiorella", "vista/img/fi.jpg")
+        self.wd_j2 = WidgetJugador( "Tania", "vista/img/ta.png")
+        self.wd_j3 = WidgetJugador( "Dayana", "vista/img/da.jpg")
+        self.wd_j4 = WidgetJugador( "Carlos", "vista/img/edna.jpg")
+        self.wd_j5 = WidgetJugador( "Bruno", "vista/img/avatar_azul.png")
+        self.wd_j6 = WidgetJugador( "Alexis", "vista/img/al.jpg")
+        self.wd_j7 = WidgetJugador( "Facundo", "vista/img/fa.jpg")
+        self.wd_j8 = WidgetJugador( "Kadir", "vista/img/ka.jpg")
+        self.wd_j9 = WidgetJugador( "Ignacio", "vista/img/jarr.jpg")
 
-        self.ly_escalon1.addWidget(self.wd_j1)
-        self.ly_escalon1.addWidget(self.wd_j2)
-        self.ly_escalon1.addWidget(self.wd_j3)
-        self.ly_escalon1.addWidget(self.wd_j4)
-        self.ly_escalon1.addWidget(self.wd_j5)
-        self.ly_escalon1.addWidget(self.wd_j6)
-        self.ly_escalon1.addWidget(self.wd_j7)
-        self.ly_escalon1.addWidget(self.wd_j8)
-        self.ly_escalon1.addWidget(self.wd_j9)
+        # self.wd_j1.setParent(self.wd_escalon1)
+        # self.wd_j2.setParent(self.wd_escalon1)
+        # self.wd_j3.setParent(self.wd_escalon1)
+        # self.wd_j4.setParent(self.wd_escalon1)
+        # self.wd_j5.setParent(self.wd_escalon1)
+        # self.wd_j6.setParent(self.wd_escalon1)
+        # self.wd_j7.setParent(self.wd_escalon1)
+        # self.wd_j8.setParent(self.wd_escalon1)
+        # self.wd_j9.setParent(self.wd_escalon1)
+        
+        self.__lista_wd = [self.wd_j1,self.wd_j2,self.wd_j3,self.wd_j4,self.wd_j5,self.wd_j6,self.wd_j7,self.wd_j8,self.wd_j9]
+        #Despues pasar esta lista que se cree con un for
+        for i in self.__lista_wd:
+            i.setParent(self.wd_escalon1)
+        
+
+        # self.ly_escalon1.addWidget(self.wd_j1)
+        # self.ly_escalon1.addWidget(self.wd_j2)
+        # self.ly_escalon1.addWidget(self.wd_j3)
+        # self.ly_escalon1.addWidget(self.wd_j4)
+        # self.ly_escalon1.addWidget(self.wd_j5)
+        # self.ly_escalon1.addWidget(self.wd_j6)
+        # self.ly_escalon1.addWidget(self.wd_j7)
+        # self.ly_escalon1.addWidget(self.wd_j8)
+        # self.ly_escalon1.addWidget(self.wd_j9)
 
 
         self.horizontalLayout_2.addLayout(self.ly_escalon1) #???????????
