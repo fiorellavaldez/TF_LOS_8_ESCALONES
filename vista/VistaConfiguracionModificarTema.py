@@ -97,6 +97,14 @@ class Ui_MainWindow(object):
         self.pushButton_cambiar.setObjectName("pushButton_cambiar")
         self.horizontalLayout_3.addWidget(self.pushButton_cambiar)
 
+        # Nuevo botón "Agregar Tema Nuevo" a la derecha
+        self.pushButton_agregar = QtWidgets.QPushButton(parent=self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.pushButton_agregar.setFont(font)
+        self.pushButton_agregar.setObjectName("pushButton_agregar")
+        self.horizontalLayout_3.addWidget(self.pushButton_agregar)
+
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
         # Configuración final
@@ -119,6 +127,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Atrás"))
         self.pushButton_eliminar.setText(_translate("MainWindow", "Eliminar Tema"))
         self.pushButton_cambiar.setText(_translate("MainWindow", "Cambiar Nombre"))
+        self.pushButton_agregar.setText(_translate("MainWindow", "Agregar Tema Nuevo"))
 
     def get_button_atras(self):
         return self.pushButton_2
@@ -128,6 +137,20 @@ class Ui_MainWindow(object):
 
     def get_button_cambiar(self):
         return self.pushButton_cambiar
+
+    def get_button_agregar(self):
+        return self.pushButton_agregar
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec())
+
 
 
 # from PyQt6 import QtCore, QtGui, QtWidgets
