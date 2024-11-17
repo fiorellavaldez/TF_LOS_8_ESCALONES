@@ -49,7 +49,6 @@ class ControladorVistaJuego:
         # for i in self.__lista:
         #     layout.addWidget(i)
         escalon.set_jugadores(self.__lista)
-            
         self.__escalon1.set_jugadores(self.__lista)
 
     def __convertir_widget(self):
