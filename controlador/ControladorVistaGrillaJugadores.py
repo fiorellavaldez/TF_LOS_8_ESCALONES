@@ -17,7 +17,8 @@ class ControladorVistaGrillaJugadores:
         self.__nro_seleccionado = None
 
         '''
-        El ControladorVistaJuego llama a la clase de Escalon y con un Dao le trae los datos creo, entonces tiene una lista de jugadores. Esa lista de jugadores debería enviarse desde este Controlador, acá voy a tener la lista final que le voy a pasar al Escalon que está en el siguiente controlador
+        El ControladorVistaJuego llama a la clase de Escalon y con un Dao le trae los datos creo, entonces tiene una lista de jugadores. Esa lista de jugadores 
+        debería enviarse desde este Controlador, acá voy a tener la lista final que le voy a pasar al Escalon que está en el siguiente controlador
         '''
 
         #Seleccion Jugador 1
@@ -88,3 +89,6 @@ class ControladorVistaGrillaJugadores:
         if len(self.__lista_jugadores) == 9:
             self.__vista.get_button_iniciar_partida().setEnabled(True)
             self.__nro_seleccionado = None
+
+    def get_jugadores(self):
+        return self.__lista_jugadores
