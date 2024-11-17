@@ -115,13 +115,12 @@ class ControladorVistaConfiguracionModificarPreguntasRonda:
     def __llenar_listview(self):
         """Llena el QListView con las preguntas del tema."""
         preguntas = self.__dao.devolver_all_ronda(self.__id_tema)  # Consulta al DAO
-
         if not preguntas:
             print("No se encontraron preguntas para el tema.")
             return
 
         modelo = QStringListModel()
-        lista_preguntas = [f"Pregunta: {pregunta['enunciado_pregunta']} - Correcta: {pregunta['rta_correcta']}" for pregunta in preguntas]
+        lista_preguntas = [f"Pregunta: {pregunta[1]} - a): {pregunta[2]} - b): {pregunta[3]} - c): {pregunta[4]} - d): {pregunta[5]} - Correcta: {pregunta[6]}" for pregunta in preguntas]
         modelo.setStringList(lista_preguntas)
         self.__vista.listView.setModel(modelo)
 
