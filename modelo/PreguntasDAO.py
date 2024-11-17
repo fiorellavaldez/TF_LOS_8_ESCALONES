@@ -48,7 +48,7 @@ class PreguntaDAO:
                 return pregunta
             return None
 
-    def devolver_preg_ronda (self, id_tema): #posible id tema
+    def devolver_preg_ronda (self, id_tema): #Ver si se usa
         lista_preguntas_ronda = []
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema= %s", (id_tema,))
@@ -57,7 +57,7 @@ class PreguntaDAO:
         for i in range (0,19):
             lista_preguntas_ronda.append(preguntas_ronda.pop())
         
-    def devolver_pregunta_desempate (self, id_tema): #posible id tema
+    def devolver_pregunta_desempate (self, id_tema): #Ver si se usa
         lista_preguntas_desempate = []
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
@@ -65,6 +65,18 @@ class PreguntaDAO:
         random.shuffle(preguntas_desempate)
         for i in range (0,4):
             lista_preguntas_desempate.append(preguntas_desempate.pop())
+
+    def devolver_all_ronda (self, id_tema):
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema= %s", (id_tema,))
+            preguntas_ronda = cursor.fetchall()
+        return preguntas_ronda
+
+    def devolver_all_desempate(self, id_tema):
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
+            preguntas_desempate = cursor.fetchall()
+        return preguntas_desempate
 
     ################################ CREAR ####################################
     def agregar_pregunta(self, pregunta):
