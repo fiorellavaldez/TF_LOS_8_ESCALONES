@@ -2,8 +2,9 @@ from vista.VistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica import Ui
 from PyQt6 import QtWidgets
 
 class ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica:
-    def __init__(self, controlador_anterior):
+    def __init__(self, controlador_anterior, id_tema):
         self.__controlador_anterior = controlador_anterior
+        self.__id_tema = id_tema
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
@@ -16,5 +17,5 @@ class ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica:
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
 
-    # def __guardar(self):
-    #     pass
+    def imprimir(self):
+        print(f"id tema: {self.__id_tema}")
