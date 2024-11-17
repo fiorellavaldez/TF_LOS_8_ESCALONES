@@ -51,7 +51,7 @@ class PreguntaDAO:
     def devolver_preg_ronda (self, id_tema): #Ver si se usa
         lista_preguntas_ronda = []
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema= %s", (id_tema,))
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'M' and id_tema= %s", (id_tema,))
             preguntas_ronda = cursor.fetchall()
         random.shuffle(preguntas_ronda)
         for i in range (0,19):
@@ -60,7 +60,7 @@ class PreguntaDAO:
     def devolver_pregunta_desempate (self, id_tema): #Ver si se usa
         lista_preguntas_desempate = []
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'D' and id_tema = %s", (id_tema,))
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
         for i in range (0,4):
