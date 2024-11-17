@@ -42,9 +42,9 @@ class ControladorVistaJugadorNuevo:
         jugador_dao = JugadorDAO()
         obtengo = jugador_dao.get_all_jugadores #me trae todos los jugadores 
         
-        if any(jugador_dao[1]==nombre_jugador):
-            self.__vista.aviso_nombre_repetido(nombre_jugador)
-            return 
+        # if any(jugador_dao[1]==nombre_jugador):
+        #     self.__vista.aviso_nombre_repetido(nombre_jugador)
+        #     return 
         
         
         # try:
