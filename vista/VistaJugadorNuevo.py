@@ -147,7 +147,15 @@ class Ui_MainWindow(object):
         msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
         msg.setText(f"Se añadió correctamente el jugador: {nombre_jugador}")
         msg.exec()
-    
+
+    def aviso_nombre_repetido(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe ingresar otro nombre.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

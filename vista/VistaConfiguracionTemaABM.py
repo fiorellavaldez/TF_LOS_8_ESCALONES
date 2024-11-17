@@ -65,6 +65,12 @@ class Ui_MainWindow(object):
         self.pushButton_Modificar.setFont(font)
         self.pushButton_Modificar.setObjectName("pushButton_Modificar")
         self.horizontalLayout_3.addWidget(self.pushButton_Modificar)
+        self.pushButton_Eliminar = QtWidgets.QPushButton(parent=self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.pushButton_Eliminar.setFont(font)
+        self.pushButton_Eliminar.setObjectName("pushButton_Eliminar")
+        self.horizontalLayout_3.addWidget(self.pushButton_Eliminar)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem1)
         self.pushButton_Volver = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -92,6 +98,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Buscar:  "))
         self.pushButton_Nuevo.setText(_translate("MainWindow", "Nuevo"))
         self.pushButton_Modificar.setText(_translate("MainWindow", "Modificar"))
+        self.pushButton_Eliminar.setText(_translate("MainWindow", "Eliminar"))
         self.pushButton_Volver.setText(_translate("MainWindow", "Volver"))
 
 
