@@ -29,7 +29,7 @@ class PreguntaDAO:
             if result:
                 if result['tipo_pregunta'] == 'Ronda':
                     pregunta = preguntaRonda(
-                        pregunta.set_tema(result['id_tema_pregunta']),
+                        pregunta.set_idtema(result['id_tema_pregunta']),
                         pregunta.set_enunciado(result['enunciado_pregunta']),
                         pregunta.set_opcionA(result['rta_a']),
                         pregunta.set_opcionB(result['rta_b']),
@@ -39,7 +39,7 @@ class PreguntaDAO:
                     )
                 else:
                     pregunta = preguntaDesempate(
-                        pregunta.set_tema(result['id_tema_pregunta']),
+                        pregunta.set_idtema(result['id_tema_pregunta']),
                         pregunta.set_enunciado(result['enunciado_pregunta']),
                         pregunta.set_respuestaCorrecta(result['rta_correcta'])
                         

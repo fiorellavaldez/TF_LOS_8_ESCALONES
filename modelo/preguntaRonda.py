@@ -29,8 +29,6 @@ class preguntaRonda(Pregunta):
         return self._idPregunta
     def get_idtema (self):
         return self._tema
-    def set_idtema (self, idtema):
-        self._tema = idtema
     def get_estado (self):
         return self._estado
     # Setters
@@ -50,6 +48,8 @@ class preguntaRonda(Pregunta):
         self._id_pregunta = id_pregunta
     def set_estado (self, estado):
         self._estado = estado
+    def set_idtema (self, idtema):
+        self._tema = idtema
 ##############
 
 
