@@ -294,7 +294,7 @@ class ControladorVistaConfiguracionModificarTemas:
         lista_temas = temas.get_all_temas()
 
         self.__vista.tableWidget.setRowCount(len(lista_temas))
-        for linea, (id_tema, nombre_tema) in enumerate(lista_temas):  
+        for linea, (id_tema, nombre_tema, estado) in enumerate(lista_temas):  
             self.__vista.tableWidget.setItem(linea, 0, QTableWidgetItem(str(id_tema)))  
             self.__vista.tableWidget.setItem(linea, 1, QTableWidgetItem(nombre_tema))  
 
