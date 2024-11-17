@@ -71,6 +71,7 @@ class ControladorVistaGrillaJugadores:
 
     def __iniciar_partida(self):
         self.MainWindow.hide()
+        #acá usamos un método del siguiente controlador usando la referencia para setearle al escalon 1 la lista de jugadores 
         self.controlador_iniciar_partida = ControladorVistaJuego(self)
 
     def __volver_menu(self):
