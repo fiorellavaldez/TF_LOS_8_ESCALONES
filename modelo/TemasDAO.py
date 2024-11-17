@@ -20,7 +20,7 @@ class TemasDAO:
     def get_tema(self, id_tema): 
         with self.__bd.cursor() as cursor:
             cursor.execute(
-                "SELECT id_tema, nombre_tema FROM temas WHERE id_tema = %s", 
+                "SELECT id_tema, nombre_tema FROM temas WHERE id_tema = %s ", 
                 (id_tema,)
                 )
             return cursor.fetchone()

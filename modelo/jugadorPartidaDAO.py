@@ -12,22 +12,34 @@ class JugadorPartidaDAO:
     def __init__(self):
         self.__bd = Database()
 
-    def get_all_jugadores(self):
+    def get_all_jugadores_partida(self): #obtengo TODA la informacion de las tuplas de la tabla jugador_partida
             with self.__bd.cursor() as cursor:
                 cursor.execute("SELECT id_partida, id_jugador,ronda1, ronda2 FROM jugador_partida")
                 return cursor.fetchall()
             
-    def agregar_jugador(self, jugador): # chequear si los cambios estan bien
+    def agregar_jugador_partida(self, jugador): # entra una objeto jugador, y se lo agrega a la tabla jugador_partida
         with self.__bd.cursor() as cursor:
-            indice_jugador  = int(cursor.execute ("SELECT MAX(id_jugador) FROM jugador ")) #como id jugador no esta en el objeto jugador hago esto, no se si tendria que ser +1
             cursor.execute(
-                """INSERT INTO jugador (id_jugador, nombre_jugador , avatar) 
+                """INSERT INTO jugador_partida (ronda1, ronda2, id_jugador) 
                 VALUES (%s, %s, %s)""",
-                (indice_jugador, jugador.get_nombre_jugador(), jugador.get_avatar())
+                (jugador.get_ronda1(), jugador.get_ronda2(), jugador.get_idjugador())
             )
             cursor.connection.commit()
 
-    def limpiar_tabla_partida(self):
+    def actualizar_jugador_partida (self, jugador, escalon): #PRUEBA PARA GUARDAR LAS INSTANCIAS DE LAS PARTIDAS
+         #if escalon.get_estado() == True:
+         with self.__bd.cursor() as cursor:
+              cursor.execute ("""UPDATE jugador SET ronda1 =%s, ronda2=%s 
+                              WHERE id_jugador= %s""",
+                              (jugador.get_ronda1(), jugador.get_ronda2(), jugador.get_idjugador())
+              )
+              cursor.connection.commit()
+              
+              
+         
+         
+
+    def limpiar_tabla_partida(self): #borra todos los datos de jugador_partida, el id partida retoma desde donde quedo(no es un problema)
         with self.__bd.cursor() as cursor:
-            cursor.execute("DELETE * from jugador_partida")
+            cursor.execute("DELETE from jugador_partida")
             cursor.connection.commit()

@@ -23,7 +23,6 @@ class JugadorDAO:
     ######################################## CREAR ########################################
     def agregar_jugador(self, nombre, avatar): # chequear si los cambios estan bien
         with self.__bd.cursor() as cursor:
-            #indice_jugador  = int(cursor.execute ("SELECT MAX(id_jugador) FROM jugador ")) #como id jugador no esta en el objeto jugador hago esto, no se si tendria que ser +1
             cursor.execute(
                 """INSERT INTO jugador ( nombre_jugador , avatar) 
                 VALUES (%s, %s)""",
@@ -41,7 +40,4 @@ class JugadorDAO:
             )
             cursor.connection.commit()
             
-    def actualizar_ronda(self):
-        with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT ronda1, ronda2 FROM jugador_partida WHERE")
 #Todos los metodos que estan arriba de esta marca funcionan bien
