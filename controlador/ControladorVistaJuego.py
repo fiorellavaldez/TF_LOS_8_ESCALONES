@@ -39,11 +39,10 @@ class ControladorVistaJuego:
         pass
 
     def __asignar_temas(self):
-        # lista_qlabels = []
-        # lista_qlabels = self.__vista.lista_nombres_escalon
-        print(self.__vista.hola)
-        # for i in range(0,8):
-        #     lista_qlabels[i].setText((self.__lista_temas[i][1]).upper())
+        lista_qlabels = []
+        lista_qlabels = self.__vista.lista_nombres_escalon()
+        for i in range(0,8):
+            lista_qlabels[i].setText((self.__lista_temas[i][1]).upper())
 
     def __asignar_jugadores(self, escalon): #Acá asigno al escalon
         self.__convertir_widget()

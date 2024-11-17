@@ -393,8 +393,6 @@ class Ui_MainWindow(object):
         self.pushButton_atras.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         
         self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8]
-        
-        self.hola = "hola"
 
         MainWindow.setCentralWidget(self.centralwidget)
 
