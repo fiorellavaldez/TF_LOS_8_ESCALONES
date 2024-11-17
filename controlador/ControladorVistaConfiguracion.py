@@ -18,7 +18,6 @@ class ControladorVistaConfiguracion:
         self.__vista.get_button_modificar_preguntas_ronda().clicked.connect(self.__modificar_preguntas_ronda)
         self.__vista.get_button_modificar_preguntas_desempate().clicked.connect(self.__modificar_preguntas_desempate)
         self.__vista.get_button_modificar_temas().clicked.connect(self.__modificar_temas)
-        self.__vista.get_button_tema_nuevo().clicked.connect(self.__tema_nuevo)
         self.__vista.get_button_atras().clicked.connect(self.__volver_menu)
 
     def __modificar_preguntas_ronda(self):
@@ -32,10 +31,6 @@ class ControladorVistaConfiguracion:
     def __modificar_temas(self):
         self.MainWindow.hide()
         self.controlador_modificar_temas = ControladorVistaConfiguracionModificarTemas(self)
-
-    def __tema_nuevo(self):
-        self.MainWindow.hide()
-        self.controlador_tema_nuevo = ControladorVistaTemaNuevo(self)
 
     def __volver_menu(self):
         self.MainWindow.close()
