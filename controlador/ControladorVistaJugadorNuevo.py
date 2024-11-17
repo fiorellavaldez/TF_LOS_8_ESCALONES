@@ -25,7 +25,7 @@ class ControladorVistaJugadorNuevo:
         self.__vista.set_label_img(self.imagen_actual)
 
         #Este es el boton que estoy modificando:
-        self.__vista.get_button_agregar_jugador().clicked.connect(self.__agregar_jugador_bd_)
+        self.__vista.get_button_agregar_jugador().clicked.connect(self.__crear_jugador) #<----aca decia ._bd despues de .__crear_jugador
 
         self.__vista.get_button_cancelar().clicked.connect(self.__volver_seleccion_de_jugadores)
         self.__vista.get_boton_deslizador_derecha().clicked.connect(self.__mostrar_siguiente_imagen)
