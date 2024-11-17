@@ -20,6 +20,11 @@ class ControladorVistaSeleccionarJugadores:
         fila = self.__vista.get_tableWidget().currentRow() #devuelve el nro fila tupla selecc
         if fila >= 0:
             nombre = self.__vista.get_tableWidget().item(fila, 0).text() #el nombre del jugador
+            
+            if any(jugador[1]==nombre for jugador in self.__controlador_anterior.get_lista()): 
+                self.__vista.aviso_repeticion_jugador(nombre)
+                return
+            #busca el indice del jugador en la lista
             indice = next((i for i, tupla in enumerate(self.__lista_jugadores) if str(tupla[1]) == nombre), None) #busca el nombre del jugador en la lista de jugadores y devuelve el indice
             if indice is not None:
                 self.__controlador_anterior.add_jugador(self.__lista_jugadores[indice]) #le mando la tupla a la lista de la grilla, la tupla contiene el id_jugador, nombre y avatar del jugador

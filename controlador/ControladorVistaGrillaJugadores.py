@@ -70,9 +70,12 @@ class ControladorVistaGrillaJugadores:
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevo(self)
 
     def __iniciar_partida(self):
-        self.MainWindow.hide()
-        #acá usamos un método del siguiente controlador usando la referencia para setearle al escalon 1 la lista de jugadores 
-        self.controlador_iniciar_partida = ControladorVistaJuego(self)
+        if len(self.__lista_jugadores) <9:
+            self.__vista.aviso_iniciar_partida()
+        else:
+            self.MainWindow.hide()
+            #acá usamos un método del siguiente controlador usando la referencia para setearle al escalon 1 la lista de jugadores 
+            self.controlador_iniciar_partida = ControladorVistaJuego(self)
 
     def __volver_menu(self):
         self.MainWindow.close()
@@ -86,6 +89,9 @@ class ControladorVistaGrillaJugadores:
         self.__nro_seleccionado.setText(jugador[1])
         self.__lista_jugadores.append(jugador)
         print(f"Añadiste a jugador {jugador[1]}")
-        if len(self.__lista_jugadores) == 9:
-            self.__vista.get_button_iniciar_partida().setEnabled(True)
-            self.__nro_seleccionado = None
+        self.__nro_seleccionado=None
+        
+    def get_lista(self):
+        return self.__lista_jugadores
+            
+        
