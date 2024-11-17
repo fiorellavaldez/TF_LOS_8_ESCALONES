@@ -25,7 +25,7 @@ class ControladorVistaSeleccionarJugadores:
     def __aceptar(self):
         fila = self.__vista.tableWidget.currentRow() #devuelve el nro fila tupla selecc
         if fila >= 0:
-            nombre = self.__vista.tablaWidget.item(fila, 0).text() #el nombre del jugador
+            nombre = self.__vista.tableWidget.item(fila, 0).text() #el nombre del jugador
             
             if any(jugador[1]==nombre for jugador in self.__controlador_anterior.get_lista()): 
                 self.__vista.aviso_repeticion_jugador(nombre)
