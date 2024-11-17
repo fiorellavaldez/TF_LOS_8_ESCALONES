@@ -187,7 +187,7 @@ class ControladorVistaSeleccionTemaModificarPreguntasRonda:
             tema_seleccionado_index = index.row()
             self.tema_seleccionado = self.filtered_temas[tema_seleccionado_index]
 
-            id_tema, nombre_tema = self.tema_seleccionado
+            id_tema, nombre_tema, estado = self.tema_seleccionado
             print(f"Tema seleccionado: ID={id_tema}, Nombre={nombre_tema}")
 
             # Oculta esta ventana y pasa al siguiente controlador
