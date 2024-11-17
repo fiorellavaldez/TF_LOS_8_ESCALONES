@@ -29,7 +29,7 @@ class JugadorDAO:
                 VALUES (%s, %s, %s)""",
                 (indice_jugador, jugador.get_nombre_jugador(), jugador.get_avatar())
             )
-            self.__bd.commit()
+            cursor.connection.commit()
 
     ######################################## ACTUALIZAR ########################################
     def actualizar_jugador(self, id_jugador, nombre, avatar): #chequear si los cambios estan bien
@@ -39,11 +39,11 @@ class JugadorDAO:
                 WHERE id_jugador = %s""",
                 (nombre, avatar, id_jugador)
             )
-            self.__bd.commit()
+            cursor.connection.commit()
             
             
     ######################################## ELIMINAR #######################################
     def borrar_jugador(self, id_jugador): #jugador ya no tiene la columna estado_jugador esto ya no iria
         with self.__bd.cursor() as cursor:
             cursor.execute("UPDATE jugador SET estado_jugador FALSE WHERE id_jugador = %s", (id_jugador,))
-            self.__bd.commit()
+            cursor.connection.commit()

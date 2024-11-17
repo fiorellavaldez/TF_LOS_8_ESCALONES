@@ -35,7 +35,7 @@ class JugadorPartidaDAO:
                 VALUES (%s, %s, %s)""",
                 (indice_jugador, jugador.get_nombre_jugador(), jugador.get_avatar())
             )
-            self.__bd.commit()
+            cursor.connection.commit()
             
     ######################################## ACTUALIZAR ########################################
     # La tabla jugador_partida no tiene actualizaciones.
@@ -44,4 +44,4 @@ class JugadorPartidaDAO:
     def limpiar_tabla_partida(self):
         with self.__bd.cursor() as cursor:
             cursor.execute("DELETE * from jugador_partida")
-            self.__bd.commit()
+            cursor.connection.commit()

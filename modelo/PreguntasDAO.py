@@ -22,7 +22,7 @@ class PreguntaDAO:
             return cursor.fetchall()
 
     def get_pregunta(self, id_pregunta):
-        with self.__bd.cursor(cursor_factory=RealDictCursor) as cursor:
+        with self.__bd.cursor() as cursor:
             query = "SELECT * FROM preguntas WHERE id_pregunta = %s"
             cursor.execute(query, (id_pregunta,))
             result = cursor.fetchone()
@@ -107,7 +107,7 @@ class PreguntaDAO:
                     pregunta.get_estado(),
                     pregunta.get_idtema()
                 ))
-            self.__bd.commit()
+            cursor.connection.commit()
             return cursor.fetchone()[0]
 
     ################################ ACTUALIZAR ####################################
@@ -141,13 +141,13 @@ class PreguntaDAO:
                     pregunta.get_idtema(),
                     id_pregunta
                 ))
-            self.__bd.commit()
+            cursor.connection.commit()
 
     ################################ ELIMINAR ####################################
     def borrar_pregunta(self, id_pregunta):
         with self.__bd.cursor() as cursor:
             cursor.execute("UPDATE preguntas SET estado_pregunta FALSE WHERE id_pregunta = %s", (id_pregunta,))
-            self.__bd.commit()
+            cursor.connection.commit()
 
 
 ####################################################################################################################################################################################
