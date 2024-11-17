@@ -5,7 +5,7 @@ class Pregunta(ABC):
         self._idPregunta = None
         self._tema = tema
         self._enunciado = enunciado
-       # self._estado = True
+        # self._estado = True
     
     def get_enunciado (self):
         return self._enunciado
