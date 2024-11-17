@@ -1,10 +1,10 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from preguntaRonda import  preguntaRonda 
-from preguntaDesempate import preguntaDesempate
+from modelo.preguntaRonda import  preguntaRonda 
+from modelo.preguntaDesempate import preguntaDesempate
 from .bd import Database
 import random
-from Tema import  Tema
+from modelo.Tema import  Tema
 
 
 #################### ESTRUCTURA ####################################################

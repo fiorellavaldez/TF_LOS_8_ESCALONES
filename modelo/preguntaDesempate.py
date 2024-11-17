@@ -1,4 +1,4 @@
-from Pregunta import Pregunta
+from modelo.Pregunta import Pregunta
 
 class preguntaDesempate(Pregunta):
     def __init__(self, tema, enunciado, respuestaCorrecta):
