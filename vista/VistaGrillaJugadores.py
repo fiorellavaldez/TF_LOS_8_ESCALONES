@@ -2,59 +2,51 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        
         MainWindow.resize(1080, 720)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(21)
         self.label.setFont(font)
-        self.label.setObjectName("label")
+        
         self.horizontalLayout_2.addWidget(self.label)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setContentsMargins(231, -1, 231, -1)
-        self.gridLayout.setObjectName("gridLayout")
         self.frame_16 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_16.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_16.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_16.setObjectName("frame_16")
         self.verticalLayout_25 = QtWidgets.QVBoxLayout(self.frame_16)
-        self.verticalLayout_25.setObjectName("verticalLayout_25")
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem2)
-        self.label_57 = QtWidgets.QLabel(parent=self.frame_16)
-        self.label_57.setEnabled(True)
+        self.nombre_jugador4 = QtWidgets.QLabel(parent=self.frame_16) #Jugador 4
+        self.nombre_jugador4.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_57.sizePolicy().hasHeightForWidth())
-        self.label_57.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador4.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador4.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_57.setFont(font)
-        self.label_57.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_57.setObjectName("label_57")
-        self.verticalLayout_25.addWidget(self.label_57)
+        self.nombre_jugador4.setFont(font)
+        self.nombre_jugador4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.verticalLayout_25.addWidget(self.nombre_jugador4)
         spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem3)
-        self.pushButton_115 = QtWidgets.QPushButton(parent=self.frame_16)
-        self.pushButton_115.setObjectName("pushButton_115")
-        self.verticalLayout_25.addWidget(self.pushButton_115)
+        self.bt_seleccionar_jugador4 = QtWidgets.QPushButton(parent=self.frame_16)
+        self.verticalLayout_25.addWidget(self.bt_seleccionar_jugador4)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem4)
-        self.pushButton_116 = QtWidgets.QPushButton(parent=self.frame_16)
-        self.pushButton_116.setObjectName("pushButton_116")
-        self.verticalLayout_25.addWidget(self.pushButton_116)
+        self.bt_jugador_nuevo4 = QtWidgets.QPushButton(parent=self.frame_16)
+        self.bt_jugador_nuevo4.setObjectName("bt_jugador_nuevo4")
+        self.verticalLayout_25.addWidget(self.bt_jugador_nuevo4)
         spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem5)
         self.gridLayout.addWidget(self.frame_16, 1, 0, 1, 1)
@@ -66,29 +58,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         spacerItem6 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem6)
-        self.label_56 = QtWidgets.QLabel(parent=self.frame_15)
-        self.label_56.setEnabled(True)
+        self.nombre_jugador8 = QtWidgets.QLabel(parent=self.frame_15) #Jugador 8
+        self.nombre_jugador8.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_56.sizePolicy().hasHeightForWidth())
-        self.label_56.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador8.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador8.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_56.setFont(font)
-        self.label_56.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_56.setObjectName("label_56")
-        self.verticalLayout_9.addWidget(self.label_56)
+        self.nombre_jugador8.setFont(font)
+        self.nombre_jugador8.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador8.setObjectName("nombre_jugador8")
+        self.verticalLayout_9.addWidget(self.nombre_jugador8)
         spacerItem7 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem7)
-        self.pushButton_113 = QtWidgets.QPushButton(parent=self.frame_15)
-        self.pushButton_113.setObjectName("pushButton_113")
-        self.verticalLayout_9.addWidget(self.pushButton_113)
+        self.bt_seleccionar_jugador8 = QtWidgets.QPushButton(parent=self.frame_15)
+        self.bt_seleccionar_jugador8.setObjectName("bt_seleccionar_jugador8")
+        self.verticalLayout_9.addWidget(self.bt_seleccionar_jugador8)
         spacerItem8 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem8)
-        self.pushButton_114 = QtWidgets.QPushButton(parent=self.frame_15)
-        self.pushButton_114.setObjectName("pushButton_114")
-        self.verticalLayout_9.addWidget(self.pushButton_114)
+        self.bt_jugador_nuevo8 = QtWidgets.QPushButton(parent=self.frame_15)
+        self.bt_jugador_nuevo8.setObjectName("bt_jugador_nuevo8")
+        self.verticalLayout_9.addWidget(self.bt_jugador_nuevo8)
         spacerItem9 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem9)
         self.gridLayout.addWidget(self.frame_15, 2, 1, 1, 1)
@@ -100,29 +92,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         spacerItem10 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem10)
-        self.label_53 = QtWidgets.QLabel(parent=self.frame_12)
-        self.label_53.setEnabled(True)
+        self.nombre_jugador2 = QtWidgets.QLabel(parent=self.frame_12) #Jugador 2
+        self.nombre_jugador2.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_53.sizePolicy().hasHeightForWidth())
-        self.label_53.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador2.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_53.setFont(font)
-        self.label_53.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_53.setObjectName("label_53")
-        self.verticalLayout_4.addWidget(self.label_53)
+        self.nombre_jugador2.setFont(font)
+        self.nombre_jugador2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador2.setObjectName("nombre_jugador2")
+        self.verticalLayout_4.addWidget(self.nombre_jugador2)
         spacerItem11 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem11)
-        self.pushButton_107 = QtWidgets.QPushButton(parent=self.frame_12)
-        self.pushButton_107.setObjectName("pushButton_107")
-        self.verticalLayout_4.addWidget(self.pushButton_107)
+        self.bt_seleccionar_jugador2 = QtWidgets.QPushButton(parent=self.frame_12)
+        self.bt_seleccionar_jugador2.setObjectName("bt_seleccionar_jugador2")
+        self.verticalLayout_4.addWidget(self.bt_seleccionar_jugador2)
         spacerItem12 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem12)
-        self.pushButton_108 = QtWidgets.QPushButton(parent=self.frame_12)
-        self.pushButton_108.setObjectName("pushButton_108")
-        self.verticalLayout_4.addWidget(self.pushButton_108)
+        self.bt_jugador_nuevo2 = QtWidgets.QPushButton(parent=self.frame_12)
+        self.bt_jugador_nuevo2.setObjectName("bt_jugador_nuevo2")
+        self.verticalLayout_4.addWidget(self.bt_jugador_nuevo2)
         spacerItem13 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem13)
         self.gridLayout.addWidget(self.frame_12, 0, 1, 1, 1)
@@ -134,29 +126,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         spacerItem14 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem14)
-        self.label_55 = QtWidgets.QLabel(parent=self.frame_14)
-        self.label_55.setEnabled(True)
+        self.nombre_jugador5 = QtWidgets.QLabel(parent=self.frame_14) #Jugador 5
+        self.nombre_jugador5.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_55.sizePolicy().hasHeightForWidth())
-        self.label_55.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador5.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador5.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_55.setFont(font)
-        self.label_55.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_55.setObjectName("label_55")
-        self.verticalLayout_8.addWidget(self.label_55)
+        self.nombre_jugador5.setFont(font)
+        self.nombre_jugador5.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador5.setObjectName("nombre_jugador5")
+        self.verticalLayout_8.addWidget(self.nombre_jugador5)
         spacerItem15 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem15)
-        self.pushButton_111 = QtWidgets.QPushButton(parent=self.frame_14)
-        self.pushButton_111.setObjectName("pushButton_111")
-        self.verticalLayout_8.addWidget(self.pushButton_111)
+        self.bt_seleccionar_jugador5 = QtWidgets.QPushButton(parent=self.frame_14)
+        self.bt_seleccionar_jugador5.setObjectName("bt_seleccionar_jugador5")
+        self.verticalLayout_8.addWidget(self.bt_seleccionar_jugador5)
         spacerItem16 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem16)
-        self.pushButton_112 = QtWidgets.QPushButton(parent=self.frame_14)
-        self.pushButton_112.setObjectName("pushButton_112")
-        self.verticalLayout_8.addWidget(self.pushButton_112)
+        self.bt_jugador_nuevo5 = QtWidgets.QPushButton(parent=self.frame_14)
+        self.bt_jugador_nuevo5.setObjectName("bt_jugador_nuevo5")
+        self.verticalLayout_8.addWidget(self.bt_jugador_nuevo5)
         spacerItem17 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem17)
         self.gridLayout.addWidget(self.frame_14, 1, 1, 1, 1)
@@ -168,29 +160,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.setObjectName("verticalLayout_26")
         spacerItem18 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem18)
-        self.label_58 = QtWidgets.QLabel(parent=self.frame_17)
-        self.label_58.setEnabled(True)
+        self.nombre_jugador6 = QtWidgets.QLabel(parent=self.frame_17) #Jugador 6
+        self.nombre_jugador6.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_58.sizePolicy().hasHeightForWidth())
-        self.label_58.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador6.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador6.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_58.setFont(font)
-        self.label_58.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_58.setObjectName("label_58")
-        self.verticalLayout_26.addWidget(self.label_58)
+        self.nombre_jugador6.setFont(font)
+        self.nombre_jugador6.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador6.setObjectName("nombre_jugador6")
+        self.verticalLayout_26.addWidget(self.nombre_jugador6)
         spacerItem19 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem19)
-        self.pushButton_117 = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_117.setObjectName("pushButton_117")
-        self.verticalLayout_26.addWidget(self.pushButton_117)
+        self.bt_seleccionar_jugador6 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.bt_seleccionar_jugador6.setObjectName("bt_seleccionar_jugador6")
+        self.verticalLayout_26.addWidget(self.bt_seleccionar_jugador6)
         spacerItem20 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem20)
-        self.pushButton_118 = QtWidgets.QPushButton(parent=self.frame_17)
-        self.pushButton_118.setObjectName("pushButton_118")
-        self.verticalLayout_26.addWidget(self.pushButton_118)
+        self.bt_jugador_nuevo6 = QtWidgets.QPushButton(parent=self.frame_17)
+        self.bt_jugador_nuevo6.setObjectName("bt_jugador_nuevo6")
+        self.verticalLayout_26.addWidget(self.bt_jugador_nuevo6)
         spacerItem21 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem21)
         self.gridLayout.addWidget(self.frame_17, 1, 2, 1, 1)
@@ -202,29 +194,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.setObjectName("verticalLayout_29")
         spacerItem22 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem22)
-        self.label_59 = QtWidgets.QLabel(parent=self.frame_18)
-        self.label_59.setEnabled(True)
+        self.nombre_jugador7 = QtWidgets.QLabel(parent=self.frame_18) #Jugador 7
+        self.nombre_jugador7.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_59.sizePolicy().hasHeightForWidth())
-        self.label_59.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador7.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador7.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_59.setFont(font)
-        self.label_59.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_59.setObjectName("label_59")
-        self.verticalLayout_29.addWidget(self.label_59)
+        self.nombre_jugador7.setFont(font)
+        self.nombre_jugador7.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador7.setObjectName("nombre_jugador7")
+        self.verticalLayout_29.addWidget(self.nombre_jugador7)
         spacerItem23 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem23)
-        self.pushButton_119 = QtWidgets.QPushButton(parent=self.frame_18)
-        self.pushButton_119.setObjectName("pushButton_119")
-        self.verticalLayout_29.addWidget(self.pushButton_119)
+        self.bt_seleccionar_jugador7 = QtWidgets.QPushButton(parent=self.frame_18)
+        self.bt_seleccionar_jugador7.setObjectName("bt_seleccionar_jugador7")
+        self.verticalLayout_29.addWidget(self.bt_seleccionar_jugador7)
         spacerItem24 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem24)
-        self.pushButton_120 = QtWidgets.QPushButton(parent=self.frame_18)
-        self.pushButton_120.setObjectName("pushButton_120")
-        self.verticalLayout_29.addWidget(self.pushButton_120)
+        self.bt_jugador_nuevo7 = QtWidgets.QPushButton(parent=self.frame_18)
+        self.bt_jugador_nuevo7.setObjectName("bt_jugador_nuevo7")
+        self.verticalLayout_29.addWidget(self.bt_jugador_nuevo7)
         spacerItem25 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem25)
         self.gridLayout.addWidget(self.frame_18, 2, 0, 1, 1)
@@ -236,29 +228,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_30.setObjectName("verticalLayout_30")
         spacerItem26 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem26)
-        self.label_60 = QtWidgets.QLabel(parent=self.frame_19)
-        self.label_60.setEnabled(True)
+        self.nombre_jugador9 = QtWidgets.QLabel(parent=self.frame_19) #Jugador 9
+        self.nombre_jugador9.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_60.sizePolicy().hasHeightForWidth())
-        self.label_60.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador9.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador9.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_60.setFont(font)
-        self.label_60.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_60.setObjectName("label_60")
-        self.verticalLayout_30.addWidget(self.label_60)
+        self.nombre_jugador9.setFont(font)
+        self.nombre_jugador9.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador9.setObjectName("nombre_jugador9")
+        self.verticalLayout_30.addWidget(self.nombre_jugador9)
         spacerItem27 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem27)
-        self.pushButton_121 = QtWidgets.QPushButton(parent=self.frame_19)
-        self.pushButton_121.setObjectName("pushButton_121")
-        self.verticalLayout_30.addWidget(self.pushButton_121)
+        self.bt_seleccionar_jugador9 = QtWidgets.QPushButton(parent=self.frame_19)
+        self.bt_seleccionar_jugador9.setObjectName("bt_seleccionar_jugador9")
+        self.verticalLayout_30.addWidget(self.bt_seleccionar_jugador9)
         spacerItem28 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem28)
-        self.pushButton_122 = QtWidgets.QPushButton(parent=self.frame_19)
-        self.pushButton_122.setObjectName("pushButton_122")
-        self.verticalLayout_30.addWidget(self.pushButton_122)
+        self.bt_jugador_nuevo9 = QtWidgets.QPushButton(parent=self.frame_19)
+        self.bt_jugador_nuevo9.setObjectName("bt_jugador_nuevo9")
+        self.verticalLayout_30.addWidget(self.bt_jugador_nuevo9)
         spacerItem29 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem29)
         self.gridLayout.addWidget(self.frame_19, 2, 2, 1, 1)
@@ -270,29 +262,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         spacerItem30 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem30)
-        self.label_52 = QtWidgets.QLabel(parent=self.frame_11)
-        self.label_52.setEnabled(True)
+        self.nombre_jugador1 = QtWidgets.QLabel(parent=self.frame_11) #Jugador 1
+        self.nombre_jugador1.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_52.sizePolicy().hasHeightForWidth())
-        self.label_52.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador1.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador1.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_52.setFont(font)
-        self.label_52.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_52.setObjectName("label_52")
-        self.verticalLayout_3.addWidget(self.label_52)
+        self.nombre_jugador1.setFont(font)
+        self.nombre_jugador1.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador1.setObjectName("nombre_jugador1")
+        self.verticalLayout_3.addWidget(self.nombre_jugador1)
         spacerItem31 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem31)
-        self.pushButton_105 = QtWidgets.QPushButton(parent=self.frame_11)
-        self.pushButton_105.setObjectName("pushButton_105")
-        self.verticalLayout_3.addWidget(self.pushButton_105)
+        self.bt_seleccionar_jugador1 = QtWidgets.QPushButton(parent=self.frame_11)
+        self.bt_seleccionar_jugador1.setObjectName("bt_seleccionar_jugador1")
+        self.verticalLayout_3.addWidget(self.bt_seleccionar_jugador1)
         spacerItem32 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem32)
-        self.pushButton_106 = QtWidgets.QPushButton(parent=self.frame_11)
-        self.pushButton_106.setObjectName("pushButton_106")
-        self.verticalLayout_3.addWidget(self.pushButton_106)
+        self.bt_jugador_nuevo1 = QtWidgets.QPushButton(parent=self.frame_11)
+        self.bt_jugador_nuevo1.setObjectName("bt_jugador_nuevo1")
+        self.verticalLayout_3.addWidget(self.bt_jugador_nuevo1)
         spacerItem33 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem33)
         self.gridLayout.addWidget(self.frame_11, 0, 0, 1, 1)
@@ -304,43 +296,43 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         spacerItem34 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem34)
-        self.label_54 = QtWidgets.QLabel(parent=self.frame_13)
-        self.label_54.setEnabled(True)
+        self.nombre_jugador3 = QtWidgets.QLabel(parent=self.frame_13) #Jugador 3
+        self.nombre_jugador3.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_54.sizePolicy().hasHeightForWidth())
-        self.label_54.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.nombre_jugador3.sizePolicy().hasHeightForWidth())
+        self.nombre_jugador3.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_54.setFont(font)
-        self.label_54.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_54.setObjectName("label_54")
-        self.verticalLayout_7.addWidget(self.label_54)
+        self.nombre_jugador3.setFont(font)
+        self.nombre_jugador3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.nombre_jugador3.setObjectName("nombre_jugador3")
+        self.verticalLayout_7.addWidget(self.nombre_jugador3)
         spacerItem35 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem35)
-        self.pushButton_109 = QtWidgets.QPushButton(parent=self.frame_13)
-        self.pushButton_109.setObjectName("pushButton_109")
-        self.verticalLayout_7.addWidget(self.pushButton_109)
+        self.bt_seleccionar_jugador3 = QtWidgets.QPushButton(parent=self.frame_13)
+        self.bt_seleccionar_jugador3.setObjectName("bt_seleccionar_jugador3")
+        self.verticalLayout_7.addWidget(self.bt_seleccionar_jugador3)
         spacerItem36 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem36)
-        self.pushButton_110 = QtWidgets.QPushButton(parent=self.frame_13)
-        self.pushButton_110.setObjectName("pushButton_110")
-        self.verticalLayout_7.addWidget(self.pushButton_110)
+        self.bt_jugador_nuevo3 = QtWidgets.QPushButton(parent=self.frame_13)
+        self.bt_jugador_nuevo3.setObjectName("bt_jugador_nuevo3")
+        self.verticalLayout_7.addWidget(self.bt_jugador_nuevo3)
         spacerItem37 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem37)
         self.gridLayout.addWidget(self.frame_13, 0, 2, 1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.pushButton = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.bt_atras = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.bt_atras.setObjectName("bt_atras")
+        self.horizontalLayout.addWidget(self.bt_atras)
         spacerItem38 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem38)
-        self.pushButton_2 = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.bt_iniciar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.bt_iniciar_partida.setEnabled(False) #False
+        self.horizontalLayout.addWidget(self.bt_iniciar_partida)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
@@ -354,95 +346,148 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Jugadores"))
-        self.label_57.setText(_translate("MainWindow", "Jugador 1"))
-        self.pushButton_115.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_116.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_56.setText(_translate("MainWindow", "Jugador 2"))
-        self.pushButton_113.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_114.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_53.setText(_translate("MainWindow", "Jugador 3"))
-        self.pushButton_107.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_108.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_55.setText(_translate("MainWindow", "Jugador 4"))
-        self.pushButton_111.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_112.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_58.setText(_translate("MainWindow", "Jugador 5"))
-        self.pushButton_117.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_118.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_59.setText(_translate("MainWindow", "Jugador 6"))
-        self.pushButton_119.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_120.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_60.setText(_translate("MainWindow", "Jugador 7"))
-        self.pushButton_121.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_122.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_52.setText(_translate("MainWindow", "Jugador 8"))
-        self.pushButton_105.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_106.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.label_54.setText(_translate("MainWindow", "Jugador 9"))
-        self.pushButton_109.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.pushButton_110.setText(_translate("MainWindow", "Jugador Nuevo"))
-        self.pushButton.setText(_translate("MainWindow", "Atrás"))
-        self.pushButton_2.setText(_translate("MainWindow", "Iniciar Partida"))
+        #Jugador 1
+        self.nombre_jugador1.setText(_translate("MainWindow", "Jugador 1"))
+        self.bt_seleccionar_jugador1.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo1.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 2
+        self.nombre_jugador2.setText(_translate("MainWindow", "Jugador 2"))
+        self.bt_seleccionar_jugador2.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo2.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 3
+        self.nombre_jugador3.setText(_translate("MainWindow", "Jugador 3"))
+        self.bt_seleccionar_jugador3.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo3.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 4
+        self.nombre_jugador4.setText(_translate("MainWindow", "Jugador 4"))
+        self.bt_seleccionar_jugador4.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo4.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 5
+        self.nombre_jugador5.setText(_translate("MainWindow", "Jugador 5"))
+        self.bt_seleccionar_jugador5.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo5.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Juagdor 6
+        self.nombre_jugador6.setText(_translate("MainWindow", "Jugador 6"))
+        self.bt_seleccionar_jugador6.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo6.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 7
+        self.nombre_jugador7.setText(_translate("MainWindow", "Jugador 7"))
+        self.bt_seleccionar_jugador7.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo7.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 8
+        self.nombre_jugador8.setText(_translate("MainWindow", "Jugador 8"))
+        self.bt_seleccionar_jugador8.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo8.setText(_translate("MainWindow", "Jugador Nuevo"))
+        #Jugador 9
+        self.nombre_jugador9.setText(_translate("MainWindow", "Jugador 9"))
+        self.bt_seleccionar_jugador9.setText(_translate("MainWindow", "Seleccionar Jugador"))
+        self.bt_jugador_nuevo9.setText(_translate("MainWindow", "Jugador Nuevo"))
+
+        #Botones
+        self.bt_atras.setText(_translate("MainWindow", "Atrás"))
+        self.bt_iniciar_partida.setText(_translate("MainWindow", "Iniciar Partida"))
+
+
+# MÉTODOS JUGADORES
+
+    #Métodos Jugador 1
+    def get_nombre_jugador1 (self):
+        return self.nombre_jugador1
 
     def get_button_seleccionar_jugador1(self):
-        return self.pushButton_115
+        return self.bt_seleccionar_jugador1
     
     def get_button_jugador_nuevo1(self):
-        return self.pushButton_116
+        return self.bt_jugador_nuevo1
+
+    #Métodos Jugador 2
+    def get_nombre_jugador2 (self):
+        return self.nombre_jugador2
     
     def get_button_seleccionar_jugador2(self):
-        return self.pushButton_113
+        return self.bt_seleccionar_jugador2
     
     def get_button_jugador_nuevo2(self):
-        return self.pushButton_114
-    
+        return self.bt_jugador_nuevo2
+
+    #Métodos Jugador 3
+    def get_nombre_jugador3 (self):
+        return self.nombre_jugador3
+
     def get_button_seleccionar_jugador3(self):
-        return self.pushButton_107
+        return self.bt_seleccionar_jugador3
     
     def get_button_jugador_nuevo3(self):
-        return self.pushButton_108
-    
+        return self.bt_jugador_nuevo3
+
+    #Métodos Jugador 4
+    def get_nombre_jugador4 (self):
+        return self.nombre_jugador4
+
     def get_button_seleccionar_jugador4(self):
-        return self.pushButton_111
+        return self.bt_seleccionar_jugador4
     
     def get_button_jugador_nuevo4(self):
-        return self.pushButton_112
+        return self.bt_jugador_nuevo4
+    
+    #Métodos Jugador 5
+    def get_nombre_jugador5 (self):
+        return self.nombre_jugador5
     
     def get_button_seleccionar_jugador5(self):
-        return self.pushButton_117
+        return self.bt_seleccionar_jugador5
     
     def get_button_jugador_nuevo5(self):
-        return self.pushButton_118
-    
+        return self.bt_jugador_nuevo5
+
+    #Métodos Jugador 6
+    def get_nombre_jugador6 (self):
+        return self.nombre_jugador6
+
     def get_button_seleccionar_jugador6(self):
-        return self.pushButton_119
+        return self.bt_seleccionar_jugador6
     
     def get_button_jugador_nuevo6(self):
-        return self.pushButton_120
-    
+        return self.bt_jugador_nuevo6
+
+    #Métodos Jugador 7
+    def get_nombre_jugador7 (self):
+        return self.nombre_jugador7
+
     def get_button_seleccionar_jugador7(self):
-        return self.pushButton_121
+        return self.bt_seleccionar_jugador7
     
     def get_button_jugador_nuevo7(self):
-        return self.pushButton_122
-    
+        return self.bt_jugador_nuevo7
+
+    #Métodos Jugador 8
+    def get_nombre_jugador8 (self):
+        return self.nombre_jugador8
+
     def get_button_seleccionar_jugador8(self):
-        return self.pushButton_105
+        return self.bt_seleccionar_jugador8
     
     def get_button_jugador_nuevo8(self):
-        return self.pushButton_106
+        return self.bt_jugador_nuevo8
+    
+    #Métodos Jugador 9
+    def get_nombre_jugador9 (self):
+        return self.nombre_jugador9
     
     def get_button_seleccionar_jugador9(self):
-        return self.pushButton_109
+        return self.bt_seleccionar_jugador9
     
     def get_button_jugador_nuevo9(self):
-        return self.pushButton_110
-    
+        return self.bt_jugador_nuevo9
+
+#MÉTODOS OTROS BOTONES
+
     def get_button_atras(self):
-        return self.pushButton
+        return self.bt_atras
     
     def get_button_iniciar_partida(self):
-        return self.pushButton_2
+        return self.bt_iniciar_partida
+
     
     
 if __name__ == "__main__":
