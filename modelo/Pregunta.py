@@ -5,7 +5,7 @@ class Pregunta(ABC):
         self._idPregunta = None
         self._tema = tema
         self._enunciado = enunciado
-        # self._estado = True
+
     
     def get_enunciado (self):
         return self._enunciado
@@ -24,9 +24,3 @@ class Pregunta(ABC):
     
     def set_idtema (self, idtema):
         self._tema = idtema
-
-    def get_estado (self):
-        return self._estado
-    
-    def set_estado (self, estado):
-        self._estado = estado

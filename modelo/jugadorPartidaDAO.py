@@ -27,16 +27,14 @@ class JugadorPartidaDAO:
     """
     
     ######################################## CREAR ########################################
-    ##ESTA COPIADO DE JUGADOR, REVISAR
-    def agregar_jugador_partida(self, jugador):
+    def agregar_jugador(self, jugador): # chequear si los cambios estan bien
         with self.__bd.cursor() as cursor:
+            indice_jugador  = int(cursor.execute ("SELECT MAX(id_jugador) FROM jugador ")) #como id jugador no esta en el objeto jugador hago esto, no se si tendria que ser +1
             cursor.execute(
-                """INSERT INTO jugador (id_jugador, nombre_jugador , estado_jugador) 
-                VALUES (%s, %s, %s, %s)""",
-                (jugador.get_id_jugador(), jugador.get_nombre_jugador(), jugador.get_puntaje() , jugador.get_estado_jugador())
+                """INSERT INTO jugador (id_jugador, nombre_jugador , avatar) 
+                VALUES (%s, %s, %s)""",
+                (indice_jugador, jugador.get_nombre_jugador(), jugador.get_avatar())
             )
-            indice_jugador = cursor.execute ("SELECT MAX(id_jugador) FROM jugador ")
-            jugador.set_id_jugador (int(indice_jugador)) #esto lo que hace es incrementar el indice porque los id son tipo serial
             self.__bd.commit()
             
     ######################################## ACTUALIZAR ########################################
