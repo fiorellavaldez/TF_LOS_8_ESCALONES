@@ -5,22 +5,27 @@ from PyQt6.QtWidgets import QMessageBox, QDialog, QLabel, QPushButton
 from PyQt6.QtGui import QFont
 from modelo.TemasDAO import TemasDAO
 from modelo.JugadorDAO import JugadorDAO
+from modelo.Escalon import Escalon
+from vista.WidgetJugador import WidgetJugador
 
 class ControladorVistaJuego:
 
-    def __init__(self, controlador_anterior):
+    def __init__(self, controlador_anterior, lista_jugadores):
         self.__controlador_anterior = controlador_anterior
         self.MainWindow = QtWidgets.QMainWindow()  # Nueva ventana para la nueva partida
-        self.__vista = Ui_MainWindow()
-        self.__vista.setupUi(self.MainWindow)
+        
+        self.__vista = Ui_MainWindow() #Aca se crea la vista 
+        self.__vista.setupUi(self.MainWindow, lista_jugadores)
         self.MainWindow.show()
 
         self.__temas = TemasDAO()
         self.__lista_temas = self.__temas.temas_partida() #trae 8 temas ya mezclados
         self.__asignar_temas() #¿le pasamos la lista por parámetro?
-
-        # self.__jugadores = 
+        self.__lista_jugadores_widget = []
+        self.__escalon1 = Escalon()
         
+        self.__lista = lista_jugadores
+
         self.__vista.get_button_atras().clicked.connect(self.__atras)
 
     def __atras(self):
@@ -38,3 +43,16 @@ class ControladorVistaJuego:
         lista_qlabels = self.__vista.get_lista_nombres_escalon()
         for i in range(0,8):
             lista_qlabels[i].setText((self.__lista_temas[i][1]).upper())
+
+    def __asignar_jugadores(self, escalon, layout): #Acá asigno al escalon
+        for i in self.__lista:
+            layout.addWidget(i)
+        escalon.set_jugadores(self.__lista)
+            
+        #self.__escalon1.set_jugadores(self.lista_jugadores)
+
+    def __convertir_widget(self):
+        for i in self.__lista:
+            self.__lista_jugadores_widget.add(WidgetJugador([i][1],[i][2]))
+            self.__vista.ly_escalon1.addWidget(self.__lista_jugadores_widget(i))
+            
