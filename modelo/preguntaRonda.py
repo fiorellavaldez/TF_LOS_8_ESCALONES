@@ -1,6 +1,6 @@
 #from .PreguntasDAO import PreguntasDAO
 #eso me parece qye bi va
-from modelo.Pregunta import Pregunta
+from Pregunta import Pregunta
 
 class preguntaRonda(Pregunta):
     def __init__(self, tema, enunciado, opcionA, opcionB, opcionC, opcionD, opcionCorrecta):
