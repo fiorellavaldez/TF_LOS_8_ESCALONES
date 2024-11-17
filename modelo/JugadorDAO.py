@@ -13,7 +13,7 @@ class JugadorDAO:
     ######################################## LECTURA ########################################
     def get_all_jugadores(self):
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT id_jugador, nombre_jugador FROM jugador")
+            cursor.execute("SELECT * FROM jugador")
             return cursor.fetchall()
 
     def get_jugador(self, id_jugador):
@@ -21,30 +21,29 @@ class JugadorDAO:
             cursor.execute("SELECT nombre_jugador, FROM jugador WHERE id_jugador = %s", (id_jugador,))
             return cursor.fetchone()
     ######################################## CREAR ########################################
-    def agregar_jugador(self, jugador):
+    def agregar_jugador(self, jugador): # chequear si los cambios estan bien
         with self.__bd.cursor() as cursor:
+            indice_jugador  = int(cursor.execute ("SELECT MAX(id_jugador) FROM jugador ")) #como id jugador no esta en el objeto jugador hago esto, no se si tendria que ser +1
             cursor.execute(
-                """INSERT INTO jugador (id_jugador, nombre_jugador , estado_jugador) 
-                VALUES (%s, %s, %s, %s)""",
-                (jugador.get_id_jugador(), jugador.get_nombre_jugador(), jugador.get_puntaje() , jugador.get_estado_jugador())
+                """INSERT INTO jugador (id_jugador, nombre_jugador , avatar) 
+                VALUES (%s, %s, %s)""",
+                (indice_jugador, jugador.get_nombre_jugador(), jugador.get_avatar())
             )
-            indice_jugador = cursor.execute ("SELECT MAX(id_jugador) FROM jugador ")
-            jugador.set_id_jugador (int(indice_jugador)) #esto lo que hace es incrementar el indice porque los id son tipo serial
             self.__bd.commit()
 
     ######################################## ACTUALIZAR ########################################
-    def actualizar_jugador(self, jugador):
+    def actualizar_jugador(self, id_jugador, nombre, avatar): #chequear si los cambios estan bien
         with self.__bd.cursor() as cursor:
             cursor.execute(
-                """UPDATE jugador SET nombre_jugador = %s, puntaje = %s 
+                """UPDATE jugador SET nombre_jugador = %s, avatar = %s 
                 WHERE id_jugador = %s""",
-                (jugador.get_nombre_jugador(), jugador.get_puntaje(), jugador.get_id_jugador())
+                (nombre, avatar, id_jugador)
             )
             self.__bd.commit()
             
             
     ######################################## ELIMINAR #######################################
-    def borrar_jugador(self, id_jugador):
+    def borrar_jugador(self, id_jugador): #jugador ya no tiene la columna estado_jugador esto ya no iria
         with self.__bd.cursor() as cursor:
             cursor.execute("UPDATE jugador SET estado_jugador FALSE WHERE id_jugador = %s", (id_jugador,))
             self.__bd.commit()

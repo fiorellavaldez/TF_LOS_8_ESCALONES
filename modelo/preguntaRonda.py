@@ -54,7 +54,10 @@ class preguntaRonda(Pregunta):
 
 
     def responder(self,opcion):
-        if opcion == self.__respuestaCorrecta:
+        if opcion == self.__opcionCorrecta:
             return True
         else: 
             return False
+    #esto no tendria que ser 
+    #def responder (self, opcion):
+    #if opcion == self.__opcionCorrecta
