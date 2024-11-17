@@ -1,8 +1,8 @@
 class Escalon():
     # escalon_partida = nro_escalon(pk) + estado + id_tema
 #################################################################
-    def __init__(self):
-        self.__nro_Escalon = 0
+    def __init__(self, nro_escalon):
+        self.__nro_Escalon = nro_escalon
         self.__tema = None
         self.__estado = False # falso no se esta el escalon, True se esta jugando
         self.__jugadores = []
@@ -19,7 +19,7 @@ class Escalon():
         return self.__estado
      
     #setters
-    def set_idescalon(self, nro_escalon):
+    def set_nro_escalon(self, nro_escalon):
         self.__nro_Escalon = nro_escalon
     def set_jugadores(self, listaJugadores):
         self.__jugadores = listaJugadores
