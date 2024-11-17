@@ -23,9 +23,9 @@ class ControladorVistaSeleccionarJugadores:
 
 
     def __aceptar(self):
-        fila = self.__vista.tableWidget().currentRow() #devuelve el nro fila tupla selecc
+        fila = self.__vista.tableWidget.currentRow() #devuelve el nro fila tupla selecc
         if fila >= 0:
-            nombre = self.__vista.tableWidget().item(fila, 0).text() #el nombre del jugador
+            nombre = self.__vista.tablaWidget.item(fila, 0).text() #el nombre del jugador
             
             if any(jugador[1]==nombre for jugador in self.__controlador_anterior.get_lista()): 
                 self.__vista.aviso_repeticion_jugador(nombre)
@@ -49,25 +49,29 @@ class ControladorVistaSeleccionarJugadores:
     
     def __actualizar_tabla(self, jugadores):
         """Actualiza la tabla con los jugadores proporcionados."""
+        self.__vista.tableWidget.clearContents()
         self.__vista.tableWidget.setRowCount(len(jugadores))
-        self.__vista.tableWidget.setColumnWidth(1,100)
-        self.__vista.tableWidget.setIconSize(QtCore.QSize(64,64))
+
+        self.__vista.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
         
         for fila, (id_jugador,nombre_jugador, avatar_path) in enumerate(jugadores):
             item_nombre_jugador = QtWidgets.QTableWidgetItem(nombre_jugador)
             item_nombre_jugador.setFlags(QtCore.Qt.ItemFlag.ItemIsSelectable | QtCore.Qt.ItemFlag.ItemIsEnabled)
+            item_nombre_jugador.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             self.__vista.tableWidget.setItem(fila, 0, item_nombre_jugador)
-
-            item_avatar = QtWidgets.QTableWidgetItem()  # Si es un texto o ruta
-            pixmap = QPixmap(avatar_path).scaled(64,64)  # Cargar la imagen desde la ruta
-            if not pixmap.isNull():  # Verificar que la imagen cargó correctamente
-                icon = QIcon(pixmap.scaled(64, 64, QtCore.Qt.AspectRatioMode.KeepAspectRatio))
-                item_avatar.setIcon(icon)
+            self.__vista.tableWidget.setRowHeight(fila, 60)
+        # Columna 1: Avatar (centrado usando QLabel)
+            label_avatar = QtWidgets.QLabel()
+            pixmap = QPixmap(avatar_path).scaled(64, 64, QtCore.Qt.AspectRatioMode.KeepAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+            if not pixmap.isNull():
+                label_avatar.setPixmap(pixmap)  # Establecer la imagen
             else:
-                item_avatar.setText("Sin avatar")  # Texto alternativo si no se encuentra la imagen
-        item_avatar.setFlags(QtCore.Qt.ItemFlag.ItemIsSelectable | QtCore.Qt.ItemFlag.ItemIsEnabled)
-        self.__vista.tableWidget.setItem(fila, 1, item_avatar)  # Segunda columna: Avatar (representación)
+                label_avatar.setText("Sin avatar")  # Texto alternativo
+                label_avatar.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            label_avatar.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
+            self.__vista.tableWidget.setCellWidget(fila, 1, label_avatar)
+            
     def __buscar_jugador(self):
         """Filtra los jugadores según el texto ingresado en el cuadro de búsqueda."""
         texto = self.__vista.lineEdit.text().strip().lower()
@@ -75,7 +79,7 @@ class ControladorVistaSeleccionarJugadores:
             self.filtrando_jugadores = [
                 (id_jugador,nombre_jugador ,avatar)
                 for id_jugador, nombre_jugador,avatar in self.__lista_jugadores
-                if texto in nombre_jugador.lower()
+                if nombre_jugador.lower().startswith(texto)
             ]
         else:
             self.filtrando_jugadores = self.__lista_jugadores

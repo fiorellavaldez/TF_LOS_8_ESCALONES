@@ -6,3 +6,4 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     controlador = ControladorPantallaInicio()
     sys.exit(app.exec())
+    

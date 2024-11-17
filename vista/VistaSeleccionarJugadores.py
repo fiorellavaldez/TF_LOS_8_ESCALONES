@@ -39,6 +39,7 @@ class Ui_MainWindow(object):
         self.tableWidget = QtWidgets.QTableWidget(len(self.lista), 2)
         self.tableWidget.setHorizontalHeaderLabels(["Nombre", "Avatar"])
 
+    
         for row, (id, nombre, avatar_path) in enumerate(self.lista):
             # Columna nombres
             item_nombre = QtWidgets.QTableWidgetItem(nombre)
@@ -52,7 +53,7 @@ class Ui_MainWindow(object):
             label_avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
             self.tableWidget.setCellWidget(row, 1, label_avatar)
         
-        
+            self.tableWidget.setRowHeight(row,60)
         # self.tableWidget.resizeColumnsToContents()
         self.tableWidget.resizeRowsToContents()
         
@@ -89,6 +90,10 @@ class Ui_MainWindow(object):
     def get_button_aceptar(self):
         return self.bt_aceptar
     
+    '''
+    def get_tabla(self):
+        return self.tableWidget
+    '''
     def aviso_repeticion_jugador(self,nombre):
         msg=QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
