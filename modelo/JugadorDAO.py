@@ -9,7 +9,7 @@ class JugadorDAO:
 
     def get_all_jugadores(self):
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT id_jugador, nombre_jugador FROM jugador")
+            cursor.execute("SELECT * FROM jugador")
             return cursor.fetchall()
 
     def get_jugador(self, id_jugador):
