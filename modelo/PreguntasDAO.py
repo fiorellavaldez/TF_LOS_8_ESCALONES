@@ -1,10 +1,10 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from preguntaRonda import  preguntaRonda 
-from preguntaDesempate import preguntaDesempate
+from modelo.preguntaRonda import  preguntaRonda 
+from modelo.preguntaDesempate import preguntaDesempate
 from .bd import Database
 import random
-from Tema import  Tema
+from modelo.Tema import  Tema
 
 
 #################### ESTRUCTURA ####################################################
@@ -22,7 +22,7 @@ class PreguntaDAO:
             return cursor.fetchall()
 
     def get_pregunta(self, id_pregunta):
-        with self.__bd.cursor(cursor_factory=RealDictCursor) as cursor:
+        with self.__bd.cursor() as cursor:
             query = "SELECT * FROM preguntas WHERE id_pregunta = %s"
             cursor.execute(query, (id_pregunta,))
             result = cursor.fetchone()
@@ -51,7 +51,7 @@ class PreguntaDAO:
     def devolver_preg_ronda (self, id_tema): #Ver si se usa
         lista_preguntas_ronda = []
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema= %s", (id_tema,))
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'M' and id_tema= %s", (id_tema,))
             preguntas_ronda = cursor.fetchall()
         random.shuffle(preguntas_ronda)
         for i in range (0,19):
@@ -60,7 +60,7 @@ class PreguntaDAO:
     def devolver_pregunta_desempate (self, id_tema): #Ver si se usa
         lista_preguntas_desempate = []
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'D' and id_tema = %s", (id_tema,))
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
         for i in range (0,4):
@@ -68,13 +68,13 @@ class PreguntaDAO:
 
     def devolver_all_ronda (self, id_tema):
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Ronda' and id_tema= %s", (id_tema,))
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'M' and id_tema= %s", (id_tema,))
             preguntas_ronda = cursor.fetchall()
         return preguntas_ronda
 
     def devolver_all_desempate(self, id_tema):
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'Desempate' and id_tema = %s", (id_tema,))
+            cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'D' and id_tema = %s", (id_tema,))
             preguntas_desempate = cursor.fetchall()
         return preguntas_desempate
 
@@ -107,7 +107,7 @@ class PreguntaDAO:
                     pregunta.get_estado(),
                     pregunta.get_idtema()
                 ))
-            self.__bd.commit()
+            cursor.connection.commit()
             return cursor.fetchone()[0]
 
     ################################ ACTUALIZAR ####################################
@@ -141,13 +141,13 @@ class PreguntaDAO:
                     pregunta.get_idtema(),
                     id_pregunta
                 ))
-            self.__bd.commit()
+            cursor.connection.commit()
 
     ################################ ELIMINAR ####################################
     def borrar_pregunta(self, id_pregunta):
         with self.__bd.cursor() as cursor:
             cursor.execute("UPDATE preguntas SET estado_pregunta FALSE WHERE id_pregunta = %s", (id_pregunta,))
-            self.__bd.commit()
+            cursor.connection.commit()
 
 
 ####################################################################################################################################################################################
