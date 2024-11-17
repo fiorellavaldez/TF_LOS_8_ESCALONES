@@ -331,7 +331,7 @@ class Ui_MainWindow(object):
         spacerItem38 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem38)
         self.bt_iniciar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.bt_iniciar_partida.setEnabled(True) #False #Acá se desactivaaaaaa
+        self.bt_iniciar_partida.setEnabled(True) #False
         self.horizontalLayout.addWidget(self.bt_iniciar_partida)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -487,7 +487,15 @@ class Ui_MainWindow(object):
     
     def get_button_iniciar_partida(self):
         return self.bt_iniciar_partida
-
+    
+    def aviso_iniciar_partida(self):
+        msg=QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debes seleccionar a todos los jugadores")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
+        
     
     
 if __name__ == "__main__":

@@ -17,7 +17,8 @@ class ControladorVistaGrillaJugadores:
         self.__nro_seleccionado = None
 
         '''
-        El ControladorVistaJuego llama a la clase de Escalon y con un Dao le trae los datos creo, entonces tiene una lista de jugadores. Esa lista de jugadores debería enviarse desde este Controlador, acá voy a tener la lista final que le voy a pasar al Escalon que está en el siguiente controlador
+        El ControladorVistaJuego llama a la clase de Escalon y con un Dao le trae los datos creo, entonces tiene una lista de jugadores. Esa lista de jugadores 
+        debería enviarse desde este Controlador, acá voy a tener la lista final que le voy a pasar al Escalon que está en el siguiente controlador
         '''
 
         #Seleccion Jugador 1
@@ -70,8 +71,12 @@ class ControladorVistaGrillaJugadores:
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevo(self)
 
     def __iniciar_partida(self):
-        self.MainWindow.hide()
-        self.controlador_iniciar_partida = ControladorVistaJuego(self, self.__lista_jugadores)
+        if len(self.__lista_jugadores) <9:
+            self.__vista.aviso_iniciar_partida()
+        else:
+            self.MainWindow.hide()
+            #acá usamos un método del siguiente controlador usando la referencia para setearle al escalon 1 la lista de jugadores 
+            self.controlador_iniciar_partida = ControladorVistaJuego(self,self.__lista_jugadores) ###############################################################3
 
     def __volver_menu(self):
         self.MainWindow.close()
@@ -85,6 +90,13 @@ class ControladorVistaGrillaJugadores:
         self.__nro_seleccionado.setText(jugador[1])
         self.__lista_jugadores.append(jugador)
         print(f"Añadiste a jugador {jugador[1]}")
+        self.__nro_seleccionado=None
+        
+    def get_lista(self):
         if len(self.__lista_jugadores) == 9:
             self.__vista.get_button_iniciar_partida().setEnabled(True)
             self.__nro_seleccionado = None
+        return self.__lista_jugadores
+
+    def get_jugadores(self):
+        return self.__lista_jugadores
