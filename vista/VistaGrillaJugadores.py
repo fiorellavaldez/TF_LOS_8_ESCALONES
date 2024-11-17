@@ -331,7 +331,7 @@ class Ui_MainWindow(object):
         spacerItem38 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout.addItem(spacerItem38)
         self.bt_iniciar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.bt_iniciar_partida.setEnabled(False) #False
+        self.bt_iniciar_partida.setEnabled(True) #False #Acá se desactivaaaaaa
         self.horizontalLayout.addWidget(self.bt_iniciar_partida)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
