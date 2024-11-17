@@ -339,15 +339,15 @@ class Ui_MainWindow(object):
         self.ly_escalon1.addWidget(self.tematica_escalon1)
 
         #JUGADORES
-        self.wd_j1 = WidgetJugador( "Fiorella", "vista/img/fi.jpg")
-        self.wd_j2 = WidgetJugador( "Tania", "vista/img/ta.png")
-        self.wd_j3 = WidgetJugador( "Dayana", "vista/img/da.jpg")
-        self.wd_j4 = WidgetJugador( "Carlos", "vista/img/edna.jpg")
-        self.wd_j5 = WidgetJugador( "Bruno", "vista/img/avatar_azul.png")
-        self.wd_j6 = WidgetJugador( "Alexis", "vista/img/al.jpg")
-        self.wd_j7 = WidgetJugador( "Facundo", "vista/img/fa.jpg")
-        self.wd_j8 = WidgetJugador( "Kadir", "vista/img/ka.jpg")
-        self.wd_j9 = WidgetJugador( "Ignacio", "vista/img/jarr.jpg")
+        # self.wd_j1 = WidgetJugador( "Fiorella", "vista/img/fi.jpg")
+        # self.wd_j2 = WidgetJugador( "Tania", "vista/img/ta.png")
+        # self.wd_j3 = WidgetJugador( "Dayana", "vista/img/da.jpg")
+        # self.wd_j4 = WidgetJugador( "Carlos", "vista/img/edna.jpg")
+        # self.wd_j5 = WidgetJugador( "Bruno", "vista/img/avatar_azul.png")
+        # self.wd_j6 = WidgetJugador( "Alexis", "vista/img/al.jpg")
+        # self.wd_j7 = WidgetJugador( "Facundo", "vista/img/fa.jpg")
+        # self.wd_j8 = WidgetJugador( "Kadir", "vista/img/ka.jpg")
+        # self.wd_j9 = WidgetJugador( "Ignacio", "vista/img/jarr.jpg")
 
         # self.wd_j1.setParent(self.wd_escalon1)
         # self.wd_j2.setParent(self.wd_escalon1)
@@ -359,10 +359,12 @@ class Ui_MainWindow(object):
         # self.wd_j8.setParent(self.wd_escalon1)
         # self.wd_j9.setParent(self.wd_escalon1)
         
-        self.__lista_wd = [self.wd_j1,self.wd_j2,self.wd_j3,self.wd_j4,self.wd_j5,self.wd_j6,self.wd_j7,self.wd_j8,self.wd_j9]
+        #self.__lista_wd = [self.wd_j1,self.wd_j2,self.wd_j3,self.wd_j4,self.wd_j5,self.wd_j6,self.wd_j7,self.wd_j8,self.wd_j9]
         #Despues pasar esta lista que se cree con un for
+        self.__lista_wd = lista_jugadores
         for i in self.__lista_wd:
             i.setParent(self.wd_escalon1)
+            self.ly_escalon1.addWidget(i)
         
 
         # self.ly_escalon1.addWidget(self.wd_j1)
@@ -389,14 +391,16 @@ class Ui_MainWindow(object):
         self.pushButton_atras = QtWidgets.QPushButton(parent=self.centralwidget)
         self.pushButton_atras.setGeometry(QtCore.QRect(20, 640, 75, 24))
         self.pushButton_atras.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        
+        self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8]
+        
+        self.hola = "hola"
 
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        
-        self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8 ]
-
+    
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -414,8 +418,8 @@ class Ui_MainWindow(object):
     def get_button_atras(self):
         return self.pushButton_atras
 
-    def get_lista_nombres_escalon(self):
-        return self.lista_nombres_escalon
+    # def get_lista_nombres_escalon(self):
+    #     return self.lista_nombres_escalon
 
 # if __name__ == "__main__":
 #     import sys

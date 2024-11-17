@@ -1,7 +1,7 @@
-from vista.VistaConfiguracionPreguntasEditarPreguntaDeRondaEspecifica import Ui_MainWindow
+from vista.VistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica import Ui_MainWindow
 from PyQt6 import QtWidgets
 
-class ControladorVistaConfiguracionPreguntasEditarPreguntaDeRondaEspecifica:
+class ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica:
     def __init__(self, controlador_anterior):
         self.__controlador_anterior = controlador_anterior
         self.MainWindow = QtWidgets.QMainWindow()
