@@ -3,8 +3,7 @@ from modelo.Jugador import Jugador
 
 class JugadorABM:
     def __init__(self):
-
-        self.__lista_jugadores = self.obtener_jugadores()
+     self.__lista_jugadores = self.obtener_jugadores()
     
     @property
     def lista_jugadores(self):

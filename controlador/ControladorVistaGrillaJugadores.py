@@ -93,7 +93,7 @@ class ControladorVistaGrillaJugadores:
         self.__nro_seleccionado=None
         
     def get_lista(self):
-        if len(self.__lista_jugadores) == 9:
+        if len(self.__lista_jugadores) == 9: #9
             self.__vista.get_button_iniciar_partida().setEnabled(True)
             self.__nro_seleccionado = None
         return self.__lista_jugadores

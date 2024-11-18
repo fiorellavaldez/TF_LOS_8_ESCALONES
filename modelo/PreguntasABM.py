@@ -32,17 +32,36 @@ class PreguntaABM:
         for id_pregunta, enunciado, _, _, _, _, rta_correcta, _, _, id_tema in lista:
             preg = preguntaDesempate(id_tema,enunciado, rta_correcta)
             preg.set_idPregunta(id_pregunta)
-        lista_preguntas.append(preg) #en teoria estoy ignorando los campos que no necesito para crear la pregunta
+            lista_preguntas.append(preg) #en teoria estoy ignorando los campos que no necesito para crear la pregunta
+        return lista_preguntas # Lista de objetos pregunta
+
+    def obtener_preguntas_ronda_tema(self,tema):
+        lista=PreguntaDAO().devolver_all_ronda()   
+        lista_preguntas=[]
+        for id_pregunta, enunciado, rta_a, rta_b, rta_c, rta_d, rta_correcta, _, _, id_tema in lista:
+            if id_tema == tema:
+                preg = preguntaRonda(id_tema,enunciado,rta_a, rta_b, rta_c, rta_d, rta_correcta) #en teoria estoy ignorando los campos que no necesito para crear la pregunta
+                preg.set_idPregunta(id_pregunta)
+                lista_preguntas.append(preg)
+        return lista_preguntas
+
+    def obtener_preguntas_desempate_tema(self,tema):
+        lista=PreguntaDAO().devolver_all_desempate()
+        lista_preguntas= []
+        for id_pregunta, enunciado, _, _, _, _, rta_correcta, _, _, id_tema in lista:
+            if id_tema== tema:
+                preg = preguntaDesempate(id_tema,enunciado, rta_correcta)
+                preg.set_idPregunta(id_pregunta)
+                lista_preguntas.append(preg) #en teoria estoy ignorando los campos que no necesito para crear la pregunta
         return lista_preguntas # Lista de objetos pregunta
 
     def preguntas_ronda_tema(self, id_tema):
-        lista=PreguntaDAO().devolver_preg_ronda(id_tema)    
+        lista=PreguntaDAO().devolver_preg_ronda(id_tema)   
         lista_preguntas=[]
         for id_pregunta, enunciado, rta_a, rta_b, rta_c, rta_d, rta_correcta, _, _, id_tema in lista:
             preg = preguntaRonda(id_tema,enunciado,rta_a, rta_b, rta_c, rta_d, rta_correcta) #en teoria estoy ignorando los campos que no necesito para crear la pregunta
             preg.set_idPregunta(id_pregunta)
             lista_preguntas.append(preg)
-                                     
         return lista_preguntas # Lista de objetos pregunta
     
     def preguntas_desempate_tema(self, id_tema):
@@ -64,8 +83,9 @@ class PreguntaABM:
                 self.lista_preguntas_ronda[p].set_opcionC(pregunta.get_opcionC())
                 self.lista_preguntas_ronda[p].set_opcionD(pregunta.get_opcionD())
                 self.lista_preguntas_ronda[p].set_opcionCorrecta(pregunta.get_opcionCorrecta())
+                self.lista_preguntas_ronda[p].set_idtema(pregunta.get_idtema())
         PreguntaDAO().actualizar_pregunta_ronda(pregunta.get_enunciado(),pregunta.get_opcionA(),pregunta.get_opcionB(),pregunta.get_opcionC(),pregunta.get_opcionD()
-                                                ,pregunta.get_opcionCorrecta(),pregunta.get_idPregunta())
+                                                ,pregunta.get_opcionCorrecta(), pregunta.get_idPregunta(),pregunta.get_idtema())
 
             
     def actualizar_preguntas_desempate(self, pregunta:preguntaDesempate):
@@ -95,7 +115,7 @@ class PreguntaABM:
                  PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
 
 
-    def quitar_pregunta_ronda(self, pregunta: preguntaDesempate):
+    def quitar_pregunta_desempate(self, pregunta: preguntaDesempate):
         for p in self.lista_preguntas_desempate:
             if p.get_idPregunta() == pregunta.get_idPregunta():
                PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
