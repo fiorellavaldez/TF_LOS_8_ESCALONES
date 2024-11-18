@@ -68,17 +68,12 @@ class ControladorVistaJuego:
         return lista_temas
 
     def devolver_objetos_pregunta_ronda(self,id_tema):
-        lista_preguntas_ronda = PreguntaABM()
-        return lista_preguntas_ronda_partida
+        lista_preguntas_ronda = PreguntaABM().devolver_preg_ronda(id_tema)
+        return lista_preguntas_ronda
 
     def devolver_objetos_pregunta_desempate(self,id_tema):
-        lista_preguntas_desempate = PreguntaDAO().devolver_preg_ronda (id_tema)
-        lista_preguntas_desempate_partida = []
-        for fila in lista_preguntas_desempate:
-            enunciado = fila[1]
-            resp_correcta = fila[6]
-            lista_preguntas_desempate_partida.append(preguntaDesempate(id_tema,enunciado,resp_correcta))
-        return lista_preguntas_desempate_partida
+        lista_preguntas_desempate = PreguntaABM().devolver_preg_desempate (id_tema)
+        return lista_preguntas_desempate
 
     def devolver_jugadores(self):
         lista_jugadores= self.__lista
@@ -89,7 +84,7 @@ class ControladorVistaJuego:
             lista_jugadores_partida.append(Jugador(nombre,avatar))
         return lista_jugadores_partida
     
-    def __devolver_escalones(self,lista_temas_partida):
+    def __devolver_escalones(self,lista_temas):
         escalones = []
         for i in range(1,8):
             tema = lista_temas_partida[i]
