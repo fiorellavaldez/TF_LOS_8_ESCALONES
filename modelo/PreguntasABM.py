@@ -69,21 +69,18 @@ class PreguntaABM:
         self.__lista_preguntas_desempate.append(pregunta)
         PreguntaDAO().agregar_pregunta_desempate(pregunta.get_enunciado(), pregunta.get_respuestaCorrecta(), pregunta.get_idtema())
     
-    def pregunta_borrada(self, pregunta: Pregunta):
+    def pregunta_borrada_ronda(self, pregunta: preguntaRonda):
+        if pregunta.get_estado == True:
+            return 
 
 
     def quitar_pregunta_ronda(self, pregunta: preguntaRonda):
-        lista_aux=[]
         for p in self.lista_preguntas_ronda:
-            if p.get_idPregunta() != pregunta.get_idPregunta():
-                lista_aux.append(p)
-        self.__lista_preguntas_ronda = lista_aux
-        PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
+            if p.get_idPregunta() == pregunta.get_idPregunta():
+                 PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
+
 
     def quitar_pregunta_ronda(self, pregunta: preguntaDesempate):
-        lista_aux=[]
         for p in self.lista_preguntas_desempate:
-            if p.get_idPregunta() != pregunta.get_idPregunta():
-                lista_aux.append(p)
-        self.__lista_preguntas_desempate = lista_aux
-        PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
+            if p.get_idPregunta() == pregunta.get_idPregunta():
+               PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
