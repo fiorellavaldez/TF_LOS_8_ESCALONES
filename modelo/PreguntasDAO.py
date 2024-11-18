@@ -88,14 +88,13 @@ class PreguntaDAO:
 
 
     ################################ ACTUALIZAR ####################################
-    def actualizar_pregunta_ronda(self, enunciado, opcion_a, opcion_b, opcion_c,opcion_d, opcion_correcta, id_pregunta):
+    def actualizar_pregunta_ronda(self, enunciado, opcion_a, opcion_b, opcion_c,opcion_d, opcion_correcta, id_pregunta, id_tema):
         with self.__bd.cursor() as cursor:
                 query = """
-                    UPDATE preguntas SET enunciado_pregunta = %s, rta_a = %s, rta_b = %s, rta_c = %s, rta_d = %s, rta_correcta = %s
+                    UPDATE preguntas SET enunciado_pregunta = %s, rta_a = %s, rta_b = %s, rta_c = %s, rta_d = %s, rta_correcta = %s, id_tema =%s
                     WHERE id_pregunta = %s and tipo_pregunta = 'M'
                 """
-                cursor.execute(query, (enunciado,opcion_a,opcion_b,opcion_c,opcion_d,opcion_correcta,id_pregunta
-                ))
+                cursor.execute(query, (enunciado,opcion_a,opcion_b,opcion_c,opcion_d,opcion_correcta,id_tema,id_pregunta))
                 cursor.connection.commit()
 
     def actualizar_pregunta_desempate(self, enunciado, rta_correcta, id_pregunta):
