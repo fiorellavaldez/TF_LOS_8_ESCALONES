@@ -14,7 +14,7 @@ class TemaABM:
         #self.__lista_temas = TemasDAO().get_all_temas()
         lista=TemasDAO().get_all_temas()
         lista_temas=[]
-        for id_tema, nombre_tema in lista: #estamos ignorando el atributo estado_tema, pasara algo?
+        for id_tema, nombre_tema, estado_tema in lista: 
             lista_temas.append(Tema(id_tema,nombre_tema)) 
         return lista_temas # Lista de objetos Tema
     
@@ -25,7 +25,7 @@ class TemaABM:
                 self.lista_temas[t].set_nombreTema(tema.get_nombreTema())
         
         TemasDAO().actualizar_tema(tema.get_idTema(), tema.get_nombreTema())
-       
+    
 
     def existe_tema(self, tema:Tema):
         tope =len(self.lista_temas)
@@ -49,6 +49,9 @@ class TemaABM:
 
         self.__lista_temas = lista_aux
         TemasDAO().borrar_tema(tema.get_idTema())
+
+
+
 
 
     
