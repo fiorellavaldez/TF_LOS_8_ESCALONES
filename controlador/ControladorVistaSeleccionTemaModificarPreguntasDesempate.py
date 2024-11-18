@@ -1,6 +1,6 @@
 from vista.VistaSeleccionDeTemaModificarPreguntasDeDesempate import Ui_MainWindow
 from controlador.ControladorVistaConfiguracionModificarPreguntasDesempate import ControladorVistaConfiguracionModificarPreguntasDeDesempate
-from modelo.TemasDAO import TemasDAO
+from modelo.TemaABM import TemaABM
 from PyQt6.QtCore import QStringListModel
 from PyQt6 import QtWidgets
 
@@ -13,7 +13,7 @@ class ControladorVistaSeleccionTemaModificarPreguntasDesempate:
         self.MainWindow.show()
 
         # Configuración de DAO, ListView y búsqueda
-        self.dao = TemasDAO()
+        self.dao = TemaABM()
         self.temas = []
         self.filtered_temas = []
         self.model = QStringListModel()
