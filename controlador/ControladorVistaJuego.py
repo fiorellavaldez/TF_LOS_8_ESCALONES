@@ -1,15 +1,16 @@
 from vista.VistaJuego import Ui_MainWindow
 from vista.VistaPreguntaRonda import VistaPreguntaRonda
 from PyQt6 import QtWidgets
-from modelo.TemasDAO import TemasDAO
+#from modelo.TemasDAO import TemasDAO
 from modelo.Escalon import Escalon
 from vista.WidgetJugador import WidgetJugador
-from modelo.PreguntasDAO import PreguntaDAO
+#from modelo.PreguntasDAO import PreguntaDAO
 from modelo.Tema import Tema
 from modelo.preguntaRonda import preguntaRonda
 from modelo.preguntaDesempate import preguntaDesempate
 from modelo.Jugador import Jugador
-
+from modelo.TemaABM import TemaABM
+from modelo.PreguntasABM import PreguntaABM
 
 class ControladorVistaJuego:
 
@@ -62,26 +63,12 @@ class ControladorVistaJuego:
     #     for i in self.__lista_jugadores_widget:
     #         self.__vista.ly_escalon1.addWidget(i)
 
-    def devolver_objetos_tema(self):
-        lista_tema = TemasDAO().temas_partida()
-        lista_temas_partida= []
-        for fila in lista_tema:
-            id_tema = fila[0]
-            nombre_tema = fila[1]
-            lista_temas_partida.append( Tema(id_tema,nombre_tema))
-        return lista_temas_partida
+    def devolver_objetos_tema(self):  #este lo podemos usar sin que sea un metodo y lo pasamos al constructor
+        lista_temas = TemaABM().obtener_temas()
+        return lista_temas
 
     def devolver_objetos_pregunta_ronda(self,id_tema):
-        lista_preguntas_ronda = PreguntaDAO().devolver_preg_ronda (id_tema)
-        lista_preguntas_ronda_partida = []
-        for fila in lista_preguntas_ronda:
-            enunciado = fila[1]
-            opcion_a = fila[2]
-            opcion_b = fila[3]
-            opcion_c = fila[4]
-            opcion_d = fila[5]
-            resp_correcta = fila[6]
-            lista_preguntas_ronda_partida.append(preguntaRonda(id_tema,enunciado,opcion_a,opcion_b,opcion_c,opcion_d,resp_correcta))
+        lista_preguntas_ronda = PreguntaABM()
         return lista_preguntas_ronda_partida
 
     def devolver_objetos_pregunta_desempate(self,id_tema):
