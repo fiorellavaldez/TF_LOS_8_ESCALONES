@@ -1,37 +1,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from vista.WidgetJugador import WidgetJugador
 
-
-# class WidgetEscalon(QtWidgets.QWidget):
-        
-#         def __init__(self):
-#             #self.wd_escalon1 = QtWidgets.QWidget(parent=self.widget_escalera)
-#             self.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
-#             self.setMinimumSize(QtCore.QSize(920, 0))
-#             self.setMaximumSize(QtCore.QSize(920, 70))
-#             self.setStyleSheet("background-color: rgb(213, 213, 213);")
-            
-#             self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self)
-#             self.horizontalLayout_2.setContentsMargins(-1, 0, -1, 0)
-#             self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-#             self.ly_escalon1 = QtWidgets.QHBoxLayout()
-#             self.ly_escalon1.setObjectName("ly_escalon1")
-#             self.icono_escalon1 = QtWidgets.QLabel(parent=self)
-#             self.icono_escalon1.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
-#             self.icono_escalon1.setMaximumSize(QtCore.QSize(50, 50))
-#             self.icono_escalon1.setPixmap(QtGui.QPixmap("vista/img/number-1-circle-svgrepo-com.png"))
-#             self.icono_escalon1.setScaledContents(True)
-#             self.icono_escalon1.setObjectName("icono_escalon1")
-#             self.ly_escalon1.addWidget(self.icono_escalon1)
-#             self.tematica_escalon1 = QtWidgets.QLabel(parent=self)
-#             font = QtGui.QFont()
-#             font.setFamily("Sitka")
-#             font.setPointSize(18)
-#             self.tematica_escalon1.setFont(font)
-#             self.tematica_escalon1.setObjectName("tematica_escalon1")
-#             self.ly_escalon1.addWidget(self.tematica_escalon1)
-
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, lista_jugadores):
         MainWindow.setObjectName("MainWindow")
@@ -338,45 +307,10 @@ class Ui_MainWindow(object):
         self.tematica_escalon1.setObjectName("tematica_escalon1")
         self.ly_escalon1.addWidget(self.tematica_escalon1)
 
-        #JUGADORES
-        # self.wd_j1 = WidgetJugador( "Fiorella", "vista/img/fi.jpg")
-        # self.wd_j2 = WidgetJugador( "Tania", "vista/img/ta.png")
-        # self.wd_j3 = WidgetJugador( "Dayana", "vista/img/da.jpg")
-        # self.wd_j4 = WidgetJugador( "Carlos", "vista/img/edna.jpg")
-        # self.wd_j5 = WidgetJugador( "Bruno", "vista/img/avatar_azul.png")
-        # self.wd_j6 = WidgetJugador( "Alexis", "vista/img/al.jpg")
-        # self.wd_j7 = WidgetJugador( "Facundo", "vista/img/fa.jpg")
-        # self.wd_j8 = WidgetJugador( "Kadir", "vista/img/ka.jpg")
-        # self.wd_j9 = WidgetJugador( "Ignacio", "vista/img/jarr.jpg")
-
-        # self.wd_j1.setParent(self.wd_escalon1)
-        # self.wd_j2.setParent(self.wd_escalon1)
-        # self.wd_j3.setParent(self.wd_escalon1)
-        # self.wd_j4.setParent(self.wd_escalon1)
-        # self.wd_j5.setParent(self.wd_escalon1)
-        # self.wd_j6.setParent(self.wd_escalon1)
-        # self.wd_j7.setParent(self.wd_escalon1)
-        # self.wd_j8.setParent(self.wd_escalon1)
-        # self.wd_j9.setParent(self.wd_escalon1)
-        
-        #self.__lista_wd = [self.wd_j1,self.wd_j2,self.wd_j3,self.wd_j4,self.wd_j5,self.wd_j6,self.wd_j7,self.wd_j8,self.wd_j9]
-        #Despues pasar esta lista que se cree con un for
         self.__lista_wd = lista_jugadores
         for i in self.__lista_wd:
             i.setParent(self.wd_escalon1)
             self.ly_escalon1.addWidget(i)
-        
-
-        # self.ly_escalon1.addWidget(self.wd_j1)
-        # self.ly_escalon1.addWidget(self.wd_j2)
-        # self.ly_escalon1.addWidget(self.wd_j3)
-        # self.ly_escalon1.addWidget(self.wd_j4)
-        # self.ly_escalon1.addWidget(self.wd_j5)
-        # self.ly_escalon1.addWidget(self.wd_j6)
-        # self.ly_escalon1.addWidget(self.wd_j7)
-        # self.ly_escalon1.addWidget(self.wd_j8)
-        # self.ly_escalon1.addWidget(self.wd_j9)
-
 
         self.horizontalLayout_2.addLayout(self.ly_escalon1) #???????????
         self.verticalLayout.addWidget(self.wd_escalon1, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
@@ -390,9 +324,11 @@ class Ui_MainWindow(object):
         self.gif.setObjectName("gif")
         self.pushButton_atras = QtWidgets.QPushButton(parent=self.centralwidget)
         self.pushButton_atras.setGeometry(QtCore.QRect(20, 640, 75, 24))
-        self.pushButton_comenzar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(50, 640, 75, 24))
         self.pushButton_atras.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        
+        self.pushButton_comenzar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(860, 640, 75, 24))
+        self.pushButton_comenzar_partida.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         
         self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8]
 
@@ -412,20 +348,9 @@ class Ui_MainWindow(object):
         self.tematica_escalon3.setText(_translate("MainWindow", "-"))
         self.tematica_escalon2.setText(_translate("MainWindow", "-"))
         self.tematica_escalon1.setText(_translate("MainWindow", "-"))
+        self.pushButton_comenzar_partida.setText(_translate("MainWindow","Jugar"))
         self.pushButton_atras.setText(_translate("MainWindow", "Atras"))
 
 
     def get_button_atras(self):
         return self.pushButton_atras
-
-    # def get_lista_nombres_escalon(self):
-    #     return self.lista_nombres_escalon
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec())

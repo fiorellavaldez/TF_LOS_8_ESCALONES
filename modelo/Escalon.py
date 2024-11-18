@@ -17,7 +17,7 @@ class Escalon():
         return self.__nro_Escalon
     def get_estado(self):
         return self.__estado
-     
+    
     #setters
     def set_nro_escalon(self, nro_escalon):
         self.__nro_Escalon = nro_escalon
