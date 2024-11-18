@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2.extras import DictCursor
 from modelo.preguntaRonda import  preguntaRonda 
 from modelo.preguntaDesempate import preguntaDesempate
-from modelo.bd import Database
+from .bd import Database
 import random
 from modelo.Tema import  Tema
 
@@ -43,15 +43,17 @@ class PreguntaDAO:
         random.shuffle(preguntas_ronda)
         for i in range (0,18):
             lista_preguntas_ronda.append(preguntas_ronda.pop())
-        
+        return lista_preguntas_ronda
+    
     def devolver_pregunta_desempate (self, id_tema): #Ver si se usa
         lista_preguntas_desempate = []
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'D' and id_tema = %s and estado_pregunta = True", (id_tema,))
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
-        for i in range (0,1):
+        for i in range (0,2):
             lista_preguntas_desempate.append(preguntas_desempate.pop())
+        return lista_preguntas_desempate
 
     def devolver_all_ronda (self):
         with self.__bd.cursor() as cursor:
@@ -79,7 +81,7 @@ class PreguntaDAO:
         with self.__bd.cursor() as cursor:
             query = """
                  INSERT INTO preguntas (enunciado_pregunta,rta_a, rta_b, rta_c, rta_d, rta_correcta, tipo_pregunta,estado_pregunta, id_tema)
-                 VALUES (%s, 'null', 'null', 'null', 'null', %s, 'D', 'True', %s)
+                 VALUES (%s, 'null', 'null', 'null', 'null', %s, 'D', 'True %s)
                  """
             cursor.execute(query, (enunciado, opcion_correcta,id_tema))
             cursor.connection.commit()
