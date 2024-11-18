@@ -56,5 +56,6 @@ class TemasDAO:
     ##################################### BORRAR #########################################
     def borrar_tema(self, id_tema):
         with self.__bd.cursor() as cursor:
-            cursor.execute(" UPDATE temas SET estado_tema = FALSE WHERE id_tema = %s", (id_tema,))
+            #cursor.execute(" UPDATE temas SET estado_tema = FALSE WHERE id_tema = %s", (id_tema,))
+            cursor.execute("DELETE FROM temas WHERE id_tema = %s", (id_tema,))
             cursor.connection.commit()
