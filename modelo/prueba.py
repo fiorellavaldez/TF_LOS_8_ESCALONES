@@ -364,14 +364,14 @@ lista8Temas=[tema_deportes, tema_ciencia, tema_arte, tema_entretenimiento, tema_
 #    lista8Temas.append(listaTemas(i))
 
 # El escalon seria una clase en si, tendria datos como: participantes activos o eliminados, tema
-escalon1 = Escalon()
-escalon2 = Escalon()
-escalon3 = Escalon()
-escalon4 = Escalon()
-escalon5 = Escalon()
-escalon6 = Escalon()
-escalon7 = Escalon()
-escalon8 = Escalon()
+escalon1 = Escalon(1)
+escalon2 = Escalon(2)
+escalon3 = Escalon(3)
+escalon4 = Escalon(4)
+escalon5 = Escalon(5)
+escalon6 = Escalon(6)
+escalon7 = Escalon(7)
+escalon8 = Escalon(8)
 
 #escalon1.set_jugadores(listaJugadores) # le doy la lista de jugadoes completa al primer escalon
 
@@ -420,7 +420,7 @@ def hacer_pregunta(jugador, preguntas):
     # Por ahora, simulamos respuestas aleatorias:
     import random
     resultado = random.choice([1, 2])  # 1: acertó, 2: falló
-    print(f"{jugador.get_nombre()} responde {'bien' if resultado == 1 else 'mal'} en la ronda.")
+    print(f"{jugador.get_nombre_jugador()} responde {'bien' if resultado == 1 else 'mal'} en la ronda.")
     return resultado
 
 def evaluar_jugadores(jugadores):
@@ -451,7 +451,7 @@ def evaluar_jugadores(jugadores):
         return jugadores_con_max_errores
     
     # Si hay un único jugador con más errores
-    print(f"{jugadores_con_max_errores[0].get_nombre()} tiene más errores y será eliminado.")
+    print(f"{jugadores_con_max_errores[0].get_nombre_jugador()} tiene más errores y será eliminado.")
     return jugadores_con_max_errores
 
 def hacer_desempate(jugadores, preguntas_desempate):
@@ -468,7 +468,7 @@ def hacer_desempate(jugadores, preguntas_desempate):
     for jugador in jugadores:
         respuesta = random.randint(1, 100)  # Simulamos una respuesta numérica para la pregunta de desempate
         respuestas[jugador] = respuesta
-        print(f"{jugador.get_nombre()} responde {respuesta} en la pregunta de desempate.")
+        print(f"{jugador.get_nombre_jugador()} responde {respuesta} en la pregunta de desempate.")
 
     # La respuesta correcta simulada
     respuesta_correcta = random.randint(1, 100)
@@ -477,7 +477,7 @@ def hacer_desempate(jugadores, preguntas_desempate):
     # Evaluamos quién estuvo más cerca
     jugador_eliminado = max(jugadores, key=lambda j: abs(respuestas[j] - respuesta_correcta))
     
-    print(f"{jugador_eliminado.get_nombre()} estuvo más lejos y será eliminado.")
+    print(f"{jugador_eliminado.get_nombre_jugador()} estuvo más lejos y será eliminado.")
     return [jugador_eliminado]
 
 

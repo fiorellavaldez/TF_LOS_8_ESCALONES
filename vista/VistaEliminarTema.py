@@ -1,12 +1,10 @@
-from PyQt6.QtWidgets import ( QMainWindow, QWidget, QVBoxLayout, QLabel,
-    QHBoxLayout, QPushButton, QSpacerItem, QSizePolicy, QStatusBar
-)
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QHBoxLayout, QPushButton, QSpacerItem, QSizePolicy, QStatusBar
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
 
 
-class MainWindow(QMainWindow):
-    def __init__(self):
+class VistaEliminarTema(object):
+    def __init__(self, mainwindow):
         super().__init__()
 
         # Configuración principal de la ventana

@@ -16,16 +16,15 @@ class ControladorVistaJuego:
         self.__vista = Ui_MainWindow() #Aca se crea la vista 
         self.__temas = TemasDAO()
         self.__lista_temas = self.__temas.temas_partida() #trae 8 temas ya mezclados
-        self.__asignar_temas() #¿le pasamos la lista por parámetro?
         self.__escalon1 = Escalon(1)
         self.__lista_jugadores_widget = []
         self.__lista = lista_jugadores
         self.__asignar_jugadores(self.__escalon1)
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget)
+        self.__asignar_temas() #¿le pasamos la lista por parámetro?
         self.MainWindow.show()
         
         self.__vista.get_button_atras().clicked.connect(self.__atras)
-        
 
     def __atras(self):
         self.MainWindow.close()
@@ -39,18 +38,16 @@ class ControladorVistaJuego:
         pass
 
     def __asignar_temas(self):
-        # lista_qlabels = []
-        # lista_qlabels = self.__vista.lista_nombres_escalon
-        print(self.__vista.hola)
-        # for i in range(0,8):
-        #     lista_qlabels[i].setText((self.__lista_temas[i][1]).upper())
+        lista_qlabels = []
+        lista_qlabels = self.__vista.lista_nombres_escalon
+        for i in range(0,8):
+            lista_qlabels[i].setText((self.__lista_temas[i][1]).upper())
 
     def __asignar_jugadores(self, escalon): #Acá asigno al escalon
         self.__convertir_widget()
         # for i in self.__lista:
         #     layout.addWidget(i)
         escalon.set_jugadores(self.__lista)
-            
         self.__escalon1.set_jugadores(self.__lista)
 
     def __convertir_widget(self):

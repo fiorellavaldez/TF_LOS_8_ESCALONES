@@ -41,4 +41,7 @@ class JugadorDAO:
             )
             cursor.connection.commit()
             
+    def actualizar_ronda(self):
+        with self.__bd.cursor() as cursor:
+            cursor.execute("SELECT ronda1, ronda2 FROM jugador_partida WHERE")
 #Todos los metodos que estan arriba de esta marca funcionan bien
