@@ -19,8 +19,10 @@ class Pregunta(ABC):
     def set_idPregunta(self, id_pregunta):
         self._id_pregunta = id_pregunta
 
-    def get_idTema (self):
-        return self._tema
+    def get_idtema (self):
+        return self._idtema
     
-    def set_idTema (self, idtema):
-        self._tema = idtema
+    def set_idtema (self, idtema):
+        self._idtema = idtema
+ 
+ 

@@ -14,7 +14,7 @@ class TemaABM:
         #self.__lista_temas = TemasDAO().get_all_temas()
         lista=TemasDAO().get_all_temas()
         lista_temas=[]
-        for id_tema, nombre_tema in lista: 
+        for id_tema, nombre_tema in lista: #estamos ignorando el atributo estado_tema, pasara algo?
             lista_temas.append(Tema(id_tema,nombre_tema)) 
         return lista_temas # Lista de objetos Tema
     

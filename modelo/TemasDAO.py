@@ -14,7 +14,7 @@ class TemasDAO:
     ################################ LECTURA ####################################
     def get_all_temas(self):
         with self.__bd.cursor() as cursor:
-            cursor.execute("SELECT * FROM temas")
+            cursor.execute("SELECT * FROM temas WHERE estado_tema = True ")
             return cursor.fetchall()
 
     def get_tema(self, id_tema): 
@@ -27,11 +27,11 @@ class TemasDAO:
 
     def temas_partida (self): #Devuelve lista con 8 temas
         temas = self.get_all_temas()
-        #lista_temas_partida = []
+        lista_temas_partida = []
         random.shuffle(temas)
-        # for i in range (0,9):
-        #     lista_temas_partida.append(temas.pop())
-        return temas  
+        for i in range (0,8):
+            lista_temas_partida.append(temas.pop())
+        return lista_temas_partida    
     
 
     ################################ CREAR ####################################
@@ -56,6 +56,6 @@ class TemasDAO:
     ##################################### BORRAR #########################################
     def borrar_tema(self, id_tema):
         with self.__bd.cursor() as cursor:
-            #cursor.execute(" UPDATE temas SET estado_tema = FALSE WHERE id_tema = %s", (id_tema,))
-            cursor.execute("DELETE FROM temas WHERE id_tema = %s", (id_tema,))
+            cursor.execute(" UPDATE temas SET estado_tema = FALSE WHERE id_tema = %s", (id_tema,))
+            #cursor.execute("DELETE FROM temas WHERE id_tema = %s", (id_tema,))
             cursor.connection.commit()
