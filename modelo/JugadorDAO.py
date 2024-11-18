@@ -39,5 +39,20 @@ class JugadorDAO:
                 (nombre, avatar, id_jugador)
             )
             cursor.connection.commit()
-            
+    
+
 #Todos los metodos que estan arriba de esta marca funcionan bien
+
+    ################################ BUSCAR ####################################
+
+    def buscar_jugador (self, nombre ) :
+        with self.__bd.cursor() as cursor:
+            cursor.execute(
+                """SELECT COUNT(*) FROM jugador WHERE nombre_jugador = %s""",
+                (nombre) 
+            )
+            resultado = cursor.fetchone[0]  > 0
+            #SI HAY 0 :  0 > 0 RETURN FALSE
+            #SI YA HAY 1 (si esta el nombre) 1>0 RETURN TRUE 
+            
+    
