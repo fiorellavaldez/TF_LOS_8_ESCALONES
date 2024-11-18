@@ -1,10 +1,7 @@
 from vista.VistaJuego import Ui_MainWindow
 from vista.VistaPreguntaRonda import VistaPreguntaRonda
-from PyQt6 import QtWidgets, QtCore, QtGui
-from PyQt6.QtWidgets import QMessageBox, QDialog, QLabel, QPushButton
 from PyQt6 import QtWidgets
 from modelo.TemasDAO import TemasDAO
-from modelo.JugadorDAO import JugadorDAO
 from modelo.Escalon import Escalon
 from vista.WidgetJugador import WidgetJugador
 from modelo.PreguntasDAO import PreguntaDAO
@@ -12,6 +9,7 @@ from modelo.Tema import Tema
 from modelo.preguntaRonda import preguntaRonda
 from modelo.preguntaDesempate import preguntaDesempate
 from modelo.Jugador import Jugador
+
 
 class ControladorVistaJuego:
 
@@ -115,10 +113,10 @@ class ControladorVistaJuego:
             #acá convertir a widget
         return escalones
 
-    def hacer_pregunta(jugador, preguntas):
-    # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador
-    # Por ahora, simulamos respuestas aleatorias:
-    import random
-    resultado = random.choice([1, 2])  # 1: acertó, 2: falló
-    print(f"{jugador.get_nombre_jugador()} responde {'bien' if resultado == 1 else 'mal'} en la ronda.")
-    return resultado
+    # def hacer_pregunta(jugador, preguntas):
+    # # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador
+    # # Por ahora, simulamos respuestas aleatorias:
+    # import random
+    # resultado = random.choice([1, 2])  # 1: acertó, 2: falló
+    # print(f"{jugador.get_nombre_jugador()} responde {'bien' if resultado == 1 else 'mal'} en la ronda.")
+    # return resultado
