@@ -4,6 +4,14 @@
 
 # LO DEJO POR SI QUIEREN VER ALGO ANTES
 
+from PreguntasDAO import PreguntaDAO
+from TemasDAO import TemasDAO
+
+
+
+
+
+
 ################################################################################################################################################################
 from preguntaDesempate import preguntaDesempate 
 from preguntaRonda import preguntaRonda
@@ -12,6 +20,10 @@ from Escalon import Escalon
 from Partida import Partida
 from Jugador import Jugador
 from Tema import Tema
+
+
+
+
 
 ################################################# boceto de lo queseria una partida
 

@@ -3,8 +3,8 @@
 from modelo.Pregunta import Pregunta
 
 class preguntaRonda(Pregunta):
-    def __init__(self, tema, enunciado, opcionA, opcionB, opcionC, opcionD, opcionCorrecta):
-        super().__init__(tema, enunciado)
+    def __init__(self, idTema, enunciado, opcionA, opcionB, opcionC, opcionD, opcionCorrecta):
+        super().__init__(idTema, enunciado)
         self.__opcionA = opcionA
         self.__opcionB = opcionB
         self.__opcionC = opcionC
