@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2.extras import DictCursor
 from modelo.preguntaRonda import  preguntaRonda 
 from modelo.preguntaDesempate import preguntaDesempate
-from .bd import Database
+from modelo.bd import Database
 import random
 from modelo.Tema import  Tema
 

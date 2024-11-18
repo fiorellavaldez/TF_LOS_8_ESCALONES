@@ -39,12 +39,6 @@ class Ui_MainWindow(object):
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_3.addWidget(self.pushButton)
-        self.pushButton_4 = QtWidgets.QPushButton(parent=self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(22)
-        self.pushButton_4.setFont(font)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.verticalLayout_3.addWidget(self.pushButton_4)
         self.pushButton_5 = QtWidgets.QPushButton(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(22)
@@ -79,7 +73,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Los 8 Escalones"))
         self.pushButton.setText(_translate("MainWindow", "Nueva Partida"))
-        self.pushButton_4.setText(_translate("MainWindow", "Continuar"))
         self.pushButton_5.setText(_translate("MainWindow", "Configuracion"))
         self.pushButton_6.setText(_translate("MainWindow", "Salir"))
 
@@ -88,9 +81,6 @@ class Ui_MainWindow(object):
     
     def get_button_nueva_partida(self):
         return self.pushButton
-    
-    def get_button_continuar(self):
-        return self.pushButton_4
     
     def get_button_salir(self):
         return self.pushButton_6
