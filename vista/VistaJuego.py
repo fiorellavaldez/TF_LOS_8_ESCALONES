@@ -354,3 +354,6 @@ class Ui_MainWindow(object):
 
     def get_button_atras(self):
         return self.pushButton_atras
+
+    def get_lista_escalones(self):
+        return self.lista_nombres_escalon

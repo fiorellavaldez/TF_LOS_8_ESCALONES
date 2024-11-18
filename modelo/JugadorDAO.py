@@ -41,17 +41,24 @@ class JugadorDAO:
             cursor.connection.commit()
     
 
-#Todos los metodos que estan arriba de esta marca funcionan bien
+
 
     ################################ BUSCAR ####################################
 
-    def buscar_jugador (self, nombre ) :
+    def buscar_jugador(self, nombre):
         with self.__bd.cursor() as cursor:
             cursor.execute(
-                """SELECT COUNT(*) FROM jugador WHERE nombre_jugador = %s""",
-                (nombre) 
-            )
-            resultado = cursor.fetchone[0]  > 0
+            """SELECT COUNT(*) FROM jugador WHERE nombre_jugador = %s""",
+            (nombre,) ) # Asegúrate de pasar 'nombre' como una tupla
+        
+            resultado = cursor.fetchone()
+          
+        if resultado[0] == 1:  # Acceder al primer elemento de la tupla resultado
+            return True
+        else:
+            return False
+#Todos los metodos que estan arriba de esta marca funcionan bien
+
             #SI HAY 0 :  0 > 0 RETURN FALSE
             #SI YA HAY 1 (si esta el nombre) 1>0 RETURN TRUE 
             

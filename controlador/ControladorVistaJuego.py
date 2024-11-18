@@ -41,18 +41,11 @@ class ControladorVistaJuego:
     def setRespuestaCorrecta(self, boton):
         pass
 
-    def __asignar_temas(self):
-        lista_qlabels = []
-        lista_qlabels = self.__vista.lista_nombres_escalon
-        for i in range(0,8):
-            lista_qlabels[i].setText((self.__lista_temas[i][1]).upper())
-
     def __asignar_jugadores(self, escalon): #Acá asigno al escalon
         self.__convertir_widget()
         # for i in self.__lista:
         #     layout.addWidget(i)
         escalon.set_jugadores(self.__lista)
-        self.__escalon1.set_jugadores(self.__lista)
 
     def __convertir_widget(self, lista):
         for i in lista:
@@ -84,16 +77,23 @@ class ControladorVistaJuego:
             lista_jugadores_partida.append(Jugador(nombre,avatar))
         return lista_jugadores_partida
     
+    def asignar_temas(self,escalones):
+        Qlabels = self.__vista.get_lista_escalones()
+        for i in (1,8):
+            Qlabels[i].setText(escalones[i].get_tema().get_nombreTema().upper())
+
+
     def __devolver_escalones(self,lista_temas):
         escalones = []
         for i in range(1,8):
-            tema = lista_temas_partida[i]
+            tema = lista_temas[i]
             nombre_tema = tema.get_nombreTema()
-            lista_preguntas_ronda = self.devolver_objetos_pregunta_ronda(tema.get_idTema())
-            lista_preguntas_desempate = self.devolver_objetos_pregunta_desempate(tema.get_idTema())
+            lista_preguntas_ronda = PreguntaABM().devolver_preg_ronda(tema.get_idTema())
+            lista_preguntas_desempate = PreguntaABM().devolver_preg_desempate(tema.get_idTema())
             escalones.append(Escalon(nombre_tema,lista_preguntas_ronda,lista_preguntas_desempate))
-            #acá convertir a widget
         return escalones
+    
+
 
     # def hacer_pregunta(jugador, preguntas):
     # # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador
