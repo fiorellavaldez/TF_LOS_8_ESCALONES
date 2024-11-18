@@ -27,17 +27,11 @@ class TemasDAO:
 
     def temas_partida (self): #Devuelve lista con 8 temas
         temas = self.get_all_temas()
-        #lista_temas_partida = []
+        lista_temas_partida = []
         random.shuffle(temas)
-<<<<<<< HEAD
         for i in range (0,8):
             lista_temas_partida.append(temas.pop())
         return lista_temas_partida    
-=======
-        # for i in range (0,9):
-        #     lista_temas_partida.append(temas.pop())
-        return temas  
->>>>>>> 1f98bb39030c955d92607eb0afefefc8128d1cd5
     
 
     ################################ CREAR ####################################
