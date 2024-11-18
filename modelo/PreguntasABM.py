@@ -95,7 +95,7 @@ class PreguntaABM:
                  PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
 
 
-    def quitar_pregunta_ronda(self, pregunta: preguntaDesempate):
+    def quitar_pregunta_desempate(self, pregunta: preguntaDesempate):
         for p in self.lista_preguntas_desempate:
             if p.get_idPregunta() == pregunta.get_idPregunta():
                PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
