@@ -1,10 +1,13 @@
 from vista.VistaConfiguracionModificarPreguntasDeDesempate import Ui_MainWindow
 from controlador.ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica import ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica
 from PyQt6 import QtWidgets
+from modelo.PreguntasABM import PreguntaABM
 
 class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
-    def __init__(self, controlador_anterior):
+    def __init__(self, controlador_anterior, id_tema, nombre_tema):
         self.__controlador_anterior = controlador_anterior
+        self.__id_tema = id_tema
+        self.__nombre_tema = nombre_tema
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
