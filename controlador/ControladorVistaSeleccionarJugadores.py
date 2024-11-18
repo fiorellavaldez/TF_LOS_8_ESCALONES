@@ -45,8 +45,6 @@ class ControladorVistaSeleccionarJugadores:
         self.MainWindow.close()
         self.__controlador_anterior.MainWindow.show()
         
-        
-    
     def __actualizar_tabla(self, jugadores):
         """Actualiza la tabla con los jugadores proporcionados."""
         self.__vista.tableWidget.clearContents()
