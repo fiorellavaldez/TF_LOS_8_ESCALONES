@@ -1,9 +1,9 @@
 from abc import ABC
 
 class Pregunta(ABC):
-    def __init__(self, idtema, enunciado):
+    def __init__(self, idTema, enunciado):
         self._idPregunta = None
-        self._idtema = idtema
+        self._idtema = idTema
         self._enunciado = enunciado
 
     
@@ -19,8 +19,8 @@ class Pregunta(ABC):
     def set_idPregunta(self, id_pregunta):
         self._id_pregunta = id_pregunta
 
-    def get_idtema (self):
+    def get_idTema (self):
         return self._tema
     
-    def set_idtema (self, idtema):
+    def set_idTema (self, idtema):
         self._tema = idtema

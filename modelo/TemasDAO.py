@@ -1,5 +1,5 @@
 import psycopg2
-from .bd import Database
+from modelo.bd import Database
 import hashlib
 import random
 
