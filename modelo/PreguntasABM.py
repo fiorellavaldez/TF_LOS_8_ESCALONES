@@ -26,7 +26,7 @@ class PreguntaABM:
             lista_preguntas.append(preg)
         return lista_preguntas
 
-    def obtener_preguntas_desempate(self, id_tema):
+    def obtener_preguntas_desempate(self):
         lista=PreguntaDAO().devolver_all_desempate
         lista_preguntas= []
         for id_pregunta, enunciado, _, _, _, _, rta_correcta, _, _, id_tema in lista:
