@@ -15,12 +15,13 @@ class ControladorVistaJuego:
         self.__vista = Ui_MainWindow()
         self.__lista_jugadores = self.__convertir_obj_jugador(lista_jugadores)
         self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores)
-        self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas
-        self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget)
+        self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas 
+        self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget) #le paso widgets
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
         
         self.__vista.get_button_atras().clicked.connect(self.__atras)
+        self.__vista.get_comenzar_partida().clicked.connect(self.iniciar_partida)
 
     def __atras(self):
         self.MainWindow.close()
@@ -53,21 +54,11 @@ class ControladorVistaJuego:
     def devolver_objetos_pregunta_desempate(self,id_tema):
         lista_preguntas_desempate = PreguntaABM().devolver_preg_desempate (id_tema)
         return lista_preguntas_desempate
-
-    # def devolver_jugadores(self):
-    #     lista_jugadores= self.__lista
-    #     lista_jugadores_partida=[]
-    #     for fila in lista_jugadores:
-    #         nombre = fila[1]
-    #         avatar = fila[2]
-    #         lista_jugadores_partida.append(Jugador(nombre,avatar))
-    #     return lista_jugadores_partida
     
     def asignar_temas(self,escalones):
         Qlabels = self.__vista.get_lista_escalones()
         esc = escalones
         for i in range(8):
-            #print(esc[i].get_tema().get_nombreTema().upper())
             Qlabels[i].setText(escalones[i].get_tema().get_nombreTema().upper())
 
     def __devolver_escalones(self,lista_temas):
@@ -79,8 +70,67 @@ class ControladorVistaJuego:
             escalones.append(Escalon(tema,lista_preguntas_ronda,lista_preguntas_desempate))
         return escalones
     
+    def agrego_jugadores_layout (self, jugadores):
+        
+        match len(jugadores):
+            case 9:
+                for i in self.__lista_jugadores_widget: #esta lista debe variar
+                    self.__vista.ly_escalon1.addWidget(i)
+                    print("los añadi al layout escalon 1!!!!")
+            case 8:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon2.addWidget(i)
+            case 7:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon3.addWidget(i)
+            case 6:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon4.addWidget(i)
+            case 5:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon5.addWidget(i)
+            case 4:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon6.addWidget(i)
+            case 3:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon7.addWidget(i)
+            case 2:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon8.addWidget(i)
+            case 1:
+                for i in self.__lista_jugadores_widget:
+                    self.__vista.ly_escalon8.addWidget(i)
+    
+    def iniciar_partida(self):
+        lista_suben = []
+        nro=0
+        for i in self.__lista_escalones:
+            self.__lista_escalones[nro].set_jugadores(self.__lista_jugadores)
+            jugadores = i.get_jugadores()
+            for i in jugadores: #Lista de jugadores logicos del escalon
+                if self.comparo(i) == True:
+                    lista_suben.append(i)
+            self.agrego_jugadores_layout(lista_suben)
+            nro += 1
 
 
+    def comparo(self, jugador): #nombre jugador con lista widget #UNO SOLO
+        for i in self.__lista_jugadores_widget:
+            if jugador.get_nombre_jugador() == i.get_nombre_visual():
+                i.setParent(None) #Le saco el parent
+                print("sin parent!")
+                return True
+            else:
+                return False
+                #asignarle un nuevo layout y antes verificar en que escalon esta
+
+
+
+
+
+            
+ 
     # def hacer_pregunta(jugador, preguntas):
     # # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador
     # # Por ahora, simulamos respuestas aleatorias:

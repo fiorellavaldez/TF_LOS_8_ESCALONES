@@ -3,15 +3,27 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class WidgetJugador(QtWidgets.QWidget):
     def __init__(self, nombre:str, avatar:str):
         super().__init__() #sacamos el parentttt
-        self.nombre = nombre
-        self.avatar = avatar
-        self.r1 = "vista/img/vacio.png"
-        self.r2 = "vista/img/vacio.png"
+        self.__nombre = nombre
+        self.__avatar = avatar
+        self.__r1 = "vista/img/vacio.png"
+        self.__r2 = "vista/img/vacio.png"
         self.setParent(None)
         self.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Preferred))
         self.setMaximumSize(QtCore.QSize(60, 16777215))
         self.setup()
-
+    
+    def get_nombre_visual(self):
+        return self.__nombre
+    
+    def get_avatar_visual(self):
+        return self.__avatar
+    
+    def get_r1_visual(self):
+        return self.__r1
+    
+    def get_r2_visual(self):
+        return self.__r2
+    
     def setup(self):
         #verticalLayout tiene como parent a wd_jugador y contendrá al layout que contiene el avatar, nombre, etc
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
@@ -24,11 +36,11 @@ class WidgetJugador(QtWidgets.QWidget):
         self.lbl_avatar = QtWidgets.QLabel(parent=self)
         self.lbl_avatar.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
         self.lbl_avatar.setMaximumSize(QtCore.QSize(30, 30))
-        self.lbl_avatar.setPixmap(QtGui.QPixmap(self.avatar))
+        self.lbl_avatar.setPixmap(QtGui.QPixmap(self.__avatar))
         self.lbl_avatar.setScaledContents(True)
 
         #nombre
-        self.wd_nombre = QtWidgets.QLabel(text=self.nombre, parent=self)
+        self.wd_nombre = QtWidgets.QLabel(text=self.__nombre, parent=self)
         self.wd_nombre.setMaximumSize(QtCore.QSize(16777215, 14))
         font = QtGui.QFont()
         font.setPointSize(7)
@@ -39,7 +51,7 @@ class WidgetJugador(QtWidgets.QWidget):
         self.lbl_r1 = QtWidgets.QLabel(parent=self)
         self.lbl_r1.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
         self.lbl_r1.setMaximumSize(QtCore.QSize(15, 15))
-        self.lbl_r1.setPixmap(QtGui.QPixmap(self.r1))
+        self.lbl_r1.setPixmap(QtGui.QPixmap(self.__r1))
         self.lbl_r1.setScaledContents(True)
         self.ly_rondas.addWidget(self.lbl_r1)
 
@@ -47,7 +59,7 @@ class WidgetJugador(QtWidgets.QWidget):
         self.lbl_r2 = QtWidgets.QLabel(parent=self)
         self.lbl_r2.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
         self.lbl_r2.setMaximumSize(QtCore.QSize(15, 15))
-        self.lbl_r2.setPixmap(QtGui.QPixmap(self.r2))
+        self.lbl_r2.setPixmap(QtGui.QPixmap(self.__r2))
         self.lbl_r2.setScaledContents(True)
         self.ly_rondas.addWidget(self.lbl_r2)
 

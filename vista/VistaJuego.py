@@ -307,10 +307,22 @@ class Ui_MainWindow(object):
         self.tematica_escalon1.setObjectName("tematica_escalon1")
         self.ly_escalon1.addWidget(self.tematica_escalon1)
 
-        self.__lista_wd = lista_jugadores
+        self.__lista_wd = lista_jugadores 
+
         for i in self.__lista_wd:
-            i.setParent(self.wd_escalon1)
+            i.setParent(None)
             self.ly_escalon1.addWidget(i)
+
+        self.__lista_layouts = []
+        self.__lista_layouts.append(self.ly_escalon1)
+        self.__lista_layouts.append(self.ly_escalon2)
+        self.__lista_layouts.append(self.ly_escalon3)
+        self.__lista_layouts.append(self.ly_escalon4)
+        self.__lista_layouts.append(self.ly_escalon5)
+        self.__lista_layouts.append(self.ly_escalon6)
+        self.__lista_layouts.append(self.ly_escalon7)
+        self.__lista_layouts.append(self.ly_escalon8)
+        
 
         self.horizontalLayout_2.addLayout(self.ly_escalon1) #???????????
         self.verticalLayout.addWidget(self.wd_escalon1, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
@@ -357,3 +369,9 @@ class Ui_MainWindow(object):
 
     def get_lista_escalones(self):
         return self.lista_nombres_escalon
+    
+    def get_lista_layouts(self):
+        return self.__lista_layouts
+    
+    def get_comenzar_partida(self):
+        return self.pushButton_comenzar_partida
