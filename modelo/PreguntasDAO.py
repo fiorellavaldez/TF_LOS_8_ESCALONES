@@ -35,7 +35,7 @@ class PreguntaDAO:
             return cursor.fetchone() 
  
 
-    def devolver_preg_ronda (self, id_tema): #Ver si se usa
+    def devolver_preg_ronda (self, id_tema): #DEVUELVE 18 PREGUNTAS DE RONDA, POR TEMA FUNCIONA
         lista_preguntas_ronda = []
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'M' and id_tema= %s and estado_pregunta = True", (id_tema,))
@@ -45,23 +45,24 @@ class PreguntaDAO:
             lista_preguntas_ronda.append(preguntas_ronda.pop())
         return lista_preguntas_ronda
     
-    def devolver_pregunta_desempate (self, id_tema): #Ver si se usa
+    def devolver_pregunta_desempate (self, id_tema): #DEVUELVE 3 PREGUNTAS DE DESEMPATE, POR TEMA FUNCIONA
         lista_preguntas_desempate = []
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'D' and id_tema = %s and estado_pregunta = True", (id_tema,))
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
-        for i in range (0,2):
+        #print (preguntas_desempate)
+        for i in range (0,3):
             lista_preguntas_desempate.append(preguntas_desempate.pop())
         return lista_preguntas_desempate
 
-    def devolver_all_ronda (self):
+    def devolver_all_ronda (self): #DEVUELVE TODAS LAS PREGUNTAS DE RONDA SIN MIRAR EL TEMA, FUNCIONA
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'M' and estado_pregunta = True") 
             preguntas_ronda = cursor.fetchall()
         return preguntas_ronda
 
-    def devolver_all_desempate(self):
+    def devolver_all_desempate(self): #DEVUELVE TODAS LAS PREGUNTAS DE DESEMPATE SIN MIRAR TEMA, FUNCIONA
         with self.__bd.cursor() as cursor:
             cursor.execute("SELECT * from PREGUNTAS WHERE tipo_pregunta = 'D' and estado_pregunta = True")
             preguntas_desempate = cursor.fetchall()
@@ -103,9 +104,7 @@ class PreguntaDAO:
                     UPDATE preguntas SET enunciado_pregunta = %s, rta_correcta = %s
                     WHERE id_pregunta = %s and tipo_pregunta = 'D'
                 """
-                cursor.execute(query, (
-                    enunciado,rta_correcta,id_pregunta
-                ))
+                cursor.execute(query, (enunciado,rta_correcta,id_pregunta))
                 cursor.connection.commit()
 
     ################################ ELIMINAR ####################################
