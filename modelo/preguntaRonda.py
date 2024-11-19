@@ -4,6 +4,7 @@ from modelo.Pregunta import Pregunta
 
 class preguntaRonda(Pregunta):
     def __init__(self, idTema, enunciado, opcionA, opcionB, opcionC, opcionD, opcionCorrecta):
+        
         super().__init__(idTema, enunciado)
         self.__opcionA = opcionA
         self.__opcionB = opcionB
@@ -25,12 +26,11 @@ class preguntaRonda(Pregunta):
         return self.__opcionCorrecta
     def get_enunciado (self):
         return self._enunciado  
-    def get_idPregunta(self):
-        return self._idPregunta
+    
     def get_idtema (self):
-        return self._tema
-    def get_estado (self):
-        return self._estado
+        return self._idtema
+    #def get_estado (self):
+    #    return self._estado
     # Setters
     def set_opcionA(self, opcionA):
         self.__opcionA = opcionA
@@ -44,10 +44,9 @@ class preguntaRonda(Pregunta):
         self.__opcionCorrecta = opcionCorrecta
     def set_enunciado(self, enunciado):
         self._enunciado = enunciado
-    def set_idPregunta(self, id_pregunta):
-        self._id_pregunta = id_pregunta
-    def set_estado (self, estado):
-        self._estado = estado
+
+    #def set_estado (self, estado):
+     #   self._estado = estado
     def set_idtema (self, idtema):
         self._tema = idtema
 ##############

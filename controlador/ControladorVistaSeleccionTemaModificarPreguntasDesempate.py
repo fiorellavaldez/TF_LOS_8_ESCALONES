@@ -32,7 +32,7 @@ class ControladorVistaSeleccionTemaModificarPreguntasDesempate:
         self.__actualizar_list_view()
         
         self.__vista.get_button_atras().clicked.connect(self.__volver_configuracion)
-        self.__vista.get_button_seleccionar_pregunta().clicked.connect(self.__seleccionar_pregunta)
+        self.__vista.get_button_seleccionar_pregunta().clicked.connect(self.__seleccionar_tema)
         
     def __cargar_temas(self):
         """Carga los temas desde el DAO y los muestra en el ListView."""
@@ -52,7 +52,7 @@ class ControladorVistaSeleccionTemaModificarPreguntasDesempate:
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
 
-    def __seleccionar_pregunta(self):
+    def __seleccionar_tema(self):
         """Selecciona el tema y pasa al siguiente controlador."""
         index = self.__vista.listView.currentIndex()
         if index.isValid():
@@ -61,25 +61,12 @@ class ControladorVistaSeleccionTemaModificarPreguntasDesempate:
             self.tema_seleccionado = self.temas[tema_seleccionado_index]
             id_tema = self.tema_seleccionado.get_idTema()
             nombre_tema = self.tema_seleccionado.get_nombreTema()
-            #estado = self.tema_seleccionado.get_disponible()
             
-
-
             # Oculta esta ventana y pasa al siguiente controlador
             self.MainWindow.hide()
             self.controlador_seleccionar_pregunta = ControladorVistaConfiguracionModificarPreguntasDeDesempate(self, id_tema, nombre_tema)
         else:
             print("No se seleccionó ningún tema.")
-
-        # index = self.__vista.listView.currentIndex()
-        # if index.isValid():
-        #     tema_seleccionado = self.filtered_temas[index.row()]
-        #     print(f"Tema seleccionado: {tema_seleccionado}")
-        #     # Aquí se oculta la ventana actual y se inicia la siguiente
-        #     self.MainWindow.hide()
-        #     self.controlador_seleccionar_pregunta = ControladorVistaConfiguracionModificarPreguntasDeDesempate(self)
-        # else:
-        #     print("No se seleccionó ningún tema.")
 
     def __buscar_temas(self):
         """Filtra los temas según el texto ingresado en la caja de búsqueda."""
