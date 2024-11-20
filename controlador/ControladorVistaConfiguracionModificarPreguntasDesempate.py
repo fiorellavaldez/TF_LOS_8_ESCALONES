@@ -1,5 +1,6 @@
 from vista.VistaConfiguracionModificarPreguntasDeDesempate import Ui_MainWindow
 from controlador.ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica import ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica
+from controlador.ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate import ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate
 from modelo.PreguntasABM import PreguntaABM
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
@@ -11,6 +12,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.__nombre_tema = nombre_tema # hay que mandarlo para que la vista muestre el tema en el que se esta trabajando
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
+        
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
         self.__lista_preguntas = PreguntaABM().preguntas_desempate_tema(id_tema) #aca esta la lista con todos los objetos pregunta
@@ -20,15 +22,14 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.__vista.get_button_modificar_pregunta().clicked.connect(self.__modificar_pregunta)
 
         self.__llenar_tableview()
-#        self.__seleccionar_pregunta() # acá selecciono la pregunta y guardo el id de pregunta
 
     def __volver(self):
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
 
-    def __agregar_pregunta(self):
+    def __agregar_pregunta (self):
         self.MainWindow.hide()
-        self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self)
+        self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema) #estoy en esto
 
     def __eliminar_pregunta(self):
         pass #aca va el dialog que todavia no tenemos
@@ -43,6 +44,3 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
             self.__vista.tableWidget.insertRow(row_position)    # Insertar una nueva fila al final
             # Insertar la palabra en la primera columna de la fila recién agregada
             self.__vista.tableWidget.setItem(row_position, 0, QtWidgets.QTableWidgetItem(pregunta.get_enunciado()))
-    
-    def __seleccionar_pregunta():
-        pass

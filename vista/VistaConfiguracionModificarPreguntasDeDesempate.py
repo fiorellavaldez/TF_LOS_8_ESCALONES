@@ -46,6 +46,9 @@ class Ui_MainWindow(object):
         item.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.tableWidget.setHorizontalHeaderItem(0, item)
         self.verticalLayout.addWidget(self.tableWidget)
+        # Deshabilitar la edicion de las celdas en la tabla:
+        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+        
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.pushButton_2 = QtWidgets.QPushButton(parent=self.centralwidget)

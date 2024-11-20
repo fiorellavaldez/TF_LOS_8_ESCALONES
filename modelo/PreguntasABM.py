@@ -1,4 +1,4 @@
-from  modelo.PreguntasDAO import PreguntaDAO
+from modelo.PreguntasDAO import PreguntaDAO
 from modelo.Pregunta import Pregunta
 from modelo.preguntaDesempate import preguntaDesempate
 from modelo.preguntaRonda import preguntaRonda
