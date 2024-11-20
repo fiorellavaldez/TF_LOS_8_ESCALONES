@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaTemaNuevo", "VistaTemaNuevo"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Tema Nuevo</p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Ingrese el nombre del tema nuevo:"))
         self.pushButton_2.setText(_translate("MainWindow", "Atrás"))

@@ -351,7 +351,7 @@ class Ui_MainWindow(object):
     
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaJuego", "VistaJuego"))
         self.tematica_escalon8.setText(_translate("MainWindow", "-"))
         self.tematica_escalon7.setText(_translate("MainWindow", "-"))
         self.tematica_escalon6.setText(_translate("MainWindow", "-"))

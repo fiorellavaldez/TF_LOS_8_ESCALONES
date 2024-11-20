@@ -50,7 +50,7 @@ class Ui_Widget(object):
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
-        Widget.setWindowTitle(_translate("Widget", "Widget"))
+        Widget.setWindowTitle(_translate("VistaConfiguracionTemaABMEdit", "VistaConfiguracionTemaABMEdit"))
         self.label_Titulo.setText(_translate("Widget", "Tema Nuevo"))
         self.label_Mensaje.setText(_translate("Widget", "Ingrese nombre del nuevo tema:"))
 

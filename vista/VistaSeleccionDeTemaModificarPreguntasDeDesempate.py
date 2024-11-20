@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaSeleccionDeTemaModificarPreguntasDeDesempate", "VistaSeleccionDeTemaModificarPreguntasDeDesempate"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Modificar preguntas de desempate</p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Seleccione a que tema pertenecen las preguntas que quiere modificar</p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Buscar:"))

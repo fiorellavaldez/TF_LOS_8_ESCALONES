@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaModificarNombre", "VistaModificarNombre"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Modificar nombre</p></body></html>"))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Ingrese el nuevo nombre de &quot;Historia&quot;</p></body></html>"))
         self.pushButton_2.setText(_translate("MainWindow", "Atrás"))

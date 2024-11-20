@@ -10,7 +10,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         
         # Configuración principal de la ventana
-        self.setWindowTitle("MainWindow")
+        self.setWindowTitle("VistaEliminarPregunta")
         self.setGeometry(0, 0, 365, 165)
 
         # Widget central

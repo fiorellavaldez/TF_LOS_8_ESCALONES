@@ -107,7 +107,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaJugadorNuevo", "VistaJugadorNuevo"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Jugador Nuevo</p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Ingrese el nombre"))
         self.pushButton.setText(_translate("MainWindow", "<"))

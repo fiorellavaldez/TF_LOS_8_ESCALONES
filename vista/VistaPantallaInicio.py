@@ -70,7 +70,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaPantallaInicio", "VistaPantallaInicio"))
         self.label.setText(_translate("MainWindow", "Los 8 Escalones"))
         self.pushButton.setText(_translate("MainWindow", "Nueva Partida"))
         self.pushButton_5.setText(_translate("MainWindow", "Configuracion"))

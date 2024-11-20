@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("VistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica", "VistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt;\">Editar pregunta</span></p></body></html>"))
         self.label_2.setText(_translate("MainWindow", " ¿En qué año cayó Constantinopla?"))
         self.pushButton_12.setText(_translate("MainWindow", "Aceptar"))
