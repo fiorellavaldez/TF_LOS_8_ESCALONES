@@ -65,14 +65,14 @@ class ControladorVistaJuego:
         escalones = []
         for tema in lista_temas:
             #nombre_tema = tema.get_nombreTema()
-            lista_preguntas_ronda = PreguntaABM().preguntas_ronda_tema(tema.get_idTema())
-            lista_preguntas_desempate = PreguntaABM().preguntas_desempate_tema(tema.get_idTema())
-            escalones.append(Escalon(tema,lista_preguntas_ronda,lista_preguntas_desempate))
+            lista_preguntas_ronda = PreguntaABM().preguntas_ronda_tema(tema.get_idTema())#obtengo una lista de preguntas para la ronda relacionada con el tema:
+            lista_preguntas_desempate = PreguntaABM().preguntas_desempate_tema(tema.get_idTema())#obtengo una lista de preguntas desempate
+            escalones.append(Escalon(tema,lista_preguntas_ronda,lista_preguntas_desempate))#creo un nuevo escalon con el tema y las preguntas y los agg a la lista:
         return escalones
     
     def agrego_jugadores_layout (self, jugadores):
         
-        match len(jugadores):
+        match len(jugadores):#evaluo el num de jugadores
             case 9:
                 for i in self.__lista_jugadores_widget: #esta lista debe variar
                     self.__vista.ly_escalon1.addWidget(i)
@@ -103,31 +103,91 @@ class ControladorVistaJuego:
                     self.__vista.ly_escalon8.addWidget(i)
     
     def iniciar_partida(self):
-        lista_suben = []
         nro=0
-        for i in self.__lista_escalones:
-            self.__lista_escalones[nro].set_jugadores(self.__lista_jugadores)
-            jugadores = i.get_jugadores()
-            for i in jugadores: #Lista de jugadores logicos del escalon
-                if self.comparo(i) == True:
-                    lista_suben.append(i)
-            self.agrego_jugadores_layout(lista_suben)
+        lista_restantes = self.__lista_jugadores #Todos los jugadores al inicio
+        for escalon in self.__lista_escalones:
+            lista_suben = [] #los que avanzan al prox escalon
+            perdedor = None #si no hago esto me sale error
+            #separo ganadores y perdedor (lógica)
+
+            for jugador in lista_restantes: #Lista de jugadores logicos del escalon
+                if perdedor in None and not self.comparo(jugador): #Evaluo si el jugador avanza
+                    perdedor = jugador
+                else:
+                    lista_suben.append(jugador)
+        
+        if perdedor is None:
+            print("No se encontró un perdedor en este escalon")
+            ####Esto es solo para verificar que funciona ###
+        
+            self.actualizar_layout_escalon(escalon, lista_suben, perdedor, nro)#actualizo layout visual del escalon actual
+            lista_restantes = lista_suben
             nro += 1
+
+    def actualizar_layout_escalon(self, escalon, lista_ganadores, perdedor, nro):
+        layout_actual = getattr(self.__vista,f"ly_escalon{nro + 1}") #obtengo el actual
+        layout_siguiente = getattr(self.__vista, f"ly_escalon{nro + 2}", None)
+        ## getattr asegura que los layouts se manejan dinámicamente ##
+        widget_perdedor = self.obtener_widget_por_jugador(perdedor)
+        if perdedor:
+            widget_perdedor = self.obtener_widget_por_jugador(perdedor)
+            if widget_perdedor:
+                layout_actual.addWidget(widget_perdedor)
+            #jugador perdedor permanece en el layout actual
+                print(f"{perdedor.get_nombre_jugador()} permanece en el escalon {nro + 1}")
+        
+        if layout_siguiente:
+            for ganador in lista_ganadores:
+                widget_ganador = self.obtener_widget_por_jugador(ganador)
+                layout_siguiente.addWidget(widget_ganador)
+                print(f"{ganador.get_nombre_jugador()} avanza al escalon {nro + 2}")
+
+    def obtener_widget_por_jugador(self, jugador):
+        for widget in self.__lista_jugadores_widget:
+            if widget.get_nombre_visual() == jugador.get_nombre_jugador():
+                return widget
+        return None #si no se encuentra retorna none
 
 
     def comparo(self, jugador): #nombre jugador con lista widget #UNO SOLO
         for i in self.__lista_jugadores_widget:
-            if jugador.get_nombre_jugador() == i.get_nombre_visual():
-                i.setParent(None) #Le saco el parent
-                print("sin parent!")
-                return True
-            else:        
-                return False
+            print(f"Comparando {jugador} con {i.get_nombre_visual()}")
+            if isinstance(jugador, str): #si jugador es un string
+                if jugador.get_nombre_jugador() == i.get_nombre_visual():
+                    i.setParent(None) #Elimina el widget de su layout actual(sin el padre visual)
+                    print("sin parent!")
+                    return True
+                else:        
+                    return False
+            elif hasattr(jugador, 'get_nombre_jugador'):#si es un objeto con el metodo
+                if jugador.get_nombre_jugador() == i.get_nombre_visual():
+                    i.setParent(None)
+                    print("sin parent")
+                    return True
+        return False
                 #asignarle un nuevo layout y antes verificar en que escalon esta
+    # def comparo(self, jugador):
+    #     for i in self.__lista_jugadores_widget:
+    #         print(f"Comparando {jugador} con {i.get_nombre_visual()}")
+    #         if hasattr(jugador, 'get_nombre_jugador'):
+    #             print(f"Nombre del jugador lógico: {jugador.get_nombre_jugador()}")
+    #         else:
+    #             print("Jugador no tiene el método 'get_nombre_jugador'")
+
+    #         # Comparación ajustada
+    #         if isinstance(jugador, str) and jugador == i.get_nombre_visual():
+    #             i.setParent(None)
+    #             print("¡Sin parent!")
+    #             return True
+    #         elif hasattr(jugador, 'get_nombre_jugador') and jugador.get_nombre_jugador() == i.get_nombre_visual():
+    #             i.setParent(None)
+    #             print("¡Sin parent!")
+    #             return True
+    #     return False
 
 
 
- 
+
     # def hacer_pregunta(jugador, preguntas):
     # # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador
     # # Por ahora, simulamos respuestas aleatorias:
