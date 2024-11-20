@@ -98,10 +98,9 @@ class PreguntaABM:
     
 
     def agregar_pregunta_ronda(self, pregunta: preguntaRonda): #
-        self.__lista_preguntas_ronda.append(pregunta)
         PreguntaDAO().agregar_pregunta_ronda(pregunta.get_enunciado(),pregunta.get_opcionA(), pregunta.get_opcionB(), pregunta.get_opcionC(),
                                             pregunta.get_opcionD(), pregunta.get_opcionCorrecta(), pregunta.get_idtema())     
-
+        self.__lista_preguntas_ronda = self.obtener_preguntas_ronda()
 
     def agregar_pregunta_desempate(self, pregunta: preguntaDesempate): #FUNCIONA :) 
         #self.__lista_preguntas_desempate.append(pregunta) #PROBLEMA: SE VA A AGREGAR SI ID y no se podria borrar en la misma sesion
