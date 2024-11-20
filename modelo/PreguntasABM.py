@@ -104,9 +104,10 @@ class PreguntaABM:
 
 
     def agregar_pregunta_desempate(self, pregunta: preguntaDesempate): #FUNCIONA :) 
-        self.__lista_preguntas_desempate.append(pregunta)
+        #self.__lista_preguntas_desempate.append(pregunta) #PROBLEMA: SE VA A AGREGAR SI ID y no se podria borrar en la misma sesion
         PreguntaDAO().agregar_pregunta_desempate(pregunta.get_enunciado(), pregunta.get_respuestaCorrecta(), pregunta.get_idtema())
-    
+        #aca vuelvo a hacer la consulta a bd para obtener valores actualizados
+        self.__lista_preguntas_desempate = self.obtener_preguntas_desempate()
 
 
     def quitar_pregunta_ronda(self, pregunta: preguntaRonda):
