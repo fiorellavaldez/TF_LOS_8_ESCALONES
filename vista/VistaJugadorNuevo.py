@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Critical)
         msg.setText("El campo esta vacio")
-        msg.setInformativeText("Introduzca bien el dato El nombre solo puede contener letras, números y espacios")
+        msg.setInformativeText("El nombre solo puede contener letras, números y espacios.")
         msg.exec()
     
     def notifico_insercion(self,nombre_jugador):
@@ -153,7 +153,7 @@ class Ui_MainWindow(object):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         msg.setWindowTitle("Advertencia")
-        msg.setText(f"Ingrese otro nombre ya Existe el jugador{nombre}.")
+        msg.setText(f"El nombre {nombre} ya existe! Ingrese otro.")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
         
