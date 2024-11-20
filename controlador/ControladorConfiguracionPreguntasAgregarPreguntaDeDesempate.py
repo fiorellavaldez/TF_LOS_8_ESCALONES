@@ -27,8 +27,7 @@ class ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate():
         pregunta = preguntaDesempate(self.__id_tema, enunciado, respuesta)
         PreguntaABM().agregar_pregunta_desempate(pregunta)
         # Vuelve a la pantalla anterior pero tengo que ver si funciona bien
-        self.__controlador_anterior(self.__id_tema)
+        self.__controlador_anterior.actualizar_lista_preguntas()
+        self.MainWindow.hide()
+        self.__controlador_anterior.MainWindow.show()
         
-        
-        #self.MainWindow.hide()
-        #self.__controlador_anterior.MainWindow.show()
