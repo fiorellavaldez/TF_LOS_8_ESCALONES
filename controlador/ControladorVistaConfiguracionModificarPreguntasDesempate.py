@@ -15,7 +15,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
         self.filtered_preguntas = []
-        self.__lista_preguntas = PreguntaABM().preguntas_desempate_tema(self, id_tema) #aca esta la lista con todos los objetos pregunta
+        self.__lista_preguntas = PreguntaABM().preguntas_desempate_tema(self.__id_tema) #aca esta la lista con todos los objetos pregunta
         self.__vista.get_button_atras().clicked.connect(self.__volver)
         self.__vista.get_button_agregar_pregunta().clicked.connect(self.__agregar_pregunta)
         self.__vista.get_button_eliminar_pregunta().clicked.connect(self.__eliminar_pregunta)
