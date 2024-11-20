@@ -16,7 +16,6 @@ class ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate():
         self.__vista.get_button_cancelar().clicked.connect(self.__cancelar)
         self.__vista.get_button_aceptar().clicked.connect(self.__agregar_pregunta)
         
-        
     def __cancelar(self):
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
@@ -26,6 +25,6 @@ class ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate():
         enunciado = self.__vista.lineEdit_2.text()
         respuesta = self.__vista.lineEdit_7.text()
         PreguntaABM().agregar_pregunta_desempate(preguntaDesempate(self.__id_tema, enunciado, respuesta))
-        # Vuelve a la pantalla anterior tengo que ver si funciona bien
+        # Vuelve a la pantalla anterior pero tengo que ver si funciona bien
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
