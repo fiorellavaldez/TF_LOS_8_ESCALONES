@@ -121,15 +121,12 @@ class ControladorVistaJuego:
                 i.setParent(None) #Le saco el parent
                 print("sin parent!")
                 return True
-            else:
+            else:        
                 return False
                 #asignarle un nuevo layout y antes verificar en que escalon esta
 
 
 
-
-
-            
  
     # def hacer_pregunta(jugador, preguntas):
     # # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador

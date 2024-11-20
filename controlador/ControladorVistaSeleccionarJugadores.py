@@ -82,11 +82,5 @@ class ControladorVistaSeleccionarJugadores:
         else:
             self.filtrando_jugadores = self.__lista_jugadores
         self.__actualizar_tabla(self.filtrando_jugadores)
-    '''
-    def __obtener_jugador_seleccionado(self):
-        """Obtiene el ID del tema seleccionado en la tabla."""
-        fila_seleccionada = self.__vista.tableWidget.currentRow()
-        if fila_seleccionada != -1:  # Si hay una fila seleccionada
-            return self.filtered_temas[fila_seleccionada]  # Devuelve (id_tema, descripcion)
-        return None
-    '''
+    
+    

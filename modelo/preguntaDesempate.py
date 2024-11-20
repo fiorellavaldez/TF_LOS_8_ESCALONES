@@ -8,9 +8,7 @@ class preguntaDesempate(Pregunta):
     #Getters
     def get_respuestaCorrecta (self):
         return self.__respuestaCorrecta
- 
 
-    
     #Setters
     def set_respuestaCorrecta(self, respuestaCorrecta):
         self.__respuestaCorrecta = respuestaCorrecta

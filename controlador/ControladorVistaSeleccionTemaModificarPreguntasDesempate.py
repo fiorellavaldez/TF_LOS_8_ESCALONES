@@ -66,6 +66,8 @@ class ControladorVistaSeleccionTemaModificarPreguntasDesempate:
             self.MainWindow.hide()
             self.controlador_seleccionar_pregunta = ControladorVistaConfiguracionModificarPreguntasDeDesempate(self, id_tema, nombre_tema)
         else:
+            if not self.tema_seleccionado:  
+                self.__vista.aviso_seleccionar_pregunta_desempate()
             print("No se seleccionó ningún tema.")
 
     def __buscar_temas(self):

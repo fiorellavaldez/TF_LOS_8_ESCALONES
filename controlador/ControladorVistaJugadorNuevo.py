@@ -1,9 +1,9 @@
 from vista.VistaJugadorNuevo import Ui_MainWindow
 from PyQt6 import QtWidgets
 from modelo.Jugador import Jugador
-from modelo.JugadorDAO import JugadorDAO
-#from Modelo.Jugador import Jugador
-
+#from modelo.JugadorDAO import JugadorDAO
+from modelo.JugadoresABM import JugadorABM
+import re
 class ControladorVistaJugadorNuevo:
 
     def __init__(self, controlador_anterior):
@@ -37,31 +37,50 @@ class ControladorVistaJugadorNuevo:
     
 
     def __crear_jugador(self):
+        """
+        Crea un nuevo jugador en la base de datos, verificando que el nombre no se repita
+        y que el campo este lleno.
+        """
+        # Obtener el nombre del jugador desde la vista
         nombre_jugador = self.__vista.get_entrada_texto()
-        
-        jugador_dao = JugadorDAO()
-        obtengo = jugador_dao.get_all_jugadores #me trae todos los jugadores 
-        
-        # if any(jugador_dao[1]==nombre_jugador):
-        #     self.__vista.aviso_nombre_repetido(nombre_jugador)
-        #     return 
-        
-        
-        # try:
-        #     nombre_jugador = self.__vista.get_entrada_texto()
-            
-        #     if not nombre_jugador:
-        #         raise ValueError("El nombre del jugador esta vacio")
-        #     else:
-        #         jugador_nuevo = Jugador()
-        #         #comparo el nomnbre
-        #         #jugador_nuevo.agrego_jugador(nombre_jugador)
-        #         #Aca agrego a jugadorDAO
-        #         self.__vista.notifico_insercion(nombre_jugador)
-        #         self.MainWindow.close()
-        # except:
-        #         self.__vista.aviso_nombre_repetido()
 
+        # Validar si el campo de nombre está vacío
+        if not nombre_jugador:
+            self.__vista.imprimo_alerta()
+            return
+        
+        # Validar que el nombre no contenga caracteres no deseados (si es necesario)
+        if not re.match("^[A-Za-z0-9 ]*$", nombre_jugador):  # Permite letras, números y espacios
+            self.__vista.imprimo_alerta()
+            return
+        
+        
+        jugador_bd = JugadorABM()
+        
+        # Consultar jugadores existentes en la base de datos
+        if jugador_bd.existe_jugador(Jugador(nombre_jugador, None)):  # El avatar es opcional para la validación
+            self.__vista.aviso_nombre_repetido(nombre_jugador)
+            return
+
+        avatar_elegido=self.imagen_actual
+        if not avatar_elegido:  #puse porque tengo un avatara vacio, que es el verde
+            self.__vista.aviso_seleccionar_avatar()
+            return
+        
+        try:
+            # Crear el nuevo jugador
+            jugador_nuevo = Jugador(nombre=nombre_jugador, avatar=avatar_elegido)
+
+            # Agregar a la base de datos
+            jugador_bd.agregar_jugador(jugador_nuevo)  # aca tendria que ser agregar jugador
+
+            # Notificar al usuario
+            self.__vista.notifico_insercion(nombre_jugador)
+            print(f"Jugador '{nombre_jugador}' agregado exitosamente.")
+            self.MainWindow.close()  # Cierra la ventana
+        except Exception as e:
+            # Manejo de errores
+            self.__vista.aviso_nombre_repetido()
 
     def __mostrar_siguiente_imagen(self):
         if len(self.imagen_actual) > 0:

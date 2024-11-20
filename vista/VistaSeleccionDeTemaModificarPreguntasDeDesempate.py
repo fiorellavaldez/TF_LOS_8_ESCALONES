@@ -72,6 +72,15 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Buscar:"))
         self.pushButton_2.setText(_translate("MainWindow", "Atrás"))
         self.pushButton_3.setText(_translate("MainWindow", "Siguiente"))
+        
+    
+    def aviso_seleccionar_pregunta_desempate(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar un Tema para modificar sus preguntas")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
     def get_button_atras(self):
         return self.pushButton_2

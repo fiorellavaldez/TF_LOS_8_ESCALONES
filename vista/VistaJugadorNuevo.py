@@ -130,6 +130,7 @@ class Ui_MainWindow(object):
     def get_entrada_texto(self): #para obtener el dato que se escribio 
         return  self.lineEdit.text()
     
+
     def set_label_img(self, path:str):
         self.label_3.setPixmap(QtGui.QPixmap(path))
         self.label_3.setScaledContents(True)
@@ -138,8 +139,8 @@ class Ui_MainWindow(object):
     def imprimo_alerta (self):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-        msg.setText("El campo esta vacio o con datos incorrectos")
-        msg.setInformativeText("Introduzca bien el dato y vuelva a presionar")
+        msg.setText("El campo esta vacio")
+        msg.setInformativeText("Introduzca bien el dato El nombre solo puede contener letras, números y espacios")
         msg.exec()
     
     def notifico_insercion(self,nombre_jugador):
@@ -148,11 +149,19 @@ class Ui_MainWindow(object):
         msg.setText(f"Se añadió correctamente el jugador: {nombre_jugador}")
         msg.exec()
 
-    def aviso_nombre_repetido(self):
+    def aviso_nombre_repetido(self,nombre):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         msg.setWindowTitle("Advertencia")
-        msg.setText("Debe ingresar otro nombre.")
+        msg.setText(f"Ingrese otro nombre ya Existe el jugador{nombre}.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
+        
+    def aviso_seleccionar_avatar(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar un avatar para el Jugador")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
 
