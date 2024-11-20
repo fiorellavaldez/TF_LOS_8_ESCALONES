@@ -13,15 +13,14 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
         
-        self.__vista.setupUi(self.MainWindow)
-        self.MainWindow.show()
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(id_tema) #aca esta la lista con todos los objetos pregunta
+        self.__vista.setupUi(self.MainWindow)
+        self.__llenar_tableview()
+        self.MainWindow.show()
         self.__vista.get_button_atras().clicked.connect(self.__volver)
         self.__vista.get_button_agregar_pregunta().clicked.connect(self.__agregar_pregunta)
         self.__vista.get_button_eliminar_pregunta().clicked.connect(self.__eliminar_pregunta)
         self.__vista.get_button_modificar_pregunta().clicked.connect(self.__modificar_pregunta)
-
-        self.__llenar_tableview()
 
     def __volver(self):
         self.MainWindow.hide()
@@ -44,3 +43,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
             self.__vista.tableWidget.insertRow(row_position)    # Insertar una nueva fila al final
             # Insertar la palabra en la primera columna de la fila recién agregada
             self.__vista.tableWidget.setItem(row_position, 0, QtWidgets.QTableWidgetItem(pregunta.get_enunciado()))
+    
+    def actualizar_lista_preguntas(self):#Lo usa la pantalla de agregar nueva pregunta
+        self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__id_tema)
+        self.__llenar_tableview()
