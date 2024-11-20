@@ -6,6 +6,9 @@ class ControladorVistaConfiguracionTemaABMEditBaja(ControladorVistaConfiguracion
         super().__init__(controlador_anterior, tema, temas)
         self._vista.label_Titulo.setText("Eliminar Tema")
         self._vista.label_Mensaje.setText("Confirme la eliminacion del Tema:")
+        # Hacer que el campo de texto no sea editable
+        self._vista.lineEdit_Tema.setReadOnly(True)
+        
         self._vista.buttonBox_Confirmar.accepted.connect(self.__confirma)
         
         self.MainWindow.show()
