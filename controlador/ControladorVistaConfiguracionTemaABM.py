@@ -76,10 +76,12 @@ class ControladorVistaConfiguracionTemaABM:
         self.__llenar_tabla(self.temas.lista_temas)
 
     def agregar_tema(self, tema):
+        tema.set_disponible(True)
         self.temas.agregar_tema(tema)
         self.__llenar_tabla(self.temas.lista_temas)
 
     def quitar_tema(self,tema):
+        tema.set_disponible(False)
         self.temas.quitar_tema(tema)
         self.__llenar_tabla(self.temas.lista_temas)
 
