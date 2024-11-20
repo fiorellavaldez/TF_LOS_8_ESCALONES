@@ -94,16 +94,16 @@ class PreguntaABM:
                 self.lista_preguntas_desempate[p].set_enunciado(pregunta.get_enunciado())
                 self.lista_preguntas_desempate[p].set_respuestaCorrecta(pregunta.get_respuestaCorrecta())
         PreguntaDAO().actualizar_pregunta_desempate(pregunta.get_enunciado(),pregunta.get_respuestaCorrecta(),pregunta.get_idPregunta())
-           
+    
     
 
-    def agregar_pregunta_ronda(self, pregunta: preguntaRonda):
+    def agregar_pregunta_ronda(self, pregunta: preguntaRonda): #
         self.__lista_preguntas_ronda.append(pregunta)
         PreguntaDAO().agregar_pregunta_ronda(pregunta.get_enunciado(),pregunta.get_opcionA(), pregunta.get_opcionB(), pregunta.get_opcionC(),
-                                             pregunta.get_opcionD(), pregunta.get_opcionCorrecta(), pregunta.get_idtema())     
- 
+                                            pregunta.get_opcionD(), pregunta.get_opcionCorrecta(), pregunta.get_idtema())     
 
-    def agregar_pregunta_desempate(self, pregunta: preguntaDesempate):
+
+    def agregar_pregunta_desempate(self, pregunta: preguntaDesempate): #FUNCIONA :) 
         self.__lista_preguntas_desempate.append(pregunta)
         PreguntaDAO().agregar_pregunta_desempate(pregunta.get_enunciado(), pregunta.get_respuestaCorrecta(), pregunta.get_idtema())
     
@@ -112,10 +112,10 @@ class PreguntaABM:
     def quitar_pregunta_ronda(self, pregunta: preguntaRonda):
         for p in self.lista_preguntas_ronda:
             if p.get_idPregunta() == pregunta.get_idPregunta():
-                 PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
+                PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
 
 
     def quitar_pregunta_desempate(self, pregunta: preguntaDesempate):
         for p in self.lista_preguntas_desempate:
             if p.get_idPregunta() == pregunta.get_idPregunta():
-               PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
+                PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
