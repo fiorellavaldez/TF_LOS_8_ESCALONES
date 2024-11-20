@@ -24,39 +24,40 @@ class ControladorVistaGrillaJugadores:
         #Seleccion Jugador 1
         self.__vista.get_button_seleccionar_jugador1().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador1().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador1()))
-        self.__vista.get_button_jugador_nuevo1().clicked.connect(self.__jugador_nuevo)
+        
+        self.__vista.get_button_jugador_nuevo().clicked.connect(self.__jugador_nuevo) #######
         #Seleccion Jugador 2        
         self.__vista.get_button_seleccionar_jugador2().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador2().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador2()))     
-        self.__vista.get_button_jugador_nuevo2().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 3   
         self.__vista.get_button_seleccionar_jugador3().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador3().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador3()))
-        self.__vista.get_button_jugador_nuevo3().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 4
         self.__vista.get_button_seleccionar_jugador4().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador4().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador4()))
-        self.__vista.get_button_jugador_nuevo4().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 5
         self.__vista.get_button_seleccionar_jugador5().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador5().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador5()))
-        self.__vista.get_button_jugador_nuevo5().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 6
         self.__vista.get_button_seleccionar_jugador6().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador6().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador6()))
-        self.__vista.get_button_jugador_nuevo6().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 7
         self.__vista.get_button_seleccionar_jugador7().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador7().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador7()))
-        self.__vista.get_button_jugador_nuevo7().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 8
         self.__vista.get_button_seleccionar_jugador8().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador8().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador8()))
-        self.__vista.get_button_jugador_nuevo8().clicked.connect(self.__jugador_nuevo)
+
         #Seleccion Jugador 9
         self.__vista.get_button_seleccionar_jugador9().clicked.connect(self.__elegir_jugador)
         self.__vista.get_button_seleccionar_jugador9().clicked.connect(lambda: self.___set_nro_seleccionado(self.__vista.get_nombre_jugador9()))
-        self.__vista.get_button_jugador_nuevo9().clicked.connect(self.__jugador_nuevo)
+
 
         #OTROS BOTONES
         self.__vista.get_button_iniciar_partida().clicked.connect(self.__iniciar_partida)

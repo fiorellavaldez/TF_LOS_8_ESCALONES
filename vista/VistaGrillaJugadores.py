@@ -44,9 +44,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.addWidget(self.bt_seleccionar_jugador4)
         spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem4)
-        self.bt_jugador_nuevo4 = QtWidgets.QPushButton(parent=self.frame_16)
-        self.bt_jugador_nuevo4.setObjectName("bt_jugador_nuevo4")
-        self.verticalLayout_25.addWidget(self.bt_jugador_nuevo4)
+        #self.bt_jugador_nuevo4 = QtWidgets.QPushButton(parent=self.frame_16)
+        #self.bt_jugador_nuevo4.setObjectName("bt_jugador_nuevo4")
+        #.verticalLayout_25.addWidget(self.bt_jugador_nuevo4)
         spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem5)
         self.gridLayout.addWidget(self.frame_16, 1, 0, 1, 1)
@@ -78,9 +78,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addWidget(self.bt_seleccionar_jugador8)
         spacerItem8 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem8)
-        self.bt_jugador_nuevo8 = QtWidgets.QPushButton(parent=self.frame_15)
-        self.bt_jugador_nuevo8.setObjectName("bt_jugador_nuevo8")
-        self.verticalLayout_9.addWidget(self.bt_jugador_nuevo8)
+        #self.#t_jugador_nuevo8 = QtWidgets.QPushButton(parent=self.frame_15)
+        #self.bt_jugador_nuevo8.setObjectName("bt_jugador_nuevo8")
+        #self.verticalLayout_9.addWidget(self.bt_jugador_nuevo8)
         spacerItem9 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem9)
         self.gridLayout.addWidget(self.frame_15, 2, 1, 1, 1)
@@ -112,9 +112,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.bt_seleccionar_jugador2)
         spacerItem12 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem12)
-        self.bt_jugador_nuevo2 = QtWidgets.QPushButton(parent=self.frame_12)
-        self.bt_jugador_nuevo2.setObjectName("bt_jugador_nuevo2")
-        self.verticalLayout_4.addWidget(self.bt_jugador_nuevo2)
+        # self.bt_jugador_nuevo2 = QtWidgets.QPushButton(parent=self.frame_12)
+        # self.bt_jugador_nuevo2.setObjectName("bt_jugador_nuevo2")
+        # self.verticalLayout_4.addWidget(self.bt_jugador_nuevo2)
         spacerItem13 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem13)
         self.gridLayout.addWidget(self.frame_12, 0, 1, 1, 1)
@@ -146,9 +146,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.bt_seleccionar_jugador5)
         spacerItem16 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem16)
-        self.bt_jugador_nuevo5 = QtWidgets.QPushButton(parent=self.frame_14)
-        self.bt_jugador_nuevo5.setObjectName("bt_jugador_nuevo5")
-        self.verticalLayout_8.addWidget(self.bt_jugador_nuevo5)
+        # self.bt_jugador_nuevo5 = QtWidgets.QPushButton(parent=self.frame_14)
+        # self.bt_jugador_nuevo5.setObjectName("bt_jugador_nuevo5")
+        # self.verticalLayout_8.addWidget(self.bt_jugador_nuevo5)
         spacerItem17 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem17)
         self.gridLayout.addWidget(self.frame_14, 1, 1, 1, 1)
@@ -180,9 +180,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.addWidget(self.bt_seleccionar_jugador6)
         spacerItem20 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem20)
-        self.bt_jugador_nuevo6 = QtWidgets.QPushButton(parent=self.frame_17)
-        self.bt_jugador_nuevo6.setObjectName("bt_jugador_nuevo6")
-        self.verticalLayout_26.addWidget(self.bt_jugador_nuevo6)
+        # self.bt_jugador_nuevo6 = QtWidgets.QPushButton(parent=self.frame_17)
+        # self.bt_jugador_nuevo6.setObjectName("bt_jugador_nuevo6")
+        # self.verticalLayout_26.addWidget(self.bt_jugador_nuevo6)
         spacerItem21 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem21)
         self.gridLayout.addWidget(self.frame_17, 1, 2, 1, 1)
@@ -214,9 +214,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.addWidget(self.bt_seleccionar_jugador7)
         spacerItem24 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem24)
-        self.bt_jugador_nuevo7 = QtWidgets.QPushButton(parent=self.frame_18)
-        self.bt_jugador_nuevo7.setObjectName("bt_jugador_nuevo7")
-        self.verticalLayout_29.addWidget(self.bt_jugador_nuevo7)
+        # self.bt_jugador_nuevo7 = QtWidgets.QPushButton(parent=self.frame_18)
+        # self.bt_jugador_nuevo7.setObjectName("bt_jugador_nuevo7")
+        # self.verticalLayout_29.addWidget(self.bt_jugador_nuevo7)
         spacerItem25 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem25)
         self.gridLayout.addWidget(self.frame_18, 2, 0, 1, 1)
@@ -248,9 +248,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_30.addWidget(self.bt_seleccionar_jugador9)
         spacerItem28 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem28)
-        self.bt_jugador_nuevo9 = QtWidgets.QPushButton(parent=self.frame_19)
-        self.bt_jugador_nuevo9.setObjectName("bt_jugador_nuevo9")
-        self.verticalLayout_30.addWidget(self.bt_jugador_nuevo9)
+        # self.bt_jugador_nuevo9 = QtWidgets.QPushButton(parent=self.frame_19)
+        # self.bt_jugador_nuevo9.setObjectName("bt_jugador_nuevo9")
+        # self.verticalLayout_30.addWidget(self.bt_jugador_nuevo9)
         spacerItem29 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem29)
         self.gridLayout.addWidget(self.frame_19, 2, 2, 1, 1)
@@ -282,9 +282,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.bt_seleccionar_jugador1)
         spacerItem32 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem32)
-        self.bt_jugador_nuevo1 = QtWidgets.QPushButton(parent=self.frame_11)
-        self.bt_jugador_nuevo1.setObjectName("bt_jugador_nuevo1")
-        self.verticalLayout_3.addWidget(self.bt_jugador_nuevo1)
+        self.bt_jugador_nuevo = QtWidgets.QPushButton(parent=self.frame_11)
+        self.bt_jugador_nuevo.setObjectName("bt_jugador_nuevo")
+        self.verticalLayout_3.addWidget(self.bt_jugador_nuevo)
         spacerItem33 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem33)
         self.gridLayout.addWidget(self.frame_11, 0, 0, 1, 1)
@@ -316,9 +316,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.addWidget(self.bt_seleccionar_jugador3)
         spacerItem36 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem36)
-        self.bt_jugador_nuevo3 = QtWidgets.QPushButton(parent=self.frame_13)
-        self.bt_jugador_nuevo3.setObjectName("bt_jugador_nuevo3")
-        self.verticalLayout_7.addWidget(self.bt_jugador_nuevo3)
+        # self.bt_jugador_nuevo3 = QtWidgets.QPushButton(parent=self.frame_13)
+        # self.bt_jugador_nuevo3.setObjectName("bt_jugador_nuevo3")
+        # self.verticalLayout_7.addWidget(self.bt_jugador_nuevo3)
         spacerItem37 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem37)
         self.gridLayout.addWidget(self.frame_13, 0, 2, 1, 1)
@@ -349,39 +349,39 @@ class Ui_MainWindow(object):
         #Jugador 1
         self.nombre_jugador1.setText(_translate("MainWindow", "Jugador 1"))
         self.bt_seleccionar_jugador1.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo1.setText(_translate("MainWindow", "Jugador Nuevo"))
+        self.bt_jugador_nuevo.setText(_translate("MainWindow", "Jugador Nuevo")) ############
         #Jugador 2
         self.nombre_jugador2.setText(_translate("MainWindow", "Jugador 2"))
         self.bt_seleccionar_jugador2.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo2.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo2.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Jugador 3
         self.nombre_jugador3.setText(_translate("MainWindow", "Jugador 3"))
         self.bt_seleccionar_jugador3.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo3.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo3.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Jugador 4
         self.nombre_jugador4.setText(_translate("MainWindow", "Jugador 4"))
         self.bt_seleccionar_jugador4.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo4.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo4.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Jugador 5
         self.nombre_jugador5.setText(_translate("MainWindow", "Jugador 5"))
         self.bt_seleccionar_jugador5.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo5.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo5.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Juagdor 6
         self.nombre_jugador6.setText(_translate("MainWindow", "Jugador 6"))
         self.bt_seleccionar_jugador6.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo6.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo6.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Jugador 7
         self.nombre_jugador7.setText(_translate("MainWindow", "Jugador 7"))
         self.bt_seleccionar_jugador7.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo7.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo7.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Jugador 8
         self.nombre_jugador8.setText(_translate("MainWindow", "Jugador 8"))
         self.bt_seleccionar_jugador8.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo8.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo8.setText(_translate("MainWindow", "Jugador Nuevo"))
         #Jugador 9
         self.nombre_jugador9.setText(_translate("MainWindow", "Jugador 9"))
         self.bt_seleccionar_jugador9.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo9.setText(_translate("MainWindow", "Jugador Nuevo"))
+        ##self.bt_jugador_nuevo9.setText(_translate("MainWindow", "Jugador Nuevo"))
 
         #Botones
         self.bt_atras.setText(_translate("MainWindow", "Atrás"))
@@ -396,9 +396,6 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador1(self):
         return self.bt_seleccionar_jugador1
-    
-    def get_button_jugador_nuevo1(self):
-        return self.bt_jugador_nuevo1
 
     #Métodos Jugador 2
     def get_nombre_jugador2 (self):
@@ -406,9 +403,6 @@ class Ui_MainWindow(object):
     
     def get_button_seleccionar_jugador2(self):
         return self.bt_seleccionar_jugador2
-    
-    def get_button_jugador_nuevo2(self):
-        return self.bt_jugador_nuevo2
 
     #Métodos Jugador 3
     def get_nombre_jugador3 (self):
@@ -416,9 +410,6 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador3(self):
         return self.bt_seleccionar_jugador3
-    
-    def get_button_jugador_nuevo3(self):
-        return self.bt_jugador_nuevo3
 
     #Métodos Jugador 4
     def get_nombre_jugador4 (self):
@@ -427,8 +418,6 @@ class Ui_MainWindow(object):
     def get_button_seleccionar_jugador4(self):
         return self.bt_seleccionar_jugador4
     
-    def get_button_jugador_nuevo4(self):
-        return self.bt_jugador_nuevo4
     
     #Métodos Jugador 5
     def get_nombre_jugador5 (self):
@@ -437,8 +426,6 @@ class Ui_MainWindow(object):
     def get_button_seleccionar_jugador5(self):
         return self.bt_seleccionar_jugador5
     
-    def get_button_jugador_nuevo5(self):
-        return self.bt_jugador_nuevo5
 
     #Métodos Jugador 6
     def get_nombre_jugador6 (self):
@@ -446,9 +433,6 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador6(self):
         return self.bt_seleccionar_jugador6
-    
-    def get_button_jugador_nuevo6(self):
-        return self.bt_jugador_nuevo6
 
     #Métodos Jugador 7
     def get_nombre_jugador7 (self):
@@ -456,9 +440,6 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador7(self):
         return self.bt_seleccionar_jugador7
-    
-    def get_button_jugador_nuevo7(self):
-        return self.bt_jugador_nuevo7
 
     #Métodos Jugador 8
     def get_nombre_jugador8 (self):
@@ -467,18 +448,12 @@ class Ui_MainWindow(object):
     def get_button_seleccionar_jugador8(self):
         return self.bt_seleccionar_jugador8
     
-    def get_button_jugador_nuevo8(self):
-        return self.bt_jugador_nuevo8
-    
     #Métodos Jugador 9
     def get_nombre_jugador9 (self):
         return self.nombre_jugador9
     
     def get_button_seleccionar_jugador9(self):
         return self.bt_seleccionar_jugador9
-    
-    def get_button_jugador_nuevo9(self):
-        return self.bt_jugador_nuevo9
 
 #MÉTODOS OTROS BOTONES
 
@@ -487,6 +462,9 @@ class Ui_MainWindow(object):
     
     def get_button_iniciar_partida(self):
         return self.bt_iniciar_partida
+
+    def get_button_jugador_nuevo(self):
+        return self.bt_jugador_nuevo
     
     def aviso_iniciar_partida(self):
         msg=QtWidgets.QMessageBox()
