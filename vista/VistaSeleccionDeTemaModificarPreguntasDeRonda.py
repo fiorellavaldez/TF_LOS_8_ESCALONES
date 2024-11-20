@@ -44,7 +44,6 @@ class Ui_MainWindow(object):
         # Configuración del modelo para que los elementos no sean editables
         self.list_model = QtGui.QStandardItemModel()
         self.listView.setModel(self.list_model)
-        self.populate_list()
 
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
