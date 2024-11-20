@@ -20,7 +20,7 @@ class ControladorVistaConfiguracionTemaABMEditAlta(ControladorVistaConfiguracion
             print("Tema ya existe")
             return
         else:                
-            if aux_tema.get_nombreTema() == " ":
+            if aux_tema.get_nombreTema() == "":
                 self._vista.aviso_tema_creado_vacio()
                 return
             self._tema.set_nombreTema(nuevo_nombre)
