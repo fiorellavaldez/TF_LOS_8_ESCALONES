@@ -88,19 +88,29 @@ class ControladorVistaConfiguracionTemaABM:
         self.__controlador_anterior.MainWindow.show()
 
     def __modificarTema(self):
-        self.MainWindow.hide()
+        
+        fila_actual = self.__vista.QTable_Temas.currentRow()
+        if fila_actual == -1:  # Ninguna fila seleccionada
+            self.__vista.aviso_seleccionar_tema()
+            return
+        #self.MainWindow.hide()
         tema_s=self.__obtener_tema_seleccionado()
         self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditModifica(self,tema_s,self.temas)
-
+        self.ControladorVistaTemaNuevo.MainWindow.show()
+        
     def __nuevoTema(self):
-        self.MainWindow.hide()
         tema_s=Tema(0,"")
         self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditAlta(self,tema_s,self.temas)
+        self.ControladorVistaTemaNuevo.MainWindow.show()
 
     def __eliminarTema(self):
-        self.MainWindow.hide()
+        fila_actual = self.__vista.QTable_Temas.currentRow()
+        if fila_actual == -1:  # Ninguna fila seleccionada
+            self.__vista.aviso_eliminar_tema()
+            return
         tema_s=self.__obtener_tema_seleccionado()
         self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditBaja(self,tema_s,self.temas)
+        self.ControladorVistaTemaNuevo.MainWindow.show()
 
 
     def __obtener_celda_seleccionada(self):  

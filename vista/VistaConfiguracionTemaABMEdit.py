@@ -47,6 +47,31 @@ class Ui_Widget(object):
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
+        
+        
+    def aviso_tema_modificado_vacio(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("No se ha ingresado ningun nombre. Por favor, ingrese un nombre.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
+    
+    def aviso_tema_creado_vacio(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("No se ha ingresado ningun nombre. Por favor, ingrese un nombre.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
+        
+    def aviso_tema_existe(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Este tema ya existe. Por favor, ingrese un nombre diferente.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
