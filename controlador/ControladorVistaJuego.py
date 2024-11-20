@@ -118,7 +118,7 @@ class ControladorVistaJuego:
         
         if perdedor is None:
             print("No se encontró un perdedor en este escalon")
-            ####Esto es solo para verificar que funciona ###
+            ####Esto es solo para verificar que funciona ### Despues se saca
         
             self.actualizar_layout_escalon(escalon, lista_suben, perdedor, nro)#actualizo layout visual del escalon actual
             lista_restantes = lista_suben
