@@ -19,11 +19,7 @@ class ControladorPantallaInicio:
     def __nueva_partida(self):
         self.MainWindow.close()
         self.controlador_nueva_partida=ControladorVistaGrillaJugadores(self)
-    '''
-    def __continuar(self):
-        self.MainWindow.close()
-        self.controlador_continuar=ControladorJuego
-    '''
+
     def __configuracion(self):
         self.MainWindow.hide()
         self.controlador_configuracion = ControladorVistaConfiguracion(self)

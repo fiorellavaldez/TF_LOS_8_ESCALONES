@@ -4,8 +4,8 @@
 
 # LO DEJO POR SI QUIEREN VER ALGO ANTES
 
-from PreguntasDAO import PreguntaDAO
-from TemasDAO import TemasDAO
+from modelo.PreguntasDAO import PreguntaDAO
+from modelo.TemasDAO import TemasDAO
 
 
 
@@ -13,13 +13,13 @@ from TemasDAO import TemasDAO
 
 
 ################################################################################################################################################################
-from preguntaDesempate import preguntaDesempate 
-from preguntaRonda import preguntaRonda
+from modelo.preguntaDesempate import preguntaDesempate 
+from modelo.preguntaRonda import preguntaRonda
 import random
-from Escalon import Escalon
-from Partida import Partida
-from Jugador import Jugador
-from Tema import Tema
+from modelo.Escalon import Escalon
+from modelo.Partida import Partida
+from modelo.Jugador import Jugador
+from modelo.Tema import Tema
 
 
 
@@ -62,7 +62,7 @@ listaTemas = []
 tema_historia = Tema(1, "Historia")
 
 # Creamos las preguntas de ronda
-preguntas_ronda = [
+preguntas_ronda_historia = [
     preguntaRonda("Historia", "¿En qué año comenzó la Segunda Guerra Mundial?", "1935", "1939", "1941", "1945", "B"),
     preguntaRonda("Historia", "¿Quién fue el primer presidente de los Estados Unidos?", "Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams", "B"),
     preguntaRonda("Historia", "¿En qué año cayó el Muro de Berlín?", "1985", "1987", "1989", "1991", "C"),
@@ -83,14 +83,8 @@ preguntas_ronda = [
     preguntaRonda("Historia", "¿En qué año terminó la Guerra de Vietnam?", "1965", "1970", "1973", "1975", "D")
 ]
 
-# Añadimos las preguntas de ronda al tema historia
-tema_historia.set_preguntasRonda(preguntas_ronda)
-
 # Creamos una pregunta de desempate
-pregunta_desempate = preguntaDesempate("Historia", "¿En qué año se firmó el Tratado de Versalles?", 1919)
-
-# Añadimos la pregunta de desempate al tema historia
-tema_historia.set_preguntasDesempate([pregunta_desempate])
+pregunta_desempate_historia = preguntaDesempate("Historia", "¿En qué año se firmó el Tratado de Versalles?", 1919)
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_historia.set_disponible(True)
@@ -122,14 +116,10 @@ preguntas_ronda_deportes = [
     preguntaRonda("Deportes", "¿Cuánto mide una pista de atletismo en una vuelta completa?", "200 metros", "300 metros", "400 metros", "500 metros", "C")
 ]
 
-# Añadimos las preguntas de ronda al tema deportes
-tema_deportes.set_preguntasRonda(preguntas_ronda_deportes)
 
 # Creamos una pregunta de desempate
 pregunta_desempate_deportes = preguntaDesempate("Deportes", "¿En qué año se celebró el primer Super Bowl?", 1967)
 
-# Añadimos la pregunta de desempate al tema deportes
-tema_deportes.set_preguntasDesempate([pregunta_desempate_deportes])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_deportes.set_disponible(True)
@@ -161,14 +151,10 @@ preguntas_ronda_arte = [
     preguntaRonda("Arte", "¿Cuál es el nombre del famoso cuadro de Johannes Vermeer que muestra a una joven con un pendiente de perla?", "La joven de la perla", "La rendición de Breda", "La ronda de noche", "La dama de Armiño", "A")
 ]
 
-# Añadimos las preguntas de ronda al tema arte
-tema_arte.set_preguntasRonda(preguntas_ronda_arte)
 
 # Creamos una pregunta de desempate
 pregunta_desempate_arte = preguntaDesempate("Arte", "¿En qué año nació el pintor Pablo Picasso?", 1881)
 
-# Añadimos la pregunta de desempate al tema arte
-tema_arte.set_preguntasDesempate([pregunta_desempate_arte])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_arte.set_disponible(True)
@@ -200,14 +186,10 @@ preguntas_ronda_geografia = [
     preguntaRonda("Geografía", "¿Cuál es el río más largo de Europa?", "Danubio", "Rin", "Volga", "Támesis", "C")
 ]
 
-# Añadimos las preguntas de ronda al tema geografía
-tema_geografia.set_preguntasRonda(preguntas_ronda_geografia)
 
 # Creamos una pregunta de desempate
 pregunta_desempate_geografia = preguntaDesempate("Geografía", "¿En qué año fue fundada la ciudad de Roma?", 753)
 
-# Añadimos la pregunta de desempate al tema geografía
-tema_geografia.set_preguntasDesempate([pregunta_desempate_geografia])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_geografia.set_disponible(True)
@@ -239,14 +221,10 @@ preguntas_ronda_ciencia = [
     preguntaRonda("Ciencia", "¿Cuál es el compuesto químico del agua?", "H2O2", "CO2", "H2O", "CH4", "C")
 ]
 
-# Añadimos las preguntas de ronda al tema ciencia
-tema_ciencia.set_preguntasRonda(preguntas_ronda_ciencia)
 
 # Creamos una pregunta de desempate
 pregunta_desempate_ciencia = preguntaDesempate("Ciencia", "¿En qué año se descubrió el electrón?", 1897)
 
-# Añadimos la pregunta de desempate al tema ciencia
-tema_ciencia.set_preguntasDesempate([pregunta_desempate_ciencia])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_ciencia.set_disponible(True)
@@ -278,14 +256,10 @@ preguntas_ronda_entretenimiento = [
     preguntaRonda("Entretenimiento", "¿Qué serie de televisión presenta un trono hecho de espadas?", "Game of Thrones", "Vikings", "The Witcher", "Lord of the Rings", "A")
 ]
 
-# Añadimos las preguntas de ronda al tema entretenimiento
-tema_entretenimiento.set_preguntasRonda(preguntas_ronda_entretenimiento)
 
 # Creamos una pregunta de desempate
 pregunta_desempate_entretenimiento = preguntaDesempate("Entretenimiento", "¿En qué año se lanzó la primera película de 'Star Wars'?", 1977)
 
-# Añadimos la pregunta de desempate al tema entretenimiento
-tema_entretenimiento.set_preguntasDesempate([pregunta_desempate_entretenimiento])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_entretenimiento.set_disponible(True)
@@ -317,14 +291,10 @@ preguntas_ronda_programacion = [
     preguntaRonda("Programación", "¿Qué paradigma de programación enfatiza el uso de funciones puras y evita los efectos secundarios?", "Imperativo", "Funcional", "Orientado a Objetos", "Declarativo", "B")
 ]
 
-# Añadimos las preguntas de ronda al tema Programación
-tema_programacion.set_preguntasRonda(preguntas_ronda_programacion)
 
 # Creamos una pregunta de desempate
 pregunta_desempate_programacion = preguntaDesempate("Programación", "¿En qué año se lanzó Python?", 1991)
 
-# Añadimos la pregunta de desempate al tema Programación
-tema_programacion.set_preguntasDesempate([pregunta_desempate_programacion])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_programacion.set_disponible(True)
@@ -355,14 +325,8 @@ preguntas_ronda_gastronomia = [
     preguntaRonda("Gastronomía", "¿Cuál es el término culinario para cortar en tiras finas?", "Rebanar", "Brunoise", "Juliana", "Ciselar", "C")
 ]
 
-# Añadimos las preguntas de ronda al tema Gastronomía
-tema_gastronomia.set_preguntasRonda(preguntas_ronda_gastronomia)
-
 # Creamos una pregunta de desempate
 pregunta_desempate_gastronomia = preguntaDesempate("Gastronomía", "¿En qué año se inventó la hamburguesa moderna?", 1900)
-
-# Añadimos la pregunta de desempate al tema Gastronomía
-tema_gastronomia.set_preguntasDesempate([pregunta_desempate_gastronomia])
 
 # Marcamos el tema como disponible ya que tiene preguntas
 tema_gastronomia.set_disponible(True)
@@ -376,14 +340,14 @@ lista8Temas=[tema_deportes, tema_ciencia, tema_arte, tema_entretenimiento, tema_
 #    lista8Temas.append(listaTemas(i))
 
 # El escalon seria una clase en si, tendria datos como: participantes activos o eliminados, tema
-escalon1 = Escalon(1)
-escalon2 = Escalon(2)
-escalon3 = Escalon(3)
-escalon4 = Escalon(4)
-escalon5 = Escalon(5)
-escalon6 = Escalon(6)
-escalon7 = Escalon(7)
-escalon8 = Escalon(8)
+escalon1 = Escalon(tema_deportes.get_nombreTema(),preguntas_ronda_deportes,pregunta_desempate_deportes)
+escalon2 = Escalon(tema_ciencia.get_nombreTema(),preguntas_ronda_ciencia,pregunta_desempate_ciencia)
+escalon3 = Escalon(tema_arte.get_nombreTema(),preguntas_ronda_arte,pregunta_desempate_arte)
+escalon4 = Escalon(tema_entretenimiento.get_nombreTema(),preguntas_ronda_entretenimiento,pregunta_desempate_entretenimiento)
+escalon5 = Escalon(tema_gastronomia.get_nombreTema(),preguntas_ronda_gastronomia,pregunta_desempate_gastronomia)
+escalon6 = Escalon(tema_geografia.get_nombreTema(),preguntas_ronda_geografia,pregunta_desempate_geografia)
+escalon7 = Escalon(tema_historia.get_nombreTema(),preguntas_ronda_historia,pregunta_desempate_historia)
+escalon8 = Escalon(tema_programacion.get_nombreTema(),preguntas_ronda_programacion,pregunta_desempate_programacion)
 
 #escalon1.set_jugadores(listaJugadores) # le doy la lista de jugadoes completa al primer escalon
 
@@ -392,7 +356,7 @@ listaEscalones = [escalon1, escalon2, escalon3, escalon4, escalon5, escalon6, es
 for i in range(8):
     listaEscalones[i].set_tema(lista8Temas[i]) # Con esto ya tengo un tema para cada escalón
 
-partida = Partida(listaEscalones) #instanciamos el objeto partida con los 8 escalones
+partida = Partida(listaEscalones,listaJugadores) #instanciamos el objeto partida con los 8 escalones
 
 
 #for i in range (listaEscalones):
@@ -570,11 +534,11 @@ for escalon in partida.get_escalones():
     # Ronda 1
     for jugador in escalon.get_jugadores():
         # Simulamos hacerle una pregunta y obtener si acertó (0: no contestó, 1: acertó, 2: falló)
-        jugador.set_ronda1(hacer_pregunta(jugador, (escalon.get_tema()).get_preguntasRonda()))  # <------------------ACA NOS QUEDAMOS!!!
+        jugador.set_ronda1(hacer_pregunta(jugador, (escalon.get_preguntasRonda())))  # <------------------ACA NOS QUEDAMOS!!!
     
     # Ronda 2
     for jugador in escalon.get_jugadores():
-        jugador.set_ronda2(hacer_pregunta(jugador, (escalon.get_tema()).get_preguntasRonda()))
+        jugador.set_ronda2(hacer_pregunta(jugador, (escalon.get_preguntasRonda())))
 
     # Evaluamos los resultados de las dos rondas
     jugadores_a_desempatar = evaluar_jugadores(escalon.get_jugadores())
@@ -582,7 +546,7 @@ for escalon in partida.get_escalones():
     # Si hay jugadores empatados (o todos acertaron), hacemos un desempate
     if len(jugadores_a_desempatar) > 1:
         print("Empate detectado. Comenzando ronda de desempate...")
-        jugadores_a_eliminar = hacer_desempate(jugadores_a_desempatar, ((escalon.get_tema()).get_preguntasDesempate()))
+        jugadores_a_eliminar = hacer_desempate(jugadores_a_desempatar, ((escalon.get_preguntasDesempate())))
     else:
         # Si solo hay un jugador con más errores, lo eliminamos directamente
         jugadores_a_eliminar = jugadores_a_desempatar

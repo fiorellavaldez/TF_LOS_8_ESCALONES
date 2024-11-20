@@ -44,7 +44,6 @@ class Ui_MainWindow(object):
         # Configuración del modelo para que los elementos no sean editables
         self.list_model = QtGui.QStandardItemModel()
         self.listView.setModel(self.list_model)
-        self.populate_list()
 
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -70,6 +69,15 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+        
+    def aviso_seleccionar_pregunta_ronda(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar un Tema para modificar sus preguntas")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -79,15 +87,10 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Buscar:"))
         self.pushButton_2.setText(_translate("MainWindow", "Atrás"))
         self.pushButton_3.setText(_translate("MainWindow", "Siguiente"))
+    
+    
 
-    def populate_list(self):
-        """Agrega elementos de ejemplo al QListView y los configura como no editables."""
-        example_items = ["Historia", "Matemáticas", "Ciencias", "Arte", "Geografía"]
-        for text in example_items:
-            item = QtGui.QStandardItem(text)
-            item.setEditable(False)  # Desactivar la edición del elemento
-            self.list_model.appendRow(item)
-
+    
     def get_button_atras(self):
         return self.pushButton_2
 
