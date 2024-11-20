@@ -81,9 +81,9 @@ class PreguntaDAO:
     def agregar_pregunta_desempate (self,enunciado, opcion_correcta, id_tema):
         with self.__bd.cursor() as cursor:
             query = """
-                 INSERT INTO preguntas (enunciado_pregunta,rta_a, rta_b, rta_c, rta_d, rta_correcta, tipo_pregunta,estado_pregunta, id_tema)
-                 VALUES (%s, 'null', 'null', 'null', 'null', %s, 'D', 'True %s)
-                 """
+                INSERT INTO preguntas (enunciado_pregunta,rta_a, rta_b, rta_c, rta_d, rta_correcta, tipo_pregunta,estado_pregunta, id_tema)
+                VALUES (%s, 'null', 'null', 'null', 'null', %s, 'D', 'True' , %s)
+                """
             cursor.execute(query, (enunciado, opcion_correcta,id_tema))
             cursor.connection.commit()
 
