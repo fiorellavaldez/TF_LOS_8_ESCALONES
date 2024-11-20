@@ -50,7 +50,14 @@ class TemaABM:
         self.__lista_temas = lista_aux
         TemasDAO().borrar_tema(tema.get_idTema())
 
-
+        #agregado el 20-11, lo probe y funciona
+    def obtener_temas_para_jugar(self):
+        temas_para_jugar = []
+        lista_aux = TemasDAO().temas_partida()
+    # solo quiero 8 elementos en la lista
+        for id_tema, nombre_tema in lista_aux[:8]:
+            temas_para_jugar.append(Tema(id_tema, nombre_tema))
+        return temas_para_jugar
 
 
 
