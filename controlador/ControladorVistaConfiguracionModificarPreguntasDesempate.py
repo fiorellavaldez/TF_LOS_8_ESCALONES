@@ -47,3 +47,4 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
     def actualizar_lista_preguntas(self):#Lo usa la pantalla de agregar nueva pregunta
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__id_tema)
         self.__llenar_tableview()
+    
