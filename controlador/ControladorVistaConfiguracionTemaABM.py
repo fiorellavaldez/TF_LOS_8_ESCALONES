@@ -8,6 +8,8 @@ from vista.VistaConfiguracionTemaABMEdit import Ui_Widget
 from modelo.Tema import Tema
 from modelo.TemaABM import TemaABM
 
+
+from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QTableWidgetItem
 from  modelo.TemasDAO import TemasDAO
@@ -55,8 +57,19 @@ class ControladorVistaConfiguracionTemaABM:
     def __llenar_tabla(self, lista_temas):
         self.__vista.QTable_Temas.setRowCount(len(lista_temas))
         for linea, tema in enumerate(lista_temas):
-            self.__vista.QTable_Temas.setItem(linea, 0, QTableWidgetItem(str(tema.get_idTema())))  
-            self.__vista.QTable_Temas.setItem(linea, 1, QTableWidgetItem(tema.get_nombreTema()))  
+            ##SELECCIONO EL ID Y EL TEMA
+            item_id = QTableWidgetItem(str(tema.get_idTema()))
+            item_nombre = QTableWidgetItem(tema.get_nombreTema())
+            
+            #Desactivo la edicion en esa linea
+            item_id.setFlags(item_id.flags() & ~Qt.ItemFlag.ItemIsEditable)
+            item_nombre.setFlags(item_nombre.flags() & ~Qt.ItemFlag.ItemIsEditable)
+            
+            self.__vista.QTable_Temas.setItem(linea, 0, item_id)
+            self.__vista.QTable_Temas.setItem(linea, 1, item_nombre)
+            
+            #self.__vista.QTable_Temas.setItem(linea, 0, QTableWidgetItem(str(tema.get_idTema())))  
+            #self.__vista.QTable_Temas.setItem(linea, 1, QTableWidgetItem(tema.get_nombreTema()))  
 
     def actualizar_tema(self, tema):
         self.temas.actualizar_tema(tema)
