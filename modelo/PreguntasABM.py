@@ -98,10 +98,9 @@ class PreguntaABM:
     
 
     def agregar_pregunta_ronda(self, pregunta: preguntaRonda): #
-        self.__lista_preguntas_ronda.append(pregunta)
         PreguntaDAO().agregar_pregunta_ronda(pregunta.get_enunciado(),pregunta.get_opcionA(), pregunta.get_opcionB(), pregunta.get_opcionC(),
                                             pregunta.get_opcionD(), pregunta.get_opcionCorrecta(), pregunta.get_idtema())     
-
+        self.__lista_preguntas_ronda = self.obtener_preguntas_ronda()
 
     def agregar_pregunta_desempate(self, pregunta: preguntaDesempate): #FUNCIONA :) 
         #self.__lista_preguntas_desempate.append(pregunta) #PROBLEMA: SE VA A AGREGAR SI ID y no se podria borrar en la misma sesion
@@ -113,10 +112,18 @@ class PreguntaABM:
     def quitar_pregunta_ronda(self, pregunta: preguntaRonda):
         for p in self.lista_preguntas_ronda:
             if p.get_idPregunta() == pregunta.get_idPregunta():
+                #Elimina de la BBDD:
                 PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
-
-
+                #Se elimina en local:
+                self.lista_preguntas_ronda.remove(p)
+                break #como se elimina de a una pregunta, no tiene sentido seguir iterando
+            
     def quitar_pregunta_desempate(self, pregunta: preguntaDesempate):
         for p in self.lista_preguntas_desempate:
+            
             if p.get_idPregunta() == pregunta.get_idPregunta():
+                #se elimina de la BBDD:
                 PreguntaDAO().borrar_pregunta(pregunta.get_idPregunta())
+                #se elimina en local:
+                self.lista_preguntas_desempate.remove(p) #si esto causa un problema es porque se quito antes (por fuera de aca) de la lista local "lista_preguntas_desempate"
+                break # salir del ciclo y no seguir iterando 
