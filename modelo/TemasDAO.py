@@ -38,7 +38,7 @@ class TemasDAO:
     def agregar_tema(self, tema):
         with self.__bd.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO temas (nombre_tema) VALUES (%s)",
+                "INSERT INTO temas (nombre_tema,estado_tema) VALUES (%s,'true')",
                 (tema,)
                 )
             cursor.connection.commit()
