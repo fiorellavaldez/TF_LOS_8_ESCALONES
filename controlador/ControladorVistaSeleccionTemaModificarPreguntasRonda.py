@@ -175,7 +175,7 @@ class ControladorVistaSeleccionTemaModificarPreguntasRonda:
 
         # Carga inicial de temas
         self.__cargar_temas()
-        self.__actualizar_list_view()
+        #self.__actualizar_list_view()
         
         self.__vista.get_button_atras().clicked.connect(self.__volver_configuracion)
         self.__vista.get_button_seleccionar_pregunta().clicked.connect(self.__seleccionar_tema)

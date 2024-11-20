@@ -11,6 +11,7 @@ from modelo.TemaABM import TemaABM
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QTableWidgetItem
 from  modelo.TemasDAO import TemasDAO
+from PyQt6.QtCore import QStringListModel
 from PyQt6.QtCore import QEvent
 
 class ControladorVistaConfiguracionTemaABM:
@@ -23,6 +24,9 @@ class ControladorVistaConfiguracionTemaABM:
         self.__vista.setupUi(self.MainWindow)
         self.__vistaEdit = Ui_Widget()
         self.__vistaEdit.setupUi(self.WindowEdit)
+        
+        self.filtered_temas = []
+        self.model = QStringListModel()
        
 
         # Conexion Botones
@@ -38,6 +42,8 @@ class ControladorVistaConfiguracionTemaABM:
         self.__vista.QTable_Temas.setHorizontalHeaderLabels(["Id_tema","Tema"]) #El parametro para los nombres de los encabezados debe ser un iterable
         self.__vista.QTable_Temas.setVerticalHeaderLabels([""])
         self.__vista.QTable_Temas.verticalHeader().hide()
+
+        self.__vista.QLine_Buscar.textChanged.connect(self.__buscar_temas)
 
         self.temas=TemaABM()
 
@@ -90,6 +96,17 @@ class ControladorVistaConfiguracionTemaABM:
             print("Contenido de la celda seleccionada:", item.text())  
         else:  
             print("No hay ninguna celda seleccionada.") 
+
+    def __buscar_temas(self):
+        """Filtra los temas según el texto ingresado en la caja de búsqueda y actualiza la tabla."""
+        texto = self.__vista.QLine_Buscar.text().strip().lower()
+        # Filtrar temas que coincidan con el texto ingresado
+        self.filtered_temas = [
+        tema for tema in self.temas.lista_temas
+        if texto in tema.get_nombreTema().lower()
+        ]
+        # Llenar la tabla con los temas filtrados
+        self.__llenar_tabla(self.filtered_temas)
 
     def __obtener_tupla_seleccionada(self):
         fila_actual = self.__vista.QTable_Temas.currentRow()  # Obtiene la fila seleccionada  
