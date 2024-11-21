@@ -2,19 +2,16 @@ from vista.VistaConfiguracionPreguntasEditarPreguntaDeDesempate import Ui_MainWi
 from PyQt6 import QtWidgets
 
 class ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica:
-    def __init__(self, controlador_anterior):
+    def __init__(self, controlador_anterior, pregunta):
+        self.__pregunta = pregunta
         self.__controlador_anterior = controlador_anterior
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
-        self.__vista.setupUi(self.MainWindow)
+        self.__vista.setupUi(self.MainWindow,self.__pregunta.get_enunciado(), self.__pregunta.get_respuestaCorrecta())
         self.MainWindow.show()
 
         self.__vista.get_button_atras().clicked.connect(self.__volver)
-        #self.__vista.get_button_aceptar().clicked.connect(self.__guardar) #??
 
     def __volver(self):
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
-
-    # def __guardar(self):
-    #     pass

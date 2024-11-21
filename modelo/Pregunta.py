@@ -24,5 +24,3 @@ class Pregunta:
     
     def set_idtema (self, idtema):
         self._idtema = idtema
- 
- 

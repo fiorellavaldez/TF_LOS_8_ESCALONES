@@ -27,11 +27,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.__controlador_anterior.MainWindow.show()
 
     def __agregar_pregunta (self):
-        self.MainWindow.hide()
-        self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema) #estoy en esto
-
-    def __eliminar_pregunta(self):
-        pass #aca va el dialog que todavia no tenemos
+        self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema)
     
     def __modificar_pregunta(self):
         self.MainWindow.hide()
@@ -44,7 +40,19 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
             # Insertar la palabra en la primera columna de la fila recién agregada
             self.__vista.tableWidget.setItem(row_position, 0, QtWidgets.QTableWidgetItem(pregunta.get_enunciado()))
     
-    def actualizar_lista_preguntas(self):#Lo usa la pantalla de agregar nueva pregunta
+    def actualizar_lista_preguntas(self):  # Lo usa la pantalla de agregar nueva pregunta
+        self.__vista.tableWidget.setRowCount(0)
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__id_tema)
         self.__llenar_tableview()
-    
+
+    def __eliminar_pregunta(self): # le falta el dialog de "Esta seguro?"
+        fila = self.__vista.tableWidget.currentRow()
+        if fila != -1:
+            PreguntaABM().quitar_pregunta_desempate(self.__lista_preguntas[fila])
+            self.actualizar_lista_preguntas()
+
+    def __modificar_pregunta(self):
+        fila = self.__vista.tableWidget.currentRow()
+        if fila != -1:
+            pregunta = self.__lista_preguntas[fila]
+            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, pregunta)

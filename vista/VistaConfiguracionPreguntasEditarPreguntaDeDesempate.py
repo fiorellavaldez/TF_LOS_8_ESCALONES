@@ -1,11 +1,18 @@
-#ELIMINAR
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def __init__(self):
+        # Inicializamos los atributos para almacenar los valores
+        self.enunciado = ""
+        self.respuesta = ""
+
+    def setupUi(self, MainWindow, enunciado="", respuesta=""):
+        # Guardamos los valores en los atributos de instancia
+        self.enunciado = enunciado
+        self.respuesta = respuesta
+
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(435, 391)
+        MainWindow.resize(1000, 400)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(parent=self.centralwidget)
@@ -66,20 +73,15 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica", "VistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Editar Pregunta"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt;\">Editar pregunta</span></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", " ¿En qué año cayó Constantinopla?"))
+        
+        # Usamos los valores de los atributos para configurar los textos
+        self.label_2.setText(_translate("MainWindow", self.enunciado))
         self.pushButton_12.setText(_translate("MainWindow", "Aceptar"))
         self.label_7.setText(_translate("MainWindow", " Respuesta correcta:"))
+        self.textEdit.setHtml(_translate("MainWindow", self.respuesta))
         self.pushButton_13.setText(_translate("MainWindow", "Cancelar"))
-        self.textEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1453</p></body></html>"))
 
     def get_button_atras(self):
         return self.pushButton_13
