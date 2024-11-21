@@ -95,8 +95,6 @@ class PreguntaABM:
                 self.lista_preguntas_desempate[p].set_respuestaCorrecta(pregunta.get_respuestaCorrecta())
         PreguntaDAO().actualizar_pregunta_desempate(pregunta.get_enunciado(),pregunta.get_respuestaCorrecta(),pregunta.get_idPregunta())
     
-    
-
     def agregar_pregunta_ronda(self, pregunta: preguntaRonda): #
         PreguntaDAO().agregar_pregunta_ronda(pregunta.get_enunciado(),pregunta.get_opcionA(), pregunta.get_opcionB(), pregunta.get_opcionC(),
                                             pregunta.get_opcionD(), pregunta.get_opcionCorrecta(), pregunta.get_idtema())     

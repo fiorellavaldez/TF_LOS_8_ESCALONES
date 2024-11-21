@@ -15,6 +15,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(id_tema) #aca esta la lista con todos los objetos pregunta
         self.__vista.setupUi(self.MainWindow)
+        
         self.__llenar_tableview()
         self.MainWindow.show()
         self.__vista.get_button_atras().clicked.connect(self.__volver)
@@ -28,10 +29,6 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
 
     def __agregar_pregunta (self):
         self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema)
-    
-    def __modificar_pregunta(self):
-        self.MainWindow.hide()
-        self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, 1)
 
     def __llenar_tableview(self):
         for pregunta in self.__lista_preguntas:
@@ -54,5 +51,5 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
     def __modificar_pregunta(self):
         fila = self.__vista.tableWidget.currentRow()
         if fila != -1:
-            pregunta = self.__lista_preguntas[fila]
-            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, pregunta)
+            #pregunta = self.__lista_preguntas[fila]
+            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, self.__lista_preguntas[fila])
