@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
         self.label.setBaseSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("Segoe Fluent Icons")
-        font.setPointSize(80)
+        font.setPointSize(70)
         font.setBold(False)
         self.label.setFont(font)
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -71,9 +71,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaPantallaInicio", "VistaPantallaInicio"))
-        self.label.setText(_translate("MainWindow", "Los 8 Escalones"))
-        self.pushButton.setText(_translate("MainWindow", "Nueva Partida"))
-        self.pushButton_5.setText(_translate("MainWindow", "Configuracion"))
+        self.label.setText(_translate("MainWindow", "LOS 8 ESCALONES"))
+        self.pushButton.setText(_translate("MainWindow", "Nueva partida"))
+        self.pushButton_5.setText(_translate("MainWindow", "Configuración"))
         self.pushButton_6.setText(_translate("MainWindow", "Salir"))
 
     def get_button_configuracion(self):

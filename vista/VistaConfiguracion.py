@@ -84,9 +84,9 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaConfiguracion", "VistaConfiguracion"))
         self.label.setText(_translate("MainWindow", "Configuración"))
-        self.pushButton.setText(_translate("MainWindow", "Modificar/Crear Peguntas de Ronda"))
-        self.pushButton_2.setText(_translate("MainWindow", "  Modificar/Crear Peguntas de Desempate  "))
-        self.pushButton_4.setText(_translate("MainWindow", "Modificar/Crear Temas"))
+        self.pushButton.setText(_translate("MainWindow", "Modificar o crear Peguntas de ronda"))
+        self.pushButton_2.setText(_translate("MainWindow", "Modificar o crear Peguntas de desempate"))
+        self.pushButton_4.setText(_translate("MainWindow", "Modificar o crear temas"))
         #self.pushButton_5.setText(_translate("MainWindow", "Crear Tema Nuevo"))
         self.pushButton_6.setText(_translate("MainWindow", "Atrás"))
 

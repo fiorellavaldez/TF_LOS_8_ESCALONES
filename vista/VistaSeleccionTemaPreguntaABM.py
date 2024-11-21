@@ -2,7 +2,8 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow, tipoPregunta):
+        self.__tipoPregunta = tipoPregunta
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(430, 495)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -61,13 +62,13 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(MainWindow, self.__tipoPregunta)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, MainWindow, tipoPregunta):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaSeleccionDeTemaModificarPreguntasDeDesempate", "VistaSeleccionDeTemaModificarPreguntasDeDesempate"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Modificar preguntas de desempate</p></body></html>"))
+        MainWindow.setWindowTitle(_translate("VistaSeleccionTemaPreguntaABM", "VistaSeleccionTemaPreguntaABM"))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Modificar preguntas de {}</p></body></html>".format(tipoPregunta)))
         self.label_3.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Seleccione a que tema pertenecen las preguntas que quiere modificar</p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Buscar:"))
         self.pushButton_2.setText(_translate("MainWindow", "Atrás"))
@@ -87,11 +88,3 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_pregunta(self):
         return self.pushButton_3
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec())

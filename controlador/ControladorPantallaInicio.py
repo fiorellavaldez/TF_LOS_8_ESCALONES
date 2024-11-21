@@ -1,4 +1,4 @@
-from controlador.ControladorVistaConfiguracion import ControladorVistaConfiguracion
+from controlador.ControladorConfiguracion import ControladorVistaConfiguracion
 from controlador.ControladorVistaGrillaJugadores import ControladorVistaGrillaJugadores
 from vista.VistaPantallaInicio import Ui_MainWindow
 from PyQt6 import QtWidgets
