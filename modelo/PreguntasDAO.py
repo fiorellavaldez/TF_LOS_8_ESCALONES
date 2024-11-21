@@ -116,9 +116,4 @@ class PreguntaDAO:
 
 ####################################################################################################################################################################################
 
-#La clase RealDictCursor es una subclase de cursor proporcionada por psycopg2, una librería de Python para interactuar con bases de datos PostgreSQL.
-#Esta clase permite que los resultados de las consultas se devuelvan como diccionarios en lugar de tuplas, 
-#lo que puede hacer que el acceso a los datos sea más intuitivo.
 
-#La función isinstance en Python se utiliza para verificar si un objeto es una instancia de una clase o de una tupla de clases.
-#  Esto es útil cuando quieres asegurarte de que una variable o un objeto es del tipo que esperas antes de realizar ciertas operaciones sobre él
