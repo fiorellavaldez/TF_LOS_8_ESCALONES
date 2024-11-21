@@ -98,6 +98,14 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    
+    def aviso_seleccionar_pregunta(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar una pregunta primero.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -122,3 +130,6 @@ class Ui_MainWindow(object):
 
     def get_button_eliminar_pregunta(self):
         return self.pushButton_eliminar
+    
+    def get_line_edit_busqueda(self):
+        return self.lineEdit

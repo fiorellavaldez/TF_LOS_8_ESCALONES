@@ -1,7 +1,8 @@
 from vista.VistaConfiguracionPreguntasEditarPreguntaDeDesempate import Ui_MainWindow
-from PyQt6 import QtWidgets
 from modelo.PreguntasABM import PreguntaABM
+from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6.QtWidgets import QMessageBox
+from PyQt6 import QtWidgets
 
 class ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica():
     def __init__(self, controlador_anterior, pregunta_desempate):
@@ -20,30 +21,30 @@ class ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(
         self.__controlador_anterior.MainWindow.show()
 
     def __guardar(self, pregunta):
-        valor = self.__vista.textEdit.toPlainText().strip()  # Elimina espacios en blanco al principio y al final
-        if valor:  # Verifica si no está vacío
-            if self.__es_entero(valor):  # Verifica si el valor es un número entero válido
-                valor_int = int(valor) 
-                enunciado = self.__vista.textEdit_2.toPlainText()
-                pregunta.set_enunciado(enunciado)
-                pregunta.set_respuestaCorrecta(valor_int)
-                PreguntaABM().actualizar_preguntas_desempate(self.__pregunta)
-                self.__controlador_anterior.actualizar_lista_preguntas()
-                self.MainWindow.hide()
-                self.__controlador_anterior.MainWindow.show()
+        controlador_seguro = ControladorEstaSeguro("¿Está seguro de cambiar esta pregunta?")
+        if controlador_seguro.exec():  # `exec` con el usuario cierra el diálogo
+            valor = self.__vista.textEdit.toPlainText().strip()  # Elimina espacios en blanco
+            if valor:
+                if self.__es_entero(valor):
+                    valor_int = int(valor)
+                    enunciado = self.__vista.textEdit_2.toPlainText()
+                    pregunta.set_enunciado(enunciado)
+                    pregunta.set_respuestaCorrecta(valor_int)
+                    PreguntaABM().actualizar_preguntas_desempate(self.__pregunta)
+                    self.__controlador_anterior.actualizar_lista_preguntas()
+                    self.MainWindow.hide()
+                    self.__controlador_anterior.MainWindow.show()
+                else:
+                    self.__mostrar_error("La respuesta no es un número entero válido.")
             else:
-                self.__mostrar_error("La respuesta no es un número entero válido.")
-        else:
-            self.__mostrar_error("El campo de respuesta está vacío.")
-
+                self.__mostrar_error("El campo de respuesta está vacío.")
     def __es_entero(self, valor):
-        """Verifica si un valor puede ser convertido a entero."""
         try:
-            int(valor)  # Intenta convertirlo a entero
-            return True  # Si no lanza excepción, es un número entero válido
+            int(valor)
+            return True
         except ValueError:
-            return False  # Si lanza excepción, no es un entero
-
+            return False
+        
     def __mostrar_error(self, mensaje):
         """Muestra un mensaje de error en un cuadro de mensaje (QMessageBox)."""
         mensaje_box = QMessageBox()
