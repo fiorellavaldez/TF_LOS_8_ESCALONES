@@ -112,7 +112,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Ingrese el nombre"))
         self.pushButton.setText(_translate("MainWindow", "<"))
         self.pushButton_4.setText(_translate("MainWindow", ">"))
-        self.pushButton_2.setText(_translate("MainWindow", "Cancelar"))
+        self.pushButton_2.setText(_translate("MainWindow", "Atrás"))
         self.pushButton_3.setText(_translate("MainWindow", "Agregar Jugador"))
 
     def get_button_cancelar(self):
@@ -139,13 +139,14 @@ class Ui_MainWindow(object):
     def imprimo_alerta (self):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-        msg.setText("El campo esta vacio")
-        msg.setInformativeText("El nombre solo puede contener letras, números y espacios.")
+        msg.setWindowTitle("Alerta")
+        msg.setInformativeText("El campo esta vacio solo puede contener letras, números y espacios.")
         msg.exec()
     
     def notifico_insercion(self,nombre_jugador):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+        msg.setWindowTitle("Informacion")
         msg.setText(f"Se añadió correctamente el jugador: {nombre_jugador}")
         msg.exec()
 

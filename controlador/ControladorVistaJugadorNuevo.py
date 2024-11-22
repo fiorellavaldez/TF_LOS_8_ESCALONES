@@ -76,11 +76,12 @@ class ControladorVistaJugadorNuevo:
 
             # Notificar al usuario
             self.__vista.notifico_insercion(nombre_jugador)
+            
             print(f"Jugador '{nombre_jugador}' agregado exitosamente.")
-            self.MainWindow.close()  # Cierra la ventana
+            
         except Exception as e:
             # Manejo de errores
-            self.__vista.aviso_nombre_repetido()
+            self.__vista.aviso_nombre_repetido(nombre_jugador)
 
     def __mostrar_siguiente_imagen(self):
         if len(self.imagen_actual) > 0:
