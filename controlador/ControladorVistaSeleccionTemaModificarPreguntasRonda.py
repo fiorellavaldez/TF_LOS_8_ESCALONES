@@ -138,7 +138,7 @@
 #         self.model.setStringList(self.filtered_temas)
 
 from vista.VistaSeleccionDeTemaModificarPreguntasDeRonda import Ui_MainWindow
-from controlador.ControladorVistaConfiguracionModificarPreguntasRonda import ControladorVistaConfiguracionModificarPreguntasDeDesempate
+from controlador.ControladorVistaConfiguracionModificarPreguntasRonda import ControladorVistaConfiguracionModificarPreguntasRonda
 from modelo.TemaABM import TemaABM
 from PyQt6.QtCore import QStringListModel
 from PyQt6 import QtWidgets

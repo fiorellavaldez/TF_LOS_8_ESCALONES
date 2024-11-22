@@ -13,7 +13,6 @@ class preguntaRonda(Pregunta):
         self.__opcionCorrecta = opcionCorrecta
         
     
-    # Getters
     def get_opcionA(self):
         return self.__opcionA
     def get_opcionB(self):
@@ -26,12 +25,9 @@ class preguntaRonda(Pregunta):
         return self.__opcionCorrecta
     def get_enunciado (self):
         return self._enunciado  
-    
     def get_idtema (self):
         return self._idtema
-    #def get_estado (self):
-    #    return self._estado
-    # Setters
+
     def set_opcionA(self, opcionA):
         self.__opcionA = opcionA
     def set_opcionB(self, opcionB):
@@ -44,16 +40,5 @@ class preguntaRonda(Pregunta):
         self.__opcionCorrecta = opcionCorrecta
     def set_enunciado(self, enunciado):
         self._enunciado = enunciado
-
-    #def set_estado (self, estado):
-     #   self._estado = estado
     def set_idtema (self, idtema):
         self._tema = idtema
-##############
-
-
-    def responder(self,opcion):
-        if opcion == self.__opcionCorrecta:
-            return True
-        else: 
-            return False

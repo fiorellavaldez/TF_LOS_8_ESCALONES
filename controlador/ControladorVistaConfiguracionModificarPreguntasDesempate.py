@@ -8,11 +8,11 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
     def __init__(self, controlador_anterior, id_tema, nombre_tema):
         self.__controlador_anterior = controlador_anterior
         self.__id_tema = id_tema
-        self.__nombre_tema = nombre_tema
+        self.__nombre_tema = nombre_tema # hay que usarlo para la vista
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
 
-        self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(id_tema)  # Obtén todas las preguntas
+        self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(id_tema)  #todas las preguntas
         self.__vista.setupUi(self.MainWindow)
 
         self.__lista_preguntas_filtradas = self.__lista_preguntas  # Inicializamos la lista filtrada con todas las preguntas

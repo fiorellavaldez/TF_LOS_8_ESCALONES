@@ -3,7 +3,6 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def __init__(self, enunciado, rtaA, rtaB, rtaC, rtaD, correcta):
-        # Inicializamos los atributos para almacenar los valores
         self.__enunciado = enunciado
         self.__rtaA = rtaA
         self.__rtaB = rtaB
@@ -159,47 +158,23 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Enunciado:"))
         self.textEdit_2.setHtml(_translate("MainWindow", self.__enunciado))
         self.label_7.setText(_translate("MainWindow", " Respuestas:"))
-        self.label_3.setText(_translate("MainWindow", self.__rtaC))
-        self.label_4.setText(_translate("MainWindow", self.__rtaA))
-        self.textEdit_4.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.textEdit_6.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.label_5.setText(_translate("MainWindow", self.__rtaB))
-        self.textEdit_3.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.textEdit_5.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Segoe UI\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.label_6.setText(_translate("MainWindow", self.__rtaD))
-        self.label_8.setText(_translate("MainWindow", self.__correcta))
+        self.label_3.setText(_translate("MainWindow", "c)"))
+        self.label_4.setText(_translate("MainWindow", "a)"))
+        self.textEdit_4.setHtml(_translate("MainWindow", self.__rtaA))
+        self.textEdit_6.setHtml(_translate("MainWindow", self.__rtaD))
+        self.label_5.setText(_translate("MainWindow", "b)"))
+        self.textEdit_3.setHtml(_translate("MainWindow", self.__rtaC))
+        self.textEdit_5.setHtml(_translate("MainWindow", self.__rtaB))
+        self.label_6.setText(_translate("MainWindow", "d)" ))
+        self.label_8.setText(_translate("MainWindow", "Correcta:"))
         self.comboBox.setItemText(0, _translate("MainWindow", "a)"))
         self.comboBox.setItemText(1, _translate("MainWindow", "b)"))
         self.comboBox.setItemText(2, _translate("MainWindow", "c)"))
         self.comboBox.setItemText(3, _translate("MainWindow", "d)"))
+        #comboBox
+        mapa_opciones = {"A": 0, "B": 1, "C": 2, "D": 3}
+        indice = mapa_opciones.get(self.__correcta, 0)
+        self.comboBox.setCurrentIndex(indice)
         self.pushButton_13.setText(_translate("MainWindow", "Cancelar"))
         self.pushButton_12.setText(_translate("MainWindow", "Aceptar"))
 
