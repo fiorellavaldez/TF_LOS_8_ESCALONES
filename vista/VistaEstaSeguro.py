@@ -3,7 +3,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class VistaEstaSeguro(object):
     def setupUi(self, dialog, label_text):
         dialog.setObjectName("Dialog")
-        dialog.resize(500, 150)
+        dialog.resize(350, 150)
         self.centralwidget = QtWidgets.QWidget(parent=dialog)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)

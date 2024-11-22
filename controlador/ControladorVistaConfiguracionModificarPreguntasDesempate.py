@@ -2,6 +2,7 @@ from vista.VistaConfiguracionModificarPreguntasDeDesempate import Ui_MainWindow
 from controlador.ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica import ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica
 from controlador.ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate import ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate
 from modelo.PreguntasABM import PreguntaABM
+from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6 import QtWidgets
 
 class ControladorVistaConfiguracionModificarPreguntasDeDesempate: 
@@ -52,13 +53,15 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.__llenar_tableview()
 
     def __eliminar_pregunta(self):
-        fila = self.__vista.tableWidget.currentRow()
-        if fila < 0:
-            self.__vista.aviso_seleccionar_pregunta()
-        else:
-            pregunta_a_eliminar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-            PreguntaABM().quitar_pregunta_desempate(pregunta_a_eliminar)
-            self.actualizar_lista_preguntas()
+        controlador_seguro = ControladorEstaSeguro("¿Está seguro de eliminar esta pregunta?")
+        if controlador_seguro.exec():
+            fila = self.__vista.tableWidget.currentRow()
+            if fila < 0:
+                self.__vista.aviso_seleccionar_pregunta()
+            else:
+                pregunta_a_eliminar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
+                PreguntaABM().quitar_pregunta_desempate(pregunta_a_eliminar)
+                self.actualizar_lista_preguntas()
 
     def __modificar_pregunta(self):
         fila = self.__vista.tableWidget.currentRow()
