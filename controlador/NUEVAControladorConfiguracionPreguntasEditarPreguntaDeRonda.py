@@ -40,7 +40,7 @@ class NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda(): #### FALTA 
         self.__pregunta.set_opcionD(rtaD)
         correcta = mapa_opciones.get(valor, None)
         self.__pregunta.set_opcionCorrecta(correcta)
-        PreguntaABM().actualizar_preguntas_ronda(self.__pregunta)
+        PreguntaABM().agregar_pregunta_ronda(self.__pregunta)
         self.__controlador_anterior.actualizar_lista_preguntas()
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()

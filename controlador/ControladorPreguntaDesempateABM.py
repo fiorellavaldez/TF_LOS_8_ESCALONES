@@ -1,19 +1,19 @@
-from vista.VistaConfiguracionModificarPreguntasDeDesempate import Ui_MainWindow
-from controlador.EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda import EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda
-from controlador.NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda import NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda
+from vista.VistaPreguntaABM import Ui_MainWindow
+from controlador.ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica import ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica
+from controlador.ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate import ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate
 from modelo.PreguntasABM import PreguntaABM
+from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6 import QtWidgets
-#from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 
-class ControladorVistaConfiguracionModificarPreguntasRonda: 
+class ControladorPreguntaDesempateABM:   
     def __init__(self, controlador_anterior, id_tema, nombre_tema):
         self.__controlador_anterior = controlador_anterior
         self.__id_tema = id_tema
-        self.__nombre_tema = nombre_tema
+        self.__nombre_tema = nombre_tema # hay que usarlo para la vista
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
 
-        self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(id_tema)  # Obtén todas las preguntas
+        self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(id_tema)  #todas las preguntas
         self.__vista.setupUi(self.MainWindow)
 
         self.__lista_preguntas_filtradas = self.__lista_preguntas  # Inicializamos la lista filtrada con todas las preguntas
@@ -35,7 +35,7 @@ class ControladorVistaConfiguracionModificarPreguntasRonda:
         self.__controlador_anterior.MainWindow.show()
 
     def __agregar_pregunta(self):
-        self.controlador_siguiente = NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda(self, self.__id_tema)
+        self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema)
 
     def __llenar_tableview(self, preguntas=None):
         """Llenar la tabla con preguntas filtradas o todas las preguntas si no se pasa ninguna."""
@@ -48,18 +48,20 @@ class ControladorVistaConfiguracionModificarPreguntasRonda:
 
     def actualizar_lista_preguntas(self):
         self.__vista.tableWidget.setRowCount(0)
-        self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__id_tema)
+        self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__id_tema)
         self.__lista_preguntas_filtradas = self.__lista_preguntas  # Resetear lista filtrada a todas las preguntas
         self.__llenar_tableview()
 
     def __eliminar_pregunta(self):
-        fila = self.__vista.tableWidget.currentRow()
-        if fila < 0:
-            self.__vista.aviso_seleccionar_pregunta()
-        else:
-            pregunta_a_eliminar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-            PreguntaABM().quitar_pregunta_ronda(pregunta_a_eliminar)
-            self.actualizar_lista_preguntas()
+        controlador_seguro = ControladorEstaSeguro("¿Está seguro de eliminar esta pregunta?")
+        if controlador_seguro.exec():
+            fila = self.__vista.tableWidget.currentRow()
+            if fila < 0:
+                self.__vista.aviso_seleccionar_pregunta()
+            else:
+                pregunta_a_eliminar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
+                PreguntaABM().quitar_pregunta_desempate(pregunta_a_eliminar)
+                self.actualizar_lista_preguntas()
 
     def __modificar_pregunta(self):
         fila = self.__vista.tableWidget.currentRow()
@@ -67,7 +69,7 @@ class ControladorVistaConfiguracionModificarPreguntasRonda:
             self.__vista.aviso_seleccionar_pregunta()
         else:
             pregunta_a_modificar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-            self.controlador_siguiente = EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda(self, pregunta_a_modificar)
+            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, pregunta_a_modificar)
 
     def __buscar_pregunta(self):
         """Filtrar las preguntas según el texto ingresado en la barra de búsqueda"""

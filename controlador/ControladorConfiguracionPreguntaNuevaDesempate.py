@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QMessageBox
 import sys
-from controlador.ControladorVistaConfiguracionModificarPreguntasDesempate import ControladorVistaConfiguracionModificarPreguntasDesempate
+from controlador.ControladorPreguntaDesempateABM import ControladorVistaConfiguracionModificarPreguntasDesempate
 from vista.VistaConfiguracionPreguntaNuevaDesempate import Ui_MainWindow  # Asegúrate de cambiar "tu_diseno" por el nombre correcto de tu archivo con el diseño.
 
 
