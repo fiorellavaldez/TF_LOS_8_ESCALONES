@@ -1,6 +1,6 @@
 from vista.VistaSeleccionTemaPreguntaABM import Ui_MainWindow
 from controlador.ControladorVistaConfiguracionModificarPreguntasDesempate import ControladorVistaConfiguracionModificarPreguntasDeDesempate
-from controlador.ControladorVistaConfiguracionModificarPreguntasRonda import ControladorVistaConfiguracionModificarPreguntasDeDesempate
+from controlador.ControladorVistaConfiguracionModificarPreguntasRonda import ControladorVistaConfiguracionModificarPreguntasRonda
 from modelo.TemaABM import TemaABM
 from PyQt6.QtCore import QStringListModel
 from PyQt6 import QtWidgets
@@ -67,7 +67,7 @@ class ControladorSeleccionTemaPreguntaABM:
             if self.__tipo_pregunta == "desempate":
                 self.controlador_seleccionar_pregunta = ControladorVistaConfiguracionModificarPreguntasDeDesempate(self, id_tema, nombre_tema)
             else:
-                self.controlador_seleccionar_pregunta = ControladorVistaConfiguracionModificarPreguntasDeDesempate(self, id_tema, nombre_tema)
+                self.controlador_seleccionar_pregunta = ControladorVistaConfiguracionModificarPreguntasRonda(self, id_tema, nombre_tema)
         else:
             if not self.tema_seleccionado:  
                 self.__vista.aviso_seleccionar_pregunta_desempate()

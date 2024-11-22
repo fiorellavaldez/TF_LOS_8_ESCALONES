@@ -5,7 +5,7 @@ from modelo.PreguntasABM import PreguntaABM
 from PyQt6 import QtWidgets
 #from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 
-class ControladorVistaConfiguracionModificarPreguntasDeDesempate: 
+class ControladorVistaConfiguracionModificarPreguntasRonda: 
     def __init__(self, controlador_anterior, id_tema, nombre_tema):
         self.__controlador_anterior = controlador_anterior
         self.__id_tema = id_tema
