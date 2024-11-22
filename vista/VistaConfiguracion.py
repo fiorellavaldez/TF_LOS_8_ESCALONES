@@ -51,12 +51,6 @@ class Ui_MainWindow(object):
         self.pushButton_4.setFont(font)
         self.pushButton_4.setObjectName("pushButton_4")
         self.verticalLayout_3.addWidget(self.pushButton_4)
-        #self.pushButton_5 = QtWidgets.QPushButton(parent=self.centralwidget)
-        #font = QtGui.QFont()
-        #font.setPointSize(22)
-        #self.pushButton_5.setFont(font)
-        #self.pushButton_5.setObjectName("pushButton_5")
-        #self.verticalLayout_3.addWidget(self.pushButton_5)
         self.pushButton_6 = QtWidgets.QPushButton(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(22)
@@ -87,7 +81,6 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Modificar o crear Peguntas de ronda"))
         self.pushButton_2.setText(_translate("MainWindow", "Modificar o crear Peguntas de desempate"))
         self.pushButton_4.setText(_translate("MainWindow", "Modificar o crear temas"))
-        #self.pushButton_5.setText(_translate("MainWindow", "Crear Tema Nuevo"))
         self.pushButton_6.setText(_translate("MainWindow", "Atrás"))
 
     def get_button_modificar_preguntas_ronda(self):
@@ -98,9 +91,6 @@ class Ui_MainWindow(object):
 
     def get_button_modificar_temas(self):
         return self.pushButton_4
-
-    #def get_button_tema_nuevo(self):
-    #    return self.pushButton_5
 
     def get_button_atras(self):
         return self.pushButton_6

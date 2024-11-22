@@ -1,5 +1,6 @@
 from vista.VistaConfiguracionModificarPreguntasDeDesempate import Ui_MainWindow
-from controlador.ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica import ControladorVistaConfiguracionPreguntasAgregarPreguntaDeRondaEspecifica
+from controlador.EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda import EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda
+from controlador.NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda import NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda
 from modelo.PreguntasABM import PreguntaABM
 from PyQt6 import QtWidgets
 #from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
@@ -34,7 +35,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
         self.__controlador_anterior.MainWindow.show()
 
     def __agregar_pregunta(self):
-        self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaRonda(self, self.__id_tema)
+        self.controlador_siguiente = NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda(self, self.__id_tema)
 
     def __llenar_tableview(self, preguntas=None):
         """Llenar la tabla con preguntas filtradas o todas las preguntas si no se pasa ninguna."""
@@ -66,7 +67,7 @@ class ControladorVistaConfiguracionModificarPreguntasDeDesempate:
             self.__vista.aviso_seleccionar_pregunta()
         else:
             pregunta_a_modificar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntarondaEspecifica(self, pregunta_a_modificar)
+            self.controlador_siguiente = EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda(self, pregunta_a_modificar)
 
     def __buscar_pregunta(self):
         """Filtrar las preguntas según el texto ingresado en la barra de búsqueda"""

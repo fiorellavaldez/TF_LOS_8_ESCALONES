@@ -201,6 +201,12 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(3, _translate("MainWindow", "d)"))
         self.pushButton_13.setText(_translate("MainWindow", "Cancelar"))
         self.pushButton_12.setText(_translate("MainWindow", "Aceptar"))
+    
+    def get_button_atras(self):
+        return self.pushButton_13
+    
+    def get_button_aceptar(self):
+        return self.pushButton_12 
 
 
 if __name__ == "__main__":
