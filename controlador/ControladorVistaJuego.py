@@ -1,11 +1,13 @@
 from vista.VistaJuego import Ui_MainWindow
 from vista.VistaPreguntaRonda import VistaPreguntaRonda
 from PyQt6 import QtWidgets
+from PyQt6.QtWidgets import QMessageBox, QDialog, QLabel, QPushButton
 from modelo.Escalon import Escalon
 from vista.WidgetJugador import WidgetJugador
 from modelo.Jugador import Jugador
 from modelo.TemaABM import TemaABM
 from modelo.PreguntasABM import PreguntaABM
+
 
 class ControladorVistaJuego:
 
@@ -20,8 +22,12 @@ class ControladorVistaJuego:
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
         
+        self.__en_partida = False  # Controla si se puede avanzar al siguiente escalón
+        self.__nro_escalon_actual = 0  # Índice del escalón actual
+        self.__lista_restantes = self.__lista_jugadores  # Jugadores que continúan en el juego
+        
         self.__vista.get_button_atras().clicked.connect(self.__atras)
-        self.__vista.get_comenzar_partida().clicked.connect(self.iniciar_partida)
+        self.__vista.get_comenzar_partida().clicked.connect(self.__habilitar_jugar)
 
     def __atras(self):
         self.MainWindow.close()
@@ -102,52 +108,215 @@ class ControladorVistaJuego:
                 for i in self.__lista_jugadores_widget:
                     self.__vista.ly_escalon8.addWidget(i)
     
-    def iniciar_partida(self):
-        nro=0
-        lista_restantes = self.__lista_jugadores #Todos los jugadores al inicio
-        for escalon in self.__lista_escalones:
-            lista_suben = [] #los que avanzan al prox escalon
-            perdedor = None #si no hago esto me sale error
-            #separo ganadores y perdedor (lógica)
+    def __habilitar_jugar(self):
+        """
+        Habilita el avance al próximo escalón cuando se presiona el botón Jugar.
+        """
+        if not self.__en_partida and self.__nro_escalon_actual < len(self.__lista_escalones):
+            self.__en_partida = True
+            self.jugar_escalon()
 
-            for jugador in lista_restantes: #Lista de jugadores logicos del escalon
-                if perdedor in None and not self.comparo(jugador): #Evaluo si el jugador avanza
-                    perdedor = jugador
-                else:
-                    lista_suben.append(jugador)
+    def jugar_escalon(self):
+        """
+        Juega el escalón actual con la lógica definida, y luego espera al botón para avanzar.
+        """
+        escalon = self.__lista_escalones[self.__nro_escalon_actual]
+        print(f"--- Comenzando escalón {self.__nro_escalon_actual + 1} con tema {escalon.get_tema().get_nombreTema()} ---")
         
-        if perdedor is None:
-            print("No se encontró un perdedor en este escalon")
-            ####Esto es solo para verificar que funciona ### Despues se saca
+        # Reinicia los atributos ronda1 y ronda2
+        for jugador in self.__lista_restantes:
+            jugador.set_ronda1(0)
+            jugador.set_ronda2(0)
+
+        # Primera ronda
+        posicion=0
+        for jugador in self.__lista_restantes:
+            preguntas_ronda1= escalon.get_preguntasRonda()
+            pregunta_actual= preguntas_ronda1[posicion]
+            opciones = [pregunta_actual.get_opcionA(), pregunta_actual.get_opcionB(), pregunta_actual.get_opcionC(), pregunta_actual.get_opcionD()]
+            correcta = pregunta_actual.get_opcionCorrecta()
+            self.hacer_pregunta(jugador,self.__nro_escalon_actual,escalon.get_tema().get_nombreTema(), pregunta_actual.get_enunciado(), opciones, correcta,ronda=1)
+            posicion += 1
+        # Segunda ronda
+        for jugador in self.__lista_restantes:
+            preguntas_ronda2= escalon.get_preguntasRonda()
+            pregunta_actual= preguntas_ronda2[posicion]
+            opciones = [pregunta_actual.get_opcionA(), pregunta_actual.get_opcionB(), pregunta_actual.get_opcionC(), pregunta_actual.get_opcionD()]
+            correcta = pregunta_actual.get_opcionCorrecta()
+            self.hacer_pregunta(jugador,self.__nro_escalon_actual,escalon.get_tema().get_nombreTema(), pregunta_actual.get_enunciado(), opciones, correcta,ronda=2)
+            posicion += 1
         
-            self.actualizar_layout_escalon(escalon, lista_suben, perdedor, nro)#actualizo layout visual del escalon actual
-            lista_restantes = lista_suben
-            nro += 1
+        # Evaluar resultados
+        jugadores_a_desempatar = self.evaluar_jugadores(self.__lista_restantes)
+        
+        # Manejar desempates si es necesario
+        if len(jugadores_a_desempatar) > 1:
+            print("Empate detectado. Comenzando ronda de desempate...")
+            perdedor = self.hacer_desempate(jugadores_a_desempatar, escalon)
+        else:
+            perdedor = jugadores_a_desempatar[0]
+
+        # Determinar jugadores que avanzan
+        lista_suben = [jugador for jugador in self.__lista_restantes if jugador != perdedor]
+
+        # Actualizar la vista
+        self.actualizar_layout_escalon(escalon, lista_suben, perdedor, self.__nro_escalon_actual)
+
+        # Preparar para el próximo escalón
+        self.__lista_restantes = lista_suben
+        self.__nro_escalon_actual += 1
+        self.__en_partida = False  # Esperar a que el usuario presione "Jugar" nuevamente
+
+    # Otros métodos permanecen sin cambios...
+    
+    def hacer_pregunta(self, jugador, escalon, tematica, pregunta, respuestas, correcta, ronda=1):
+        """
+        Hace una pregunta de ronda a un jugador.
+        Muestra un diálogo en pantalla para que el jugador seleccione su respuesta.
+        Actualiza el estado de la ronda del jugador dependiendo de si la respuesta es correcta o incorrecta.
+
+        :param jugador: Instancia del jugador.
+        :param escalon: Número del escalón actual.
+        :param tematica: Temática de la pregunta.
+        :param pregunta: Texto de la pregunta.
+        :param respuestas: Lista de posibles respuestas (4 opciones).
+        :param ronda: Número de ronda (1 o 2).
+        :return: Índice de la respuesta seleccionada (0-3) o None si el jugador no responde.
+        """
+        # Crear y configurar la ventana de la pregunta
+        dialogo = VistaPreguntaRonda()
+        dialogo.actualizar_pregunta(
+            jugador=jugador.get_nombre_jugador(),  # Suponiendo que 'jugador' tiene un atributo 'nombre'
+            escalon=escalon+1,
+            tematica=tematica,
+            pregunta=pregunta,
+            respuestas=respuestas
+        )
+
+        # Mostrar el diálogo y esperar la respuesta
+        resultado = dialogo.exec()
+        if resultado:  # Si el jugador selecciona una respuesta
+            respuesta_seleccionada = resultado  # Ajustar índice (1-4 a 0-3)
+            print(f"{jugador.get_nombre_jugador()} seleccionó la respuesta {chr(64 + respuesta_seleccionada)}: {respuestas[respuesta_seleccionada-1]}")
+            
+            # Verificar si la respuesta es correcta (asumiendo que la primera respuesta es la correcta)
+            if respuesta_seleccionada == (ord(correcta.upper())-64): #es para la posicion ASCII de las letras ABCD
+                if ronda == 1:
+                    jugador.set_ronda1(1)  # Respuesta correcta en la ronda 1
+                elif ronda == 2:
+                    jugador.set_ronda2(1)  # Respuesta correcta en la ronda 2
+                print(f"{jugador.get_nombre_jugador()} ha respondido correctamente.")
+            else:
+                if ronda == 1:
+                    jugador.set_ronda1(2)  # Respuesta incorrecta en la ronda 1
+                elif ronda == 2:
+                    jugador.set_ronda2(2)  # Respuesta incorrecta en la ronda 2
+                print(f"{jugador.get_nombre_jugador()} ha respondido incorrectamente.")
+
+            return respuesta_seleccionada
+        else:  # Si el diálogo se cierra sin seleccionar
+            QMessageBox.warning(self, "Advertencia", f"{jugador.get_nombre_jugador()} no respondió a la pregunta.")
+            return None
+
+    
+    def evaluar_jugadores(self, jugadores):
+        jugadores_errados = {}
+
+        for jugador in jugadores:
+            errores = 0
+            if jugador.get_ronda1() == 2:  # Contestó mal en ronda1
+                errores += 1
+            if jugador.get_ronda2() == 2:  # Contestó mal en ronda2
+                errores += 1
+            if errores > 0:
+                jugadores_errados[jugador] = errores
+
+        if not jugadores_errados:
+            print("Todos los jugadores acertaron todas las preguntas.")
+            return jugadores  # Todos empatados
+
+        max_errores = max(jugadores_errados.values())
+        jugadores_a_desempatar = [jugador for jugador, errores in jugadores_errados.items() if errores == max_errores]
+        return jugadores_a_desempatar
+    
+    def hacer_desempate(self, jugadores, escalon):
+        """
+        Realiza una ronda de desempate donde todos los jugadores responden la misma pregunta.
+        :param escalon: objeto Escalon, contiene las preguntas de desempate
+        :param jugadores: list, lista de objetos de la clase Jugador que van al desempate
+        :return: list, lista de un solo jugador que será eliminado
+        """
+        import random
+
+        # Obtener preguntas de desempate del escalón
+        preguntas_desempate = escalon.get_preguntasDesempate()
+        if not preguntas_desempate:
+            print("No hay preguntas de desempate disponibles en este escalón.")
+            return []
+
+        # Seleccionar una pregunta al azar
+        pregunta = random.choice(preguntas_desempate)
+        print(f"Pregunta de desempate: {pregunta.get_enunciado()}")
+
+        respuestas = {}
+        for jugador in jugadores:
+            # Simular la respuesta del jugador
+            respuesta = random.randint(1, 100)  # Respuesta numérica simulada
+            respuestas[jugador] = respuesta
+            print(f"{jugador.get_nombre_jugador()} responde: {respuesta}")
+
+        # Simular la respuesta correcta de la pregunta
+        respuesta_correcta = random.randint(1, 100)
+        print(f"La respuesta correcta era: {respuesta_correcta}")
+
+        # Determinar quién estuvo más alejado de la respuesta correcta
+        jugador_eliminado = max(jugadores, key=lambda j: abs(respuestas[j] - respuesta_correcta))
+        print(f"{jugador_eliminado.get_nombre_jugador()} estuvo más lejos de la respuesta correcta y será eliminado.")
+
+        return jugador_eliminado
+
+    def obtener_widget_por_jugador(self, jugador):
+        """
+        Obtiene el widget asociado a un jugador específico.
+        :param jugador: objeto Jugador
+        :return: WidgetJugador asociado al jugador, o None si no se encuentra
+        """
+        for widget in self.__lista_jugadores_widget:
+            if widget.get_nombre_visual() == jugador.get_nombre_jugador():
+                return widget
+        print(f"Widget no encontrado para el jugador: {jugador.get_nombre_jugador()}")
+        return None
 
     def actualizar_layout_escalon(self, escalon, lista_ganadores, perdedor, nro):
-        layout_actual = getattr(self.__vista,f"ly_escalon{nro + 1}") #obtengo el actual
-        layout_siguiente = getattr(self.__vista, f"ly_escalon{nro + 2}", None)
-        ## getattr asegura que los layouts se manejan dinámicamente ##
-        widget_perdedor = self.obtener_widget_por_jugador(perdedor)
+        """
+        Actualiza los layouts de los escalones: mueve a los ganadores al siguiente escalón
+        y deja al perdedor en el escalón actual, sin afectar los dos primeros elementos (QLabel y widget).
+        """
+        # Obtén los layouts actuales y el siguiente
+        layout_actual = getattr(self.__vista, f"ly_escalon{nro + 1}")  # Layout del escalón actual
+        layout_siguiente = getattr(self.__vista, f"ly_escalon{nro + 2}", None)  # Layout del próximo escalón
+
+        # Limpia el layout actual desde el tercer elemento en adelante
+        for i in range(2, layout_actual.count()):  # Saltar los primeros dos elementos
+            item = layout_actual.takeAt(2)  # Siempre tomar desde el índice 2 (después de QLabel y widget)
+            widget = item.widget()
+            if widget:
+                widget.setParent(None)
+
+        # Actualiza el layout actual con el jugador perdedor
         if perdedor:
             widget_perdedor = self.obtener_widget_por_jugador(perdedor)
             if widget_perdedor:
                 layout_actual.addWidget(widget_perdedor)
-            #jugador perdedor permanece en el layout actual
-                print(f"{perdedor.get_nombre_jugador()} permanece en el escalon {nro + 1}")
-        
+            print(f"{perdedor.get_nombre_jugador()} permanece en el escalón {nro + 1}")
+
+        # Si hay un siguiente escalón, mueve a los ganadores
         if layout_siguiente:
             for ganador in lista_ganadores:
                 widget_ganador = self.obtener_widget_por_jugador(ganador)
-                layout_siguiente.addWidget(widget_ganador)
-                print(f"{ganador.get_nombre_jugador()} avanza al escalon {nro + 2}")
-
-    def obtener_widget_por_jugador(self, jugador):
-        for widget in self.__lista_jugadores_widget:
-            if widget.get_nombre_visual() == jugador.get_nombre_jugador():
-                return widget
-        return None #si no se encuentra retorna none
-
+                if widget_ganador:
+                    layout_siguiente.addWidget(widget_ganador)
+                    print(f"{ganador.get_nombre_jugador()} avanza al escalón {nro + 2}")
 
     def comparo(self, jugador): #nombre jugador con lista widget #UNO SOLO
         for i in self.__lista_jugadores_widget:

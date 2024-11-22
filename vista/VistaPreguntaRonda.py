@@ -1,24 +1,20 @@
-from PyQt6 import QtWidgets, QtCore, QtGui
-from PyQt6.QtWidgets import QMessageBox, QDialog, QLabel, QPushButton
+from PyQt6 import QtWidgets, QtCore
+from PyQt6.QtWidgets import QDialog, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QGridLayout
 from PyQt6.QtGui import QFont
 
 class VistaPreguntaRonda(QDialog):
     def __init__(self):
         super().__init__()
-        self.resize(599, 444)
         self.setWindowTitle("Pregunta!")
+        self.resize(600, 500)
 
-        #fonts
+        # Fonts
         font_14b = QFont()
         font_14b.setPointSize(14)
         font_14b.setBold(True)
 
         font_14 = QFont()
-        font_14b.setPointSize(14)
-
-        font_15b = QFont()
-        font_15b.setPointSize(15)
-        font_15b.setBold(True)
+        font_14.setPointSize(14)
 
         font_11b = QFont()
         font_11b.setPointSize(11)
@@ -27,75 +23,90 @@ class VistaPreguntaRonda(QDialog):
         font_11 = QFont()
         font_11.setPointSize(11)
 
-        #pregunta
-        pregunta = QLabel("Pregunta", self) #necesita setText
-        pregunta.setGeometry(QtCore.QRect(20, 110, 561, 71))
-        pregunta.setFont(font_15b)
-        pregunta.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
-        pregunta.setWordWrap(True)
+        # Layout principal
+        main_layout = QVBoxLayout(self)
 
-        #jugador
-        jugador_label = QLabel("Jugador:", self)
-        jugador_label.setGeometry(QtCore.QRect(310, 50, 91, 31))   
-        jugador_label.setFont(font_14b)
-        nombre_jugador = QLabel("Nombre",self) #necesita setText
-        nombre_jugador.setFont(font_14)
-        nombre_jugador.setGeometry(QtCore.QRect(400, 60, 121, 16))
+        # Información general
+        info_layout = QGridLayout()
+        self.num_escalon = QLabel("0")
+        self.num_escalon.setFont(font_14b)
+        info_layout.addWidget(QLabel("Escalón N°:", font=font_14b), 0, 0)
+        info_layout.addWidget(self.num_escalon, 0, 1)
 
-        #escalon
-        escalon_label = QLabel("Escalón N°",self)
-        escalon_label.setFont(font_14b)
-        escalon_label.setGeometry(QtCore.QRect(210, 20, 101, 16))
-        num_escalon = QLabel("0",self) #necesita setText
-        num_escalon.setFont(font_14b)
-        num_escalon.setGeometry(QtCore.QRect(310, 20, 41, 16))
+        self.nombre_tematica = QLabel("Temática")
+        self.nombre_tematica.setFont(font_14)
+        info_layout.addWidget(QLabel("Temática:", font=font_14b), 0, 2)
+        info_layout.addWidget(self.nombre_tematica, 0, 3)
 
-        #tematica
-        tematica_label = QLabel("Temática:",self)
-        tematica_label.setFont(font_14b)
-        tematica_label.setGeometry(QtCore.QRect(70, 60, 91, 16))
-        nombre_tematica = QLabel("Temática",self) #necesita un setText
-        nombre_tematica.setFont(font_14)
-        nombre_tematica.setGeometry(QtCore.QRect(160, 60, 101, 16))
+        self.nombre_jugador = QLabel("Jugador")
+        self.nombre_jugador.setFont(font_14)
+        info_layout.addWidget(QLabel("Jugador:", font=font_14b), 1, 0)
+        info_layout.addWidget(self.nombre_jugador, 1, 1)
 
-        #Seleccionar
-        seleccione = QLabel("Seleccione respuesta",self)
-        seleccione.setFont(font_11b)
-        seleccione.setGeometry(QtCore.QRect(210, 170, 151, 51))
+        main_layout.addLayout(info_layout)
 
-        #Respuestas
-        respuesta_a = QLabel("Respuesta a", self)
-        respuesta_a.setGeometry(QtCore.QRect(70, 230, 231, 81))
-        respuesta_a.setFont(font_11)
-        respuesta_a.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
-        respuesta_a.setWordWrap(True)
+        # Pregunta
+        self.pregunta_label = QLabel("Pregunta")
+        self.pregunta_label.setFont(font_14b)
+        self.pregunta_label.setWordWrap(True)
+        self.pregunta_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignTop)
+        main_layout.addWidget(self.pregunta_label)
 
-        respuesta_b = QLabel("Respuesta b", self)
-        respuesta_b.setGeometry(QtCore.QRect(70, 340, 231, 81))
-        respuesta_b.setFont(font_11)
-        respuesta_b.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
-        respuesta_b.setWordWrap(True)
+        # Selección de respuesta
+        seleccione_label = QLabel("Seleccione una respuesta:")
+        seleccione_label.setFont(font_11b)
+        main_layout.addWidget(seleccione_label)
 
-        respuesta_c = QLabel("Respuesta c", self)
-        respuesta_c.setGeometry(QtCore.QRect(360, 230, 231, 81))
-        respuesta_c.setFont(font_11)
-        respuesta_c.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
-        respuesta_c.setWordWrap(True)
+        # Respuestas con botones
+        respuestas_layout = QGridLayout()
 
-        respuesta_d = QLabel("Respuesta d", self)
-        respuesta_d.setGeometry(QtCore.QRect(360, 340, 231, 81))
-        respuesta_d.setFont(font_11)
-        respuesta_d.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
-        respuesta_d.setWordWrap(True)
+        self.opcion_a = QPushButton("A")
+        self.opcion_b = QPushButton("B")
+        self.opcion_c = QPushButton("C")
+        self.opcion_d = QPushButton("D")
 
-        #opciones
-        opcion_a = QPushButton("A", self)
-        opcion_a.setGeometry(QtCore.QRect(20, 230, 41, 31))
-        opcion_b = QPushButton("B",self)
-        opcion_b.setGeometry(QtCore.QRect(20, 340, 41, 31))
-        opcion_c = QPushButton("C",self)
-        opcion_c.setGeometry(QtCore.QRect(310, 230, 41, 31))
-        opcion_d = QPushButton("D",self)
-        opcion_d.setGeometry(QtCore.QRect(310, 340, 41, 31))
+        self.respuesta_a = QLabel("Respuesta A")
+        self.respuesta_b = QLabel("Respuesta B")
+        self.respuesta_c = QLabel("Respuesta C")
+        self.respuesta_d = QLabel("Respuesta D")
 
-        #self.exec()
+        for label in [self.respuesta_a, self.respuesta_b, self.respuesta_c, self.respuesta_d]:
+            label.setFont(font_11)
+            label.setWordWrap(True)
+
+        respuestas_layout.addWidget(self.opcion_a, 0, 0)
+        respuestas_layout.addWidget(self.respuesta_a, 0, 1)
+        respuestas_layout.addWidget(self.opcion_b, 1, 0)
+        respuestas_layout.addWidget(self.respuesta_b, 1, 1)
+        respuestas_layout.addWidget(self.opcion_c, 0, 2)
+        respuestas_layout.addWidget(self.respuesta_c, 0, 3)
+        respuestas_layout.addWidget(self.opcion_d, 1, 2)
+        respuestas_layout.addWidget(self.respuesta_d, 1, 3)
+
+        main_layout.addLayout(respuestas_layout)
+
+        # Conectar señales
+        self.opcion_a.clicked.connect(lambda: self.seleccionar_respuesta("A"))
+        self.opcion_b.clicked.connect(lambda: self.seleccionar_respuesta("B"))
+        self.opcion_c.clicked.connect(lambda: self.seleccionar_respuesta("C"))
+        self.opcion_d.clicked.connect(lambda: self.seleccionar_respuesta("D"))
+
+    def actualizar_pregunta(self, jugador, escalon, tematica, pregunta, respuestas):
+        """
+        Actualiza los datos de la ventana emergente.
+        """
+        self.nombre_jugador.setText(jugador)
+        self.num_escalon.setText(str(escalon))
+        self.nombre_tematica.setText(tematica)
+        self.pregunta_label.setText(pregunta)
+        self.respuesta_a.setText(respuestas[0])
+        self.respuesta_b.setText(respuestas[1])
+        self.respuesta_c.setText(respuestas[2])
+        self.respuesta_d.setText(respuestas[3])
+
+    def seleccionar_respuesta(self, opcion):
+        """
+        Maneja la respuesta seleccionada por el jugador.
+        """
+        print(f"El jugador seleccionó la respuesta {opcion}")
+        self.done(int(ord(opcion.upper())-64))  # Devuelve la opción seleccionada y cierra el diálogo
