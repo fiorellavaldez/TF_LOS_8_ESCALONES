@@ -72,6 +72,13 @@ class Ui_Widget(object):
         msg.setText("Este tema ya existe. Por favor, ingrese un nombre diferente.")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
+        
+    def informamos_tema_creado(self,tema):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+        msg.setWindowTitle("Informacion")
+        msg.setText(f"Se creo correctamente el tema: {tema}")
+        msg.exec()
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate

@@ -100,7 +100,7 @@ class Ui_MainWindow(object):
         msg.exec()
         
 
-    def aviso_eliminar_tema(self):
+    def aviso_seleccion_tema(self):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         msg.setWindowTitle("Advertencia")
@@ -108,6 +108,25 @@ class Ui_MainWindow(object):
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
         
+    def informamos_tema_modificado(self,tema):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
+        msg.setWindowTitle("Modificacion Existosa")
+        msg.setText(f"Se Modifico correctamente el tema: {tema}")
+        msg.exec()
+        
+        
+        
+    def aviso_eliminar_tema(self,tema):
+        mensaje = QtWidgets.QMessageBox()
+        mensaje.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        mensaje.setWindowTitle("Eliminar Tema")
+        mensaje.setText(f"¿Estás seguro de que deseas eliminar el tema '{tema.get_nombreTema()}'?")
+        mensaje.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        respuesta=mensaje.exec()
+        return respuesta
+        
+    
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaConfiguracionTemaABM", "VistaConfiguracionTemaABM"))

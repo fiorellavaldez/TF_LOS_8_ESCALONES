@@ -20,22 +20,32 @@ class TemaABM:
     
     def actualizar_tema(self, tema:Tema):
         #print("Actualizar Temas!")
-        for t in range(0,len(self.lista_temas)):
-            if self.lista_temas[t].get_idTema() == tema.get_idTema():
-                self.lista_temas[t].set_nombreTema(tema.get_nombreTema())
+        for t in range(0,len(self.__lista_temas)):
+            if self.__lista_temas[t].get_idTema() == tema.get_idTema():
+                self.__lista_temas[t].set_nombreTema(tema.get_nombreTema())
         
         TemasDAO().actualizar_tema(tema.get_idTema(), tema.get_nombreTema())
     
-
+    '''   No me funcionaba este metodo hice abajo la consulta nueva y funciona :)
     def existe_tema(self, tema:Tema):
-        tope =len(self.lista_temas)
+        tope =len(self.__lista_temas)
         id = 0
         encontrado = False
         while id < tope and not encontrado:
-            if self.lista_temas[id].get_nombreTema() == tema.get_nombreTema():
+            if self.__lista_temas[id].get_nombreTema() == tema.get_nombreTema():
                 encontrado = True
             id +=1
         return encontrado
+    '''
+    
+    def existe_tema(self, tema:Tema):
+
+        # Iteramos sobre todos los temas
+        for t in self.__lista_temas:
+            # Comparamos los nombres de los temas ignorando mayúsculas/minúsculas y espacios adicionales
+            if t.get_nombreTema().strip().upper() == tema.get_nombreTema().strip().upper():
+                return True  # Si encontramos un tema con el mismo nombre, devolvemos True
+        return False  # Si no lo encontramos, devolvemos False
 
     def agregar_tema(self, tema:Tema):
         self.__lista_temas.append(tema)

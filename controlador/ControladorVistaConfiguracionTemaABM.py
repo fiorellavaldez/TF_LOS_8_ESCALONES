@@ -29,7 +29,6 @@ class ControladorVistaConfiguracionTemaABM:
         
         self.__filtered_temas = []
         self.model = QStringListModel()
-       
 
         # Conexion Botones
         self.__vista.pushButton_Volver.clicked.connect(self.__volver_configuracion)
@@ -70,11 +69,11 @@ class ControladorVistaConfiguracionTemaABM:
             
             #self.__vista.QTable_Temas.setItem(linea, 0, QTableWidgetItem(str(tema.get_idTema())))  
             #self.__vista.QTable_Temas.setItem(linea, 1, QTableWidgetItem(tema.get_nombreTema()))  
-
+    '''
     def actualizar_tema(self, tema):
         self.__temas.actualizar_tema(tema)
         self.__llenar_tabla(self.__temas.lista_temas)
-
+    '''
     def agregar_tema(self, tema):
         tema.set_disponible(True)
         self.__temas.agregar_tema(tema)
@@ -97,8 +96,17 @@ class ControladorVistaConfiguracionTemaABM:
             return
         #self.MainWindow.hide()
         tema_s=self.__obtener_tema_seleccionado()
-        self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditModifica(self,tema_s,self.__temas)
-        self.ControladorVistaTemaNuevo.MainWindow.show()
+        try:
+        # Aquí llamas al método de ABM para realizar la modificación
+            self.__temas.actualizar_tema(tema_s)  # Lógica de actualización de tema
+
+            self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditModifica(self,tema_s,self.__temas)
+            self.ControladorVistaTemaNuevo.MainWindow.show()
+        except Exception as e:
+        # Si hay algún error en la modificación, lo manejas
+            print(f"Error al modificar el tema: {e}")
+            return
+        
         
     def __nuevoTema(self):
         tema_s=Tema(0,"")
@@ -108,12 +116,21 @@ class ControladorVistaConfiguracionTemaABM:
     def __eliminarTema(self):
         fila_actual = self.__vista.QTable_Temas.currentRow()
         if fila_actual == -1:  # Ninguna fila seleccionada
-            self.__vista.aviso_eliminar_tema()
+            self.__vista.aviso_seleccion_tema()
             return
-        tema_s=self.__obtener_tema_seleccionado()
-        self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditBaja(self,tema_s,self.__temas)
-        self.ControladorVistaTemaNuevo.MainWindow.show()
-
+        tema=self.__obtener_tema_seleccionado()
+        respuesta=self.__vista.aviso_eliminar_tema(tema)
+        if respuesta == QtWidgets.QMessageBox.StandardButton.Yes:
+        #tema_s=self.__obtener_tema_seleccionado()
+            self.__temas.quitar_tema(tema)
+            self.__temas.actualizar_tema(tema)
+            self.__llenar_tabla(self.__temas.lista_temas)
+            # self.__temas.actualizar_tema(tema)
+            QtWidgets.QMessageBox.information(None, "Tema eliminado", f"El tema '{tema.get_nombreTema()}' fue eliminado con éxito.")
+            #self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditBaja(self,tema,self.__temas)
+            #self.ControladorVistaTemaNuevo.MainWindow.show()
+        else:
+            return
 
     def __obtener_celda_seleccionada(self):  
         item = self.__vista.QTable_Temas.currentItem()  
@@ -128,7 +145,7 @@ class ControladorVistaConfiguracionTemaABM:
         # Filtrar temas que coincidan con el texto ingresado
         self.__filtered_temas = [
         tema for tema in self.__temas.lista_temas
-        if texto in tema.get_nombreTema().lower()
+        if tema.get_nombreTema().lower().startswith(texto)
         ]
         # Llenar la tabla con los temas filtrados
         self.__llenar_tabla(self.__filtered_temas)
@@ -145,7 +162,9 @@ class ControladorVistaConfiguracionTemaABM:
         else:
             return [0,""]
 
+    
     def __obtener_tema_seleccionado(self):
         tupla=self.__obtener_tupla_seleccionada()
         tema_s=Tema(int(tupla[0]),tupla[1])
         return tema_s
+    
