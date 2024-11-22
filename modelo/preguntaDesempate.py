@@ -15,7 +15,7 @@ class preguntaDesempate(Pregunta):
 
 
     def responder(self, respuesta):
-        return abs( self.__respuestaCorrecta - respuesta) # devuelve la distancia entre la respuesta correcta y la respuesta del jugador
+        return abs( int(self.__respuestaCorrecta) - int(respuesta)) # devuelve la distancia entre la respuesta correcta y la respuesta del jugador
     
 
 
