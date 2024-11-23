@@ -1,7 +1,8 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
+    def __init__(self, lista_temas):
+        self.__lista_temas = lista_temas
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1080, 720)
@@ -115,12 +116,20 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    
+    def aviso_seleccionar_pregunta(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar una pregunta primero.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaConfiguracionPregunta", "VistaConfiguracionPregunta"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Seleccione el tema:</span></p></body></html>"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "Tema"))
+        self.comboBox.setItemText(0, _translate("MainWindow", ""))
         self.label_2.setText(_translate("MainWindow", "Buscar:  "))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Enunciado"))
@@ -128,6 +137,11 @@ class Ui_MainWindow(object):
         self.pushButton_14.setText(_translate("MainWindow", "Eliminar pregunta"))
         self.pushButton_13.setText(_translate("MainWindow", "Modificar pregunta"))
         self.pushButton_12.setText(_translate("MainWindow", "Nueva pregunta"))
+    
+    def mostrar_lista_en_combobox(self):
+        self.comboBox.clear()  # Limpiar todos los ítems
+        self.comboBox.addItems([str(tema) for tema in self.__lista_temas])
+
     
     def get_button_atras(self):
         return self.pushButton_2
@@ -139,12 +153,21 @@ class Ui_MainWindow(object):
         return self.pushButton_12
     def get_line_edit_busqueda(self):
         return self.lineEdit
+    def get_comboBox(self):
+        return self.comboBox
+    
+def get_comboBox(self):
+    return self.comboBox
+    
 
+lista_temas = [25,8645,65,65,31,32]
+    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui = Ui_MainWindow(lista_temas)
+    ui.setupUi(MainWindow)  # Configura la UI primero
+    ui.mostrar_lista_en_combobox()  # Luego llena el ComboBox
     MainWindow.show()
     sys.exit(app.exec())
