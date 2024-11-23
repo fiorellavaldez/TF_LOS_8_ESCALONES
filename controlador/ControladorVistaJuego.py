@@ -161,6 +161,10 @@ class ControladorVistaJuego:
 
         # Determinar jugadores que avanzan
         lista_suben = [jugador for jugador in self.__lista_restantes if jugador != perdedor]
+        
+        for jugador in lista_suben:
+            jugador_widget = self.obtener_widget_por_jugador(jugador)
+            jugador_widget.reset_rondas()
 
         # Actualizar la vista
         self.actualizar_layout_escalon(escalon, lista_suben, perdedor, self.__nro_escalon_actual)
@@ -199,21 +203,26 @@ class ControladorVistaJuego:
         # Mostrar el diálogo y esperar la respuesta
         resultado = dialogo.exec()
         if resultado:  # Si el jugador selecciona una respuesta
+            jugador_widget = self.obtener_widget_por_jugador(jugador)
             respuesta_seleccionada = resultado  # Ajustar índice (1-4 a 0-3)
             print(f"{jugador.get_nombre_jugador()} seleccionó la respuesta {chr(64 + respuesta_seleccionada)}: {respuestas[respuesta_seleccionada-1]}")
             
-            # Verificar si la respuesta es correcta (asumiendo que la primera respuesta es la correcta)
+            # Verificar si la respuesta es correcta
             if respuesta_seleccionada == (ord(correcta.upper())-64): #es para la posicion ASCII de las letras ABCD
                 if ronda == 1:
                     jugador.set_ronda1(1)  # Respuesta correcta en la ronda 1
+                    jugador_widget.actualizar_r1(estado=True)
                 elif ronda == 2:
                     jugador.set_ronda2(1)  # Respuesta correcta en la ronda 2
+                    jugador_widget.actualizar_r2(estado=True)
                 print(f"{jugador.get_nombre_jugador()} ha respondido correctamente.")
             else:
                 if ronda == 1:
                     jugador.set_ronda1(2)  # Respuesta incorrecta en la ronda 1
+                    jugador_widget.actualizar_r1(estado=False)
                 elif ronda == 2:
                     jugador.set_ronda2(2)  # Respuesta incorrecta en la ronda 2
+                    jugador_widget.actualizar_r2(estado=False)
                 print(f"{jugador.get_nombre_jugador()} ha respondido incorrectamente.")
 
             return respuesta_seleccionada
