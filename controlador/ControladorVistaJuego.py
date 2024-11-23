@@ -1,6 +1,7 @@
 from vista.VistaJuego import Ui_MainWindow
 from vista.VistaPreguntaRonda import VistaPreguntaRonda
 from vista.VistaPreguntaAproximacion import VistaPreguntaAproximacion
+from vista.VistaDialogGanador import VistaDialogGanador
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QApplication, QDialog, QLabel, QPushButton
 from modelo.Escalon import Escalon
@@ -161,6 +162,12 @@ class ControladorVistaJuego:
 
         # Determinar jugadores que avanzan
         lista_suben = [jugador for jugador in self.__lista_restantes if jugador != perdedor]
+        
+        if len(lista_suben) == 1:
+            jugador_ganador = lista_suben[0]
+            widget_jugador_ganador = self.obtener_widget_por_jugador(jugador_ganador)
+            dialogo = VistaDialogGanador(jugador=widget_jugador_ganador)
+            dialogo.exec()
         
         for jugador in lista_suben:
             jugador_widget = self.obtener_widget_por_jugador(jugador)
