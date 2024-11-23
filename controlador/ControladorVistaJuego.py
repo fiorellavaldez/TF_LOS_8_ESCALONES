@@ -78,38 +78,6 @@ class ControladorVistaJuego:
             escalones.append(Escalon(tema,lista_preguntas_ronda,lista_preguntas_desempate))#creo un nuevo escalon con el tema y las preguntas y los agg a la lista:
         return escalones
     
-    def agrego_jugadores_layout (self, jugadores):
-        
-        match len(jugadores):#evaluo el num de jugadores
-            case 9:
-                for i in self.__lista_jugadores_widget: #esta lista debe variar
-                    self.__vista.ly_escalon1.addWidget(i)
-                    print("los añadi al layout escalon 1!!!!")
-            case 8:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon2.addWidget(i)
-            case 7:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon3.addWidget(i)
-            case 6:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon4.addWidget(i)
-            case 5:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon5.addWidget(i)
-            case 4:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon6.addWidget(i)
-            case 3:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon7.addWidget(i)
-            case 2:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon8.addWidget(i)
-            case 1:
-                for i in self.__lista_jugadores_widget:
-                    self.__vista.ly_escalon8.addWidget(i)
-    
     def __habilitar_jugar(self):
         """
         Habilita el avance al próximo escalón cuando se presiona el botón Jugar.
@@ -294,9 +262,6 @@ class ControladorVistaJuego:
 
         return jugador_eliminado
 
-
-
-
     def obtener_widget_por_jugador(self, jugador):
         """
         Obtiene el widget asociado a un jugador específico.
@@ -356,33 +321,3 @@ class ControladorVistaJuego:
                     print("sin parent")
                     return True
         return False
-                #asignarle un nuevo layout y antes verificar en que escalon esta
-    # def comparo(self, jugador):
-    #     for i in self.__lista_jugadores_widget:
-    #         print(f"Comparando {jugador} con {i.get_nombre_visual()}")
-    #         if hasattr(jugador, 'get_nombre_jugador'):
-    #             print(f"Nombre del jugador lógico: {jugador.get_nombre_jugador()}")
-    #         else:
-    #             print("Jugador no tiene el método 'get_nombre_jugador'")
-
-    #         # Comparación ajustada
-    #         if isinstance(jugador, str) and jugador == i.get_nombre_visual():
-    #             i.setParent(None)
-    #             print("¡Sin parent!")
-    #             return True
-    #         elif hasattr(jugador, 'get_nombre_jugador') and jugador.get_nombre_jugador() == i.get_nombre_visual():
-    #             i.setParent(None)
-    #             print("¡Sin parent!")
-    #             return True
-    #     return False
-
-
-
-
-    # def hacer_pregunta(jugador, preguntas):
-    # # Aquí puedes hacer la lógica para elegir una pregunta y obtener una respuesta del jugador
-    # # Por ahora, simulamos respuestas aleatorias:
-    # import random
-    # resultado = random.choice([1, 2])  # 1: acertó, 2: falló
-    # print(f"{jugador.get_nombre_jugador()} responde {'bien' if resultado == 1 else 'mal'} en la ronda.")
-    # return resultado
