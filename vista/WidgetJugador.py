@@ -69,3 +69,28 @@ class WidgetJugador(QtWidgets.QWidget):
         self.layout.addLayout(self.ly_rondas)
 
         self.verticalLayout.addLayout(self.layout)
+        
+    def actualizar_r1(self, estado: bool):
+        """
+        Actualiza el estado de la ronda 1.
+        :param estado: True si se ha respondido correctamente, False en caso contrario.
+        """
+        nueva_imagen = "vista/img/correcto.png" if estado else "vista/img/incorrecto.png"
+        self.__r1 = nueva_imagen
+        self.lbl_r1.setPixmap(QtGui.QPixmap(self.__r1))
+
+    def actualizar_r2(self, estado: bool):
+        """
+        Actualiza el estado de la ronda 2.
+        :param estado: True si se ha respondido correctamente, False en caso contrario.
+        """
+        nueva_imagen = "vista/img/correcto.png" if estado else "vista/img/incorrecto.png"
+        self.__r2 = nueva_imagen
+        self.lbl_r2.setPixmap(QtGui.QPixmap(self.__r2))
+        
+    def reset_rondas(self):
+        nueva_imagen = "vista/img/vacio.png"
+        self.__r1 = nueva_imagen
+        self.lbl_r1.setPixmap(QtGui.QPixmap(self.__r1))
+        self.__r2 = nueva_imagen
+        self.lbl_r2.setPixmap(QtGui.QPixmap(self.__r2))
