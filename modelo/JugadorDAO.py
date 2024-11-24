@@ -41,8 +41,6 @@ class JugadorDAO:
             cursor.connection.commit()
     
 
-
-
     ################################ BUSCAR ####################################
 
     def buscar_jugador(self, nombre):
@@ -59,7 +57,11 @@ class JugadorDAO:
             return False
 #Todos los metodos que estan arriba de esta marca funcionan bien
 
-            #SI HAY 0 :  0 > 0 RETURN FALSE
-            #SI YA HAY 1 (si esta el nombre) 1>0 RETURN TRUE 
-            
+       ###############################BORRAR##############################################
+
+    def eliminar_jugador (self,nombre):
+        with self.__bd.cursor() as cursor:
+            cursor.execute ("""DELETE FROM jugador as j WHERE j.nombre_jugador = %s  """,
+                            (nombre,))
+            cursor.connection.commit()
     
