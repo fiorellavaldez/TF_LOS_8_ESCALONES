@@ -23,6 +23,8 @@ class ControladorVistaJuego:
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget) #le paso widgets
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
         
         self.__en_partida = False  # Controla si se puede avanzar al siguiente escalón
         self.__nro_escalon_actual = 0  # Índice del escalón actual
@@ -282,6 +284,7 @@ class ControladorVistaJuego:
         # Obtén los layouts actuales y el siguiente
         layout_actual = getattr(self.__vista, f"ly_escalon{nro + 1}")  # Layout del escalón actual
         layout_siguiente = getattr(self.__vista, f"ly_escalon{nro + 2}", None)  # Layout del próximo escalón
+        layout_siguiente.parent().parent().setStyleSheet("") #"Vacía" el StyleSheet para que use el color del .qss
 
         # Limpia el layout actual desde el tercer elemento en adelante
         for i in range(2, layout_actual.count()):  # Saltar los primeros dos elementos

@@ -86,8 +86,8 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        # self.bt_aceptar.setProperty("tipo","boton_vista_seleccion")
-        # self.bt_cancelar.setProperty("tipo","boton_vista_seleccion")
+        self.bt_aceptar.setProperty("tipo","boton_vista_seleccion")
+        self.bt_cancelar.setProperty("tipo","boton_vista_seleccion")
 
         #self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
