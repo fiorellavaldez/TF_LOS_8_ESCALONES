@@ -25,7 +25,8 @@ class ControladorVistaJuego:
         self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
         ControladorAudiovideo.registrar_ventana(self.MainWindow)
-        
+        nuevo_controlador = ControladorAudiovideo(controlador_anterior)
+        nuevo_controlador.cambiar_musica(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\acorralado.mp3")
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
         
