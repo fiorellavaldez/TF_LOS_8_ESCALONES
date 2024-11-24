@@ -1,4 +1,4 @@
-from vista.VistaConfiguracionPreguntasAgregarPreguntaDeDesempate import Ui_MainWindow
+from vista.VistaNuevaPreguntaDeDesempate import Ui_MainWindow
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox
 from modelo.PreguntasABM import PreguntaABM
@@ -7,7 +7,7 @@ from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6.QtWidgets import QTextEdit
 
 
-class ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate():
+class ControladorNuevaPreguntaDeDesempate(): 
     def __init__(self, controlador_anterior, id_tema):
         self.__id_tema = id_tema
         self.__pregunta = preguntaDesempate(id_tema, "", "")
@@ -36,7 +36,7 @@ class ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate():
                     self.__pregunta.set_enunciado(enunciado)
                     self.__pregunta.set_respuestaCorrecta(valor_int)
                     PreguntaABM().agregar_pregunta_desempate(self.__pregunta)
-                    self.__controlador_anterior.actualizar_lista_preguntas()
+                    self.__controlador_anterior.mostrar_preguntas()
                     self.MainWindow.hide()
                     self.__controlador_anterior.MainWindow.show()
                 else:
