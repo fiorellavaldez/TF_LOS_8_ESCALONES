@@ -9,7 +9,7 @@ from vista.WidgetJugador import WidgetJugador
 from modelo.Jugador import Jugador
 from modelo.TemaABM import TemaABM
 from modelo.PreguntasABM import PreguntaABM
-
+from controlador.ControladorAudioVideo import ControladorAudiovideo
 
 class ControladorVistaJuego:
 
@@ -23,6 +23,9 @@ class ControladorVistaJuego:
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget) #le paso widgets
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
+        # Registrar la ventana en el controlador de audio y video
+        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
         

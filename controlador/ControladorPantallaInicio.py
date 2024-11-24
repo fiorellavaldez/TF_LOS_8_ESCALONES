@@ -1,6 +1,7 @@
 from controlador.ControladorConfiguracion import ControladorVistaConfiguracion
 from controlador.ControladorVistaGrillaJugadores import ControladorVistaGrillaJugadores
 from vista.VistaPantallaInicio import Ui_MainWindow
+from controlador.ControladorAudioVideo import ControladorAudiovideo
 from PyQt6 import QtWidgets
 
 class ControladorPantallaInicio:
@@ -10,6 +11,10 @@ class ControladorPantallaInicio:
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+        
+        # Registrar la ventana en el controlador de audio y video
+        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
         

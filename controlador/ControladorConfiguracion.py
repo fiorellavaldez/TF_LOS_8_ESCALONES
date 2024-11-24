@@ -2,6 +2,7 @@ from vista.VistaConfiguracion import Ui_MainWindow
 from controlador.ControladorConfiguracionPreguntaRonda import ControladorConfiguracionPreguntaRonda
 from controlador.ControladorConfiguracionPreguntaDesempate import ControladorConfiguracionPreguntaDesempate
 from controlador.ControladorVistaConfiguracionTemaABM import ControladorVistaConfiguracionTemaABM
+from controlador.ControladorAudioVideo import ControladorAudiovideo
 from PyQt6 import QtWidgets
 
 class ControladorVistaConfiguracion:
@@ -12,12 +13,21 @@ class ControladorVistaConfiguracion:
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+        
+        # Registrar la ventana en el controlador de audio y video
+        ControladorAudiovideo.registrar_ventana(self.MainWindow)
 
         # Conectar botones a sus métodos
+        self.__vista.get_button_config_audio_video().clicked.connect(self.__audio_video)
         self.__vista.get_button_modificar_preguntas_ronda().clicked.connect(self.__preguntas_ronda_ABM)
         self.__vista.get_button_modificar_preguntas_desempate().clicked.connect(self.__preguntas_desempate_ABM)
         self.__vista.get_button_modificar_temas().clicked.connect(self.__modificar_temas)
         self.__vista.get_button_atras().clicked.connect(self.__volver_menu)
+    
+    def __audio_video(self):
+        self.MainWindow.hide()
+        self.ControladorAudioVideo = ControladorAudiovideo(self)
+        self.ControladorAudioVideo.MainWindow.show()
     
     def __preguntas_ronda_ABM(self):
         self.MainWindow.hide()

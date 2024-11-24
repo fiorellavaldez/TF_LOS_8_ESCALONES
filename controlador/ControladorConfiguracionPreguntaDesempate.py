@@ -5,12 +5,14 @@ from modelo.TemaABM import TemaABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from controlador.ControladorEditarPreguntaDeDesempate import ControladorEditarPreguntaDeDesempate
 from controlador.ControladorNuevaPreguntaDeDesempate import ControladorNuevaPreguntaDeDesempate
+from controlador.ControladorAudioVideo import ControladorAudiovideo
 
 ############################################ DESEMPATE NO ELIMINAR
 
 class ControladorConfiguracionPreguntaDesempate():
     def __init__(self, controlador_anterior):
         self.__controlador_anterior = controlador_anterior
+        
         
         self.__listaTemas = TemaABM().obtener_temas()
         self.__listaNombreTemas = self.__obtenerListaNombreTemas()
@@ -23,6 +25,10 @@ class ControladorConfiguracionPreguntaDesempate():
         self.__idTemaActual = self.__temaActual()
         
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta) #conectra con la barra de busqueda
+        
+        # Registrar la ventana en el controlador de audio y video
+        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        
         
         # Obtener preguntas para el tema inicial
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__idTemaActual)
