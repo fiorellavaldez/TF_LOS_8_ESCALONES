@@ -2,6 +2,7 @@ from vista.VistaConfiguracion import Ui_MainWindow
 from controlador.ControladorConfiguracionPreguntaRonda import ControladorConfiguracionPreguntaRonda
 from controlador.ControladorConfiguracionPreguntaDesempate import ControladorConfiguracionPreguntaDesempate
 from controlador.ControladorVistaConfiguracionTemaABM import ControladorVistaConfiguracionTemaABM
+from controlador.ControladorVistaSeleccionarJugadoresABM import ControladorVistaSeleccionarJugadores
 from controlador.ControladorAudioVideo import ControladorAudiovideo
 from PyQt6 import QtWidgets
 
@@ -21,8 +22,10 @@ class ControladorVistaConfiguracion:
         self.__vista.get_button_config_audio_video().clicked.connect(self.__audio_video)
         self.__vista.get_button_modificar_preguntas_ronda().clicked.connect(self.__preguntas_ronda_ABM)
         self.__vista.get_button_modificar_preguntas_desempate().clicked.connect(self.__preguntas_desempate_ABM)
+        self.__vista.get_button_modificar_jugadores().clicked.connect(self.__jugadores)
         self.__vista.get_button_modificar_temas().clicked.connect(self.__modificar_temas)
         self.__vista.get_button_atras().clicked.connect(self.__volver_menu)
+
     
     def __audio_video(self):
         self.MainWindow.hide()
@@ -42,6 +45,11 @@ class ControladorVistaConfiguracion:
     def __modificar_temas(self):
         self.MainWindow.hide()
         self.controlador_modificar_temas = ControladorVistaConfiguracionTemaABM(self)
+    
+    def __jugadores (self):
+        self.MainWindow.hide()  # Ocultar la ventana actual
+        self.ControladorConfiguracionPregunta = ControladorVistaSeleccionarJugadores(self)
+        self.ControladorConfiguracionPregunta.MainWindow.show()
 
     def __volver_menu(self):
         self.MainWindow.close()
