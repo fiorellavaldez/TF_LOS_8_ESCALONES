@@ -30,14 +30,36 @@ class ControladorPreguntaDesempateABM:
         # Conectar barra de búsqueda
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta)  # Conectar la barra de búsqueda al método de búsqueda
 
-    def __volver(self):
+    # acciones de los botones
+    def __volver(self): # anda bien
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
+    
+    def __eliminar_pregunta(self):
+        controlador_seguro = ControladorEstaSeguro("¿Está seguro de eliminar esta pregunta?")
+        if controlador_seguro.exec():
+            fila = self.__vista.tableWidget.currentRow()
+            if fila < 0:
+                self.__vista.aviso_seleccionar_pregunta()
+            else:
+                pregunta_a_eliminar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
+                PreguntaABM().quitar_pregunta_desempate(pregunta_a_eliminar)
+                self.actualizar_lista_preguntas()
 
     def __agregar_pregunta(self):
         self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema)
+    
+    def __modificar_pregunta(self):
+        fila = self.__vista.tableWidget.currentRow()
+        if fila < 0:
+            self.__vista.aviso_seleccionar_pregunta()
+        else:
+            pregunta_a_modificar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
+            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, pregunta_a_modificar)
+        
+        
 
-    def __llenar_tableview(self, preguntas=None):
+    def __llenar_tableview(self):
         """Llenar la tabla con preguntas filtradas o todas las preguntas si no se pasa ninguna."""
         self.__vista.tableWidget.setRowCount(0)  # Limpiar la tabla antes de agregar los nuevos datos
         preguntas = preguntas or self.__lista_preguntas_filtradas  # Si no hay preguntas filtradas, usar todas las preguntas
@@ -52,24 +74,7 @@ class ControladorPreguntaDesempateABM:
         self.__lista_preguntas_filtradas = self.__lista_preguntas  # Resetear lista filtrada a todas las preguntas
         self.__llenar_tableview()
 
-    def __eliminar_pregunta(self):
-        controlador_seguro = ControladorEstaSeguro("¿Está seguro de eliminar esta pregunta?")
-        if controlador_seguro.exec():
-            fila = self.__vista.tableWidget.currentRow()
-            if fila < 0:
-                self.__vista.aviso_seleccionar_pregunta()
-            else:
-                pregunta_a_eliminar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-                PreguntaABM().quitar_pregunta_desempate(pregunta_a_eliminar)
-                self.actualizar_lista_preguntas()
-
-    def __modificar_pregunta(self):
-        fila = self.__vista.tableWidget.currentRow()
-        if fila < 0:
-            self.__vista.aviso_seleccionar_pregunta()
-        else:
-            pregunta_a_modificar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, pregunta_a_modificar)
+    
 
     def __buscar_pregunta(self):
         """Filtrar las preguntas según el texto ingresado en la barra de búsqueda"""

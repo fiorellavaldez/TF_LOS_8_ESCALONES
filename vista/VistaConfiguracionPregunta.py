@@ -155,10 +155,6 @@ class Ui_MainWindow(object):
         return self.lineEdit
     def get_comboBox(self):
         return self.comboBox
-    
-def get_comboBox(self):
-    return self.comboBox
-    
 
 lista_temas = [25,8645,65,65,31,32]
     

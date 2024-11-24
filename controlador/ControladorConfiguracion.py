@@ -1,6 +1,6 @@
 from vista.VistaConfiguracion import Ui_MainWindow
 from controlador.ControladorVistaTemaNuevo import ControladorVistaTemaNuevo
-from controlador.ControladorConfiguracionPregunta import ControladorConfiguracionPreguntaRonda
+from controlador.ControladorConfiguracionPreguntaRonda import ControladorConfiguracionPreguntaRonda
 from controlador.ControladorSeleccionTemaPreguntaABM import ControladorSeleccionTemaPreguntaABM
 from controlador.ControladorVistaConfiguracionTemaABM import ControladorVistaConfiguracionTemaABM
 from PyQt6 import QtWidgets
@@ -14,14 +14,18 @@ class ControladorVistaConfiguracion:
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
 
+        # Conectar botones a sus métodos
         self.__vista.get_button_modificar_preguntas_ronda().clicked.connect(self.__preguntas_ronda_ABM)
         self.__vista.get_button_modificar_preguntas_desempate().clicked.connect(self.__desempateSeleccionarTema)
         self.__vista.get_button_modificar_temas().clicked.connect(self.__modificar_temas)
         self.__vista.get_button_atras().clicked.connect(self.__volver_menu)
     
-    def __preguntas_ronda_ABM (self):
-        self.MainWindow.hide() 
-        self.ControladorConfiguracionPregunta = ControladorConfiguracionPreguntaRonda(self)
+    def __preguntas_ronda_ABM(self):
+        """ Método para ir a la pantalla de configuración de preguntas de ronda """
+        self.MainWindow.hide()  # Ocultar la ventana actual
+        self.ControladorConfiguracionPregunta = ControladorConfiguracionPreguntaRonda(self)  # Crear el nuevo controlador
+        self.ControladorConfiguracionPregunta.MainWindow.show()  # Mostrar la ventana de configuración de preguntas
+
         
     def __desempateSeleccionarTema (self):
         self.MainWindow.hide() 
