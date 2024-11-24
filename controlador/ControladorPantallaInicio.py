@@ -10,6 +10,8 @@ class ControladorPantallaInicio:
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
         
         self.__vista.get_button_nueva_partida().clicked.connect(self.__nueva_partida)
         #self.__vista.get_button_continuar().clicked.connect(self.__continuar)

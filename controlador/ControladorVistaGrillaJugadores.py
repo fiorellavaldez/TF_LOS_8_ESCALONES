@@ -12,6 +12,8 @@ class ControladorVistaGrillaJugadores:
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
 
         self.__lista_jugadores = []
         self.__nro_seleccionado = None

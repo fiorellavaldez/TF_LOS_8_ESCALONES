@@ -4,15 +4,19 @@ from vista.WidgetJugador import WidgetJugador
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, lista_jugadores):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(952, 673)
-        MainWindow.setMaximumSize(QtCore.QSize(952, 673))
+        #MainWindow.resize(952, 673)
+        #MainWindow.setMaximumSize(QtCore.QSize(952, 673))
+        MainWindow.setFixedSize(1080, 720)
 
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
+        #self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
+        self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_escalones.png"))
+        self.centralwidget.setScaledContents(True)
+        self.centralwidget.setObjectName("centralwidget_escalones")
 
 
         self.widget_escalera = QtWidgets.QWidget(parent=self.centralwidget)
-        self.widget_escalera.setGeometry(QtCore.QRect(0, 20, 951, 621))
+        self.widget_escalera.setGeometry(QtCore.QRect(0, 0, 1080, 720))
         self.widget_escalera.setObjectName("widget_escalera")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget_escalera)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -280,7 +284,7 @@ class Ui_MainWindow(object):
         self.wd_escalon1.setSizePolicy(sizePolicy)
         self.wd_escalon1.setMinimumSize(QtCore.QSize(920, 0))
         self.wd_escalon1.setMaximumSize(QtCore.QSize(920, 70))
-        self.wd_escalon1.setStyleSheet("background-color: rgb(213, 213, 213);")
+        #self.wd_escalon1.setStyleSheet("background-color: rgb(213, 213, 213);")
         self.wd_escalon1.setObjectName("wd_escalon1")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.wd_escalon1)
         self.horizontalLayout_2.setContentsMargins(-1, 0, -1, 0)
@@ -335,16 +339,19 @@ class Ui_MainWindow(object):
         self.gif.setWordWrap(False)
         self.gif.setObjectName("gif")
         self.pushButton_atras = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_atras.setGeometry(QtCore.QRect(20, 640, 75, 24))
+        self.pushButton_atras.setGeometry(QtCore.QRect(30, 660, 75, 30))
         self.pushButton_atras.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         
         self.pushButton_comenzar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(860, 640, 75, 24))
+        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(980, 660, 75, 30))
         self.pushButton_comenzar_partida.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         
         self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8]
 
         MainWindow.setCentralWidget(self.centralwidget)
+
+        self.pushButton_atras.setProperty("tipo","boton_vista_juego")
+        self.pushButton_comenzar_partida.setProperty("tipo","boton_vista_juego")
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -361,7 +368,7 @@ class Ui_MainWindow(object):
         self.tematica_escalon2.setText(_translate("MainWindow", "-"))
         self.tematica_escalon1.setText(_translate("MainWindow", "-"))
         self.pushButton_comenzar_partida.setText(_translate("MainWindow","Jugar"))
-        self.pushButton_atras.setText(_translate("MainWindow", "Atras"))
+        self.pushButton_atras.setText(_translate("MainWindow", "Atrás"))
 
 
     def get_button_atras(self):

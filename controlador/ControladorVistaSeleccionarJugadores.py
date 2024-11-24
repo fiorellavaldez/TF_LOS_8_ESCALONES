@@ -12,6 +12,8 @@ class ControladorVistaSeleccionarJugadores:
         self.__lista_jugadores = self.__jugadores.get_all_jugadores()
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores)
         self.MainWindow.show()
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
         
         self.__vista.get_button_aceptar().clicked.connect(self.__aceptar)
         self.__vista.get_button_cancelar().clicked.connect(self.__volver_seleccion_de_jugadores)
