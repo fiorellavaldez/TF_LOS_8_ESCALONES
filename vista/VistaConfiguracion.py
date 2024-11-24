@@ -1,5 +1,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+from PyQt6 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -51,12 +53,22 @@ class Ui_MainWindow(object):
         self.pushButton_4.setFont(font)
         self.pushButton_4.setObjectName("pushButton_4")
         self.verticalLayout_3.addWidget(self.pushButton_4)
+        self.pushButton_5 = QtWidgets.QPushButton(parent=self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(22)
+        self.pushButton_5.setFont(font)
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.verticalLayout_3.addWidget(self.pushButton_5)
         self.pushButton_6 = QtWidgets.QPushButton(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(22)
         self.pushButton_6.setFont(font)
         self.pushButton_6.setObjectName("pushButton_6")
         self.verticalLayout_3.addWidget(self.pushButton_6)
+        
+        # Nuevo botón
+
+        
         self.horizontalLayout.addLayout(self.verticalLayout_3)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -82,6 +94,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Modificar o crear Peguntas de desempate"))
         self.pushButton_4.setText(_translate("MainWindow", "Modificar o crear temas"))
         self.pushButton_6.setText(_translate("MainWindow", "Atrás"))
+        self.pushButton_5.setText(_translate("MainWindow", "Agregar o modificar jugadores"))
 
     def get_button_modificar_preguntas_ronda(self):
         return self.pushButton
@@ -94,3 +107,6 @@ class Ui_MainWindow(object):
 
     def get_button_atras(self):
         return self.pushButton_6
+    
+    def get_button_modificar_jugadores(self):
+        return self.pushButton_5
