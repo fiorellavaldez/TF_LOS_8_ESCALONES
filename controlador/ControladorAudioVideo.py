@@ -3,22 +3,40 @@ from PyQt6.QtWidgets import QMainWindow
 import pygame
 import os
 
+
 class ControladorAudiovideo:
     """Controlador para la configuración de audio y video."""
 
-    # Variable de clase para el estado de pantalla completa
+    # Variables de clase para manejar el estado global
     is_fullscreen = True
     ventanas_registradas = []
+    __instancia_unica = None  # Singleton para manejar la música
+
+    def __new__(cls, *args, **kwargs):
+        """Implementación de Singleton para garantizar una única instancia."""
+        if not cls.__instancia_unica:
+            cls.__instancia_unica = super().__new__(cls)
+            cls.__instancia_unica.__inicializar_audio()
+        return cls.__instancia_unica
 
     def __init__(self, controlador_anterior):
-        self.__controlador_anterior = controlador_anterior
-        self.MainWindow = QMainWindow()  # Nueva ventana para la configuración
-        self.__vista = Ui_ConfigWindow()
-        self.__vista.setupUi(self.MainWindow)
+        if not hasattr(self, "MainWindow"):  # Evitar re-ejecutar la inicialización
+            self.__controlador_anterior = controlador_anterior
+            self.MainWindow = QMainWindow()  # Nueva ventana para la configuración
+            self.__vista = Ui_ConfigWindow()
+            self.__vista.setupUi(self.MainWindow)
 
-        # Registrar esta ventana en la lista de ventanas
-        self.registrar_ventana(self.MainWindow)
+            # Registrar esta ventana en la lista de ventanas
+            self.registrar_ventana(self.MainWindow)
 
+            # Conectar señales a funciones
+            self.__vista.get_music_button().clicked.connect(self.__apagar_encender_musica)
+            self.__vista.get_volume_slider().valueChanged.connect(self.__cambio_volumen)
+            self.__vista.get_screen_button().clicked.connect(self.__alternar_pantalla_completa)
+            self.__vista.get_back_button().clicked.connect(self.__volver_atras)
+
+    def __inicializar_audio(self):
+        """Inicializa el sistema de audio y configura la música."""
         self.music_on = True  # Inicialmente la música está encendida
         self.volume = 1.0  # Volumen inicial al máximo
         self.music_file = r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu.mp3"  # Ruta del archivo de música
@@ -26,18 +44,6 @@ class ControladorAudiovideo:
         # Inicializar pygame y cargar la música
         pygame.mixer.init()
         self.__cargar_musica(self.music_file)
-
-        # Configurar el control deslizante de volumen al máximo
-        self.__vista.get_volume_slider().setValue(100)  # Establece el slider en 100 (máximo)
-
-        # Cambiar el texto del botón de música para reflejar el estado inicial
-        self.__vista.get_music_button().setText("Apagar Música")
-
-        # Conectar señales a funciones
-        self.__vista.get_music_button().clicked.connect(self.__apagar_encender_musica)
-        self.__vista.get_volume_slider().valueChanged.connect(self.__cambio_volumen)
-        self.__vista.get_screen_button().clicked.connect(self.__alternar_pantalla_completa)
-        self.__vista.get_back_button().clicked.connect(self.__volver_atras)
 
     @classmethod
     def registrar_ventana(cls, ventana):
@@ -107,7 +113,7 @@ class ControladorAudiovideo:
                 print(f"Error al cargar la música: {str(e)}")
         else:
             print(f"El archivo de música {archivo} no se encuentra en la ruta especificada.")
-    
+
     def cambiar_musica(self, nueva_ruta):
         """Permite cambiar la música actual a una nueva."""
         self.music_file = nueva_ruta  # Establecer nueva ruta de música
