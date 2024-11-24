@@ -39,7 +39,7 @@ class ControladorAudiovideo:
         """Inicializa el sistema de audio y configura la música."""
         self.music_on = True  # Inicialmente la música está encendida
         self.volume = 1.0  # Volumen inicial al máximo
-        self.music_file = r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu.mp3"  # Ruta del archivo de música
+        self.music_file = r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu_2.mp3"  # Ruta del archivo de música
 
         # Inicializar pygame y cargar la música
         pygame.mixer.init()
