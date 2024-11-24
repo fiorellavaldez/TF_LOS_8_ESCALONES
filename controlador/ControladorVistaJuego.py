@@ -25,7 +25,8 @@ class ControladorVistaJuego:
         self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
         ControladorAudiovideo.registrar_ventana(self.MainWindow)
-        
+        nuevo_controlador = ControladorAudiovideo(controlador_anterior)
+        nuevo_controlador.cambiar_musica(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\acorralado.mp3")
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
         
@@ -287,7 +288,8 @@ class ControladorVistaJuego:
         # Obtén los layouts actuales y el siguiente
         layout_actual = getattr(self.__vista, f"ly_escalon{nro + 1}")  # Layout del escalón actual
         layout_siguiente = getattr(self.__vista, f"ly_escalon{nro + 2}", None)  # Layout del próximo escalón
-        layout_siguiente.parent().parent().setStyleSheet("") #"Vacía" el StyleSheet para que use el color del .qss
+        if len(lista_ganadores) > 1:
+            layout_siguiente.parent().parent().setStyleSheet("") #"Vacía" el StyleSheet para que use el color del .qss
 
         # Limpia el layout actual desde el tercer elemento en adelante
         for i in range(2, layout_actual.count()):  # Saltar los primeros dos elementos

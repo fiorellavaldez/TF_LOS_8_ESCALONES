@@ -42,6 +42,7 @@ class WidgetJugador(QtWidgets.QWidget):
         #nombre
         self.wd_nombre = QtWidgets.QLabel(text=self.__nombre, parent=self)
         self.wd_nombre.setMaximumSize(QtCore.QSize(16777215, 14))
+        self.wd_nombre.setObjectName("wd_nombre_jugador")
         font = QtGui.QFont()
         font.setPointSize(7)
         self.wd_nombre.setFont(font)
@@ -53,6 +54,7 @@ class WidgetJugador(QtWidgets.QWidget):
         self.lbl_r1.setMaximumSize(QtCore.QSize(15, 15))
         self.lbl_r1.setPixmap(QtGui.QPixmap(self.__r1))
         self.lbl_r1.setScaledContents(True)
+        self.lbl_r1.setProperty("tipo","checkbox")
         self.ly_rondas.addWidget(self.lbl_r1)
 
         #checkbox 1
@@ -61,6 +63,7 @@ class WidgetJugador(QtWidgets.QWidget):
         self.lbl_r2.setMaximumSize(QtCore.QSize(15, 15))
         self.lbl_r2.setPixmap(QtGui.QPixmap(self.__r2))
         self.lbl_r2.setScaledContents(True)
+        self.lbl_r2.setProperty("tipo","checkbox")
         self.ly_rondas.addWidget(self.lbl_r2)
 
         #agrego los elementos al layout
