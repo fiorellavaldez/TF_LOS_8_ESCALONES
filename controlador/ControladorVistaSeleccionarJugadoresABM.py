@@ -1,5 +1,6 @@
 from vista.VistaSeleccionarJugadoresABM import Ui_MainWindow
 from controlador.ControladorVistaJugadorNuevoABM import ControladorVistaJugadorNuevoABM
+from controlador.ControladorVistaModificarJugadorABM import ControladorVistaModificarJugadorABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6 import QtWidgets,QtCore
 from modelo.JugadoresABM import JugadorABM
@@ -38,7 +39,18 @@ class ControladorVistaSeleccionarJugadores:
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevoABM(self)
     
     def __modificar (self):
-        pass
+        fila = self.__vista.tableWidget.currentRow()
+        if fila < 0:
+            self.__vista.aviso_seleccionar_jugador()  # Si no se seleccionó ninguna fila
+        else:
+            # Obtener el contenido de la fila seleccionada en la columna 0 (nombre del jugador)
+            nombre_jugador_a_modificar = self.__vista.tableWidget.item(fila, 0).text()
+            jugador_a_modificar = None
+            # Buscar el jugador en la lista filtrada de jugadores
+            for i in self.filtrando_jugadores:
+                if i.get_nombre_jugador() == nombre_jugador_a_modificar:
+                    jugador_a_modificar = i
+        self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
     
     def __eliminar(self):
         fila = self.__vista.tableWidget.currentRow()
@@ -53,16 +65,13 @@ class ControladorVistaSeleccionarJugadores:
                 jugador_a_eliminar = None
                 # Buscar el jugador en la lista filtrada de jugadores
                 for i in self.filtrando_jugadores:
-                    if i.get_nombre_jugador() == nombre_jugador_a_eliminar:  # Llamar al método correctamente
+                    if i.get_nombre_jugador() == nombre_jugador_a_eliminar:
                         jugador_a_eliminar = i
                         break  # Salir del loop una vez encontrado el jugador
                 if jugador_a_eliminar:
                     # Eliminar el jugador de la base de datos
                     JugadorABM().eliminar_jugador_por_nombre(jugador_a_eliminar)
                     self.actualizar_tabla()  # Actualizar la tabla con los jugadores restantes
-                #else:
-                #    self.__vista.aviso_jugador_no_encontrado()  # Si no se encuentra el jugador
-
     
     def __volver(self):
         self.MainWindow.close()
