@@ -38,6 +38,7 @@ class ControladorVistaConfiguracionTemaABM:
         self.__vista.pushButton_Modificar.clicked.connect(self.__modificarTema)
         self.__vista.pushButton_Nuevo.clicked.connect(self.__nuevoTema)
         self.__vista.pushButton_Eliminar.clicked.connect(self.__eliminarTema)
+        self.__vista.QTable_Temas.doubleClicked.connect(self.__modificarTema)
 
         # Formateo Tabla
         self.__vista.QTable_Temas.setColumnCount(2)
@@ -72,21 +73,21 @@ class ControladorVistaConfiguracionTemaABM:
             
             #self.__vista.QTable_Temas.setItem(linea, 0, QTableWidgetItem(str(tema.get_idTema())))  
             #self.__vista.QTable_Temas.setItem(linea, 1, QTableWidgetItem(tema.get_nombreTema()))  
-    '''
-    def actualizar_tema(self, tema):
-        self.__temas.actualizar_tema(tema)
+    
+    def actualizar_lista_temas(self, tema):
+        #self.__temas.actualizar_tema(tema)
         self.__llenar_tabla(self.__temas.lista_temas)
-    '''
-    def agregar_tema(self, tema):
+    
+    """def agregar_tema(self, tema):
         tema.set_disponible(True)
         self.__temas.agregar_tema(tema)
         self.__llenar_tabla(self.__temas.lista_temas)
-
-    def quitar_tema(self,tema):
+    """
+    """def quitar_tema(self,tema):
         tema.set_disponible(False)
         self.__temas.quitar_tema(tema)
         self.__llenar_tabla(self.__temas.lista_temas)
-
+    """
     def __volver_configuracion(self):
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
@@ -99,9 +100,9 @@ class ControladorVistaConfiguracionTemaABM:
             return
         #self.MainWindow.hide()
         tema_s=self.__obtener_tema_seleccionado()
-        try:
+        try: # --> DAO
         # Aquí llamas al método de ABM para realizar la modificación
-            self.__temas.actualizar_tema(tema_s)  # Lógica de actualización de tema
+            #self.__temas.actualizar_tema(tema_s)  # Lógica de actualización de tema --> Tiene que ir en el EditModifica
 
             self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditModifica(self,tema_s,self.__temas)
             self.ControladorVistaTemaNuevo.MainWindow.show()
@@ -135,21 +136,22 @@ class ControladorVistaConfiguracionTemaABM:
         else:
             return
 
-    def __obtener_celda_seleccionada(self):  
+    """def __obtener_celda_seleccionada(self):  
         item = self.__vista.QTable_Temas.currentItem()  
         if item is not None:  
             print("Contenido de la celda seleccionada:", item.text())  
         else:  
             print("No hay ninguna celda seleccionada.") 
-
+        """
+    
     def __buscar_temas(self):
         """Filtra los temas según el texto ingresado en la caja de búsqueda y actualiza la tabla."""
         texto = self.__vista.QLine_Buscar.text().strip().lower()
         # Filtrar temas que coincidan con el texto ingresado
         self.__filtered_temas = [
-        tema for tema in self.__temas.lista_temas
-        if tema.get_nombreTema().lower().startswith(texto)
-        ]
+            tema for tema in self.__temas.lista_temas
+            if tema.get_nombreTema().lower().startswith(texto)
+            ]
         # Llenar la tabla con los temas filtrados
         self.__llenar_tabla(self.__filtered_temas)
 
