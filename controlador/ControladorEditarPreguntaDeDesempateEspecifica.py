@@ -1,10 +1,10 @@
-from vista.VistaConfiguracionPreguntasEditarPreguntaDeDesempate import Ui_MainWindow
+from vista.VistaEditarPreguntaDeDesempateEspecifica import Ui_MainWindow
 from modelo.PreguntasABM import PreguntaABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6 import QtWidgets
 
-class ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica():
+class ControladorEditarPreguntaDeDesempateEspecifica():
     def __init__(self, controlador_anterior, pregunta_desempate):
         self.__pregunta = pregunta_desempate
         self.__controlador_anterior = controlador_anterior

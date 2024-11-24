@@ -3,8 +3,10 @@ from PyQt6 import QtWidgets
 from modelo.PreguntasABM import PreguntaABM
 from modelo.TemaABM import TemaABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
+from controlador.ControladorEditarPreguntaDeRondaEspecifica import ControladorEditarPreguntaDeRondaEspecifica
+from controlador.ControladorNuevaPreguntaDeRonda import ControladorNuevaPreguntaDeRonda
 
-############################################ RONDA
+############################################ RONDA NO ELIMINAR
 
 class ControladorConfiguracionPreguntaRonda():
     def __init__(self, controlador_anterior):
@@ -21,7 +23,6 @@ class ControladorConfiguracionPreguntaRonda():
         self.__idTemaActual = self.__temaActual()
         
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta) #conectra con la barra de busqueda
-
         
         # Obtener preguntas para el tema inicial
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__idTemaActual)
@@ -35,7 +36,7 @@ class ControladorConfiguracionPreguntaRonda():
     
         # Mostrar datos iniciales
         self.__vista.mostrar_lista_en_combobox()
-        self.__mostrar_preguntas()
+        self.mostrar_preguntas()
         self.MainWindow.show()  # Mostrar ventana al iniciar
     
     # Acciones de botones
@@ -44,21 +45,34 @@ class ControladorConfiguracionPreguntaRonda():
         self.__controlador_anterior.MainWindow.show()  # Muestra la ventana anterior
     
     def __eliminar(self):
+        for i in self.__preguntas_visibles:
+            print(i.get_enunciado()) #si teine preguntas
         fila = self.__vista.tableWidget.currentRow()
         if fila < 0:
             self.__vista.aviso_seleccionar_pregunta()
         else:
-            pregunta_a_eliminar = self.__preguntas_visibles[fila]  # Obtener la pregunta seleccionada
+            pregunta_a_eliminar = self.__preguntas_visibles[self.__vista.tableWidget.currentRow()]  # Obtener la pregunta seleccionada
             controlador_seguro = ControladorEstaSeguro("¿Está seguro de eliminar esta pregunta?")
-            if controlador_seguro.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
+            if controlador_seguro.exec() == QtWidgets.QDialog.DialogCode.Accepted:
+                # Eliminar la pregunta de la base de datos
                 PreguntaABM().quitar_pregunta_ronda(pregunta_a_eliminar)
-                self.__mostrar_preguntas()  # Actualizar la tabla
+                self.mostrar_preguntas()  # Actualizar la tabla
     
     def __modificar(self):
-        pass
+        for i in self.__preguntas_visibles:
+            print(i.get_enunciado()) #si teine preguntas
+        fila = self.__vista.tableWidget.currentRow()
+        if fila < 0:
+            self.__vista.aviso_seleccionar_pregunta()
+        else:
+            pregunta_a_modificar = self.__preguntas_visibles[self.__vista.tableWidget.currentRow()]  # Obtener la pregunta seleccionada
+            self.controlador_siguiente = ControladorEditarPreguntaDeRondaEspecifica(self, pregunta_a_modificar)
     
     def __nueva(self):
-        pass
+        for tema in self.__listaTemas:
+            if self.__idTemaActual == tema.get_idTema():
+                TemaActual = tema.get_idTema()
+        self.controlador_siguiente = ControladorNuevaPreguntaDeRonda(self, TemaActual)
 
     ###############################################################
     
@@ -72,7 +86,7 @@ class ControladorConfiguracionPreguntaRonda():
                 return tema.get_idTema()
         return None  # Devuelve None si no se encuentra un tema coincidente
     
-    def __mostrar_preguntas(self):
+    def mostrar_preguntas(self):
         self.__idTemaActual = self.__temaActual()  # Asegurarse de tener el tema actualizado
         if self.__idTemaActual is not None:
             self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__idTemaActual)
@@ -86,10 +100,9 @@ class ControladorConfiguracionPreguntaRonda():
             row_position = self.__vista.tableWidget.rowCount()
             self.__vista.tableWidget.insertRow(row_position)
             self.__vista.tableWidget.setItem(row_position, 0, QtWidgets.QTableWidgetItem(pregunta.get_enunciado()))
-
     
     def __actualizar_preguntas(self):  # Método conectado al ComboBox
-        self.__mostrar_preguntas()  # Llama a __mostrar_preguntas() para actualizar la tabla
+        self.mostrar_preguntas()  # Llama a mostrar_preguntas() para actualizar la tabla
         
     def __buscar_pregunta(self, texto):
         texto_filtrado = texto.strip().lower()
@@ -98,124 +111,3 @@ class ControladorConfiguracionPreguntaRonda():
             if texto_filtrado in pregunta.get_enunciado().lower()
         ]
         self.__llenar_tableview(preguntas_filtradas)  # Mostrar solo las preguntas filtradas
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    #
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    #def __cargar_preguntas(self):
-    #    nombreTema = self.__vista.get_comboBox().currentText()
-    #    id_tema = None
-    #    for tema in self.__listaTemas:
-    #        if nombreTema == tema.get_nombreTema():
-    #            id_tema = tema.get_idTema()
-    #    return PreguntaABM().obtener_preguntas_desempate_tema(id_tema)
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #def __buscar_pregunta(self):
-    #    """Filtrar las preguntas según el texto ingresado en la barra de búsqueda"""
-    #    texto_busqueda = self.__vista.get_line_edit_busqueda().text().lower()  # Obtener el texto de la barra de búsqueda
-    #    preguntas_filtradas = [pregunta for pregunta in self.__lista_preguntas if texto_busqueda in pregunta.get_enunciado().lower()]
-    #    self.__lista_preguntas_filtradas = preguntas_filtradas  # Guardamos las preguntas filtradas
-    #    self.__llenar_tableview(preguntas_filtradas)  # Actualizar la tabla con las preguntas filtradas
-#
-    #
-    #
-    #
-    #def __mostrar_preguntas(self):
-    #    nombreTema = self.__vista.get_comboBox().currentText()
-    #    id_tema = None
-    #    for tema in self.__listaTemas:
-    #        if nombreTema == tema.get_nombreTema():
-    #            id_tema = tema.get_idTema()
-    #    if id_tema:
-    #        self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(id_tema)
-    #    else:
-    #        self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda()
-#
-    #    self.__lista_preguntas_filtradas = self.__lista_preguntas  # Resetear lista filtrada
-    #    self.__llenar_tableview()  # Llenar la tabla con todas las preguntas
-    #
-    #def __LlenarlistaNobreTemas(self):
-    #    listaNobreTemas = []
-    #    for i in self.__listaTemas:
-    #        listaNobreTemas.append(i.get_nombreTema())
-    #    return listaNobreTemas
-    
-    #def actualizar_lista_preguntas(self):
-    #    self.__vista.tableWidget.setRowCount(0)
-    #    self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__id_tema)
-    #    self.__lista_preguntas_filtradas = self.__lista_preguntas  # Resetear lista filtrada a todas las preguntas
-    #    self.__llenar_tableview()

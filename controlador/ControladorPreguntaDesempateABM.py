@@ -1,6 +1,6 @@
 from vista.VistaPreguntaABM import Ui_MainWindow
-from controlador.ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica import ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica
-from controlador.ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate import ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate
+from controlador.ControladorEditarPreguntaDeDesempateEspecifica import ControladorEditarPreguntaDeDesempateEspecifica
+from controlador.ControladorEditarPreguntaDeRondaEspecifica import ControladorEditarPreguntaDeRondaEspecifica
 from modelo.PreguntasABM import PreguntaABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6 import QtWidgets
@@ -47,7 +47,7 @@ class ControladorPreguntaDesempateABM:
                 self.actualizar_lista_preguntas()
 
     def __agregar_pregunta(self):
-        self.controlador_siguiente = ControladorConfiguracionPreguntasAgregarPreguntaDeDesempate(self, self.__id_tema)
+        self.controlador_siguiente = ControladorEditarPreguntaDeDesempateEspecifica(self, self.__id_tema)
     
     def __modificar_pregunta(self):
         fila = self.__vista.tableWidget.currentRow()
@@ -55,10 +55,8 @@ class ControladorPreguntaDesempateABM:
             self.__vista.aviso_seleccionar_pregunta()
         else:
             pregunta_a_modificar = self.__lista_preguntas_filtradas[fila]  # Usamos la lista filtrada
-            self.controlador_siguiente = ControladorVistaConfiguracionPreguntasEditarPreguntaDeDesempateEspecifica(self, pregunta_a_modificar)
-        
-        
-
+            self.controlador_siguiente = ControladorEditarPreguntaDeDesempateEspecifica(self, pregunta_a_modificar)
+    
     def __llenar_tableview(self):
         """Llenar la tabla con preguntas filtradas o todas las preguntas si no se pasa ninguna."""
         self.__vista.tableWidget.setRowCount(0)  # Limpiar la tabla antes de agregar los nuevos datos
@@ -73,8 +71,6 @@ class ControladorPreguntaDesempateABM:
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__id_tema)
         self.__lista_preguntas_filtradas = self.__lista_preguntas  # Resetear lista filtrada a todas las preguntas
         self.__llenar_tableview()
-
-    
 
     def __buscar_pregunta(self):
         """Filtrar las preguntas según el texto ingresado en la barra de búsqueda"""

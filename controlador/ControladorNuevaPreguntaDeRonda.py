@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import QMessageBox
 from PyQt6 import QtWidgets
 from modelo.preguntaRonda import preguntaRonda
 
-class NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda(): #### FALTA EDITAR TODO DE ESTE ES UAN COPIA DE EDITAR
+class ControladorNuevaPreguntaDeRonda(): 
     def __init__(self, controlador_anterior, id_tema):
         self.__pregunta = preguntaRonda(id_tema, "", "", "", "", "", "")
         self.__controlador_anterior = controlador_anterior
@@ -41,7 +41,7 @@ class NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda(): #### FALTA 
         correcta = mapa_opciones.get(valor, None)
         self.__pregunta.set_opcionCorrecta(correcta)
         PreguntaABM().agregar_pregunta_ronda(self.__pregunta)
-        self.__controlador_anterior.actualizar_lista_preguntas()
+        self.__controlador_anterior.mostrar_preguntas()
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
     

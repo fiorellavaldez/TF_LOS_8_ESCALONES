@@ -1,7 +1,7 @@
 #from vista.VistaConfiguracioSeleccionarPregunta import Ui_MainWindow
 from vista.VistaPreguntaABM import Ui_MainWindow
-from controlador.EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda import EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda
-from controlador.NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda import NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda
+from controlador.ControladorEditarPreguntaDeRondaEspecifica import ControladorEditarPreguntaDeRondaEspecifica
+from controlador.ControladorNuevaPreguntaDeRonda import ControladorNuevaPreguntaDeRonda
 from modelo.PreguntasABM import PreguntaABM
 from PyQt6 import QtWidgets
 #from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
@@ -36,7 +36,7 @@ class ControladorPreguntaRondaABM:
         self.__controlador_anterior.MainWindow.show()
 
     def __agregar_pregunta(self):
-        self.controlador_siguiente = NUEVAControladorConfiguracionPreguntasEditarPreguntaDeRonda(self, self.__id_tema)
+        self.controlador_siguiente = ControladorNuevaPreguntaDeRonda(self, self.__id_tema)
 
     def __llenar_tableview(self, preguntas=None):
         """Llenar la tabla con preguntas filtradas o todas las preguntas si no se pasa ninguna."""

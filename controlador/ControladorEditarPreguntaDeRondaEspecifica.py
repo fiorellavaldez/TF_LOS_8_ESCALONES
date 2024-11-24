@@ -1,10 +1,10 @@
-from vista.EDITARVistaConfiguracionPreguntasEditarPreguntaDeRonda import Ui_MainWindow
+from vista.VistaEditarPreguntaDeRondaEspecifica import Ui_MainWindow
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from modelo.PreguntasABM import PreguntaABM
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6 import QtWidgets
 
-class EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda():
+class ControladorEditarPreguntaDeRondaEspecifica():
     def __init__(self, controlador_anterior, pregunta_desempate):
         self.__pregunta = pregunta_desempate
         self.__controlador_anterior = controlador_anterior
@@ -34,7 +34,7 @@ class EDITARControladorConfiguracionPreguntasEditarPreguntaDeRonda():
             correcta = mapa_opciones.get(valor, None)
             self.__pregunta.set_opcionCorrecta(correcta)
             PreguntaABM().actualizar_preguntas_ronda(self.__pregunta)
-            self.__controlador_anterior.actualizar_lista_preguntas()
+            self.__controlador_anterior.mostrar_preguntas()
             self.MainWindow.hide()
             self.__controlador_anterior.MainWindow.show()
             
