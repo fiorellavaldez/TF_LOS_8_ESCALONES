@@ -2,6 +2,8 @@ from vista.VistaJuego import Ui_MainWindow
 from vista.VistaPreguntaRonda import VistaPreguntaRonda
 from vista.VistaPreguntaAproximacion import VistaPreguntaAproximacion
 from vista.VistaDialogGanador import VistaDialogGanador
+from vista.VistaDialogRonda import DialogRonda
+from vista.VistaDialogDesempate import DialogDesempate
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QApplication, QDialog, QLabel, QPushButton
 from modelo.Escalon import Escalon
@@ -212,7 +214,9 @@ class ControladorVistaJuego:
                     jugador.set_ronda2(2)  # Respuesta incorrecta en la ronda 2
                     jugador_widget.actualizar_r2(estado=False)
                 print(f"{jugador.get_nombre_jugador()} ha respondido incorrectamente.")
-
+            es_correcta = respuesta_seleccionada == correcta
+            dialog = DialogRonda(jugador.get_nombre_jugador(), es_correcta, correcta)
+            dialog.exec()
             return respuesta_seleccionada
         else:  # Si el diálogo se cierra sin seleccionar
             QMessageBox.warning(self, "Advertencia", f"{jugador.get_nombre_jugador()} no respondió a la pregunta.")
@@ -251,9 +255,6 @@ class ControladorVistaJuego:
         # Obtener datos de la pregunta
         enunciado = pregunta_desempate.get_enunciado()
         respuesta_correcta = pregunta_desempate.get_respuestaCorrecta()
-        print(f"Pregunta de desempate: {enunciado}")
-        print(f"La respuesta correcta es: {respuesta_correcta}")
-
         respuestas = {}
 
         for jugador in jugadores:
@@ -266,13 +267,14 @@ class ControladorVistaJuego:
 
         # Calcular distancias a la respuesta correcta
         distancias = {jugador: pregunta_desempate.responder(respuestas[jugador]) for jugador in jugadores}
-        for jugador, distancia in distancias.items():
-            print(f"{jugador.get_nombre_jugador()} estuvo a una distancia de {distancia}.")
+        #for jugador, distancia in distancias.items():
+        #    print(f"{jugador.get_nombre_jugador()} estuvo a una distancia de {distancia}.")
 
         # Determinar el jugador eliminado
         jugador_eliminado = max(distancias, key=distancias.get)
-        print(f"{jugador_eliminado.get_nombre_jugador()} estuvo más lejos de la respuesta correcta y será eliminado.")
-
+        #print(f"{jugador_eliminado.get_nombre_jugador()} estuvo más lejos de la respuesta correcta y será eliminado.")
+        dialog = DialogDesempate(jugadores, jugador_eliminado, distancias, respuesta_correcta)
+        dialog.exec()
         return jugador_eliminado
 
     def obtener_widget_por_jugador(self, jugador):
