@@ -24,5 +24,6 @@ class ControladorVistaConfiguracionTemaABMEditModifica(ControladorVistaConfigura
                 self._vista.aviso_tema_creado_vacio()
                 return
             self._tema.set_nombreTema(nuevo_nombre)
-            self._controlador_anterior.actualizar_tema(self._tema)
+            self._temas.actualizar_tema(self._tema) # Actualiza BD
+            self._controlador_anterior.actualizar_lista_temas(self._tema) # Usado para actualizar la lista en el controlador llamador
             self._volver_configuracion()

@@ -33,7 +33,8 @@ class ControladorVistaConfiguracionTemaABMEditAlta(ControladorVistaConfiguracion
     
     def __confirma(self):
     
-        nuevo_nombre = self._vista.lineEdit_Tema.text().strip().upper()
+        #nuevo_nombre = self._vista.lineEdit_Tema.text().strip().upper() # No hace falta aqui el upper
+        nuevo_nombre = self._vista.lineEdit_Tema.text().strip()
 
         if not nuevo_nombre:
             self._vista.aviso_tema_creado_vacio()  # Muestra un mensaje de error
@@ -44,8 +45,9 @@ class ControladorVistaConfiguracionTemaABMEditAlta(ControladorVistaConfiguracion
             self._vista.aviso_tema_existe()  # Muestra un mensaje de error
             print(f"Error: El tema '{nuevo_nombre}' ya existe en el sistema.")
             return  
-        try:
-            self._temas.agregar_tema(aux_tema)  
+        try: # EL manejo de excepcion creo que iria en el DAO
+            self._temas.agregar_tema(aux_tema)
+            self._controlador_anterior.actualizar_lista_temas(aux_tema)  # Actualiza lista widget
             self._vista.informamos_tema_creado(nuevo_nombre)  # Muestra un mensaje de éxito
             print(f"Éxito: El tema '{nuevo_nombre}' se ha creado exitosamente.")
         except Exception as e:

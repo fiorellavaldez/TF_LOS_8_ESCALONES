@@ -1,5 +1,7 @@
 from vista.VistaSeleccionarJugadoresABM import Ui_MainWindow
 from controlador.ControladorVistaJugadorNuevoABM import ControladorVistaJugadorNuevoABM
+from controlador.ControladorVistaModificarJugadorABM import ControladorVistaModificarJugadorABM
+from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6 import QtWidgets,QtCore
 from modelo.JugadoresABM import JugadorABM
 from modelo.Jugador import Jugador
@@ -37,10 +39,39 @@ class ControladorVistaSeleccionarJugadores:
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevoABM(self)
     
     def __modificar (self):
-        pass
+        fila = self.__vista.tableWidget.currentRow()
+        if fila < 0:
+            self.__vista.aviso_seleccionar_jugador()  # Si no se seleccionó ninguna fila
+        else:
+            # Obtener el contenido de la fila seleccionada en la columna 0 (nombre del jugador)
+            nombre_jugador_a_modificar = self.__vista.tableWidget.item(fila, 0).text()
+            jugador_a_modificar = None
+            # Buscar el jugador en la lista filtrada de jugadores
+            for i in self.filtrando_jugadores:
+                if i.get_nombre_jugador() == nombre_jugador_a_modificar:
+                    jugador_a_modificar = i
+        self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
     
-    def __eliminar (self):
-        pass
+    def __eliminar(self):
+        fila = self.__vista.tableWidget.currentRow()
+        if fila < 0:
+            self.__vista.aviso_seleccionar_jugador()  # Si no se seleccionó ninguna fila
+        else:
+            # Obtener el contenido de la fila seleccionada en la columna 0 (nombre del jugador)
+            nombre_jugador_a_eliminar = self.__vista.tableWidget.item(fila, 0).text()
+            # Confirmar si el usuario está seguro de eliminar al jugador
+            controlador_seguro = ControladorEstaSeguro("¿Está seguro de eliminar este jugador?")
+            if controlador_seguro.exec() == QtWidgets.QDialog.DialogCode.Accepted:
+                jugador_a_eliminar = None
+                # Buscar el jugador en la lista filtrada de jugadores
+                for i in self.filtrando_jugadores:
+                    if i.get_nombre_jugador() == nombre_jugador_a_eliminar:
+                        jugador_a_eliminar = i
+                        break  # Salir del loop una vez encontrado el jugador
+                if jugador_a_eliminar:
+                    # Eliminar el jugador de la base de datos
+                    JugadorABM().eliminar_jugador_por_nombre(jugador_a_eliminar)
+                    self.actualizar_tabla()  # Actualizar la tabla con los jugadores restantes
     
     def __volver(self):
         self.MainWindow.close()
@@ -53,7 +84,6 @@ class ControladorVistaSeleccionarJugadores:
     def __buscar_jugador(self):
         """Filtra los jugadores según el texto ingresado en el cuadro de búsqueda."""
         texto = self.__vista.lineEdit.text().strip().lower()
-
         # Verificar que cada elemento sea un objeto de tipo Jugador
         if all(isinstance(jugador, Jugador) for jugador in self.__lista_jugadores):
             self.filtrando_jugadores = [

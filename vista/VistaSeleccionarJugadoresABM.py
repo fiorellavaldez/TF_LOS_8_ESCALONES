@@ -94,6 +94,14 @@ class Ui_MainWindow(object):
         # Ajustar columnas
         for i in range(self.tableWidget.columnCount()):
             self.tableWidget.horizontalHeader().setSectionResizeMode(i, QHeaderView.ResizeMode.Stretch)
+    
+    def aviso_seleccionar_jugador(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar un jugador primero.")
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
 
 
     # Métodos para exponer botones al Controlador
