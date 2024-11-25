@@ -4,7 +4,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1080, 720)
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
+        self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_configuracion.jpg"))
+        self.centralwidget.setScaledContents(True)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
