@@ -12,12 +12,20 @@ class ControladorAudiovideo:
     ventanas_registradas = []
     __instancia_unica = None  # Singleton para manejar la música
 
+    # def __new__(cls, *args, **kwargs):
+    #     """Implementación de Singleton para garantizar una única instancia."""
+    #     if not cls.__instancia_unica:
+    #         cls.__instancia_unica = super().__new__(cls)
+    #         cls.__instancia_unica.__inicializar_audio()
+    #     return cls.__instancia_unica
+    
     def __new__(cls, *args, **kwargs):
-        """Implementación de Singleton para garantizar una única instancia."""
+        """Implementación del patrón Singleton."""
         if not cls.__instancia_unica:
             cls.__instancia_unica = super().__new__(cls)
             cls.__instancia_unica.__inicializar_audio()
         return cls.__instancia_unica
+
 
     def __init__(self, controlador_anterior):
         if not hasattr(self, "MainWindow"):  # Evitar re-ejecutar la inicialización
@@ -41,9 +49,17 @@ class ControladorAudiovideo:
         self.volume = 1.0  # Volumen inicial al máximo
         self.music_file = r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu_2.mp3"  # Ruta del archivo de música
 
-        # Inicializar pygame y cargar la música
+        #Inicializar pygame y cargar la música
         pygame.mixer.init()
         self.__cargar_musica(self.music_file)
+
+        # Reproducir música automáticamente al iniciar
+        if self.music_on:
+            pygame.mixer.music.play(-1)  # Reproducir música en bucle
+
+       
+    
+
 
     @classmethod
     def registrar_ventana(cls, ventana):
