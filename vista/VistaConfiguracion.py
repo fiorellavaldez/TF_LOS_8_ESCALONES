@@ -75,11 +75,16 @@ class Ui_MainWindow(object):
 
         # Botón Atrás
         self.pushButton_6 = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton_6.setGeometry(QtCore.QRect(30, 660, 75, 30))
+        self.pushButton_6.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+
+
         font = QtGui.QFont()
         font.setPointSize(22)
         self.pushButton_6.setFont(font)
         self.pushButton_6.setObjectName("pushButton_6")
         self.verticalLayout_3.addWidget(self.pushButton_6)
+        
 
         self.horizontalLayout.addLayout(self.verticalLayout_3)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
@@ -97,6 +102,13 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.pushButton_6.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_5.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_4.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_2.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_config_audio_video.setProperty("tipo","boton_vista_configuracion")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

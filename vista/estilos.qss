@@ -178,3 +178,28 @@ QWidget#wd_nombre_jugador{
     font-weight: bold;
     color:#ffffff;
 }
+
+
+/* VISTA CONFIGURACION */
+QPushButton[tipo="boton_vista_configuracion"]{
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
+    border-radius: 6px;
+    height: 60px;
+    font-size: 30px;
+    color:#ffffff;
+    font-weight:bold;
+    icon-size: 25px 25px;
+}
+
+QPushButton[tipo="boton_vista_configuracion"]:hover{
+    background-color:#0022ff;
+    margin-bottom: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #ffffff;
+}
+
+QPushButton[tipo="boton_vista_configuracion"]:pressed{
+    background-color:#000d61;
+}

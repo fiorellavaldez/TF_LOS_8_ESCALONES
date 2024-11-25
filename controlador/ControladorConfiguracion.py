@@ -5,6 +5,8 @@ from controlador.ControladorVistaConfiguracionTemaABM import ControladorVistaCon
 from controlador.ControladorVistaSeleccionarJugadoresABM import ControladorVistaSeleccionarJugadores
 from controlador.ControladorAudioVideo import ControladorAudiovideo
 from PyQt6 import QtWidgets
+import os
+import pygame
 
 class ControladorVistaConfiguracion:
 
@@ -18,6 +20,9 @@ class ControladorVistaConfiguracion:
         # Registrar la ventana en el controlador de audio y video
         ControladorAudiovideo.registrar_ventana(self.MainWindow)
 
+        #Aplicar estilos desde un archivo relativo
+        self.__aplicar_estilos()
+
         # Conectar botones a sus métodos
         self.__vista.get_button_config_audio_video().clicked.connect(self.__audio_video)
         self.__vista.get_button_modificar_preguntas_ronda().clicked.connect(self.__preguntas_ronda_ABM)
@@ -26,12 +31,19 @@ class ControladorVistaConfiguracion:
         self.__vista.get_button_modificar_temas().clicked.connect(self.__modificar_temas)
         self.__vista.get_button_atras().clicked.connect(self.__volver_menu)
 
-    
     def __audio_video(self):
         self.MainWindow.hide()
         self.ControladorAudioVideo = ControladorAudiovideo(self)
         self.ControladorAudioVideo.MainWindow.show()
-    
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
     def __preguntas_ronda_ABM(self):
         self.MainWindow.hide()
         self.ControladorConfiguracionPregunta = ControladorConfiguracionPreguntaRonda(self)
