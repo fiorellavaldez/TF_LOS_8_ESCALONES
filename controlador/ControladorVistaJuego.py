@@ -27,7 +27,10 @@ class ControladorVistaJuego:
         self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
-        ControladorAudio.cambiar_musica(r"C:\\Users\\Usuario\\Documents\\GitHub\\TF_LOS_8_ESCALONES\\musica\\acorralado.mp3")
+        # Inicializa un controlador de audio con una ruta inicial
+        self.__audio_controller = ControladorAudio(ruta_inicial="musica\\menu_2.mp3")
+        # Cambia la música
+        self.__audio_controller.cambiar_musica(r"musica\\acorralado.mp3")
         
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
@@ -41,6 +44,8 @@ class ControladorVistaJuego:
 
     def __atras(self):
         self.MainWindow.close()
+        audio_controller = ControladorAudio(ruta_inicial="musica\\menu_2.mp3")
+        audio_controller.cambiar_musica(r"musica\\menu_2.mp3")
         self.__controlador_anterior.MainWindow.show()
 
     def __obtener_pregunta(self): #pasarlo a una vista y la llamamos acá
