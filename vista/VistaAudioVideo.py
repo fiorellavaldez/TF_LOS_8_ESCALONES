@@ -54,7 +54,7 @@ class Ui_ConfigWindow(object):
         self.volume_slider = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal, self.centralwidget)
         self.volume_slider.setMinimum(0)
         self.volume_slider.setMaximum(100)
-        self.volume_slider.setValue(50)
+        self.volume_slider.setValue(100)  # Cambiado de 50 a 100
         self.volume_slider.setTickPosition(QtWidgets.QSlider.TickPosition.TicksBelow)
         self.volume_slider.setTickInterval(10)
         self.volume_slider.setStyleSheet(
@@ -76,6 +76,8 @@ class Ui_ConfigWindow(object):
         self.volume_layout.addWidget(self.volume_label)
         self.volume_layout.addWidget(self.volume_slider)
         self.main_layout.addLayout(self.volume_layout)
+
+        
 
         # Botón para pantalla completa
         self.screen_button = QtWidgets.QPushButton("Pantalla Completa", self.centralwidget)

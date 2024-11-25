@@ -1,5 +1,6 @@
 from vista.VistaAudioVideo import Ui_ConfigWindow
 from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtGui import QScreen
 import pygame
 import os
 
@@ -58,7 +59,14 @@ class ControladorAudiovideo:
             pygame.mixer.music.play(-1)  # Reproducir música en bucle
 
        
-    
+    @classmethod
+    def centrar_ventana(cls, ventana):
+        """Centra la ventana en la pantalla principal."""
+        screen = QScreen.availableGeometry(ventana.screen())
+        window_size = ventana.size()
+        x = (screen.width() - window_size.width()) // 2
+        y = (screen.height() - window_size.height()) // 2
+        ventana.move(x, y)
 
 
     @classmethod
@@ -71,6 +79,7 @@ class ControladorAudiovideo:
                 ventana.showFullScreen()
             else:
                 ventana.showNormal()
+                cls.centrar_ventana(ventana)
 
     @classmethod
     def aplicar_pantalla_completa(cls):
@@ -80,6 +89,7 @@ class ControladorAudiovideo:
                 ventana.showFullScreen()
             else:
                 ventana.showNormal()
+                cls.centrar_ventana(ventana)
 
     def __apagar_encender_musica(self):
         """Alterna entre encender y apagar la música."""
