@@ -2,8 +2,10 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        
-        MainWindow.setFixedSize(1080, 720)
+        # Establece el tamaño inicial de la ventana
+        MainWindow.resize(1080, 720)
+        # Establece el tamaño mínimo de la ventana
+        MainWindow.setMinimumSize(400, 400)
         self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
         self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_juego2.png"))
         self.centralwidget.setScaledContents(True)
@@ -15,13 +17,12 @@ class Ui_MainWindow(object):
         self.label.setPixmap(QtGui.QPixmap("vista/img/jugadores_titulo.png"))
         self.label.setScaledContents(True)
         self.label.setMaximumSize(QtCore.QSize(300, 70))
-        
         self.horizontalLayout_2.addWidget(self.label)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.gridLayout = QtWidgets.QGridLayout()
-        self.gridLayout.setContentsMargins(231, -1, 231, -1)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.frame_16 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_16.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_16.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -45,7 +46,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.addItem(spacerItem4)
         spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_25.addItem(spacerItem5)
-        self.gridLayout.addWidget(self.frame_16, 1, 0, 1, 1)
+        
         self.frame_15 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_15.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_15.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -76,7 +77,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addItem(spacerItem8)
         spacerItem9 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_9.addItem(spacerItem9)
-        self.gridLayout.addWidget(self.frame_15, 2, 1, 1, 1)
         self.frame_12 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_12.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_12.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -107,7 +107,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addItem(spacerItem12)
         spacerItem13 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_4.addItem(spacerItem13)
-        self.gridLayout.addWidget(self.frame_12, 0, 1, 1, 1)
         self.frame_14 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_14.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_14.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -138,7 +137,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addItem(spacerItem16)
         spacerItem17 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_8.addItem(spacerItem17)
-        self.gridLayout.addWidget(self.frame_14, 1, 1, 1, 1)
         self.frame_17 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_17.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_17.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -169,7 +167,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_26.addItem(spacerItem20)
         spacerItem21 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_26.addItem(spacerItem21)
-        self.gridLayout.addWidget(self.frame_17, 1, 2, 1, 1)
         self.frame_18 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_18.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_18.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -200,7 +197,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.addItem(spacerItem24)
         spacerItem25 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_29.addItem(spacerItem25)
-        self.gridLayout.addWidget(self.frame_18, 2, 0, 1, 1)
         self.frame_19 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_19.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_19.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -231,7 +227,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_30.addItem(spacerItem28)
         spacerItem29 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_30.addItem(spacerItem29)
-        self.gridLayout.addWidget(self.frame_19, 2, 2, 1, 1)
         self.frame_11 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_11.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_11.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -260,11 +255,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.bt_seleccionar_jugador1)
         spacerItem32 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem32)
-        self.bt_jugador_nuevo = QtWidgets.QPushButton(parent=self.frame_11)
+        self.bt_jugador_nuevo = QtWidgets.QPushButton(parent=self.centralwidget)
         self.bt_jugador_nuevo.setObjectName("bt_jugador_nuevo")
         spacerItem33 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem33)
-        self.gridLayout.addWidget(self.frame_11, 0, 0, 1, 1)
         self.frame_13 = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_13.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_13.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -295,17 +289,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.addItem(spacerItem36)
         spacerItem37 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_7.addItem(spacerItem37)
-        self.gridLayout.addWidget(self.frame_13, 0, 2, 1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.bt_atras = QtWidgets.QPushButton(parent=self.centralwidget)
         self.bt_atras.setObjectName("bt_atras")
         self.horizontalLayout.addWidget(self.bt_atras)
-        spacerItem38 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        spacerItem39 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem38 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         self.horizontalLayout.addItem(spacerItem38)
         self.horizontalLayout.addWidget(self.bt_jugador_nuevo)
+        spacerItem39 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         self.horizontalLayout.addItem(spacerItem39)
         self.bt_iniciar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
         self.bt_iniciar_partida.setEnabled(True) #False
@@ -315,7 +308,35 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        
+        self.frame_vacio1 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_vacio1.setStyleSheet("QFrame { border: none; background: transparent; }")
+        self.frame_vacio2 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_vacio2.setStyleSheet("QFrame { border: none; background: transparent; }")
+        self.frame_vacio3 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_vacio3.setStyleSheet("QFrame { border: none; background: transparent; }")
+        self.frame_vacio4 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_vacio4.setStyleSheet("QFrame { border: none; background: transparent; }")
+        self.frame_vacio5 = QtWidgets.QFrame(parent=self.centralwidget)
+        self.frame_vacio5.setStyleSheet("QFrame { border: none; background: transparent; }")
+        
+        self.gridLayout.addWidget(self.frame_vacio1, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.frame_vacio2, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.frame_vacio3, 0, 5, 1, 1)
+        self.gridLayout.addWidget(self.frame_vacio4, 0, 6, 1, 1)
+        
+        # Agregar los frames con las posiciones y tamaños correctos
+        
+        self.gridLayout.addWidget(self.frame_11, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.frame_12, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.frame_13, 0, 4, 1, 1)
+        self.gridLayout.addWidget(self.frame_16, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.frame_14, 1, 3, 1, 1)
+        self.gridLayout.addWidget(self.frame_17, 1, 4, 1, 1)
+        self.gridLayout.addWidget(self.frame_18, 2, 2, 1, 1)
+        self.gridLayout.addWidget(self.frame_15, 2, 3, 1, 1)
+        self.gridLayout.addWidget(self.frame_19, 2, 4, 1, 1)
+        
         self.bt_iniciar_partida.setProperty("tipo","boton_vista_grilla")
         self.bt_atras.setProperty("tipo","boton_vista_grilla")
 
@@ -348,6 +369,7 @@ class Ui_MainWindow(object):
         self.bt_seleccionar_jugador7.setProperty("tipo","seleccionar_jugador")
         self.bt_seleccionar_jugador8.setProperty("tipo","seleccionar_jugador")
         self.bt_seleccionar_jugador9.setProperty("tipo","seleccionar_jugador")
+        self.bt_jugador_nuevo.setProperty("tipo","seleccionar_jugador")
 
         self.bt_seleccionar_jugador1.setIcon(QtGui.QIcon("vista/img/select_jugad.png"))
         self.bt_seleccionar_jugador2.setIcon(QtGui.QIcon("vista/img/select_jugad.png"))
@@ -365,48 +387,46 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaGrillaJugadores", "VistaGrillaJugadores"))
-        #self.label.setText(_translate("MainWindow", "Jugadores"))
+
         #Jugador 1
         self.nombre_jugador1.setText(_translate("MainWindow", "Jugador 1"))
         self.bt_seleccionar_jugador1.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo.setText(_translate("MainWindow", "Jugador Nuevo")) ############
+        self.bt_jugador_nuevo.setText("Jugador Nuevo") ############
         #Jugador 2
         self.nombre_jugador2.setText(_translate("MainWindow", "Jugador 2"))
         self.bt_seleccionar_jugador2.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo2.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 3
         self.nombre_jugador3.setText(_translate("MainWindow", "Jugador 3"))
         self.bt_seleccionar_jugador3.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo3.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 4
         self.nombre_jugador4.setText(_translate("MainWindow", "Jugador 4"))
         self.bt_seleccionar_jugador4.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo4.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 5
         self.nombre_jugador5.setText(_translate("MainWindow", "Jugador 5"))
         self.bt_seleccionar_jugador5.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo5.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Juagdor 6
         self.nombre_jugador6.setText(_translate("MainWindow", "Jugador 6"))
         self.bt_seleccionar_jugador6.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo6.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 7
         self.nombre_jugador7.setText(_translate("MainWindow", "Jugador 7"))
         self.bt_seleccionar_jugador7.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo7.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 8
         self.nombre_jugador8.setText(_translate("MainWindow", "Jugador 8"))
         self.bt_seleccionar_jugador8.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo8.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 9
         self.nombre_jugador9.setText(_translate("MainWindow", "Jugador 9"))
         self.bt_seleccionar_jugador9.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo9.setText(_translate("MainWindow", "Jugador Nuevo"))
 
         #Botones
         self.bt_atras.setText(_translate("MainWindow", "Atrás"))
         self.bt_iniciar_partida.setText(_translate("MainWindow", "Iniciar Partida"))
-
 
 # MÉTODOS JUGADORES
 
@@ -420,7 +440,7 @@ class Ui_MainWindow(object):
     #Métodos Jugador 2
     def get_nombre_jugador2 (self):
         return self.nombre_jugador2
-    
+
     def get_button_seleccionar_jugador2(self):
         return self.bt_seleccionar_jugador2
 
@@ -437,15 +457,13 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador4(self):
         return self.bt_seleccionar_jugador4
-    
-    
+
     #Métodos Jugador 5
     def get_nombre_jugador5 (self):
         return self.nombre_jugador5
-    
+
     def get_button_seleccionar_jugador5(self):
         return self.bt_seleccionar_jugador5
-    
 
     #Métodos Jugador 6
     def get_nombre_jugador6 (self):
@@ -467,11 +485,11 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador8(self):
         return self.bt_seleccionar_jugador8
-    
+
     #Métodos Jugador 9
     def get_nombre_jugador9 (self):
         return self.nombre_jugador9
-    
+
     def get_button_seleccionar_jugador9(self):
         return self.bt_seleccionar_jugador9
 
@@ -479,13 +497,13 @@ class Ui_MainWindow(object):
 
     def get_button_atras(self):
         return self.bt_atras
-    
+
     def get_button_iniciar_partida(self):
         return self.bt_iniciar_partida
 
     def get_button_jugador_nuevo(self):
         return self.bt_jugador_nuevo
-    
+
     def aviso_iniciar_partida(self):
         msg=QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -493,9 +511,8 @@ class Ui_MainWindow(object):
         msg.setText("Debes seleccionar a todos los jugadores")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
-        
-    
-    
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
