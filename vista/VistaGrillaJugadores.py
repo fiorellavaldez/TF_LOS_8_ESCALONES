@@ -348,6 +348,7 @@ class Ui_MainWindow(object):
         self.bt_seleccionar_jugador7.setProperty("tipo","seleccionar_jugador")
         self.bt_seleccionar_jugador8.setProperty("tipo","seleccionar_jugador")
         self.bt_seleccionar_jugador9.setProperty("tipo","seleccionar_jugador")
+        self.bt_jugador_nuevo.setProperty("tipo","seleccionar_jugador")
 
         self.bt_seleccionar_jugador1.setIcon(QtGui.QIcon("vista/img/select_jugad.png"))
         self.bt_seleccionar_jugador2.setIcon(QtGui.QIcon("vista/img/select_jugad.png"))
@@ -365,7 +366,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaGrillaJugadores", "VistaGrillaJugadores"))
-        #self.label.setText(_translate("MainWindow", "Jugadores"))
+
         #Jugador 1
         self.nombre_jugador1.setText(_translate("MainWindow", "Jugador 1"))
         self.bt_seleccionar_jugador1.setText(_translate("MainWindow", "Seleccionar Jugador"))
@@ -373,40 +374,38 @@ class Ui_MainWindow(object):
         #Jugador 2
         self.nombre_jugador2.setText(_translate("MainWindow", "Jugador 2"))
         self.bt_seleccionar_jugador2.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo2.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 3
         self.nombre_jugador3.setText(_translate("MainWindow", "Jugador 3"))
         self.bt_seleccionar_jugador3.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo3.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 4
         self.nombre_jugador4.setText(_translate("MainWindow", "Jugador 4"))
         self.bt_seleccionar_jugador4.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo4.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 5
         self.nombre_jugador5.setText(_translate("MainWindow", "Jugador 5"))
         self.bt_seleccionar_jugador5.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo5.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Juagdor 6
         self.nombre_jugador6.setText(_translate("MainWindow", "Jugador 6"))
         self.bt_seleccionar_jugador6.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo6.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 7
         self.nombre_jugador7.setText(_translate("MainWindow", "Jugador 7"))
         self.bt_seleccionar_jugador7.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo7.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 8
         self.nombre_jugador8.setText(_translate("MainWindow", "Jugador 8"))
         self.bt_seleccionar_jugador8.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo8.setText(_translate("MainWindow", "Jugador Nuevo"))
+
         #Jugador 9
         self.nombre_jugador9.setText(_translate("MainWindow", "Jugador 9"))
         self.bt_seleccionar_jugador9.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        ##self.bt_jugador_nuevo9.setText(_translate("MainWindow", "Jugador Nuevo"))
 
         #Botones
         self.bt_atras.setText(_translate("MainWindow", "Atrás"))
         self.bt_iniciar_partida.setText(_translate("MainWindow", "Iniciar Partida"))
-
 
 # MÉTODOS JUGADORES
 
@@ -420,7 +419,7 @@ class Ui_MainWindow(object):
     #Métodos Jugador 2
     def get_nombre_jugador2 (self):
         return self.nombre_jugador2
-    
+
     def get_button_seleccionar_jugador2(self):
         return self.bt_seleccionar_jugador2
 
@@ -437,15 +436,13 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador4(self):
         return self.bt_seleccionar_jugador4
-    
-    
+
     #Métodos Jugador 5
     def get_nombre_jugador5 (self):
         return self.nombre_jugador5
-    
+
     def get_button_seleccionar_jugador5(self):
         return self.bt_seleccionar_jugador5
-    
 
     #Métodos Jugador 6
     def get_nombre_jugador6 (self):
@@ -467,11 +464,11 @@ class Ui_MainWindow(object):
 
     def get_button_seleccionar_jugador8(self):
         return self.bt_seleccionar_jugador8
-    
+
     #Métodos Jugador 9
     def get_nombre_jugador9 (self):
         return self.nombre_jugador9
-    
+
     def get_button_seleccionar_jugador9(self):
         return self.bt_seleccionar_jugador9
 
@@ -479,13 +476,13 @@ class Ui_MainWindow(object):
 
     def get_button_atras(self):
         return self.bt_atras
-    
+
     def get_button_iniciar_partida(self):
         return self.bt_iniciar_partida
 
     def get_button_jugador_nuevo(self):
         return self.bt_jugador_nuevo
-    
+
     def aviso_iniciar_partida(self):
         msg=QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -493,9 +490,8 @@ class Ui_MainWindow(object):
         msg.setText("Debes seleccionar a todos los jugadores")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
-        
-    
-    
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
