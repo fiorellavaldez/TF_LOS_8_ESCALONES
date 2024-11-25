@@ -7,7 +7,7 @@ from controlador.ControladorVistaConfiguracionTemaABMEditBaja import Controlador
 from vista.VistaConfiguracionTemaABMEdit import Ui_Widget
 from modelo.Tema import Tema
 from modelo.TemaABM import TemaABM
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.ControladorVideo import ControladorVideo
 
 from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
@@ -28,7 +28,7 @@ class ControladorVistaConfiguracionTemaABM:
         self.__vistaEdit.setupUi(self.WindowEdit)
         
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        ControladorVideo.registrar_ventana(self.MainWindow)
         
         self.__filtered_temas = []
         self.model = QStringListModel()

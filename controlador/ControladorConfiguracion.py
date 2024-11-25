@@ -3,7 +3,8 @@ from controlador.ControladorConfiguracionPreguntaRonda import ControladorConfigu
 from controlador.ControladorConfiguracionPreguntaDesempate import ControladorConfiguracionPreguntaDesempate
 from controlador.ControladorVistaConfiguracionTemaABM import ControladorVistaConfiguracionTemaABM
 from controlador.ControladorVistaSeleccionarJugadoresABM import ControladorVistaSeleccionarJugadores
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.ControladorVideo import ControladorVideo
+from controlador.ControladorAudioVideo import ControladorAudioVideo
 from PyQt6 import QtWidgets
 import os
 import pygame
@@ -18,7 +19,7 @@ class ControladorVistaConfiguracion:
         self.MainWindow.show()
         
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        ControladorVideo.registrar_ventana(self.MainWindow)
 
         #Aplicar estilos desde un archivo relativo
         self.__aplicar_estilos()
@@ -33,7 +34,7 @@ class ControladorVistaConfiguracion:
 
     def __audio_video(self):
         self.MainWindow.hide()
-        self.ControladorAudioVideo = ControladorAudiovideo(self)
+        self.ControladorAudioVideo = ControladorAudioVideo(self)
         self.ControladorAudioVideo.MainWindow.show()
 
     def __aplicar_estilos(self):

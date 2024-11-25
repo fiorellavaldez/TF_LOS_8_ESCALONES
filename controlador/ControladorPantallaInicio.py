@@ -1,7 +1,8 @@
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.ControladorVideo import ControladorVideo
 from controlador.ControladorConfiguracion import ControladorVistaConfiguracion
 from controlador.ControladorVistaGrillaJugadores import ControladorVistaGrillaJugadores
 from vista.VistaPantallaInicio import Ui_MainWindow
+from controlador.Sonido import Sonido
 from PyQt6 import QtWidgets
 import os
 import pygame
@@ -16,10 +17,17 @@ class ControladorPantallaInicio:
         self.__vista.setupUi(self.MainWindow)
 
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        ControladorVideo.registrar_ventana(self.MainWindow)
 
         # Iniciar la música sin abrir ventanas adicionales
-        self.__inicializar_audio()
+        
+        # Configurar la música
+        self.__sonido = Sonido(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu_2.mp3")
+        if not pygame.mixer.get_init():
+            pygame.mixer.init()  # Asegúrate de inicializar pygame.mixer
+        if not pygame.mixer.music.get_busy():
+            self.__sonido.toggle_music()  
+        
         self.MainWindow.show()
 
         # Aplicar estilos desde un archivo relativo
@@ -39,35 +47,35 @@ class ControladorPantallaInicio:
         else:
             print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
 
-    def __inicializar_audio(self):
-        """Inicializa el sistema de audio y configura la música."""
-        self.music_on = True  # Inicialmente la música está encendida
-        self.volume = 1.0  # Volumen inicial al máximo
+    # def __inicializar_audio(self):
+    #     """Inicializa el sistema de audio y configura la música."""
+    #     self.music_on = True  # Inicialmente la música está encendida
+    #     self.volume = 1.0  # Volumen inicial al máximo
 
-        # Establecer la ruta relativa al archivo de música
-        base_dir = os.path.dirname(__file__)
-        self.music_file = os.path.join(base_dir, "../musica/menu_2.mp3")
+    #     # Establecer la ruta relativa al archivo de música
+    #     base_dir = os.path.dirname(__file__)
+    #     self.music_file = os.path.join(base_dir, "../musica/menu_2.mp3")
 
-        # Inicializar pygame y cargar la música
-        pygame.mixer.init()
-        self.__cargar_musica(self.music_file)
+    #     # Inicializar pygame y cargar la música
+    #     pygame.mixer.init()
+    #     self.__cargar_musica(self.music_file)
 
-        # Reproducir música automáticamente al iniciar
-        if self.music_on:
-            pygame.mixer.music.play(-1)  # Reproducir música en bucle
+    #     # Reproducir música automáticamente al iniciar
+    #     if self.music_on:
+    #         pygame.mixer.music.play(-1)  # Reproducir música en bucle
 
-    def __cargar_musica(self, archivo):
-        """Carga y reproduce una nueva canción."""
-        if os.path.exists(archivo):
-            try:
-                pygame.mixer.music.load(archivo)
-                pygame.mixer.music.set_volume(self.volume)  # Ajustar volumen al actual
-                if self.music_on:
-                    pygame.mixer.music.play(-1)  # Reproducir música en bucle
-            except pygame.error as e:
-                print(f"Error al cargar la música: {str(e)}")
-        else:
-            print(f"Error: El archivo de música {archivo} no se encuentra en la ruta especificada.")
+    # def __cargar_musica(self, archivo):
+    #     """Carga y reproduce una nueva canción."""
+    #     if os.path.exists(archivo):
+    #         try:
+    #             pygame.mixer.music.load(archivo)
+    #             pygame.mixer.music.set_volume(self.volume)  # Ajustar volumen al actual
+    #             if self.music_on:
+    #                 pygame.mixer.music.play(-1)  # Reproducir música en bucle
+    #         except pygame.error as e:
+    #             print(f"Error al cargar la música: {str(e)}")
+    #     else:
+    #         print(f"Error: El archivo de música {archivo} no se encuentra en la ruta especificada.")
 
     def __nueva_partida(self):
         """Inicia una nueva partida."""

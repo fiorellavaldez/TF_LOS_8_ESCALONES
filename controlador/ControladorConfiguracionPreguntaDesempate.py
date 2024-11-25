@@ -5,7 +5,7 @@ from modelo.TemaABM import TemaABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from controlador.ControladorEditarPreguntaDeDesempate import ControladorEditarPreguntaDeDesempate
 from controlador.ControladorNuevaPreguntaDeDesempate import ControladorNuevaPreguntaDeDesempate
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.ControladorVideo import ControladorVideo
 
 ############################################ DESEMPATE NO ELIMINAR
 
@@ -27,7 +27,7 @@ class ControladorConfiguracionPreguntaDesempate():
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta) #conectra con la barra de busqueda
         
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        ControladorVideo.registrar_ventana(self.MainWindow)
         
         
         # Obtener preguntas para el tema inicial

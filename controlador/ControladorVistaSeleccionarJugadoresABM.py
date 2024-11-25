@@ -6,7 +6,7 @@ from PyQt6 import QtWidgets,QtCore
 from modelo.JugadoresABM import JugadorABM
 from modelo.Jugador import Jugador
 from PyQt6.QtGui import QIcon,QPixmap
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.ControladorVideo import ControladorVideo
 
 class ControladorVistaSeleccionarJugadores:
     def __init__(self, controlador_anterior):
@@ -18,7 +18,7 @@ class ControladorVistaSeleccionarJugadores:
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        ControladorVideo.registrar_ventana(self.MainWindow)
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
         

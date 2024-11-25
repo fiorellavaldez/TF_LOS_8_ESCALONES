@@ -9,7 +9,9 @@ from vista.WidgetJugador import WidgetJugador
 from modelo.Jugador import Jugador
 from modelo.TemaABM import TemaABM
 from modelo.PreguntasABM import PreguntaABM
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.Sonido import Sonido
+from controlador.ControladorVideo import ControladorVideo
+from controlador.ControladorAudio import ControladorAudio
 
 class ControladorVistaJuego:
 
@@ -24,9 +26,9 @@ class ControladorVistaJuego:
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
-        nuevo_controlador = ControladorAudiovideo(controlador_anterior)
-        nuevo_controlador.cambiar_musica(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\acorralado.mp3")
+        ControladorVideo.registrar_ventana(self.MainWindow)
+        ControladorAudio.cambiar_musica(r"C:\\Users\\Usuario\\Documents\\GitHub\\TF_LOS_8_ESCALONES\\musica\\acorralado.mp3")
+        
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
         

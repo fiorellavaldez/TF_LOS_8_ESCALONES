@@ -5,7 +5,7 @@ from modelo.TemaABM import TemaABM
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from controlador.ControladorEditarPreguntaDeRondaEspecifica import ControladorEditarPreguntaDeRondaEspecifica
 from controlador.ControladorNuevaPreguntaDeRonda import ControladorNuevaPreguntaDeRonda
-from controlador.ControladorAudioVideo import ControladorAudiovideo
+from controlador.ControladorVideo import ControladorVideo
 
 ############################################ RONDA NO ELIMINAR
 
@@ -28,7 +28,7 @@ class ControladorConfiguracionPreguntaRonda():
         
         
         # Registrar la ventana en el controlador de audio y video
-        ControladorAudiovideo.registrar_ventana(self.MainWindow)
+        ControladorVideo.registrar_ventana(self.MainWindow)
         
         # Obtener preguntas para el tema inicial
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__idTemaActual)
