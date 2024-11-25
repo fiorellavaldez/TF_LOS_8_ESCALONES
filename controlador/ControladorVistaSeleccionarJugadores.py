@@ -21,6 +21,7 @@ class ControladorVistaSeleccionarJugadores:
         
         self.__vista.get_button_aceptar().clicked.connect(self.__aceptar)
         self.__vista.get_button_cancelar().clicked.connect(self.__volver_seleccion_de_jugadores)
+        self.__vista.tableWidget.doubleClicked.connect(self.__aceptar)
 
         self.filtrando_jugadores = self.__lista_jugadores.copy()
 
