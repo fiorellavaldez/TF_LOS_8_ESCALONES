@@ -14,6 +14,7 @@ from modelo.PreguntasABM import PreguntaABM
 from controlador.Sonido import Sonido
 from controlador.ControladorVideo import ControladorVideo
 from controlador.ControladorAudio import ControladorAudio
+import random
 
 class ControladorVistaJuego:
 
@@ -22,8 +23,9 @@ class ControladorVistaJuego:
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
         self.__lista_jugadores = self.__convertir_obj_jugador(lista_jugadores)
-        self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores)
-        self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas 
+        #self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores)
+        self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas
+        self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores) 
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget) #le paso widgets
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
@@ -80,7 +82,6 @@ class ControladorVistaJuego:
     
     def asignar_temas(self,escalones):
         Qlabels = self.__vista.get_lista_escalones()
-        esc = escalones
         for i in range(8):
             Qlabels[i].setText(escalones[i].get_tema().get_nombreTema().upper())
 
