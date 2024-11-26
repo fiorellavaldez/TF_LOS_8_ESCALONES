@@ -18,7 +18,6 @@ from PyQt6.QtCore import QEvent
 import os
 
 class ControladorVistaConfiguracionTemaABM:
-    #def __init__(self):
     def __init__(self, controlador_anterior=None):
         self.__controlador_anterior = controlador_anterior
         self.MainWindow = QtWidgets.QMainWindow()

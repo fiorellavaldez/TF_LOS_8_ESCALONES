@@ -12,8 +12,12 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(408, 720)
+        MainWindow.resize(1080, 720)
+        MainWindow.setMinimumSize(1080, 720)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
+        self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_escalones.png"))
+        self.centralwidget.setScaledContents(True)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -112,16 +116,14 @@ class Ui_MainWindow(object):
         msg.setText("Debe seleccionar un tema para eliminar")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
-        
+
     def informamos_tema_modificado(self,tema):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Information)
         msg.setWindowTitle("Modificacion Existosa")
         msg.setText(f"Se Modifico correctamente el tema: {tema}")
         msg.exec()
-        
-        
-        
+
     def aviso_eliminar_tema(self,tema):
         mensaje = QtWidgets.QMessageBox()
         mensaje.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -130,7 +132,6 @@ class Ui_MainWindow(object):
         mensaje.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         respuesta=mensaje.exec()
         return respuesta
-
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

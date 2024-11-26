@@ -5,11 +5,14 @@ class Ui_MainWindow(object):
         self.__lista_temas = lista_temas
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        # Establece el tamaño inicial de la ventana
         MainWindow.resize(1080, 720)
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
+        # Establece el tamaño mínimo de la ventana
+        MainWindow.setMinimumSize(400, 400)
+        self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
+        self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_escalones.png"))
+        self.centralwidget.setScaledContents(True)
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         spacerItem = QtWidgets.QSpacerItem(66, 20, QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Minimum)
