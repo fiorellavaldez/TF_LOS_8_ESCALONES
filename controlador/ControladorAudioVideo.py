@@ -2,8 +2,9 @@ from vista.VistaAudioVideo import Ui_ConfigWindow
 from PyQt6.QtWidgets import QMainWindow
 from controlador.ControladorAudio import ControladorAudio
 from controlador.ControladorVideo import ControladorVideo
+
 class ControladorAudioVideo:
-    def __init__(self, controlador_anterior):
+    def __init__(self, controlador_anterior, ruta_musica=None):
         self.__controlador_anterior = controlador_anterior
 
         # Inicializar la ventana principal como instancia de QMainWindow
@@ -14,7 +15,8 @@ class ControladorAudioVideo:
         self.__vista.setupUi(self.MainWindow)
 
         # Inicializar controladores secundarios
-        self.controlador_audio = ControladorAudio(self.__vista)  # Pasar la vista
+        # Si se proporciona una ruta de música, la pasamos al controlador de audio
+        self.controlador_audio = ControladorAudio(ruta_inicial=ruta_musica, vista=self.__vista)  # Pasar la vista y ruta de música
         self.controlador_video = ControladorVideo(self.MainWindow, self.__vista)  # Pasar ventana y vista
 
         # Conectar el botón "Atrás" a su función
@@ -24,6 +26,7 @@ class ControladorAudioVideo:
         """Vuelve a la ventana anterior."""
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
+
 
 
 ##___________________________-----------------------------------------------------

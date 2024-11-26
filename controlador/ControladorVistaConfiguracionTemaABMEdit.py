@@ -14,14 +14,9 @@ class ControladorVistaConfiguracionTemaABMEdit:
         self._vista.lineEdit_Tema.setText(tema.get_nombreTema())
         self._tema = tema
         self._temas = temas
-  
+
         self._vista.buttonBox_Confirmar.rejected.connect(self._volver_configuracion)
 
     def _volver_configuracion(self):
         self.MainWindow.hide()
         self._controlador_anterior.MainWindow.show()
-
-
-
-
-        

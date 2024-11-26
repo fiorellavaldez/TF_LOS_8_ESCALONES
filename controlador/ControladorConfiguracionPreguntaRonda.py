@@ -6,14 +6,14 @@ from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from controlador.ControladorEditarPreguntaDeRondaEspecifica import ControladorEditarPreguntaDeRondaEspecifica
 from controlador.ControladorNuevaPreguntaDeRonda import ControladorNuevaPreguntaDeRonda
 from controlador.ControladorVideo import ControladorVideo
+import os
+import pygame
 
 ############################################ RONDA NO ELIMINAR
 
 class ControladorConfiguracionPreguntaRonda():
     def __init__(self, controlador_anterior):
-        self.__controlador_anterior = controlador_anterior
-        
-        
+        self.__controlador_anterior = controlador_anterior        
         self.__listaTemas = TemaABM().obtener_temas()
         self.__listaNombreTemas = self.__obtenerListaNombreTemas()
         
@@ -34,22 +34,33 @@ class ControladorConfiguracionPreguntaRonda():
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__idTemaActual)
         self.__preguntas_visibles = []  # Lista de referencias a las preguntas visibles
 
+        # Mostrar datos iniciales
+        self.__vista.mostrar_lista_en_combobox()
+        self.mostrar_preguntas()
+        self.MainWindow.show()  # Mostrar ventana al iniciar
+
+        #Aplicar estilos
+        self.__aplicar_estilos()
+
         # Conexiones con botones
         self.__vista.get_button_atras().clicked.connect(self.__volver)
         self.__vista.get_button_eliminar().clicked.connect(self.__eliminar)
         self.__vista.get_button_modificar().clicked.connect(self.__modificar)
         self.__vista.get_button_nueva().clicked.connect(self.__nueva)
-    
-        # Mostrar datos iniciales
-        self.__vista.mostrar_lista_en_combobox()
-        self.mostrar_preguntas()
-        self.MainWindow.show()  # Mostrar ventana al iniciar
-    
+
     # Acciones de botones
     def __volver(self):
         self.MainWindow.hide()  # Oculta la ventana actual
         self.__controlador_anterior.MainWindow.show()  # Muestra la ventana anterior
-    
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
     def __eliminar(self):
         for i in self.__preguntas_visibles:
             print(i.get_enunciado()) #si teine preguntas
@@ -117,3 +128,4 @@ class ControladorConfiguracionPreguntaRonda():
             if texto_filtrado in pregunta.get_enunciado().lower()
         ]
         self.__llenar_tableview(preguntas_filtradas)  # Mostrar solo las preguntas filtradas
+

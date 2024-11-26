@@ -144,6 +144,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.pushButton_12.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_13.setProperty("tipo","boton_vista_configuracion")
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -201,19 +204,19 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(3, _translate("MainWindow", "d)"))
         self.pushButton_13.setText(_translate("MainWindow", "Cancelar"))
         self.pushButton_12.setText(_translate("MainWindow", "Aceptar"))
-    
+
     def get_button_atras(self):
         return self.pushButton_13
-    
+
     def get_button_aceptar(self):
         return self.pushButton_12 
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec())
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ui = Ui_MainWindow()
+#     ui.setupUi(MainWindow)
+#     MainWindow.show()
+#     sys.exit(app.exec())

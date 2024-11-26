@@ -2,6 +2,8 @@ from vista.VistaJuego import Ui_MainWindow
 from vista.VistaPreguntaRonda import VistaPreguntaRonda
 from vista.VistaPreguntaAproximacion import VistaPreguntaAproximacion
 from vista.VistaDialogGanador import VistaDialogGanador
+from vista.VistaDialogRonda import DialogRonda
+from vista.VistaDialogDesempate import DialogDesempate
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox, QMainWindow, QApplication, QDialog, QLabel, QPushButton
 from modelo.Escalon import Escalon
@@ -12,6 +14,7 @@ from modelo.PreguntasABM import PreguntaABM
 from controlador.Sonido import Sonido
 from controlador.ControladorVideo import ControladorVideo
 from controlador.ControladorAudio import ControladorAudio
+import random
 
 class ControladorVistaJuego:
 
@@ -20,14 +23,18 @@ class ControladorVistaJuego:
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
         self.__lista_jugadores = self.__convertir_obj_jugador(lista_jugadores)
-        self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores)
-        self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas 
+        #self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores)
+        self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas
+        self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores) 
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget) #le paso widgets
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
-        ControladorAudio.cambiar_musica(r"C:\\Users\\Usuario\\Documents\\GitHub\\TF_LOS_8_ESCALONES\\musica\\acorralado.mp3")
+        # Inicializa un controlador de audio con una ruta inicial
+        self.__audio_controller = ControladorAudio(ruta_inicial="musica\\menu_2.mp3")
+        # Cambia la música
+        self.__audio_controller.cambiar_musica(r"musica\\acorralado.mp3")
         
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
@@ -41,6 +48,8 @@ class ControladorVistaJuego:
 
     def __atras(self):
         self.MainWindow.close()
+        audio_controller = ControladorAudio(ruta_inicial="musica\\menu_2.mp3")
+        audio_controller.cambiar_musica(r"musica\\menu_2.mp3")
         self.__controlador_anterior.MainWindow.show()
 
     def __obtener_pregunta(self): #pasarlo a una vista y la llamamos acá
@@ -73,7 +82,6 @@ class ControladorVistaJuego:
     
     def asignar_temas(self,escalones):
         Qlabels = self.__vista.get_lista_escalones()
-        esc = escalones
         for i in range(8):
             Qlabels[i].setText(escalones[i].get_tema().get_nombreTema().upper())
 
@@ -179,6 +187,7 @@ class ControladorVistaJuego:
             jugador=jugador.get_nombre_jugador(),  # Suponiendo que 'jugador' tiene un atributo 'nombre'
             escalon=escalon+1,
             tematica=tematica,
+            ronda_actual=ronda,
             pregunta=pregunta,
             respuestas=respuestas
         )
@@ -207,7 +216,9 @@ class ControladorVistaJuego:
                     jugador.set_ronda2(2)  # Respuesta incorrecta en la ronda 2
                     jugador_widget.actualizar_r2(estado=False)
                 print(f"{jugador.get_nombre_jugador()} ha respondido incorrectamente.")
-
+            es_correcta = respuesta_seleccionada == correcta
+            dialog = DialogRonda(jugador.get_nombre_jugador(), es_correcta, correcta)
+            dialog.exec()
             return respuesta_seleccionada
         else:  # Si el diálogo se cierra sin seleccionar
             QMessageBox.warning(self, "Advertencia", f"{jugador.get_nombre_jugador()} no respondió a la pregunta.")
@@ -241,16 +252,10 @@ class ControladorVistaJuego:
         :param pregunta_desempate: objeto preguntaDesempate, contiene el enunciado y la respuesta correcta
         :return: objeto Jugador que será eliminado
         """
-        from PyQt6.QtWidgets import QApplication
-
         # Obtener datos de la pregunta
         enunciado = pregunta_desempate.get_enunciado()
         respuesta_correcta = pregunta_desempate.get_respuestaCorrecta()
-        print(f"Pregunta de desempate: {enunciado}")
-        print(f"La respuesta correcta es: {respuesta_correcta}")
-
         respuestas = {}
-
         for jugador in jugadores:
             # Crear y mostrar el diálogo
             dialog = VistaPreguntaAproximacion(enunciado, jugador.get_nombre_jugador())
@@ -258,16 +263,12 @@ class ControladorVistaJuego:
                 respuestas[jugador] = dialog.get_respuesta()
             else:
                 print(f"{jugador.get_nombre_jugador()} no respondió.")
-
         # Calcular distancias a la respuesta correcta
         distancias = {jugador: pregunta_desempate.responder(respuestas[jugador]) for jugador in jugadores}
-        for jugador, distancia in distancias.items():
-            print(f"{jugador.get_nombre_jugador()} estuvo a una distancia de {distancia}.")
-
         # Determinar el jugador eliminado
         jugador_eliminado = max(distancias, key=distancias.get)
-        print(f"{jugador_eliminado.get_nombre_jugador()} estuvo más lejos de la respuesta correcta y será eliminado.")
-
+        dialog = DialogDesempate(jugadores, jugador_eliminado, distancias, respuesta_correcta)
+        dialog.exec()
         return jugador_eliminado
 
     def obtener_widget_por_jugador(self, jugador):

@@ -17,7 +17,7 @@ class ControladorVistaConfiguracion:
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
-        
+
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
 

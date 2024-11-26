@@ -3,25 +3,25 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        # Establece el tamaño inicial de la ventana
         MainWindow.resize(1080, 720)
+        # Establece el tamaño mínimo de la ventana
+        MainWindow.setMinimumSize(400, 400)
         self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
         self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_configuracion.jpg"))
         self.centralwidget.setScaledContents(True)
+        
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
+
         self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
+
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label.setBaseSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Segoe Fluent Icons")
-        font.setPointSize(80)
-        font.setBold(False)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label.setObjectName("label")
+        self.label.setPixmap(QtGui.QPixmap("vista/img/configuracion_titulo.PNG"))
+        self.label.setScaledContents(True)
+        self.label.setMaximumSize(QtCore.QSize(700, 400))
         self.verticalLayout.addWidget(self.label)
+        self.verticalLayout.setAlignment(self.label, QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.verticalLayout_5.addLayout(self.verticalLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -115,7 +115,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaConfiguracion", "VistaConfiguracion"))
-        self.label.setText(_translate("MainWindow", "Configuración"))
+        self.label.setText(_translate("MainWindow", ""))
         self.pushButton_config_audio_video.setText(_translate("MainWindow", "Configuración de Audio y Video"))
         self.pushButton.setText(_translate("MainWindow", "Modificar o crear Preguntas de ronda"))
         self.pushButton_2.setText(_translate("MainWindow", "Modificar o crear Preguntas de desempate"))

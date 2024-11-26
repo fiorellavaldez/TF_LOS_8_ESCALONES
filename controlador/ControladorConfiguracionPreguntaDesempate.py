@@ -6,17 +6,16 @@ from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from controlador.ControladorEditarPreguntaDeDesempate import ControladorEditarPreguntaDeDesempate
 from controlador.ControladorNuevaPreguntaDeDesempate import ControladorNuevaPreguntaDeDesempate
 from controlador.ControladorVideo import ControladorVideo
-
+import os
 ############################################ DESEMPATE NO ELIMINAR
 
 class ControladorConfiguracionPreguntaDesempate():
     def __init__(self, controlador_anterior):
         self.__controlador_anterior = controlador_anterior
-        
-        
+
         self.__listaTemas = TemaABM().obtener_temas()
         self.__listaNombreTemas = self.__obtenerListaNombreTemas()
-        
+
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow(self.__listaNombreTemas)
         self.__vista.setupUi(self.MainWindow)
@@ -25,11 +24,13 @@ class ControladorConfiguracionPreguntaDesempate():
         self.__idTemaActual = self.__temaActual()
         
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta) #conectra con la barra de busqueda
-        
+
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
-        
-        
+
+        #Aplicar estilos desde un archivo relativo
+        self.__aplicar_estilos()
+
         # Obtener preguntas para el tema inicial
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_desempate_tema(self.__idTemaActual)
         self.__preguntas_visibles = []  # Lista de referencias a las preguntas visibles
@@ -44,7 +45,15 @@ class ControladorConfiguracionPreguntaDesempate():
         self.__vista.mostrar_lista_en_combobox()
         self.mostrar_preguntas()
         self.MainWindow.show()  # Mostrar ventana al iniciar
-    
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
     # Acciones de botones
     def __volver(self):
         self.MainWindow.hide()  # Oculta la ventana actual

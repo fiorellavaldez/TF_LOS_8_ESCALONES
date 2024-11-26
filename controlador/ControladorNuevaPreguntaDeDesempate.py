@@ -5,7 +5,7 @@ from modelo.PreguntasABM import PreguntaABM
 from modelo.preguntaDesempate import preguntaDesempate
 from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from PyQt6.QtWidgets import QTextEdit
-
+import os
 
 class ControladorNuevaPreguntaDeDesempate(): 
     def __init__(self, controlador_anterior, id_tema):
@@ -14,16 +14,28 @@ class ControladorNuevaPreguntaDeDesempate():
         self.__controlador_anterior = controlador_anterior
         self.__vista = Ui_MainWindow() # Me parece que aca podria agregar el self.__id_tema para qeu la vista muestre el tema en el que va a gregar la preguta
         self.MainWindow = QtWidgets.QMainWindow()
-        
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+
+        #Aplicar estilos desde un archivo relativo
+        self.__aplicar_estilos()
+
         self.__vista.get_button_cancelar().clicked.connect(self.__cancelar)
         self.__vista.get_button_aceptar().clicked.connect(self.__agregar_pregunta)
         
     def __cancelar(self): 
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
-    
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
+
     def __agregar_pregunta(self):
         controlador_seguro = ControladorEstaSeguro("¿Está seguro de agregar esta pregunta?")
         if controlador_seguro.exec():  # `exec` con el usuario cierra el diálogo

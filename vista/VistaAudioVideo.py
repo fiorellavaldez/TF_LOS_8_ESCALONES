@@ -30,7 +30,7 @@ class Ui_ConfigWindow(object):
         self.main_layout.addWidget(self.title_label)
 
         # Botón para activar/desactivar música
-        self.music_button = QtWidgets.QPushButton("Apagar Música", self.centralwidget)
+        self.music_button = QtWidgets.QPushButton("Encender/Apagar Música", self.centralwidget)
         self.music_button.setFont(QtGui.QFont("Segoe UI", 16))
         self.music_button.setStyleSheet(
             "QPushButton {"
