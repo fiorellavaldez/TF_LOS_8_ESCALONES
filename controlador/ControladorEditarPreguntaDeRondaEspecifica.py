@@ -3,6 +3,7 @@ from controlador.ControladorEstaSeguro import ControladorEstaSeguro
 from modelo.PreguntasABM import PreguntaABM
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6 import QtWidgets
+import os
 
 class ControladorEditarPreguntaDeRondaEspecifica():
     def __init__(self, controlador_anterior, pregunta_desempate):
@@ -13,6 +14,9 @@ class ControladorEditarPreguntaDeRondaEspecifica():
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
 
+        #Aplicar estilos desde un archivo relativo
+        self.__aplicar_estilos()
+
         self.__vista.get_button_atras().clicked.connect(self.__volver)
         self.__vista.get_button_aceptar().clicked.connect(lambda: self.__guardar(self.__pregunta))
         
@@ -20,7 +24,15 @@ class ControladorEditarPreguntaDeRondaEspecifica():
     def __volver(self):
         self.MainWindow.hide()
         self.__controlador_anterior.MainWindow.show()
-    
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
     def __guardar(self, pregunta): #ESTOY ACÁ
         controlador_seguro = ControladorEstaSeguro("¿Está seguro de cambiar esta pregunta?")
         if controlador_seguro.exec():  # `exec` con el usuario cierra el diálogo

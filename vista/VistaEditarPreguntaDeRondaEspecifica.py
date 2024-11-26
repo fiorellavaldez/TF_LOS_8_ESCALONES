@@ -9,6 +9,7 @@ class Ui_MainWindow(object):
         self.__rtaC = rtaC
         self.__rtaD = rtaD
         self.__correcta = correcta
+
     def setupUi(self, MainWindow ):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(735, 493)
@@ -150,6 +151,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.pushButton_12.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_13.setProperty("tipo","boton_vista_configuracion")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

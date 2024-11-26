@@ -79,12 +79,16 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.tableWidget)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        #
         self.pushButton_2 = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton_2.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        
         font = QtGui.QFont()
         font.setPointSize(10)
         self.pushButton_2.setFont(font)
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout_3.addWidget(self.pushButton_2)
+        
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem4)
         self.pushButton_14 = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -116,6 +120,11 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.pushButton_2.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_14.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_12.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_13.setProperty("tipo","boton_vista_configuracion")
     
     def aviso_seleccionar_pregunta(self):
         msg = QtWidgets.QMessageBox()
