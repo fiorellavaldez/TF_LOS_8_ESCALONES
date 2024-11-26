@@ -1,6 +1,5 @@
 from vista.VistaConfiguracionTemaABM import Ui_MainWindow
 from controlador.ControladorVistaTemaNuevo import ControladorVistaTemaNuevo
-#from controlador.ControladorVistaConfiguracinTemaABMEdit import ControladorVistaConfiguracionTemaABMEdit
 from controlador.ControladorVistaConfiguracionTemaABMEditModifica import ControladorVistaConfiguracionTemaABMEditModifica
 from controlador.ControladorVistaConfiguracionTemaABMEditAlta import ControladorVistaConfiguracionTemaABMEditAlta
 from controlador.ControladorVistaConfiguracionTemaABMEditBaja import ControladorVistaConfiguracionTemaABMEditBaja
@@ -26,10 +25,10 @@ class ControladorVistaConfiguracionTemaABM:
         self.__vista.setupUi(self.MainWindow)
         self.__vistaEdit = Ui_Widget()
         self.__vistaEdit.setupUi(self.WindowEdit)
-        
+
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
-        
+
         self.__filtered_temas = []
         self.model = QStringListModel()
 
@@ -59,7 +58,6 @@ class ControladorVistaConfiguracionTemaABM:
 
         self.__llenar_tabla(self.__temas.lista_temas)
 
-
     def __aplicar_estilos(self):
         estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
         if os.path.exists(estilos_path):
@@ -84,7 +82,6 @@ class ControladorVistaConfiguracionTemaABM:
             self.__vista.QTable_Temas.setItem(linea, 1, item_nombre)
 
     def actualizar_lista_temas(self, tema):
-        #self.__temas.actualizar_tema(tema)
         self.__llenar_tabla(self.__temas.lista_temas)
     
     """def agregar_tema(self, tema):
@@ -107,20 +104,17 @@ class ControladorVistaConfiguracionTemaABM:
         if fila_actual == -1:  # Ninguna fila seleccionada
             self.__vista.aviso_seleccionar_tema()
             return
-        #self.MainWindow.hide()
         tema_s=self.__obtener_tema_seleccionado()
         try: # --> DAO
         # Aquí llamas al método de ABM para realizar la modificación
             #self.__temas.actualizar_tema(tema_s)  # Lógica de actualización de tema --> Tiene que ir en el EditModifica
-
             self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditModifica(self,tema_s,self.__temas)
             self.ControladorVistaTemaNuevo.MainWindow.show()
         except Exception as e:
         # Si hay algún error en la modificación, lo manejas
             print(f"Error al modificar el tema: {e}")
             return
-        
-        
+
     def __nuevoTema(self):
         tema_s=Tema(0,"")
         self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditAlta(self,tema_s,self.__temas)
@@ -150,7 +144,7 @@ class ControladorVistaConfiguracionTemaABM:
         else:  
             print("No hay ninguna celda seleccionada.") 
         """
-    
+
     def __buscar_temas(self):
         """Filtra los temas según el texto ingresado en la caja de búsqueda y actualiza la tabla."""
         texto = self.__vista.QLine_Buscar.text().strip().lower()
@@ -174,7 +168,6 @@ class ControladorVistaConfiguracionTemaABM:
         else:
             return [0,""]
 
-    
     def __obtener_tema_seleccionado(self):
         tupla=self.__obtener_tupla_seleccionada()
         tema_s=Tema(int(tupla[0]),tupla[1])

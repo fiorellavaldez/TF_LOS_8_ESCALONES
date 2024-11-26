@@ -20,10 +20,8 @@ class Ui_MainWindow(object):
         self.label.setPixmap(QtGui.QPixmap("vista/img/configuracion_titulo.PNG"))
         self.label.setScaledContents(True)
         self.label.setMaximumSize(QtCore.QSize(700, 400))
-
-        #self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-
         self.verticalLayout.addWidget(self.label)
+        self.verticalLayout.setAlignment(self.label, QtCore.Qt.AlignmentFlag.AlignHCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.verticalLayout_5.addLayout(self.verticalLayout)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
