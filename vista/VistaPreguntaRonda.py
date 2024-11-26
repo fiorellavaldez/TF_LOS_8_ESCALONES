@@ -42,6 +42,12 @@ class VistaPreguntaRonda(QDialog):
         self.nombre_jugador.setFont(font_14)
         info_layout.addWidget(QLabel("Jugador:", font=font_14b), 1, 0)
         info_layout.addWidget(self.nombre_jugador, 1, 1)
+        
+        self.num_ronda = QLabel("Ronda")
+        self.num_ronda.setFont(font_14)
+        info_layout.addWidget(QLabel("Ronda:", font=font_14b), 1, 2)
+        info_layout.addWidget(self.num_ronda, 1, 3)
+        
 
         main_layout.addLayout(info_layout)
 
@@ -91,13 +97,14 @@ class VistaPreguntaRonda(QDialog):
         self.opcion_c.clicked.connect(lambda: self.seleccionar_respuesta("C"))
         self.opcion_d.clicked.connect(lambda: self.seleccionar_respuesta("D"))
 
-    def actualizar_pregunta(self, jugador, escalon, tematica, pregunta, respuestas):
+    def actualizar_pregunta(self, jugador, escalon, tematica, ronda_actual, pregunta, respuestas):
         """
         Actualiza los datos de la ventana emergente.
         """
         self.nombre_jugador.setText(jugador)
         self.num_escalon.setText(str(escalon))
         self.nombre_tematica.setText(tematica)
+        self.num_ronda.setText(str(ronda_actual))
         self.pregunta_label.setText(pregunta)
         self.respuesta_a.setText(respuestas[0])
         self.respuesta_b.setText(respuestas[1])

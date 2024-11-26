@@ -186,6 +186,7 @@ class ControladorVistaJuego:
             jugador=jugador.get_nombre_jugador(),  # Suponiendo que 'jugador' tiene un atributo 'nombre'
             escalon=escalon+1,
             tematica=tematica,
+            ronda_actual=ronda,
             pregunta=pregunta,
             respuestas=respuestas
         )
@@ -250,13 +251,10 @@ class ControladorVistaJuego:
         :param pregunta_desempate: objeto preguntaDesempate, contiene el enunciado y la respuesta correcta
         :return: objeto Jugador que será eliminado
         """
-        from PyQt6.QtWidgets import QApplication
-
         # Obtener datos de la pregunta
         enunciado = pregunta_desempate.get_enunciado()
         respuesta_correcta = pregunta_desempate.get_respuestaCorrecta()
         respuestas = {}
-
         for jugador in jugadores:
             # Crear y mostrar el diálogo
             dialog = VistaPreguntaAproximacion(enunciado, jugador.get_nombre_jugador())
@@ -264,15 +262,10 @@ class ControladorVistaJuego:
                 respuestas[jugador] = dialog.get_respuesta()
             else:
                 print(f"{jugador.get_nombre_jugador()} no respondió.")
-
         # Calcular distancias a la respuesta correcta
         distancias = {jugador: pregunta_desempate.responder(respuestas[jugador]) for jugador in jugadores}
-        #for jugador, distancia in distancias.items():
-        #    print(f"{jugador.get_nombre_jugador()} estuvo a una distancia de {distancia}.")
-
         # Determinar el jugador eliminado
         jugador_eliminado = max(distancias, key=distancias.get)
-        #print(f"{jugador_eliminado.get_nombre_jugador()} estuvo más lejos de la respuesta correcta y será eliminado.")
         dialog = DialogDesempate(jugadores, jugador_eliminado, distancias, respuesta_correcta)
         dialog.exec()
         return jugador_eliminado
