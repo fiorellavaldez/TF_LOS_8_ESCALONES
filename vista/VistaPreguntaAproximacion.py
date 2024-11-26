@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QTextEdit, QPushButton, QHBoxLayout, QSpacerItem, QSizePolicy
-from PyQt6.QtGui import QFont
-from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont, QKeyEvent
+from PyQt6 import QtWidgets, QtCore
 
 class VistaPreguntaAproximacion(QDialog):
     def __init__(self, enunciado, jugador, parent=None):
@@ -13,6 +13,7 @@ class VistaPreguntaAproximacion(QDialog):
     def setup_ui(self):
         self.setWindowTitle("Pregunta de Desempate")
         self.setFixedSize(400, 300)
+        self.setWindowFlag(QtCore.Qt.WindowType.WindowCloseButtonHint, False)
 
         # Configuración del layout
         self.layout = QVBoxLayout(self)
@@ -56,3 +57,12 @@ class VistaPreguntaAproximacion(QDialog):
 
     def get_respuesta(self):
         return self.__respuesta
+    
+    def keyPressEvent(self, event: QKeyEvent):
+        """
+        Maneja eventos de teclado, deshabilitando el cierre con la tecla Esc.
+        """
+        if event.key() == QtCore.Qt.Key.Key_Escape:
+            event.ignore()  # Ignorar la tecla Esc
+        else:
+            super().keyPressEvent(event)  # Procesar otros eventos normalmente

@@ -1,12 +1,18 @@
 from PyQt6 import QtWidgets, QtCore
-from PyQt6.QtWidgets import QDialog, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QGridLayout
-from PyQt6.QtGui import QFont
+from PyQt6.QtWidgets import QDialog, QLabel, QPushButton, QVBoxLayout, QGridLayout
+from PyQt6.QtGui import QFont, QKeyEvent
 
 class VistaPreguntaRonda(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Pregunta!")
         self.resize(600, 500)
+
+        # Deshabilitar el botón de cerrar (X)
+        #self.setWindowFlag(QtCore.Qt.WindowType.WindowCloseButtonHint, False)
+
+        # Variable para controlar si se ha respondido
+        self.respuesta_seleccionada = False
 
         # Fonts
         font_14b = QFont()
@@ -42,12 +48,11 @@ class VistaPreguntaRonda(QDialog):
         self.nombre_jugador.setFont(font_14)
         info_layout.addWidget(QLabel("Jugador:", font=font_14b), 1, 0)
         info_layout.addWidget(self.nombre_jugador, 1, 1)
-        
+
         self.num_ronda = QLabel("Ronda")
         self.num_ronda.setFont(font_14)
         info_layout.addWidget(QLabel("Ronda:", font=font_14b), 1, 2)
         info_layout.addWidget(self.num_ronda, 1, 3)
-        
 
         main_layout.addLayout(info_layout)
 
@@ -116,4 +121,24 @@ class VistaPreguntaRonda(QDialog):
         Maneja la respuesta seleccionada por el jugador.
         """
         print(f"El jugador seleccionó la respuesta {opcion}")
-        self.done(int(ord(opcion.upper())-64))  # Devuelve la opción seleccionada y cierra el diálogo
+        self.respuesta_seleccionada = True
+        self.done(int(ord(opcion.upper()) - 64))  # Devuelve la opción seleccionada y cierra el diálogo
+
+    def closeEvent(self, event):
+        """
+        Maneja el evento de cierre de la ventana.
+        """
+        if not self.respuesta_seleccionada:
+            QtWidgets.QMessageBox.warning(self, "Advertencia", "Debe seleccionar una respuesta antes de cerrar.")
+            event.ignore()  # Evita el cierre del diálogo
+        else:
+            event.accept()  # Permite el cierre si se ha respondido
+    
+    def keyPressEvent(self, event: QKeyEvent):
+        """
+        Maneja eventos de teclado, deshabilitando el cierre con la tecla Esc.
+        """
+        if event.key() == QtCore.Qt.Key.Key_Escape:
+            event.ignore()  # Ignorar la tecla Esc
+        else:
+            super().keyPressEvent(event)  # Procesar otros eventos normalmente
