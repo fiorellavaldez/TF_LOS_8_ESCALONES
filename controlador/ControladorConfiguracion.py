@@ -2,7 +2,7 @@ from vista.VistaConfiguracion import Ui_MainWindow
 from controlador.ControladorConfiguracionPreguntaRonda import ControladorConfiguracionPreguntaRonda
 from controlador.ControladorConfiguracionPreguntaDesempate import ControladorConfiguracionPreguntaDesempate
 from controlador.ControladorVistaConfiguracionTemaABM import ControladorVistaConfiguracionTemaABM
-from controlador.ControladorVistaSeleccionarJugadoresABM import ControladorVistaSeleccionarJugadores
+from controlador.ControladorVistaSeleccionarJugadoresABM import ControladorVistaSeleccionarJugadoresABM
 from controlador.ControladorVideo import ControladorVideo
 from controlador.ControladorAudioVideo import ControladorAudioVideo
 from PyQt6 import QtWidgets
@@ -61,7 +61,7 @@ class ControladorVistaConfiguracion:
     
     def __jugadores (self):
         self.MainWindow.hide()  # Ocultar la ventana actual
-        self.ControladorConfiguracionPregunta = ControladorVistaSeleccionarJugadores(self)
+        self.ControladorConfiguracionPregunta = ControladorVistaSeleccionarJugadoresABM(self)
         self.ControladorConfiguracionPregunta.MainWindow.show()
 
     def __volver_menu(self):

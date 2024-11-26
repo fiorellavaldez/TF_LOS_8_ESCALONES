@@ -22,7 +22,7 @@ class ControladorVistaJuego:
         self.__controlador_anterior = controlador_anterior
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
-        self.__lista_jugadores = self.__convertir_obj_jugador(lista_jugadores)
+        self.__lista_jugadores = lista_jugadores
         #self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores)
         self.__lista_escalones = self.__devolver_escalones(self.devolver_objetos_tema()) #TemaABM().lista_temas
         self.__lista_jugadores_widget = self.__convertir_widget(self.__lista_jugadores) 
@@ -51,16 +51,6 @@ class ControladorVistaJuego:
         audio_controller = ControladorAudio(ruta_inicial="musica\\menu_2.mp3")
         audio_controller.cambiar_musica(r"musica\\menu_2.mp3")
         self.__controlador_anterior.MainWindow.show()
-
-    def __obtener_pregunta(self): #pasarlo a una vista y la llamamos acá
-        vista_pregunta = VistaPreguntaRonda() #DIALOG
-        vista_pregunta.exec()
-
-    def __convertir_obj_jugador(self, lista_jugadores): #lista_jugadores es una lista de tuplas 
-        lista = []
-        for i in lista_jugadores:
-            lista.append(Jugador((i)[1], (i)[2]))
-        return lista
 
     def __convertir_widget(self, lista_jugadores): #lista_jugadores es una de objetos
         lista = []

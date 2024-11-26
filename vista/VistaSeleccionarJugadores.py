@@ -45,20 +45,6 @@ class Ui_MainWindow(object):
         self.tableWidget.setHorizontalHeaderLabels(["Nombre", "Avatar"])
 
     
-        for row, (id, nombre, avatar_path) in enumerate(self.lista):
-            # Columna nombres
-            item_nombre = QtWidgets.QTableWidgetItem(nombre)
-            item_nombre.setFlags(Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
-            item_nombre.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-            self.tableWidget.setItem(row, 0, item_nombre)
-            # Columna avatares
-            label_avatar = QtWidgets.QLabel()
-            pixmap = QtGui.QPixmap(avatar_path)
-            label_avatar.setPixmap(pixmap.scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
-            label_avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.tableWidget.setCellWidget(row, 1, label_avatar)
-        
-            self.tableWidget.setRowHeight(row,60)
         # self.tableWidget.resizeColumnsToContents()
         self.tableWidget.resizeRowsToContents()
         
@@ -92,6 +78,33 @@ class Ui_MainWindow(object):
         #self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    def update_table(self, lista_jugadores):
+        """Actualiza la tabla con los datos proporcionados."""
+        self.tableWidget.setRowCount(len(lista_jugadores))  # Ajusta la cantidad de filas
+        for i, jugador in enumerate(lista_jugadores):
+            # Columna 0: Nombre
+            nombre_item = QtWidgets.QTableWidgetItem(jugador.get_nombre_jugador())
+            nombre_item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+            # Cambiar el tamaño de la fuente para los nombres
+            font = QtGui.QFont()
+            font.setPointSize(14)  # Cambia el tamaño de la fuente (ajústalo a tu gusto)
+            nombre_item.setFont(font)
+
+            self.tableWidget.setItem(i, 0, nombre_item)
+            self.tableWidget.setRowHeight(i, 40)  # Doble altura de la fila para los nombres
+
+            # Columna 1: Avatar
+            avatar_label = QtWidgets.QLabel()
+            pixmap = QtGui.QPixmap(jugador.get_avatar())
+            if pixmap.isNull():
+                pixmap = QtGui.QPixmap("vista/img/default_avatar.png")
+            avatar_label.setPixmap(pixmap)
+            avatar_label.setScaledContents(True)
+            avatar_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            avatar_label.setMaximumSize(QtCore.QSize(50, 50))
+            self.tableWidget.setCellWidget(i, 1, avatar_label)
+    
     def get_button_cancelar(self):
         return self.bt_cancelar
     
@@ -107,6 +120,14 @@ class Ui_MainWindow(object):
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         msg.setWindowTitle("Jugador Ya Seleccionado")
         msg.setText(f'Jugador {nombre} ya ha sido seleccionado ')
+        msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        msg.exec()
+    
+    def aviso_seleccionar_jugador(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Advertencia")
+        msg.setText("Debe seleccionar un jugador primero.")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
         

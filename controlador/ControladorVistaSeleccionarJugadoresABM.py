@@ -9,7 +9,7 @@ from PyQt6.QtGui import QIcon,QPixmap
 from controlador.ControladorVideo import ControladorVideo
 import os
 
-class ControladorVistaSeleccionarJugadores:
+class ControladorVistaSeleccionarJugadoresABM:
     def __init__(self, controlador_anterior):
         self.__controlador_anterior = controlador_anterior
         self.MainWindow = QtWidgets.QMainWindow()  # Nueva ventana para la nueva partida
@@ -58,15 +58,6 @@ class ControladorVistaSeleccionarJugadores:
             # Obtener el contenido de la fila seleccionada en la columna 0 (nombre del jugador)
             jugador_a_modificar = self.filtrando_jugadores[indice]
             self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
-    
-            
-            #self.__vista.tableWidget.item(fila, 0).text()
-            
-            # Buscar el jugador en la lista filtrada de jugadores
-            #for i in self.filtrando_jugadores:
-            #    if i.get_nombre_jugador() == nombre_jugador_a_modificar:
-            #        jugador_a_modificar = Jugador(i.get_nombre_jugador(),i.get_avatar())
-            #        self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
     
     def __eliminar(self):
         fila = self.__vista.tableWidget.currentRow()

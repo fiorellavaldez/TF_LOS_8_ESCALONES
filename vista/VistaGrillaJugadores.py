@@ -236,7 +236,7 @@ class Ui_MainWindow(object):
         spacerItem30 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem30)
         self.nombre_jugador1 = QtWidgets.QLabel(parent=self.frame_11) #Jugador 1
-        self.nombre_jugador1.setEnabled(True)
+        self.nombre_jugador1.setEnabled(True) 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -429,6 +429,34 @@ class Ui_MainWindow(object):
         self.bt_iniciar_partida.setText(_translate("MainWindow", "Iniciar Partida"))
 
 # MÉTODOS JUGADORES
+
+    #cambio de nombres
+    def cambiar_nombre_jugador0(self, nombre_nuevo):
+        self.nombre_jugador1.setText(nombre_nuevo)
+    
+    def cambiar_nombre_jugador1(self, nombre_nuevo):
+        self.nombre_jugador2.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador2(self, nombre_nuevo):
+        self.nombre_jugador3.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador3(self, nombre_nuevo):
+        self.nombre_jugador4.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador4(self, nombre_nuevo):
+        self.nombre_jugador5.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador5(self, nombre_nuevo):
+        self.nombre_jugador6.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador6(self, nombre_nuevo):
+        self.nombre_jugador7.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador7(self, nombre_nuevo):
+        self.nombre_jugador8.setText(nombre_nuevo)
+        
+    def cambiar_nombre_jugador8(self, nombre_nuevo):
+        self.nombre_jugador9.setText(nombre_nuevo)
 
     #Métodos Jugador 1
     def get_nombre_jugador1 (self):
