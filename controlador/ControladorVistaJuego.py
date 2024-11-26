@@ -69,7 +69,7 @@ class ControladorVistaJuego:
         return lista
 
     def devolver_objetos_tema(self):  #este lo podemos usar sin que sea un metodo y lo pasamos al constructor
-        lista_temas = TemaABM().lista_temas
+        lista_temas = TemaABM().obtener_temas_para_jugar()
         return lista_temas
 
     def devolver_objetos_pregunta_ronda(self,id_tema):
