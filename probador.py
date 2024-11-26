@@ -1,17 +1,525 @@
-from  modelo.TemasDAO import TemasDAO
-from modelo.Tema import Tema
-from modelo.TemaABM import TemaABM
-from modelo.PreguntasABM import PreguntaABM
-from controlador.ControladorConfiguracionPreguntaNuevaDesempate import ControladorConfiguracionPreguntaNuevaDesempate
-# abm = PreguntaABM().lista_preguntas_desempate
-from controlador.ControladorPreguntaDesempateABM import ControladorVistaConfiguracionModificarPreguntasDeDesempate
+from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QSpacerItem, QSizePolicy, QWidget, QVBoxLayout
 
-# for i in abm:
-#     print(i.get_enunciado())
+from vista.WidgetJugador import WidgetJugador
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow, lista_jugadores):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(1080, 720)
+        MainWindow.setMinimumSize(1080, 720)
+
+        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
+        self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_escalones.png"))
+        self.centralwidget.setScaledContents(True)
+        self.centralwidget.setObjectName("centralwidget_escalones")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.wd_escalon8 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        self.wd_escalon8.setSizePolicy(sizePolicy)
+        self.wd_escalon8.setMinimumSize(QtCore.QSize(550, 60))
+        self.wd_escalon8.setMaximumSize(QtCore.QSize(643, 100))
+        self.wd_escalon8.setStyleSheet("background-color: rgb(255, 182, 193);")
+        self.wd_escalon8.setObjectName("wd_escalon8")
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.wd_escalon8)
+        self.horizontalLayout_9.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.ly_escalon8 = QtWidgets.QHBoxLayout()
+        self.ly_escalon8.setObjectName("ly_escalon8")
+        self.icono_escalon8 = QtWidgets.QLabel(parent=self.wd_escalon8)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon8.sizePolicy().hasHeightForWidth())
+        self.icono_escalon8.setSizePolicy(sizePolicy)
+        self.icono_escalon8.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon8.setText("")
+        self.icono_escalon8.setPixmap(QtGui.QPixmap("vista/img/number-8-circle-svgrepo-com.png"))
+        self.icono_escalon8.setScaledContents(True)
+        self.icono_escalon8.setObjectName("icono_escalon8")
+        self.ly_escalon8.addWidget(self.icono_escalon8)
+        self.tematica_escalon8 = QtWidgets.QLabel(parent=self.wd_escalon8)
+        font_sitka18 = QtGui.QFont()
+        font_sitka18.setFamily("Sitka")
+        font_sitka18.setPointSize(22)
+        self.tematica_escalon8.setFont(font_sitka18)
+        self.tematica_escalon8.setObjectName("tematica_escalon8")  
+        self.ly_escalon8.addWidget(self.tematica_escalon8)
+        self.tematica_escalon8.setStyleSheet("color: #000000;")
+        self.horizontalLayout_9.addLayout(self.ly_escalon8)
+        self.wd_escalon7 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon7.sizePolicy().hasHeightForWidth())
+        self.wd_escalon7.setSizePolicy(sizePolicy)
+        self.wd_escalon7.setMinimumSize(QtCore.QSize(600, 60))
+        self.wd_escalon7.setMaximumSize(QtCore.QSize(702, 100))
+        self.wd_escalon7.setStyleSheet("background-color: rgb(173, 216, 230);")
+        self.wd_escalon7.setObjectName("wd_escalon7")
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.wd_escalon7)
+        self.horizontalLayout_8.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.ly_escalon7 = QtWidgets.QHBoxLayout()
+        self.ly_escalon7.setObjectName("ly_escalon7")
+        self.icono_escalon7 = QtWidgets.QLabel(parent=self.wd_escalon7)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon7.sizePolicy().hasHeightForWidth())
+        self.icono_escalon7.setSizePolicy(sizePolicy)
+        self.icono_escalon7.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon7.setText("")
+        self.icono_escalon7.setPixmap(QtGui.QPixmap("vista/img/number-7-circle-svgrepo-com.png"))
+        self.icono_escalon7.setScaledContents(True)
+        self.icono_escalon7.setObjectName("icono_escalon7")
+        self.ly_escalon7.addWidget(self.icono_escalon7)
+        self.tematica_escalon7 = QtWidgets.QLabel(parent=self.wd_escalon7)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon7.setFont(font)
+        self.tematica_escalon7.setStyleSheet("color: #000000;")
+        self.tematica_escalon7.setObjectName("tematica_escalon7")
+        self.ly_escalon7.addWidget(self.tematica_escalon7)
+        self.horizontalLayout_8.addLayout(self.ly_escalon7)
+        self.wd_escalon6 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon6.sizePolicy().hasHeightForWidth())
+        self.wd_escalon6.setSizePolicy(sizePolicy)
+        self.wd_escalon6.setMinimumSize(QtCore.QSize(650, 60))
+        self.wd_escalon6.setMaximumSize(QtCore.QSize(760, 100))
+        self.wd_escalon6.setStyleSheet("background-color: rgb(152, 251, 152);")
+        self.wd_escalon6.setObjectName("wd_escalon6")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.wd_escalon6)
+        self.horizontalLayout_7.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.ly_escalon6 = QtWidgets.QHBoxLayout()
+        self.ly_escalon6.setObjectName("ly_escalon6")
+        self.icono_escalon6 = QtWidgets.QLabel(parent=self.wd_escalon6)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon6.sizePolicy().hasHeightForWidth())
+        self.icono_escalon6.setSizePolicy(sizePolicy)
+        self.icono_escalon6.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon6.setText("")
+        self.icono_escalon6.setPixmap(QtGui.QPixmap("vista/img/number-6-circle-svgrepo-com.png"))
+        self.icono_escalon6.setScaledContents(True)
+        self.icono_escalon6.setObjectName("icono_escalon6")
+        self.ly_escalon6.addWidget(self.icono_escalon6)
+        self.tematica_escalon6 = QtWidgets.QLabel(parent=self.wd_escalon6)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon6.setFont(font)
+        self.tematica_escalon6.setStyleSheet("color: #000000;")
+        self.tematica_escalon6.setObjectName("tematica_escalon6")
+        self.ly_escalon6.addWidget(self.tematica_escalon6)
+        self.horizontalLayout_7.addLayout(self.ly_escalon6)
+        self.wd_escalon5 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon5.sizePolicy().hasHeightForWidth())
+        self.wd_escalon5.setSizePolicy(sizePolicy)
+        self.wd_escalon5.setMinimumSize(QtCore.QSize(700, 60))
+        self.wd_escalon5.setMaximumSize(QtCore.QSize(819, 100))
+        self.wd_escalon5.setStyleSheet("background-color: rgb(255, 255, 224);")
+        self.wd_escalon5.setObjectName("wd_escalon5")
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.wd_escalon5)
+        self.horizontalLayout_6.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.ly_escalon5 = QtWidgets.QHBoxLayout()
+        self.ly_escalon5.setObjectName("ly_escalon5")
+        self.icono_escalon5 = QtWidgets.QLabel(parent=self.wd_escalon5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon5.sizePolicy().hasHeightForWidth())
+        self.icono_escalon5.setSizePolicy(sizePolicy)
+        self.icono_escalon5.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon5.setText("")
+        self.icono_escalon5.setPixmap(QtGui.QPixmap("vista/img/number-5-circle-svgrepo-com.png"))
+        self.icono_escalon5.setScaledContents(True)
+        self.icono_escalon5.setObjectName("icono_escalon5")
+        self.ly_escalon5.addWidget(self.icono_escalon5)
+        self.tematica_escalon5 = QtWidgets.QLabel(parent=self.wd_escalon5)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon5.setFont(font)
+        self.tematica_escalon5.setStyleSheet("color: #000000;")
+        self.tematica_escalon5.setObjectName("tematica_escalon5")
+        self.ly_escalon5.addWidget(self.tematica_escalon5)
+        self.horizontalLayout_6.addLayout(self.ly_escalon5)
+        self.wd_escalon4 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon4.sizePolicy().hasHeightForWidth())
+        self.wd_escalon4.setSizePolicy(sizePolicy)
+        self.wd_escalon4.setMinimumSize(QtCore.QSize(750, 60))
+        self.wd_escalon4.setMaximumSize(QtCore.QSize(877, 100))
+        self.wd_escalon4.setStyleSheet("background-color: rgb(230, 230, 250);")
+        self.wd_escalon4.setObjectName("wd_escalon4")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.wd_escalon4)
+        self.horizontalLayout_5.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.ly_escalon4 = QtWidgets.QHBoxLayout()
+        self.ly_escalon4.setObjectName("ly_escalon4")
+        self.icono_escalon4 = QtWidgets.QLabel(parent=self.wd_escalon4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon4.sizePolicy().hasHeightForWidth())
+        self.icono_escalon4.setSizePolicy(sizePolicy)
+        self.icono_escalon4.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon4.setText("")
+        self.icono_escalon4.setPixmap(QtGui.QPixmap("vista/img/number-4-circle-svgrepo-com.png"))
+        self.icono_escalon4.setScaledContents(True)
+        self.icono_escalon4.setObjectName("icono_escalon4")
+        self.ly_escalon4.addWidget(self.icono_escalon4)
+        self.tematica_escalon4 = QtWidgets.QLabel(parent=self.wd_escalon4)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon4.setFont(font)
+        self.tematica_escalon4.setStyleSheet("color: #000000;")
+        self.tematica_escalon4.setObjectName("tematica_escalon4")
+        self.ly_escalon4.addWidget(self.tematica_escalon4)
+        self.horizontalLayout_5.addLayout(self.ly_escalon4)
+        self.wd_escalon3 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon3.sizePolicy().hasHeightForWidth())
+        self.wd_escalon3.setSizePolicy(sizePolicy)
+        self.wd_escalon3.setMinimumSize(QtCore.QSize(800, 60))
+        self.wd_escalon3.setMaximumSize(QtCore.QSize(936, 100))
+        self.wd_escalon3.setStyleSheet("background-color: rgb(255, 218, 185);")
+        self.wd_escalon3.setObjectName("wd_escalon3")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.wd_escalon3)
+        self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.ly_escalon3 = QtWidgets.QHBoxLayout()
+        self.ly_escalon3.setObjectName("ly_escalon3")
+        self.icono_escalon3 = QtWidgets.QLabel(parent=self.wd_escalon3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon3.sizePolicy().hasHeightForWidth())
+        self.icono_escalon3.setSizePolicy(sizePolicy)
+        self.icono_escalon3.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon3.setText("")
+        self.icono_escalon3.setPixmap(QtGui.QPixmap("vista/img/number-3-circle-svgrepo-com.png"))
+        self.icono_escalon3.setScaledContents(True)
+        self.icono_escalon3.setObjectName("icono_escalon3")
+        self.ly_escalon3.addWidget(self.icono_escalon3)
+        self.tematica_escalon3 = QtWidgets.QLabel(parent=self.wd_escalon3)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon3.setFont(font)
+        self.tematica_escalon3.setStyleSheet("color: #000000;")
+        self.tematica_escalon3.setObjectName("tematica_escalon3")
+        self.ly_escalon3.addWidget(self.tematica_escalon3)
+        self.horizontalLayout_4.addLayout(self.ly_escalon3)
+        self.wd_escalon2 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon2.sizePolicy().hasHeightForWidth())
+        self.wd_escalon2.setSizePolicy(sizePolicy)
+        self.wd_escalon2.setMinimumSize(QtCore.QSize(850, 70))
+        self.wd_escalon2.setMaximumSize(QtCore.QSize(994, 100))
+        self.wd_escalon2.setStyleSheet("background-color: rgb(189, 252, 201);")
+        self.wd_escalon2.setObjectName("wd_escalon2")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.wd_escalon2)
+        self.horizontalLayout_3.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.ly_escalon2 = QtWidgets.QHBoxLayout()
+        self.ly_escalon2.setObjectName("ly_escalon2")
+        self.icono_escalon2 = QtWidgets.QLabel(parent=self.wd_escalon2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon2.sizePolicy().hasHeightForWidth())
+        self.icono_escalon2.setSizePolicy(sizePolicy)
+        self.icono_escalon2.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon2.setText("")
+        self.icono_escalon2.setPixmap(QtGui.QPixmap("vista/img/number-2-circle-svgrepo-com.png"))
+        self.icono_escalon2.setScaledContents(True)
+        self.icono_escalon2.setObjectName("icono_escalon2")
+        self.ly_escalon2.addWidget(self.icono_escalon2)
+        self.tematica_escalon2 = QtWidgets.QLabel(parent=self.wd_escalon2)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon2.setFont(font)
+        self.tematica_escalon2.setStyleSheet("color: #000000;")
+        self.tematica_escalon2.setObjectName("tematica_escalon2")
+        self.ly_escalon2.addWidget(self.tematica_escalon2)
+        self.horizontalLayout_3.addLayout(self.ly_escalon2)
+        self.wd_escalon1 = QtWidgets.QWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.wd_escalon1.sizePolicy().hasHeightForWidth())
+        self.wd_escalon1.setSizePolicy(sizePolicy)
+        self.wd_escalon1.setMinimumSize(QtCore.QSize(920, 0))
+        self.wd_escalon1.setMaximumSize(QtCore.QSize(1076, 100))
+        self.wd_escalon1.setStyleSheet("background-color: rgb(255, 160, 122);")
+        self.wd_escalon1.setObjectName("wd_escalon1")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.wd_escalon1)
+        self.horizontalLayout_2.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.ly_escalon1 = QtWidgets.QHBoxLayout()
+        self.ly_escalon1.setObjectName("ly_escalon1")
+        self.icono_escalon1 = QtWidgets.QLabel(parent=self.wd_escalon1)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.icono_escalon1.sizePolicy().hasHeightForWidth())
+        self.icono_escalon1.setSizePolicy(sizePolicy)
+        self.icono_escalon1.setMaximumSize(QtCore.QSize(50, 50))
+        self.icono_escalon1.setText("")
+        self.icono_escalon1.setPixmap(QtGui.QPixmap("vista/img/number-1-circle-svgrepo-com.png"))
+        self.icono_escalon1.setScaledContents(True)
+        self.icono_escalon1.setObjectName("icono_escalon1")
+        self.ly_escalon1.addWidget(self.icono_escalon1)
+        self.tematica_escalon1 = QtWidgets.QLabel(parent=self.wd_escalon1)
+        font = QtGui.QFont()
+        font.setFamily("Sitka")
+        font.setPointSize(22)
+        self.tematica_escalon1.setFont(font)
+        self.tematica_escalon1.setStyleSheet("color: #000000;")
+        self.tematica_escalon1.setObjectName("tematica_escalon1")
+        self.ly_escalon1.addWidget(self.tematica_escalon1)
+
+        self.__lista_wd = lista_jugadores 
+
+        for i in self.__lista_wd:
+            i.setParent(None)
+            self.ly_escalon1.addWidget(i)
+
+        self.__lista_layouts = []
+        self.__lista_layouts.append(self.ly_escalon1)
+        self.__lista_layouts.append(self.ly_escalon2)
+        self.__lista_layouts.append(self.ly_escalon3)
+        self.__lista_layouts.append(self.ly_escalon4)
+        self.__lista_layouts.append(self.ly_escalon5)
+        self.__lista_layouts.append(self.ly_escalon6)
+        self.__lista_layouts.append(self.ly_escalon7)
+        self.__lista_layouts.append(self.ly_escalon8)
+        
+
+        self.horizontalLayout_2.addLayout(self.ly_escalon1) #???????????
+        self.verticalLayout_2.addLayout(self.verticalLayout) #???????????
+        self.gif = QtWidgets.QLabel(parent=self.centralwidget)
+        self.gif.setGeometry(QtCore.QRect(750, 10, 191, 81))
+        self.gif.setText("")
+        self.gif.setPixmap(QtGui.QPixmap("../../Downloads/ganador-triunfador.gif"))
+        self.gif.setScaledContents(True)
+        self.gif.setWordWrap(False)
+        self.gif.setObjectName("gif")
+        self.pushButton_atras = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton_atras.setGeometry(QtCore.QRect(30, 660, 75, 30))
+        self.pushButton_atras.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        
+        self.pushButton_comenzar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(980, 660, 75, 30))
+        self.pushButton_comenzar_partida.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        
+        self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8]
+        
+        # Crear un layout vertical
+        self.layout_vertical_total = QVBoxLayout()
+        
+        #creo los layouts para que tengan dentro los escalones
+        self.layout_escalon1 = QtWidgets.QHBoxLayout()
+        self.layout_escalon2 = QtWidgets.QHBoxLayout()
+        self.layout_escalon3 = QtWidgets.QHBoxLayout()
+        self.layout_escalon4 = QtWidgets.QHBoxLayout()
+        self.layout_escalon5 = QtWidgets.QHBoxLayout()
+        self.layout_escalon6 = QtWidgets.QHBoxLayout()
+        self.layout_escalon7 = QtWidgets.QHBoxLayout()
+        self.layout_escalon8 = QtWidgets.QHBoxLayout()
+        
+        # Crear los espaciadores para cada uno de los 8 escalones
+        espaciadorUnoIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorUnoDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorDosIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorDosDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorTresIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorTresDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorCuatroIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorCuatroDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorCincoIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorCincoDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorSeisIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorSeisDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorSieteIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorSieteDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        espaciadorOchoIzq = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        espaciadorOchoDer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+
+        # Para cada uno de los 8 escalones, añadir los espaciadores
+        self.layout_escalon1.addItem(espaciadorUnoIzq)
+        self.layout_escalon1.addWidget(self.wd_escalon1)
+        self.layout_escalon1.addItem(espaciadorUnoDer)
+
+        self.layout_escalon2.addItem(espaciadorDosIzq)
+        self.layout_escalon2.addWidget(self.wd_escalon2)
+        self.layout_escalon2.addItem(espaciadorDosDer)
+
+        self.layout_escalon3.addItem(espaciadorTresIzq)
+        self.layout_escalon3.addWidget(self.wd_escalon3)
+        self.layout_escalon3.addItem(espaciadorTresDer)
+
+        self.layout_escalon4.addItem(espaciadorCuatroIzq)
+        self.layout_escalon4.addWidget(self.wd_escalon4)
+        self.layout_escalon4.addItem(espaciadorCuatroDer)
+
+        self.layout_escalon5.addItem(espaciadorCincoIzq)
+        self.layout_escalon5.addWidget(self.wd_escalon5)
+        self.layout_escalon5.addItem(espaciadorCincoDer)
+
+        self.layout_escalon6.addItem(espaciadorSeisIzq)
+        self.layout_escalon6.addWidget(self.wd_escalon6)
+        self.layout_escalon6.addItem(espaciadorSeisDer)
+
+        self.layout_escalon7.addItem(espaciadorSieteIzq)
+        self.layout_escalon7.addWidget(self.wd_escalon7)
+        self.layout_escalon7.addItem(espaciadorSieteDer)
+
+        self.layout_escalon8.addItem(espaciadorOchoIzq)
+        self.layout_escalon8.addWidget(self.wd_escalon8)
+        self.layout_escalon8.addItem(espaciadorOchoDer)
+
+        #layout que contiene los escalones
+        self.layout_todos_escalones = QtWidgets.QVBoxLayout()
+        #añado los layouts que tienen escalon al layout que los contiene a todos
+        self.layout_todos_escalones.addLayout(self.layout_escalon8)
+        self.layout_todos_escalones.addLayout(self.layout_escalon7)
+        self.layout_todos_escalones.addLayout(self.layout_escalon6)
+        self.layout_todos_escalones.addLayout(self.layout_escalon5)
+        self.layout_todos_escalones.addLayout(self.layout_escalon4)
+        self.layout_todos_escalones.addLayout(self.layout_escalon3)
+        self.layout_todos_escalones.addLayout(self.layout_escalon2)
+        self.layout_todos_escalones.addLayout(self.layout_escalon1)
+        #layout para los botones atras y jugar
+        self.layout_botones = QtWidgets.QHBoxLayout()
+        #espaciador
+        self.espaciador_horizontal = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.layout_botones.addWidget(self.pushButton_atras)
+        self.layout_botones.addItem(self.espaciador_horizontal)
+        self.layout_botones.addWidget(self.pushButton_comenzar_partida)
+        
+        #añadir layouts al layout central
+        self.layout_vertical_total.addLayout(self.layout_todos_escalones)
+        self.layout_vertical_total.addLayout(self.layout_botones)
+        
+        
+        self.centralwidget.setLayout(self.layout_vertical_total)
+
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.pushButton_atras.setProperty("tipo","boton_vista_juego")
+        self.pushButton_comenzar_partida.setProperty("tipo","boton_vista_juego")
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
     
-from PyQt6 import QtWidgets
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("VistaJuego", "VistaJuego"))
+        self.tematica_escalon8.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon7.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon6.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon5.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon4.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon3.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon2.setText(_translate("MainWindow", "-"))
+        self.tematica_escalon1.setText(_translate("MainWindow", "-"))
+        self.pushButton_comenzar_partida.setText(_translate("MainWindow","Jugar"))
+        self.pushButton_atras.setText(_translate("MainWindow", "Atrás"))
+
+
+    def get_button_atras(self):
+        return self.pushButton_atras
+
+    def get_lista_escalones(self):
+        return self.lista_nombres_escalon
+    
+    def get_lista_layouts(self):
+        return self.__lista_layouts
+    
+    def get_comenzar_partida(self):
+        return self.pushButton_comenzar_partida
+    
+
+
+from modelo.Jugador import Jugador
+from vista.WidgetJugador import WidgetJugador
+
+slista_imagenes = ["vista/img/fa.jpg","vista/img/al.jpg","vista/img/jarr.jpg",
+        "vista/img/ka.jpg","vista/img/avatar_azul.png","vista/img/ta.png", "vista/img/da.jpg",
+        "vista/img/fi.jpg", "vista/img/edna.jpg","vista/img/aladdin.jpeg","vista/img/amore.jpg",
+        "vista/img/avatar.png","vista/img/caradepapa.jpeg","vista/img/daria.jpg","vista/img/dory.jpeg",
+        "vista/img/eugene.jpeg","vista/img/gohan.jpeg","vista/img/goku.jpeg""vista/img/jasmin.jpeg",
+        "vista/img/kevin.jpg""vista/img/merida.jpeg","vista/img/moana.jpeg","vista/img/mulan.jpeg",
+        "vista/img/tiana.jpeg"]
+
+jugador1 = Jugador("Facu",slista_imagenes[1])
+jugador2 = Jugador("Tania",slista_imagenes[2])
+jugador3 = Jugador("Jarri",slista_imagenes[3])
+jugador4 = Jugador("Alexis",slista_imagenes[4])
+jugador5 = Jugador("Carlos",slista_imagenes[5])
+jugador6 = Jugador("Kadir",slista_imagenes[6])
+jugador7 = Jugador("Bruno",slista_imagenes[7])
+jugador8 = Jugador("Fiore",slista_imagenes[8])
+jugador9 = Jugador("Dayana",slista_imagenes[9])
+lista_jugadores = []
+lista_jugadores.append(jugador1)
+lista_jugadores.append(jugador2)
+lista_jugadores.append(jugador3)
+lista_jugadores.append(jugador4)
+lista_jugadores.append(jugador5)
+lista_jugadores.append(jugador6)
+lista_jugadores.append(jugador7)
+lista_jugadores.append(jugador8)
+lista_jugadores.append(jugador9)
+
+
+
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    controlador = ControladorVistaConfiguracionModificarPreguntasDeDesempate
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    lista=[]
+    for i in lista_jugadores:
+        lista.append(WidgetJugador((i).get_nombre_jugador(),(i).get_avatar()))
+    ui.setupUi(MainWindow,lista)
+    MainWindow.show()
     sys.exit(app.exec())
+
