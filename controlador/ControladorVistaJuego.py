@@ -216,7 +216,7 @@ class ControladorVistaJuego:
                     jugador.set_ronda2(2)  # Respuesta incorrecta en la ronda 2
                     jugador_widget.actualizar_r2(estado=False)
                 print(f"{jugador.get_nombre_jugador()} ha respondido incorrectamente.")
-            es_correcta = respuesta_seleccionada == correcta
+            es_correcta = respuesta_seleccionada == (ord(correcta.upper())-64)
             dialog = DialogRonda(jugador.get_nombre_jugador(), es_correcta, correcta)
             dialog.exec()
             return respuesta_seleccionada
