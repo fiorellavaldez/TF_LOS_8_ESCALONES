@@ -15,7 +15,6 @@ class ControladorVistaSeleccionarJugadores:
         self.MainWindow = QtWidgets.QMainWindow()  # Nueva ventana para la nueva partida
         self.__vista = Ui_MainWindow()
         self.__lista_jugadores = JugadorABM().obtener_jugadores() #armo la lista con todos los jugadores
-        #self.__lista_jugadores_filtrados = [] ###quizas sea necesario para la barra de busqueda
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
 
@@ -48,23 +47,26 @@ class ControladorVistaSeleccionarJugadores:
         else:
             print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
 
-
     def __nuevo(self):
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevoABM(self)
     
     def __modificar (self):
-        fila = self.__vista.tableWidget.currentRow()
-        if fila < 0:
+        indice = self.__vista.tableWidget.currentRow()
+        if indice < 0:
             self.__vista.aviso_seleccionar_jugador()  # Si no se seleccionó ninguna fila
         else:
             # Obtener el contenido de la fila seleccionada en la columna 0 (nombre del jugador)
-            nombre_jugador_a_modificar = self.__vista.tableWidget.item(fila, 0).text()
-            jugador_a_modificar = None
+            jugador_a_modificar = self.filtrando_jugadores[indice]
+            self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
+    
+            
+            #self.__vista.tableWidget.item(fila, 0).text()
+            
             # Buscar el jugador en la lista filtrada de jugadores
-            for i in self.filtrando_jugadores:
-                if i.get_nombre_jugador() == nombre_jugador_a_modificar:
-                    jugador_a_modificar = i
-        self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
+            #for i in self.filtrando_jugadores:
+            #    if i.get_nombre_jugador() == nombre_jugador_a_modificar:
+            #        jugador_a_modificar = Jugador(i.get_nombre_jugador(),i.get_avatar())
+            #        self.controlador_jugador_nuevo= ControladorVistaModificarJugadorABM(self,jugador_a_modificar)
     
     def __eliminar(self):
         fila = self.__vista.tableWidget.currentRow()
@@ -92,8 +94,9 @@ class ControladorVistaSeleccionarJugadores:
         self.__controlador_anterior.MainWindow.show()
         
     def actualizar_tabla(self):
-        jugadores = JugadorABM().obtener_jugadores()
-        self.__vista.update_table(jugadores)
+        self.__lista_jugadores = JugadorABM().obtener_jugadores() #armo la lista con todos los jugadores
+        self.filtrando_jugadores = self.__lista_jugadores.copy()
+        self.__vista.update_table(self.__lista_jugadores)
             
     def __buscar_jugador(self):
         """Filtra los jugadores según el texto ingresado en el cuadro de búsqueda."""
