@@ -339,6 +339,7 @@ class Ui_MainWindow(object):
         
         self.bt_iniciar_partida.setProperty("tipo","boton_vista_grilla")
         self.bt_atras.setProperty("tipo","boton_vista_grilla")
+        self.bt_jugador_nuevo.setProperty("tipo","boton_vista_grilla")
 
         self.frame_11.setProperty("tipo","contenedor_jugador")
         self.frame_12.setProperty("tipo","contenedor_jugador")
@@ -369,7 +370,6 @@ class Ui_MainWindow(object):
         self.bt_seleccionar_jugador7.setProperty("tipo","seleccionar_jugador")
         self.bt_seleccionar_jugador8.setProperty("tipo","seleccionar_jugador")
         self.bt_seleccionar_jugador9.setProperty("tipo","seleccionar_jugador")
-        self.bt_jugador_nuevo.setProperty("tipo","seleccionar_jugador")
 
         self.bt_seleccionar_jugador1.setIcon(QtGui.QIcon("vista/img/select_jugad.png"))
         self.bt_seleccionar_jugador2.setIcon(QtGui.QIcon("vista/img/select_jugad.png"))

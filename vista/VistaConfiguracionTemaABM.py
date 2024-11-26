@@ -90,7 +90,12 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        
+
+        self.pushButton_Eliminar.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_Modificar.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_Nuevo.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_Volver.setProperty("tipo","boton_vista_configuracion")
+
     def aviso_seleccionar_tema(self):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -125,8 +130,8 @@ class Ui_MainWindow(object):
         mensaje.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
         respuesta=mensaje.exec()
         return respuesta
-        
-    
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaConfiguracionTemaABM", "VistaConfiguracionTemaABM"))

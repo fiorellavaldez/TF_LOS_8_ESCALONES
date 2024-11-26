@@ -74,6 +74,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        self.pushButton_12.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_13.setProperty("tipo","boton_vista_configuracion")
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("VistaConfiguracionPreguntasAgregarPreguntaDeDesempate", "VistaConfiguracionPreguntasAgregarPreguntaDeDesempate"))
