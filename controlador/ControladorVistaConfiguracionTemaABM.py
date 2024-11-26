@@ -15,6 +15,7 @@ from PyQt6.QtWidgets import QTableWidgetItem
 from  modelo.TemasDAO import TemasDAO
 from PyQt6.QtCore import QStringListModel
 from PyQt6.QtCore import QEvent
+import os
 
 class ControladorVistaConfiguracionTemaABM:
     #def __init__(self):
@@ -54,7 +55,19 @@ class ControladorVistaConfiguracionTemaABM:
 
         self.MainWindow.show()
 
+        #Aplicar estilos desde un archivo relativo
+        self.__aplicar_estilos()
+
         self.__llenar_tabla(self.__temas.lista_temas)
+
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
 
 
     def __llenar_tabla(self, lista_temas):
@@ -70,10 +83,7 @@ class ControladorVistaConfiguracionTemaABM:
             
             self.__vista.QTable_Temas.setItem(linea, 0, item_id)
             self.__vista.QTable_Temas.setItem(linea, 1, item_nombre)
-            
-            #self.__vista.QTable_Temas.setItem(linea, 0, QTableWidgetItem(str(tema.get_idTema())))  
-            #self.__vista.QTable_Temas.setItem(linea, 1, QTableWidgetItem(tema.get_nombreTema()))  
-    
+
     def actualizar_lista_temas(self, tema):
         #self.__temas.actualizar_tema(tema)
         self.__llenar_tabla(self.__temas.lista_temas)
@@ -131,8 +141,6 @@ class ControladorVistaConfiguracionTemaABM:
             self.__llenar_tabla(self.__temas.lista_temas)
             # self.__temas.actualizar_tema(tema)
             QtWidgets.QMessageBox.information(None, "Tema eliminado", f"El tema '{tema.get_nombreTema()}' fue eliminado con éxito.")
-            #self.ControladorVistaTemaNuevo = ControladorVistaConfiguracionTemaABMEditBaja(self,tema,self.__temas)
-            #self.ControladorVistaTemaNuevo.MainWindow.show()
         else:
             return
 

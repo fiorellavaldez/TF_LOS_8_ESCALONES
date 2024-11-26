@@ -7,6 +7,7 @@ from modelo.JugadoresABM import JugadorABM
 from modelo.Jugador import Jugador
 from PyQt6.QtGui import QIcon,QPixmap
 from controlador.ControladorVideo import ControladorVideo
+import os
 
 class ControladorVistaSeleccionarJugadores:
     def __init__(self, controlador_anterior):
@@ -17,6 +18,10 @@ class ControladorVistaSeleccionarJugadores:
         #self.__lista_jugadores_filtrados = [] ###quizas sea necesario para la barra de busqueda
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+
+        #Aplicar estilos desde un archivo relativo
+        self.__aplicar_estilos()
+
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
         with open("vista/estilos.qss") as f:
@@ -34,7 +39,16 @@ class ControladorVistaSeleccionarJugadores:
         
         #Llenado de la tabla
         self.__vista.update_table(self.filtrando_jugadores)
-    
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
+
     def __nuevo(self):
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevoABM(self)
     

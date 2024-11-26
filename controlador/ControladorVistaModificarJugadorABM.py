@@ -3,6 +3,7 @@ from PyQt6 import QtWidgets
 from modelo.Jugador import Jugador
 from modelo.JugadoresABM import JugadorABM
 import re
+import os
 
 class ControladorVistaModificarJugadorABM:
 
@@ -13,6 +14,9 @@ class ControladorVistaModificarJugadorABM:
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+
+        #Aplicar estilos
+        self.__aplicar_estilos()
 
         # Corregir lista de imágenes (faltaban comas entre algunas cadenas)
         self.lista_imagenes = [
@@ -39,7 +43,15 @@ class ControladorVistaModificarJugadorABM:
         self.__vista.get_button_cancelar().clicked.connect(self.__volver_seleccion_de_jugadores)
         self.__vista.get_boton_deslizador_derecha().clicked.connect(self.__mostrar_siguiente_imagen)
         self.__vista.get_boton_deslizador_izquierda().clicked.connect(self.__mostrar_imagen_anterior)
-        
+
+    def __aplicar_estilos(self):
+        estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")
+        if os.path.exists(estilos_path):
+            with open(estilos_path, "r") as f:
+                self.MainWindow.setStyleSheet(f.read())
+        else:
+            print(f"Advertencia: No se encontró el archivo de estilos en {estilos_path}.")
+
     def __volver_seleccion_de_jugadores(self):
         self.MainWindow.close()
         self.__controlador_anterior.MainWindow.show()
