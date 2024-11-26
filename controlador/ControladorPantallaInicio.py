@@ -22,7 +22,8 @@ class ControladorPantallaInicio:
         # Iniciar la música sin abrir ventanas adicionales
         
         # Configurar la música
-        self.__sonido = Sonido(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu_2.mp3")
+        self.__sonido = Sonido(r"musica\menu_2.mp3")
+        #self.__sonido = Sonido(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu_2.mp3")
         if not pygame.mixer.get_init():
             pygame.mixer.init()  # Asegúrate de inicializar pygame.mixer
         if not pygame.mixer.music.get_busy():

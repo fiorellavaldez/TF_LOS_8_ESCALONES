@@ -7,6 +7,7 @@ from vista.VistaConfiguracionTemaABMEdit import Ui_Widget
 from modelo.Tema import Tema
 from modelo.TemaABM import TemaABM
 from controlador.ControladorVideo import ControladorVideo
+from controlador.ControladorVentanaMain import ControladorVentanaMain
 
 from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets
@@ -19,7 +20,8 @@ import os
 class ControladorVistaConfiguracionTemaABM:
     def __init__(self, controlador_anterior=None):
         self.__controlador_anterior = controlador_anterior
-        self.MainWindow = QtWidgets.QMainWindow()
+        #self.MainWindow = QtWidgets.QMainWindow()
+        self.MainWindow = ControladorVentanaMain()
         self.WindowEdit = QtWidgets.QWidget()
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
