@@ -1,4 +1,4 @@
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtWidgets,QtGui, QtCore
 
 class DialogRonda(QtWidgets.QDialog):
     def __init__(self, jugador, correcta: bool, respuesta_correcta: str):
@@ -18,6 +18,10 @@ class DialogRonda(QtWidgets.QDialog):
 
         lbl_mensaje = QtWidgets.QLabel(mensaje)
         lbl_mensaje.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        lbl_mensaje.setFont(font)
         layout.addWidget(lbl_mensaje)
 
         # Mostrar la respuesta correcta
