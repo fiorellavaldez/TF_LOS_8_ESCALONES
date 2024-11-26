@@ -25,8 +25,6 @@ class ControladorConfiguracionPreguntaDesempate():
         
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta) #conectra con la barra de busqueda
 
-        # Registrar la ventana en el controlador de audio y video
-        ControladorVideo.registrar_ventana(self.MainWindow)
 
         #Aplicar estilos desde un archivo relativo
         self.__aplicar_estilos()
@@ -45,6 +43,9 @@ class ControladorConfiguracionPreguntaDesempate():
         self.__vista.mostrar_lista_en_combobox()
         self.mostrar_preguntas()
         self.MainWindow.show()  # Mostrar ventana al iniciar
+        
+        # Registrar la ventana en el controlador de audio y video
+        ControladorVideo.registrar_ventana(self.MainWindow)
 
     def __aplicar_estilos(self):
         estilos_path = os.path.join(os.path.dirname(__file__),"../vista/estilos.qss")

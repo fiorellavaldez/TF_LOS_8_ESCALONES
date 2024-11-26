@@ -15,7 +15,7 @@ class ControladorPantallaInicio:
         self.MainWindow = QtWidgets.QMainWindow()
         self.__vista = Ui_MainWindow()
         self.__vista.setupUi(self.MainWindow)
-
+        self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
 
@@ -29,7 +29,6 @@ class ControladorPantallaInicio:
         if not pygame.mixer.music.get_busy():
             self.__sonido.toggle_music()  
         
-        self.MainWindow.show()
 
         # Aplicar estilos desde un archivo relativo
         self.__aplicar_estilos()

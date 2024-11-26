@@ -6,14 +6,18 @@ from controlador.ControladorVideo import ControladorVideo
 class ControladorAudioVideo:
     def __init__(self, controlador_anterior, ruta_musica=None):
         self.__controlador_anterior = controlador_anterior
-
-        # Inicializar la ventana principal como instancia de QMainWindow
         self.MainWindow = QMainWindow()
-
         # Configurar la vista en la ventana principal
         self.__vista = Ui_ConfigWindow()
         self.__vista.setupUi(self.MainWindow)
 
+        # Inicializar la ventana principal como instancia de QMainWindow
+        
+        self.MainWindow.show()
+        
+        ControladorVideo.registrar_ventana(self.MainWindow)
+
+       
         # Inicializar controladores secundarios
         # Si se proporciona una ruta de música, la pasamos al controlador de audio
         self.controlador_audio = ControladorAudio(ruta_inicial=ruta_musica, vista=self.__vista)  # Pasar la vista y ruta de música

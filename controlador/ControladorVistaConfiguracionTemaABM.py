@@ -27,7 +27,7 @@ class ControladorVistaConfiguracionTemaABM:
         self.__vista.setupUi(self.MainWindow)
         self.__vistaEdit = Ui_Widget()
         self.__vistaEdit.setupUi(self.WindowEdit)
-
+        self.MainWindow.show()
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
 
@@ -53,7 +53,7 @@ class ControladorVistaConfiguracionTemaABM:
 
         self.__temas=TemaABM()
 
-        self.MainWindow.show()
+
 
         #Aplicar estilos desde un archivo relativo
         self.__aplicar_estilos()

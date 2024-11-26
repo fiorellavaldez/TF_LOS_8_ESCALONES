@@ -27,8 +27,7 @@ class ControladorConfiguracionPreguntaRonda():
         self.__vista.get_line_edit_busqueda().textChanged.connect(self.__buscar_pregunta) #conectra con la barra de busqueda
         
         
-        # Registrar la ventana en el controlador de audio y video
-        ControladorVideo.registrar_ventana(self.MainWindow)
+
         
         # Obtener preguntas para el tema inicial
         self.__lista_preguntas = PreguntaABM().obtener_preguntas_ronda_tema(self.__idTemaActual)
@@ -38,7 +37,8 @@ class ControladorConfiguracionPreguntaRonda():
         self.__vista.mostrar_lista_en_combobox()
         self.mostrar_preguntas()
         self.MainWindow.show()  # Mostrar ventana al iniciar
-
+        # Registrar la ventana en el controlador de audio y video
+        ControladorVideo.registrar_ventana(self.MainWindow)
         #Aplicar estilos
         self.__aplicar_estilos()
 
