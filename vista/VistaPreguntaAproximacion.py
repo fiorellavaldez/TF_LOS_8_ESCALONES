@@ -51,6 +51,8 @@ class VistaPreguntaAproximacion(QDialog):
         self.button_layout = QHBoxLayout()
         self.button_layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
         self.button_enviar = QPushButton("Enviar Respuesta", self)
+        self.button_enviar.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));height: 35px; width: 100px; font-size: 10px; color:#ffffff; font-weight:bold;border-radius: 3px;")
+
         self.button_enviar.setFont(QFont("Segoe UI", 12))
         self.button_enviar.clicked.connect(self.enviar_respuesta)
         self.button_layout.addWidget(self.button_enviar)
