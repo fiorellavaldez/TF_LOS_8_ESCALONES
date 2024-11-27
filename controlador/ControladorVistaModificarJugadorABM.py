@@ -24,7 +24,7 @@ class ControladorVistaModificarJugadorABM:
             "vista/img/ka.jpg", "vista/img/avatar_azul.png", "vista/img/ta.png", "vista/img/da.jpg",
             "vista/img/fi.jpg", "vista/img/edna.jpg", "vista/img/aladdin.jpeg", "vista/img/amore.jpg",
             "vista/img/avatar.png", "vista/img/caradepapa.jpeg", "vista/img/daria.jpg", "vista/img/dory.jpeg",
-            "vista/img/eugene.jpeg", "vista/img/gohan.jpeg", "vista/img/goku.jpeg", "vista/img/jasmin.jpeg",
+            "vista/img/eugene.jpeg", "vista/img/gohan.jpeg", "vista/img/goku.jpeg",
             "vista/img/kevin.jpg", "vista/img/merida.jpeg", "vista/img/moana.jpeg", "vista/img/mulan.jpeg",
             "vista/img/tiana.jpeg"
         ]
