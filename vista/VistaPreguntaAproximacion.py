@@ -1,6 +1,10 @@
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QTextEdit, QPushButton, QHBoxLayout, QSpacerItem, QSizePolicy
 from PyQt6.QtGui import QFont, QKeyEvent
-from PyQt6 import QtWidgets, QtCore
+from PyQt6 import QtCore
+from PyQt6 import QtGui, QtCore
+from PyQt6.QtWidgets import QApplication, QLabel
+from PyQt6.QtGui import QPixmap, QPainter, QMovie
+from PyQt6.QtCore import Qt
 
 class VistaPreguntaAproximacion(QDialog):
     def __init__(self, enunciado, jugador, parent=None):
@@ -11,6 +15,13 @@ class VistaPreguntaAproximacion(QDialog):
         self.setup_ui()
 
     def setup_ui(self):
+
+        palette = self.palette()
+        pixmap = QtGui.QPixmap("vista/img/fondo_preguntas.png").scaled(self.size(), QtCore.Qt.AspectRatioMode.IgnoreAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+        palette.setBrush(self.backgroundRole(), QtGui.QBrush(pixmap))
+        self.setPalette(palette)
+        self.setAutoFillBackground(True)
+
         self.setWindowTitle("Pregunta de Desempate")
         self.setFixedSize(400, 300)
         self.setWindowFlag(QtCore.Qt.WindowType.WindowCloseButtonHint, False)

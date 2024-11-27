@@ -1,15 +1,24 @@
 from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtWidgets import QDialog, QLabel, QPushButton, QVBoxLayout, QGridLayout
 from PyQt6.QtGui import QFont, QKeyEvent
+from PyQt6 import QtWidgets, QtGui, QtCore
+from PyQt6.QtWidgets import QApplication, QLabel
+from PyQt6.QtGui import QPixmap, QPainter, QMovie
+from PyQt6.QtCore import Qt
 
 class VistaPreguntaRonda(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Pregunta!")
         self.resize(600, 500)
-
         # Deshabilitar el botón de cerrar (X)
         #self.setWindowFlag(QtCore.Qt.WindowType.WindowCloseButtonHint, False)
+
+        palette = self.palette()
+        pixmap = QtGui.QPixmap("vista/img/fondo_preguntas.png").scaled(self.size(), QtCore.Qt.AspectRatioMode.IgnoreAspectRatio, QtCore.Qt.TransformationMode.SmoothTransformation)
+        palette.setBrush(self.backgroundRole(), QtGui.QBrush(pixmap))
+        self.setPalette(palette)
+        self.setAutoFillBackground(True)
 
         # Variable para controlar si se ha respondido
         self.respuesta_seleccionada = False
@@ -76,6 +85,20 @@ class VistaPreguntaRonda(QDialog):
         self.opcion_c = QPushButton("C")
         self.opcion_d = QPushButton("D")
 
+        self.opcion_a.setObjectName("bt_respuesta_ronda")
+        self.opcion_b.setObjectName("bt_respuesta_ronda")
+        self.opcion_c.setObjectName("bt_respuesta_ronda")
+        self.opcion_d.setObjectName("bt_respuesta_ronda")
+
+
+        self.opcion_a.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));height: 35px; width: 100px; font-size: 15px; color:#ffffff; font-weight:bold;border-radius: 3px;")
+
+        self.opcion_b.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));height: 35px; width: 100px; font-size: 15px; color:#ffffff; font-weight:bold;border-radius: 3px;")
+
+        self.opcion_c.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));height: 35px; width: 100px; font-size: 15px; color:#ffffff; font-weight:bold;border-radius: 3px;")
+
+        self.opcion_d.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));height: 35px; width: 100px; font-size: 15px; color:#ffffff; font-weight:bold;border-radius: 3px;")
+        
         self.respuesta_a = QLabel("Respuesta A")
         self.respuesta_b = QLabel("Respuesta B")
         self.respuesta_c = QLabel("Respuesta C")

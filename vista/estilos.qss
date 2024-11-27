@@ -365,3 +365,26 @@ QPushButton[tipo="boton_vista_configuracion_agregar"]:hover{
 QPushButton[tipo="boton_vista_configuracion_agregar"]:pressed{
     background-color:#197500;
 }
+
+#PREGUNTA RONDA
+QPushButton[tipo="bt_respuesta_ronda"]{
+    height: 35px;
+    width: 100px;
+    font-size: 15px;
+    color:#ffffff;
+    font-weight:bold;
+    border-radius: 3px;
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
+}
+
+QPushButton[tipo="bt_respuesta_ronda"]:hover{
+    background-color:#0022ff;
+    margin-bottom: 1px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ffffff;
+}
+               
+QPushButton[tipo="bt_respuesta_ronda"]:pressed{
+    background-color:#000d61;
+}
