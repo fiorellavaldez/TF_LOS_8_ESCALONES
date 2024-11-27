@@ -140,6 +140,8 @@ class ControladorVistaJuego:
         if len(lista_suben) == 1:
             jugador_ganador = lista_suben[0]
             widget_jugador_ganador = self.obtener_widget_por_jugador(jugador_ganador)
+            ganador_musica = ControladorAudio(r"musica\\ganador_1.mp3")
+            ganador_musica.cambiar_musica(r"musica\\ganador_1.mp3") 
             dialogo = VistaDialogGanador(jugador=widget_jugador_ganador)
             dialogo.exec()
         
