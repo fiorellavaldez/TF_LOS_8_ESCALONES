@@ -52,7 +52,7 @@ class PreguntaDAO:
             preguntas_desempate = cursor.fetchall()
         random.shuffle(preguntas_desempate)
         #print (preguntas_desempate)
-        for i in range (0,2):
+        for i in range (0,3):
             lista_preguntas_desempate.append(preguntas_desempate.pop())
         return lista_preguntas_desempate
 

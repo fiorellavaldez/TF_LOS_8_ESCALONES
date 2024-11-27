@@ -1,6 +1,7 @@
 from modelo.PreguntasDAO import PreguntaDAO
 from modelo.PreguntasABM import PreguntaABM
+from modelo.TemaABM import TemaABM
 
-a = PreguntaABM().preguntas_ronda_tema(1)
+a = TemaABM().obtener_temas_para_jugar()
 for i in a:
-    print(i.get_enunciado())
+    print(i.get_nombreTema())

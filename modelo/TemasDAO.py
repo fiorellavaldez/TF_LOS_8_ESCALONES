@@ -27,8 +27,8 @@ class TemasDAO:
         
     def __contar_temas(self): ## cuento la cantidad de temas que hay 
         with self.__bd.cursor() as cursor:
-          cursor.execute("SELECT MAX(t.id_tema) FROM temas AS t")
-          contador = cursor.fetchone()[0]
+            cursor.execute("SELECT MAX(t.id_tema) FROM temas AS t")
+            contador = cursor.fetchone()[0]
         return contador
 
     #Valido el tema, si tiene 18 o mas preguntas de ronda y 2 o mas preguntas de desempate el tema es valido y se llama en el metodo temas_partida
@@ -39,10 +39,10 @@ class TemasDAO:
         with self.__bd.cursor() as cursor: 
             for i in range(1, cant_temas): # Asegurándote de contar desde 1 hasta cant_temas 
                 cursor.execute("""SELECT (SELECT COUNT(p1.id_pregunta) FROM preguntas AS p1 
-                              INNER JOIN temas AS t1 ON t1.id_tema = p1.id_tema WHERE p1.id_tema = %s AND p1.tipo_pregunta = %s AND t1.estado_tema = True) AS preguntas_m,
-                                     (SELECT COUNT(p2.id_pregunta) FROM preguntas AS p2 
-                                      INNER JOIN temas AS t2 ON t2.id_tema = p2.id_tema  WHERE p2.id_tema = %s AND p2.tipo_pregunta = %s AND t2.estado_tema = True) AS preguntas_d""", 
-                           (i, tipo_pregunta1, i, tipo_pregunta2)) 
+                                INNER JOIN temas AS t1 ON t1.id_tema = p1.id_tema WHERE p1.id_tema = %s AND p1.tipo_pregunta = %s AND t1.estado_tema = True AND p1.estado_pregunta = True) AS preguntas_m,
+                                    (SELECT COUNT(p2.id_pregunta) FROM preguntas AS p2 
+                                    INNER JOIN temas AS t2 ON t2.id_tema = p2.id_tema  WHERE p2.id_tema = %s AND p2.tipo_pregunta = %s AND t2.estado_tema = True AND p2.estado_pregunta = True) AS preguntas_d""", 
+                            (i, tipo_pregunta1, i, tipo_pregunta2)) 
                 preguntas_m, preguntas_d = cursor.fetchone() 
                 if preguntas_m >= cant_preguntas_tipo1 and preguntas_d >= cant_preguntas_tipo2:
                     temas_validos.append(self.get_tema(i)) # Añadir el id_tema a la lista de temas válidos return temas_validos
@@ -57,7 +57,7 @@ class TemasDAO:
     #    return lista_temas_partida    
     
     def temas_partida(self): 
-        temas_validos = self.__chequeo_preguntas_necesarias(18, 'M', 2, 'D') 
+        temas_validos = self.__chequeo_preguntas_necesarias(18, 'M', 3, 'D') 
         random.shuffle(temas_validos) 
         return temas_validos
 

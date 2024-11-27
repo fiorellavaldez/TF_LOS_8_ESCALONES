@@ -130,7 +130,7 @@ class ControladorVistaJuego:
             print("Empate detectado. Comenzando ronda de desempate...")
             preguntas_desempate = escalon.get_preguntasDesempate()
             pregunta_desempate = preguntas_desempate[0]
-            perdedor = self.hacer_desempate(jugadores_a_desempatar, pregunta_desempate)
+            perdedor = self.hacer_desempate(jugadores_a_desempatar, preguntas_desempate)
         else:
             perdedor = jugadores_a_desempatar[0]
 
@@ -165,13 +165,13 @@ class ControladorVistaJuego:
         Muestra un diálogo en pantalla para que el jugador seleccione su respuesta.
         Actualiza el estado de la ronda del jugador dependiendo de si la respuesta es correcta o incorrecta.
 
-        :param jugador: Instancia del jugador.
-        :param escalon: Número del escalón actual.
-        :param tematica: Temática de la pregunta.
-        :param pregunta: Texto de la pregunta.
-        :param respuestas: Lista de posibles respuestas (4 opciones).
-        :param ronda: Número de ronda (1 o 2).
-        :return: Índice de la respuesta seleccionada (0-3) o None si el jugador no responde.
+        -parametro jugador: Instancia del jugador.
+        -parametro escalon: Número del escalón actual.
+        -parametro tematica: Temática de la pregunta.
+        -parametro pregunta: Texto de la pregunta.
+        -parametro respuestas: Lista de posibles respuestas (4 opciones).
+        -parametro ronda: Número de ronda (1 o 2).
+        -return: Índice de la respuesta seleccionada (0-3)
         """
         # Crear y configurar la ventana de la pregunta
         dialogo = VistaPreguntaRonda()
@@ -237,37 +237,65 @@ class ControladorVistaJuego:
         jugadores_a_desempatar = [jugador for jugador, errores in jugadores_errados.items() if errores == max_errores]
         return jugadores_a_desempatar
     
-    def hacer_desempate(self, jugadores, pregunta_desempate):
+    def hacer_desempate(self, jugadores, preguntas_desempate):
         """
-        Realiza una ronda de desempate donde todos los jugadores responden la misma pregunta.
-        :param jugadores: list, lista de objetos de la clase Jugador que van al desempate
-        :param pregunta_desempate: objeto preguntaDesempate, contiene el enunciado y la respuesta correcta
-        :return: objeto Jugador que será eliminado
+        Hace una ronda de desempate donde todos los jugadores responden la misma pregunta.
+        - parametro jugadores: list, lista de objetos de la clase Jugador que van al desempate
+        - parametro preguntas_desempate: list, lista de objetos preguntaDesempate, contienen el enunciado y la respuesta correcta
+        - return: objeto Jugador que será eliminado
         """
-        # Obtener datos de la pregunta
-        enunciado = pregunta_desempate.get_enunciado()
-        respuesta_correcta = pregunta_desempate.get_respuestaCorrecta()
-        respuestas = {}
-        for jugador in jugadores:
-            # Crear y mostrar el diálogo
-            dialog = VistaPreguntaAproximacion(enunciado, jugador.get_nombre_jugador())
-            if dialog.exec() == QDialog.DialogCode.Accepted:
-                respuestas[jugador] = dialog.get_respuesta()
+        indice = 0
+        while indice < 3:
+            # Obtener datos de la pregunta
+            pregunta_desempate = preguntas_desempate[indice]
+            enunciado = pregunta_desempate.get_enunciado()
+            respuesta_correcta = pregunta_desempate.get_respuestaCorrecta()
+            respuestas = {}
+            # Obtener respuestas de los jugadores
+            for jugador in jugadores:
+                dialog = VistaPreguntaAproximacion(enunciado, jugador.get_nombre_jugador())
+                if dialog.exec() == QDialog.DialogCode.Accepted:
+                    respuestas[jugador] = dialog.get_respuesta()
+                else:
+                    print(f"{jugador.get_nombre_jugador()} no respondió.")
+            
+            # Calcular distancias a la respuesta correcta
+            distancias = {jugador: pregunta_desempate.responder(respuestas[jugador]) for jugador in jugadores}
+            
+            # Verificar si todas las distancias son iguales
+            if all(distancia == list(distancias.values())[0] for distancia in distancias.values()):
+                indice += 1
+                # Mostrar mensaje en pantalla sobre el empate
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Icon.Information)
+                msg.setWindowTitle("Empate Detectado")
+                msg.setText(f"Empate en intento {indice}. Generando nueva pregunta...")
+                msg.exec()
             else:
-                print(f"{jugador.get_nombre_jugador()} no respondió.")
-        # Calcular distancias a la respuesta correcta
-        distancias = {jugador: pregunta_desempate.responder(respuestas[jugador]) for jugador in jugadores}
-        # Determinar el jugador eliminado
-        jugador_eliminado = max(distancias, key=distancias.get)
+                # Determinar el jugador eliminado
+                jugador_eliminado = max(distancias, key=distancias.get)
+                dialog = DialogDesempate(jugadores, jugador_eliminado, distancias, respuesta_correcta)
+                dialog.exec()
+                return jugador_eliminado
+        # Si índice alcanza el máximo, eliminar un jugador aleatorio
+        jugador_eliminado = random.choice(jugadores)
+        # Mostrar mensaje en pantalla sobre eliminación aleatoria
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Warning)
+        msg.setWindowTitle("Límite Alcanzado")
+        msg.setText(f"Límite de intentos alcanzado. Eliminando jugador aleatorio: {jugador_eliminado.get_nombre_jugador()}")
+        msg.exec()
+        # Mostrar diálogo final del desempate
         dialog = DialogDesempate(jugadores, jugador_eliminado, distancias, respuesta_correcta)
         dialog.exec()
         return jugador_eliminado
 
+
     def obtener_widget_por_jugador(self, jugador):
         """
         Obtiene el widget asociado a un jugador específico.
-        :param jugador: objeto Jugador
-        :return: WidgetJugador asociado al jugador, o None si no se encuentra
+        -parametro jugador: objeto Jugador
+        -return: WidgetJugador asociado al jugador, o None si no se encuentra
         """
         for widget in self.__lista_jugadores_widget:
             if widget.get_nombre_visual() == jugador.get_nombre_jugador():
