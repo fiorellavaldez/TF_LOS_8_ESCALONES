@@ -20,6 +20,9 @@ class DialogDesempate(QtWidgets.QDialog):
         # Respuesta correcta
         lbl_respuesta_correcta = QtWidgets.QLabel(f"La respuesta correcta es: {respuesta_correcta}")
         lbl_respuesta_correcta.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        font_respuesta_correcta = lbl_respuesta_correcta.font()
+        font_respuesta_correcta.setBold(True)
+        lbl_respuesta_correcta.setFont(font_respuesta_correcta)
         layout.addWidget(lbl_respuesta_correcta)
 
         # Distancias de los jugadores
@@ -35,14 +38,7 @@ class DialogDesempate(QtWidgets.QDialog):
         lbl_eliminado.setStyleSheet("color: red; font-weight: bold;")
         lbl_eliminado.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(lbl_eliminado)
-
-        # # Mostrar los jugadores que avanzan
-        # jugadores_avanzan = [jugador.get_nombre_jugador() for jugador in jugadores_empate if jugador.get_nombre_jugador() != jugador_eliminado.get_nombre_jugador()]
-        # lbl_avanzan = QtWidgets.QLabel(f"Jugadores que avanzan: {', '.join(jugadores_avanzan)}")
-        # lbl_avanzan.setStyleSheet("color: green; font-weight: bold;")
-        # lbl_avanzan.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        # layout.addWidget(lbl_avanzan)
-
+        
         # Botón de cierre
         btn_cerrar = QtWidgets.QPushButton("Cerrar")
         btn_cerrar.clicked.connect(self.accept)

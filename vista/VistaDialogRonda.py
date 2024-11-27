@@ -1,20 +1,20 @@
 from PyQt6 import QtWidgets,QtGui, QtCore
 
 class DialogRonda(QtWidgets.QDialog):
-    def __init__(self, jugador, correcta: bool, respuesta_correcta: str):
+    def __init__(self, jugador, opciones, correcta: bool, respuesta_correcta: str):
         super().__init__()
         self.setWindowTitle("Resultado de la ronda")
         self.resize(400, 200)
-        self.setup_ui(jugador, correcta, respuesta_correcta)
+        self.setup_ui(jugador, opciones, correcta, respuesta_correcta)
 
-    def setup_ui(self, jugador, correcta: bool, respuesta_correcta: str):
+    def setup_ui(self, jugador, opciones, correcta: bool, respuesta_correcta: str):
         layout = QtWidgets.QVBoxLayout(self)
 
         # Mensaje principal
         if correcta:
-            mensaje = f"¡{jugador} respondió correctamente! 🎉"
+            mensaje = f"¡{jugador} respondió BIEN! 🎉"
         else:
-            mensaje = f"¡{jugador} respondió incorrectamente! 😔"
+            mensaje = f"¡{jugador} respondió MAL! 😔"
 
         lbl_mensaje = QtWidgets.QLabel(mensaje)
         lbl_mensaje.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -25,7 +25,16 @@ class DialogRonda(QtWidgets.QDialog):
         layout.addWidget(lbl_mensaje)
 
         # Mostrar la respuesta correcta
-        lbl_respuesta = QtWidgets.QLabel(f"Respuesta correcta: {respuesta_correcta}")
+        if respuesta_correcta== "A":
+            correcta_texto = opciones[0]
+        elif respuesta_correcta=="B":
+            correcta_texto = opciones[1]
+        elif respuesta_correcta=="C":
+            correcta_texto = opciones[2]
+        elif respuesta_correcta=="D":
+            correcta_texto = opciones[3]
+            
+        lbl_respuesta = QtWidgets.QLabel(f"Respuesta correcta: {respuesta_correcta}) {correcta_texto}")
         lbl_respuesta.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(lbl_respuesta)
 
