@@ -1,8 +1,9 @@
 from controlador.ControladorVideo import ControladorVideo
 from controlador.ControladorConfiguracion import ControladorVistaConfiguracion
 from controlador.ControladorVistaGrillaJugadores import ControladorVistaGrillaJugadores
+from controlador.ControladorAudio import ControladorAudio
 from vista.VistaPantallaInicio import Ui_MainWindow
-from controlador.Sonido import Sonido
+
 from PyQt6 import QtWidgets
 import os
 import pygame
@@ -21,13 +22,7 @@ class ControladorPantallaInicio:
 
         # Iniciar la música sin abrir ventanas adicionales
         
-        # Configurar la música
-        self.__sonido = Sonido(r"musica\menu_2.mp3")
-        #self.__sonido = Sonido(r"C:\Users\Usuario\Documents\GitHub\TF_LOS_8_ESCALONES\musica\menu_2.mp3")
-        if not pygame.mixer.get_init():
-            pygame.mixer.init()  # Asegúrate de inicializar pygame.mixer
-        if not pygame.mixer.music.get_busy():
-            self.__sonido.toggle_music()  
+        self.__audio = ControladorAudio(r"musica\\menu_2.mp3")
         
 
         # Aplicar estilos desde un archivo relativo

@@ -11,7 +11,6 @@ from vista.WidgetJugador import WidgetJugador
 from modelo.Jugador import Jugador
 from modelo.TemaABM import TemaABM
 from modelo.PreguntasABM import PreguntaABM
-from controlador.Sonido import Sonido
 from controlador.ControladorVideo import ControladorVideo
 from controlador.ControladorAudio import ControladorAudio
 import random
@@ -32,7 +31,7 @@ class ControladorVistaJuego:
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
         # Inicializa un controlador de audio con una ruta inicial
-        self.__audio_controller = ControladorAudio(ruta_inicial="musica\\menu_2.mp3")
+        self.__audio_controller = ControladorAudio()
         # Cambia la música
         self.__audio_controller.cambiar_musica(r"musica\\acorralado.mp3")
         
