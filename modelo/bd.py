@@ -1,6 +1,4 @@
 import psycopg2
-from dotenv import load_dotenv
-import os
 from pass_bd import contra
 
 class DataBaseMeta(type): #singleton
@@ -14,13 +12,10 @@ class DataBaseMeta(type): #singleton
         return cls.__instances
 
 
-class Database(metaclass=DataBaseMeta):
+class Database(metaclass =DataBaseMeta):
     
     def __init__(self):
         try:
-            load_dotenv('.env')
-            #self.conexion = psycopg2.connect(host='localhost', port=5434, database='8_escalones', user='postgres', password='pokemon')
-            # Por ahora modificar los parameteros de acceso a la base de datos aqui:
             self.conexion = psycopg2.connect(
                 host='localhost', 
                 port=5432, 
