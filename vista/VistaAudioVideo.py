@@ -26,7 +26,7 @@ class Ui_ConfigWindow(object):
         )
 
         # Título
-        self.title_label = QtWidgets.QLabel("Configuración de Audio y Video", self.centralwidget)
+        self.title_label = QtWidgets.QLabel("Configuración de Audio", self.centralwidget)
         font = QtGui.QFont("Segoe UI", 28, QtGui.QFont.Weight.Bold)
         self.title_label.setFont(font)
         self.title_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -95,22 +95,22 @@ class Ui_ConfigWindow(object):
         self.volume_layout.addWidget(self.increase_volume_button)
         self.main_layout.addLayout(self.volume_layout)
 
-        # Botón para pantalla completa
-        self.screen_button = QtWidgets.QPushButton("Pantalla Completa", self.centralwidget)
-        self.screen_button.setFont(QtGui.QFont("Segoe UI", 16))
-        self.screen_button.setStyleSheet(
-            "QPushButton {"
-            "    background-color: #005f73;"
-            "    border: 2px solid #00ffff;"
-            "    border-radius: 10px;"
-            "    padding: 10px;"
-            "    color: #ffffff;"
-            "}"
-            "QPushButton:hover {"
-            "    background-color: #00a4cc;"
-            "}"
-        )
-        self.main_layout.addWidget(self.screen_button)
+        # # Botón para pantalla completa
+        # self.screen_button = QtWidgets.QPushButton("Pantalla Completa", self.centralwidget)
+        # self.screen_button.setFont(QtGui.QFont("Segoe UI", 16))
+        # self.screen_button.setStyleSheet(
+        #     "QPushButton {"
+        #     "    background-color: #005f73;"
+        #     "    border: 2px solid #00ffff;"
+        #     "    border-radius: 10px;"
+        #     "    padding: 10px;"
+        #     "    color: #ffffff;"
+        #     "}"
+        #     "QPushButton:hover {"
+        #     "    background-color: #00a4cc;"
+        #     "}"
+        # )
+        # self.main_layout.addWidget(self.screen_button)
 
         # Botón para volver atrás
         self.back_button = QtWidgets.QPushButton("Atrás", self.centralwidget)
@@ -161,8 +161,8 @@ class Ui_ConfigWindow(object):
     def get_volume_slider(self):
         return self.volume_slider
 
-    def get_screen_button(self):
-        return self.screen_button
+    #def get_screen_button(self):
+    #    return self.screen_button
 
     def get_back_button(self):
         return self.back_button
