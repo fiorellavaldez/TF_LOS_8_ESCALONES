@@ -33,22 +33,22 @@ class Ui_ConfigWindow(object):
         self.title_label.setStyleSheet("color: #00ffff;")
         self.main_layout.addWidget(self.title_label)
 
-        # Botón para activar/desactivar música
-        self.music_button = QtWidgets.QPushButton("Encender/Apagar Música", self.centralwidget)
-        self.music_button.setFont(QtGui.QFont("Segoe UI", 16))
-        self.music_button.setStyleSheet(
-            "QPushButton {"
-            "    background-color: #005f73;"
-            "    border: 2px solid #00ffff;"
-            "    border-radius: 10px;"
-            "    padding: 10px;"
-            "    color: #ffffff;"
-            "}"
-            "QPushButton:hover {"
-            "    background-color: #00a4cc;"
-            "}"
-        )
-        self.main_layout.addWidget(self.music_button)
+        # # Botón para activar/desactivar música
+        # self.music_button = QtWidgets.QPushButton("Encender/Apagar Música", self.centralwidget)
+        # self.music_button.setFont(QtGui.QFont("Segoe UI", 16))
+        # self.music_button.setStyleSheet(
+        #     "QPushButton {"
+        #     "    background-color: #005f73;"
+        #     "    border: 2px solid #00ffff;"
+        #     "    border-radius: 10px;"
+        #     "    padding: 10px;"
+        #     "    color: #ffffff;"
+        #     "}"
+        #     "QPushButton:hover {"
+        #     "    background-color: #00a4cc;"
+        #     "}"
+        # )
+        # self.main_layout.addWidget(self.music_button)
 
         # Barra de volumen y botones
         self.volume_layout = QtWidgets.QHBoxLayout()

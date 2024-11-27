@@ -21,7 +21,7 @@ class ControladorAudio:
 
         # Conectar señales si se proporciona una vista
         if self.__vista:
-            self.__vista.get_music_button().clicked.connect(self.__apagar_encender_musica)
+            #self.__vista.get_music_button().clicked.connect(self.apagar_encender_musica)
             self.__vista.get_volume_slider().setValue(int(self.__volume * 100))  # Configurar valor inicial
             self.__vista.get_volume_slider().valueChanged.connect(self.cambio_volumen)
 
@@ -44,16 +44,17 @@ class ControladorAudio:
         
         pygame.mixer.music.set_volume(self.__volume / 100)  # Ajustar rango a 0.0-1.0
 
-    def __apagar_encender_musica(self):
-        """Alterna entre encender y apagar la música."""
-        self.__music_on = not self.__music_on
-        if self.__music_on:
-            pygame.mixer.music.play(-1)  # Reproducir en bucle
-            self.__vista.get_music_button().setText(MUSIC_BUTTON_TEXT_ON)
-        else:
-            self.cambio_volumen(0)
-            pygame.mixer.music.stop()
-            self.__vista.get_music_button().setText(MUSIC_BUTTON_TEXT_OFF)
+    # def apagar_encender_musica(self):
+    #     """Alterna entre encender y apagar la música."""
+    #     self.__music_on = not self.__music_on
+    #     if self.__music_on:
+    #         self.volumne = 0.5
+    #         pygame.mixer.music.play(-1)  # Reproducir en bucle
+    #         self.__vista.get_music_button().setText(MUSIC_BUTTON_TEXT_ON)
+    #     else:
+    #         self.__volume = 0.0
+    #         pygame.mixer.music.stop()
+    #         self.__vista.get_music_button().setText(MUSIC_BUTTON_TEXT_OFF)
 
 
     def cambiar_musica(self, nueva_ruta):
