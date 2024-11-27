@@ -82,6 +82,18 @@ QPushButton[tipo="boton_vista_grilla"]:pressed{
     background-color:#000d61;
 }
 
+QPushButton#bt_jugador_nuevo:hover{
+    background-color:#00ff40;
+    margin-bottom: 1px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ffffff;
+}
+
+QPushButton#bt_jugador_nuevo:pressed{
+    background-color:#056100;
+}
+
 /* SELECCIONAR JUGADORES */
 
 QWidget#fondo_seleccion_jugadores{
@@ -119,35 +131,34 @@ QPushButton[tipo="boton_vista_seleccion"]:pressed{
 /*VISTA JUEGO*/
 
 QWidget#wd_escalon1{
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(255, 31, 31, 255), stop:1 rgba(217, 0, 0, 255));
+    background-color: #ffa07a;
 }
 
 QWidget#wd_escalon2{
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(255, 204, 31, 255), stop:1 rgba(217, 177, 0, 255));
+    background-color: #bdfcc9;
 }
 
 QWidget#wd_escalon3 {
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(69, 233, 28, 255), stop:1 rgba(0, 208, 47, 255));
+    background-color: #ffdab9;
 }
 
 QWidget#wd_escalon4 {
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(133, 31, 255, 255), stop:1 rgba(146, 0, 217, 255));
+    background-color: #c5c5fa;
 }
 
 QWidget#wd_escalon5 {
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(255, 110, 47, 255), stop:1 rgba(226, 82, 21, 255))
+    background-color: #ffffe0;
 }
 
 QWidget#wd_escalon6 {
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(255, 73, 159, 255), stop:1 rgba(226, 21, 109, 255))
-}
+    background-color: #98fb98;}
 
 QWidget#wd_escalon7 {
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(31, 188, 255, 255), stop:1 rgba(0, 152, 217, 255));
+    background-color: #add8e6;
 }
 
 QWidget#wd_escalon8 {
-    background-color: qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(191, 255, 31, 255), stop:1 rgba(146, 217, 0, 255));
+    background-color: #ffb6c1;
 }
 
 QPushButton[tipo="boton_vista_juego"]{
@@ -184,11 +195,13 @@ QWidget#wd_nombre_jugador{
 QPushButton[tipo="boton_vista_configuracion"]{
     background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
     border-radius: 6px;
-    height: 60px;
-    font-size: 30px;
+    height: 45px;
+    font-size: 20px;
     color:#ffffff;
     font-weight:bold;
-    icon-size: 25px 25px;
+    icon-size: 20px 20px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 QPushButton[tipo="boton_vista_configuracion"]:hover{
@@ -202,4 +215,117 @@ QPushButton[tipo="boton_vista_configuracion"]:hover{
 
 QPushButton[tipo="boton_vista_configuracion"]:pressed{
     background-color:#000d61;
+}
+
+/*WIDGET JUGADOR*/
+QLabel#wd_nombre_jugador{
+    background-color:#ffffff;
+    color: #000000;
+}
+
+/*VISTA JUGADOR NUEVO*/
+
+QLabel#ingrese_jugador_nuevo{
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QPushButton[tipo="boton_vista_jugador_nuevo"]{
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
+    border-radius: 5px;
+    height: 30px;
+    font-size: 15px;
+    color:#ffffff;
+    font-weight:bold;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+QPushButton[tipo="boton_vista_jugador_nuevo"]:hover{
+    background-color:#0022ff;
+    margin-bottom: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #ffffff;
+}
+
+QPushButton[tipo="boton_vista_jugador_nuevo"]:pressed{
+    background-color:#000d61;
+}
+
+QPushButton[tipo="boton_elige_icon"]{
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));;
+    color:#ffffff;
+    font-weight: bold;
+    font-size:20px;
+    border-radius:2px;
+}
+
+QPushButton[tipo="boton_elige_icon"]:hover{
+    background-color:#0022ff;
+    margin-bottom: 2px;
+    border-style: solid;
+    border-color: #ffffff;
+}
+
+QPushButton[tipo="boton_elige_icon"]:pressed{
+    background-color:#000d61;
+}
+
+
+/*BOTONES COLORES ACCIONES*/
+
+
+QPushButton[tipo="boton_vista_configuracion_eliminar"]{
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
+    border-radius: 6px;
+    height: 45px;
+    font-size: 20px;
+    color:#ffffff;
+    font-weight:bold;
+    icon-size: 20px 20px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+
+QPushButton[tipo="boton_vista_configuracion_eliminar"]:hover{
+    background-color:#ff0800;
+    margin-bottom: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #ffffff;
+}
+
+QPushButton[tipo="boton_vista_configuracion_eliminar"]:pressed{
+    background-color:#750000;
+}
+
+QPushButton[tipo="boton_vista_configuracion_agregar"]{
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
+    border-radius: 6px;
+    height: 45px;
+    font-size: 20px;
+    color:#ffffff;
+    font-weight:bold;
+    icon-size: 20px 20px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+QPushButton[tipo="boton_vista_configuracion_agregar"]:hover{
+    background-color:#7fde02;
+    margin-bottom: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #ffffff;
+}
+
+QPushButton[tipo="boton_vista_configuracion_agregar"]:pressed{
+    background-color:#197500;
 }

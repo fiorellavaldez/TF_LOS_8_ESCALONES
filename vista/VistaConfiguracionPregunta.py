@@ -4,7 +4,7 @@ class Ui_MainWindow(object):
     def __init__(self, lista_temas):
         self.__lista_temas = lista_temas
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName("VistaConfiguracionPregunta")
         # Establece el tamaño inicial de la ventana
         MainWindow.resize(1080, 720)
         # Establece el tamaño mínimo de la ventana
@@ -18,13 +18,14 @@ class Ui_MainWindow(object):
         spacerItem = QtWidgets.QSpacerItem(66, 20, QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem)
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Preferred)
+        self.label.setStyleSheet("color: #ffffff; font-weight: bold;")
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setPointSize(9)
+        font.setPointSize(30)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.horizontalLayout_4.addWidget(self.label)
@@ -50,6 +51,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label_2 = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label_2.setStyleSheet("color: #ffffff; font-weight: bold;")
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_2.setFont(font)
@@ -117,16 +119,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addLayout(self.horizontalLayout)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.pushButton_14.setIcon(QtGui.QIcon("vista/img/icono_eliminar.png"))
+        self.pushButton_13.setIcon(QtGui.QIcon("vista/img/icono_modificar.png"))
+        self.pushButton_12.setIcon(QtGui.QIcon("vista/img/icono_agregar.png"))
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.pushButton_2.setProperty("tipo","boton_vista_configuracion")
-        self.pushButton_14.setProperty("tipo","boton_vista_configuracion")
-        self.pushButton_12.setProperty("tipo","boton_vista_configuracion")
+        self.pushButton_14.setProperty("tipo","boton_vista_configuracion_eliminar")
+        self.pushButton_12.setProperty("tipo","boton_vista_configuracion_agregar")
         self.pushButton_13.setProperty("tipo","boton_vista_configuracion")
     
     def aviso_seleccionar_pregunta(self):
@@ -149,6 +151,7 @@ class Ui_MainWindow(object):
         self.pushButton_14.setText(_translate("MainWindow", "Eliminar pregunta"))
         self.pushButton_13.setText(_translate("MainWindow", "Modificar pregunta"))
         self.pushButton_12.setText(_translate("MainWindow", "Nueva pregunta"))
+
     
     def mostrar_lista_en_combobox(self):
         self.comboBox.clear()  # Limpiar todos los ítems

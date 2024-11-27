@@ -38,6 +38,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.bt_cancelar = QtWidgets.QPushButton(text="Atrás", parent=self.centralwidget)
+        self.bt_cancelar.setProperty("tipo","boton_vista_configuracion")
         font = QtGui.QFont()
         font.setPointSize(10)
         self.bt_cancelar.setFont(font)
@@ -47,15 +48,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addItem(spacerItem1)
 
         # Botones adicionales
-        self.bt_nuevo = QtWidgets.QPushButton(text="Nuevo jugador", parent=self.centralwidget)
+        self.bt_nuevo = QtWidgets.QPushButton(text=" Nuevo jugador", parent=self.centralwidget)
+        self.bt_nuevo.setIcon(QtGui.QIcon("vista/img/icono_agregar.png"))
+        self.bt_nuevo.setProperty("tipo","boton_vista_configuracion_agregar")
         self.bt_nuevo.setFont(font)
         self.horizontalLayout_3.addWidget(self.bt_nuevo)
 
-        self.bt_modificar = QtWidgets.QPushButton(text="Modificar jugador", parent=self.centralwidget)
+        self.bt_modificar = QtWidgets.QPushButton(text=" Modificar jugador", parent=self.centralwidget)
+        self.bt_modificar.setIcon(QtGui.QIcon("vista/img/icono_modificar.png"))
+        self.bt_modificar.setProperty("tipo","boton_vista_configuracion")
         self.bt_modificar.setFont(font)
         self.horizontalLayout_3.addWidget(self.bt_modificar)
 
-        self.bt_eliminar = QtWidgets.QPushButton(text="Eliminar jugador", parent=self.centralwidget)
+        self.bt_eliminar = QtWidgets.QPushButton(text=" Eliminar jugador", parent=self.centralwidget)
+        self.bt_eliminar.setIcon(QtGui.QIcon("vista/img/icono_eliminar.png"))
+        self.bt_eliminar.setProperty("tipo","boton_vista_configuracion_eliminar")
         self.bt_eliminar.setFont(font)
         self.horizontalLayout_3.addWidget(self.bt_eliminar)
 
@@ -63,6 +70,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         MainWindow.setStatusBar(self.statusbar)
+
 
     def update_table(self, lista_jugadores):
         """Actualiza la tabla con los datos proporcionados."""
@@ -102,7 +110,6 @@ class Ui_MainWindow(object):
         msg.setText("Debe seleccionar un jugador primero.")
         msg.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
         msg.exec()
-
 
     # Métodos para exponer botones al Controlador
     def get_button_cancelar(self):

@@ -17,14 +17,15 @@ class ControladorVistaSeleccionarJugadoresABM:
         self.__lista_jugadores = JugadorABM().obtener_jugadores() #armo la lista con todos los jugadores
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
+        print("Estoy en ControladorVistaSeleccionarJugadoresABM")
 
         #Aplicar estilos desde un archivo relativo
-        self.__aplicar_estilos()
+        #self.__aplicar_estilos()
 
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
-        with open("vista/estilos.qss") as f:
-            self.MainWindow.setStyleSheet(f.read())
         
         self.__vista.get_button_cancelar().clicked.connect(self.__volver)
         self.__vista.get_button_nuevo().clicked.connect(self.__nuevo)

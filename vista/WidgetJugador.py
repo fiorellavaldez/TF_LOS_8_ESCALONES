@@ -35,13 +35,13 @@ class WidgetJugador(QtWidgets.QWidget):
         #avatar
         self.lbl_avatar = QtWidgets.QLabel(parent=self)
         self.lbl_avatar.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
-        self.lbl_avatar.setMaximumSize(QtCore.QSize(30, 30))
+        self.lbl_avatar.setMaximumSize(QtCore.QSize(40, 40))
         self.lbl_avatar.setPixmap(QtGui.QPixmap(self.__avatar))
         self.lbl_avatar.setScaledContents(True)
 
         #nombre
         self.wd_nombre = QtWidgets.QLabel(text=self.__nombre, parent=self)
-        self.wd_nombre.setMaximumSize(QtCore.QSize(16777215, 14))
+        self.wd_nombre.setMaximumSize(QtCore.QSize(16777215, 16))
         self.wd_nombre.setObjectName("wd_nombre_jugador")
         font = QtGui.QFont()
         font.setPointSize(7)
@@ -51,7 +51,7 @@ class WidgetJugador(QtWidgets.QWidget):
         self.ly_rondas = QtWidgets.QHBoxLayout()
         self.lbl_r1 = QtWidgets.QLabel(parent=self)
         self.lbl_r1.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
-        self.lbl_r1.setMaximumSize(QtCore.QSize(15, 15))
+        self.lbl_r1.setMaximumSize(QtCore.QSize(17, 17))
         self.lbl_r1.setPixmap(QtGui.QPixmap(self.__r1))
         self.lbl_r1.setScaledContents(True)
         self.lbl_r1.setProperty("tipo","checkbox")
@@ -60,7 +60,7 @@ class WidgetJugador(QtWidgets.QWidget):
         #checkbox 1
         self.lbl_r2 = QtWidgets.QLabel(parent=self)
         self.lbl_r2.setSizePolicy(QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed))
-        self.lbl_r2.setMaximumSize(QtCore.QSize(15, 15))
+        self.lbl_r2.setMaximumSize(QtCore.QSize(17, 17))
         self.lbl_r2.setPixmap(QtGui.QPixmap(self.__r2))
         self.lbl_r2.setScaledContents(True)
         self.lbl_r2.setProperty("tipo","checkbox")

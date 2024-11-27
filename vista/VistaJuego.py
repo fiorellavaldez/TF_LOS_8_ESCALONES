@@ -6,6 +6,7 @@ from vista.WidgetJugador import WidgetJugador
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, lista_jugadores):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/icono_ventana.png'))
         MainWindow.resize(1080, 720)
         MainWindow.setMinimumSize(1080, 720)
 
@@ -26,7 +27,7 @@ class Ui_MainWindow(object):
         self.wd_escalon8.setSizePolicy(sizePolicy)
         self.wd_escalon8.setMinimumSize(QtCore.QSize(550, 60))
         self.wd_escalon8.setMaximumSize(QtCore.QSize(643, 100))
-        self.wd_escalon8.setStyleSheet("background-color: rgb(255, 182, 193);")
+        self.wd_escalon8.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon8.setObjectName("wd_escalon8")
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.wd_escalon8)
         self.horizontalLayout_9.setContentsMargins(-1, 0, -1, 0)
@@ -62,7 +63,7 @@ class Ui_MainWindow(object):
         self.wd_escalon7.setSizePolicy(sizePolicy)
         self.wd_escalon7.setMinimumSize(QtCore.QSize(600, 60))
         self.wd_escalon7.setMaximumSize(QtCore.QSize(702, 100))
-        self.wd_escalon7.setStyleSheet("background-color: rgb(173, 216, 230);")
+        self.wd_escalon7.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon7.setObjectName("wd_escalon7")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.wd_escalon7)
         self.horizontalLayout_8.setContentsMargins(-1, 0, -1, 0)
@@ -98,7 +99,7 @@ class Ui_MainWindow(object):
         self.wd_escalon6.setSizePolicy(sizePolicy)
         self.wd_escalon6.setMinimumSize(QtCore.QSize(650, 60))
         self.wd_escalon6.setMaximumSize(QtCore.QSize(760, 100))
-        self.wd_escalon6.setStyleSheet("background-color: rgb(152, 251, 152);")
+        self.wd_escalon6.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon6.setObjectName("wd_escalon6")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.wd_escalon6)
         self.horizontalLayout_7.setContentsMargins(-1, 0, -1, 0)
@@ -134,7 +135,7 @@ class Ui_MainWindow(object):
         self.wd_escalon5.setSizePolicy(sizePolicy)
         self.wd_escalon5.setMinimumSize(QtCore.QSize(700, 60))
         self.wd_escalon5.setMaximumSize(QtCore.QSize(819, 100))
-        self.wd_escalon5.setStyleSheet("background-color: rgb(255, 255, 224);")
+        self.wd_escalon5.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon5.setObjectName("wd_escalon5")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.wd_escalon5)
         self.horizontalLayout_6.setContentsMargins(-1, 0, -1, 0)
@@ -170,7 +171,7 @@ class Ui_MainWindow(object):
         self.wd_escalon4.setSizePolicy(sizePolicy)
         self.wd_escalon4.setMinimumSize(QtCore.QSize(750, 60))
         self.wd_escalon4.setMaximumSize(QtCore.QSize(877, 100))
-        self.wd_escalon4.setStyleSheet("background-color: rgb(230, 230, 250);")
+        self.wd_escalon4.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon4.setObjectName("wd_escalon4")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.wd_escalon4)
         self.horizontalLayout_5.setContentsMargins(-1, 0, -1, 0)
@@ -206,7 +207,7 @@ class Ui_MainWindow(object):
         self.wd_escalon3.setSizePolicy(sizePolicy)
         self.wd_escalon3.setMinimumSize(QtCore.QSize(800, 60))
         self.wd_escalon3.setMaximumSize(QtCore.QSize(936, 100))
-        self.wd_escalon3.setStyleSheet("background-color: rgb(255, 218, 185);")
+        self.wd_escalon3.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon3.setObjectName("wd_escalon3")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.wd_escalon3)
         self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 0)
@@ -242,7 +243,7 @@ class Ui_MainWindow(object):
         self.wd_escalon2.setSizePolicy(sizePolicy)
         self.wd_escalon2.setMinimumSize(QtCore.QSize(850, 70))
         self.wd_escalon2.setMaximumSize(QtCore.QSize(994, 100))
-        self.wd_escalon2.setStyleSheet("background-color: rgb(189, 252, 201);")
+        self.wd_escalon2.setStyleSheet("background-color: #d5d5d5;")
         self.wd_escalon2.setObjectName("wd_escalon2")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.wd_escalon2)
         self.horizontalLayout_3.setContentsMargins(-1, 0, -1, 0)
@@ -278,7 +279,7 @@ class Ui_MainWindow(object):
         self.wd_escalon1.setSizePolicy(sizePolicy)
         self.wd_escalon1.setMinimumSize(QtCore.QSize(920, 0))
         self.wd_escalon1.setMaximumSize(QtCore.QSize(1076, 100))
-        self.wd_escalon1.setStyleSheet("background-color: rgb(255, 160, 122);")
+        self.wd_escalon1.setStyleSheet("background-color: #ffa07a;")
         self.wd_escalon1.setObjectName("wd_escalon1")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.wd_escalon1)
         self.horizontalLayout_2.setContentsMargins(-1, 0, -1, 0)
@@ -333,11 +334,11 @@ class Ui_MainWindow(object):
         self.gif.setWordWrap(False)
         self.gif.setObjectName("gif")
         self.pushButton_atras = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_atras.setGeometry(QtCore.QRect(30, 660, 75, 30))
+        self.pushButton_atras.setGeometry(QtCore.QRect(30, 660, 100, 50))
         self.pushButton_atras.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         
         self.pushButton_comenzar_partida = QtWidgets.QPushButton(parent=self.centralwidget)
-        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(980, 660, 75, 30))
+        self.pushButton_comenzar_partida.setGeometry(QtCore.QRect(980, 660, 100, 50))
         self.pushButton_comenzar_partida.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         
         self.lista_nombres_escalon = [self.tematica_escalon1, self.tematica_escalon2, self.tematica_escalon3, self.tematica_escalon4, self.tematica_escalon5, self.tematica_escalon6, self.tematica_escalon7, self.tematica_escalon8]
@@ -444,12 +445,14 @@ class Ui_MainWindow(object):
         self.pushButton_atras.setProperty("tipo","boton_vista_juego")
         self.pushButton_comenzar_partida.setProperty("tipo","boton_vista_juego")
 
+
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
     
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaJuego", "VistaJuego"))
+        MainWindow.setWindowTitle(_translate("VistaJuego", "Los 8 Escalones"))
         self.tematica_escalon8.setText(_translate("MainWindow", "-"))
         self.tematica_escalon7.setText(_translate("MainWindow", "-"))
         self.tematica_escalon6.setText(_translate("MainWindow", "-"))
@@ -458,8 +461,8 @@ class Ui_MainWindow(object):
         self.tematica_escalon3.setText(_translate("MainWindow", "-"))
         self.tematica_escalon2.setText(_translate("MainWindow", "-"))
         self.tematica_escalon1.setText(_translate("MainWindow", "-"))
-        self.pushButton_comenzar_partida.setText(_translate("MainWindow","Jugar"))
-        self.pushButton_atras.setText(_translate("MainWindow", "Atrás"))
+        self.pushButton_comenzar_partida.setText(_translate("MainWindow","  Jugar  "))
+        self.pushButton_atras.setText(_translate("MainWindow", "  Atrás  "))
 
 
     def get_button_atras(self):

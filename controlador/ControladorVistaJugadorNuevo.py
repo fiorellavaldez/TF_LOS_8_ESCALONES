@@ -13,13 +13,11 @@ class ControladorVistaJugadorNuevo:
         self.__vista.setupUi(self.MainWindow)
         self.MainWindow.show()
 
-        self.lista_imagenes = ["vista/img/fa.jpg","vista/img/al.jpg","vista/img/jarr.jpg",
-        "vista/img/ka.jpg","vista/img/avatar_azul.png","vista/img/ta.png", "vista/img/da.jpg",
-        "vista/img/fi.jpg", "vista/img/edna.jpg","vista/img/aladdin.jpeg","vista/img/amore.jpg",
-        "vista/img/avatar.png","vista/img/caradepapa.jpeg","vista/img/daria.jpg","vista/img/dory.jpeg",
-        "vista/img/eugene.jpeg","vista/img/gohan.jpeg","vista/img/goku.jpeg""vista/img/jasmin.jpeg",
-        "vista/img/kevin.jpg""vista/img/merida.jpeg","vista/img/moana.jpeg","vista/img/mulan.jpeg",
-        "vista/img/tiana.jpeg"]
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
+
+        self.lista_imagenes = ["vista/img/default_icon.jpg","vista/img/default_icon2.png","vista/img/default_icon3.png","vista/img/default_icon4.png","vista/img/fa.jpg","vista/img/al.jpg","vista/img/jarr.jpg","vista/img/ka.jpg","vista/img/ta.png", "vista/img/da.jpg",
+        "vista/img/fi.jpg", "vista/img/edna.jpg","vista/img/aladdin.jpeg","vista/img/avatar.png","vista/img/caradepapa.jpeg","vista/img/daria.jpg","vista/img/dory.jpeg","vista/img/eugene.jpeg","vista/img/gohan.jpeg","vista/img/goku.jpeg","vista/img/jazmin.jpeg","vista/img/kevin.jpg","vista/img/merida.jpeg","vista/img/moana.jpeg","vista/img/mulan.jpeg","vista/img/tiana.jpeg"]
         
         self.imagen_actual = self.lista_imagenes[0]
         self.__vista.set_label_img(self.imagen_actual)

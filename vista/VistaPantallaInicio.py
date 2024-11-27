@@ -4,6 +4,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/icono_ventana.png'))
         #MainWindow.resize(1080, 720)
         MainWindow.setFixedSize(1080, 720)
         #self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
@@ -86,7 +87,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaPantallaInicio", "VistaPantallaInicio"))
+        MainWindow.setWindowTitle(_translate("VistaPantallaInicio", "Menú"))
         #self.label.setText(_translate("MainWindow", "LOS 8 ESCALONES"))
         self.pushButton.setText(_translate("MainWindow", "  Nueva partida"))
         self.pushButton_5.setText(_translate("MainWindow", "  Configuración"))

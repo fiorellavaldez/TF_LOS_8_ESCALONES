@@ -5,6 +5,7 @@ class Ui_MainWindow(object):
         # Establece el tamaño inicial de la ventana
         MainWindow.resize(1080, 720)
         # Establece el tamaño mínimo de la ventana
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/icono_ventana.png'))
         MainWindow.setMinimumSize(400, 400)
         self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
         self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_juego2.png"))
@@ -256,6 +257,7 @@ class Ui_MainWindow(object):
         spacerItem32 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem32)
         self.bt_jugador_nuevo = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.bt_jugador_nuevo.setIcon(QtGui.QIcon("vista/img/icono_agregar.png"))
         self.bt_jugador_nuevo.setObjectName("bt_jugador_nuevo")
         spacerItem33 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_3.addItem(spacerItem33)
@@ -386,12 +388,12 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaGrillaJugadores", "VistaGrillaJugadores"))
+        MainWindow.setWindowTitle(_translate("VistaGrillaJugadores", "Seleccionar jugadores"))
 
         #Jugador 1
         self.nombre_jugador1.setText(_translate("MainWindow", "Jugador 1"))
         self.bt_seleccionar_jugador1.setText(_translate("MainWindow", "Seleccionar Jugador"))
-        self.bt_jugador_nuevo.setText("Jugador Nuevo") ############
+        self.bt_jugador_nuevo.setText(" Jugador Nuevo") ############
         #Jugador 2
         self.nombre_jugador2.setText(_translate("MainWindow", "Jugador 2"))
         self.bt_seleccionar_jugador2.setText(_translate("MainWindow", "Seleccionar Jugador"))

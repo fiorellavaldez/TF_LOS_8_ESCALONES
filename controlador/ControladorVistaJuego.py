@@ -28,6 +28,8 @@ class ControladorVistaJuego:
         self.__vista.setupUi(self.MainWindow, self.__lista_jugadores_widget) #le paso widgets
         self.asignar_temas(self.__lista_escalones)
         self.MainWindow.show()
+        with open("vista/estilos.qss") as f:
+            self.MainWindow.setStyleSheet(f.read())
         # Registrar la ventana en el controlador de audio y video
         ControladorVideo.registrar_ventana(self.MainWindow)
         # Inicializa un controlador de audio con una ruta inicial
@@ -35,8 +37,7 @@ class ControladorVistaJuego:
         # Cambia la música
         self.__audio_controller.cambiar_musica(r"musica\\acorralado.mp3")
         
-        with open("vista/estilos.qss") as f:
-            self.MainWindow.setStyleSheet(f.read())
+
         
         self.__en_partida = False  # Controla si se puede avanzar al siguiente escalón
         self.__nro_escalon_actual = 0  # Índice del escalón actual
