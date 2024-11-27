@@ -1,6 +1,6 @@
 import pygame
 import os
-from controlador.Audiovariables import DEFAULT_SOUND_PATH, DEFAULT_VOLUME, MUSIC_BUTTON_TEXT_ON, MUSIC_BUTTON_TEXT_OFF
+from controlador.Audiovariables import DEFAULT_SOUND_PATH, DEFAULT_VOLUME
 
 class ControladorAudio:
     """Controlador para manejar las funcionalidades de audio."""
