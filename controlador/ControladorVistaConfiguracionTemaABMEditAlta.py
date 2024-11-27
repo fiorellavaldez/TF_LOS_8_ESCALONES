@@ -47,7 +47,7 @@ class ControladorVistaConfiguracionTemaABMEditAlta(ControladorVistaConfiguracion
             return  
         try: # EL manejo de excepcion creo que iria en el DAO
             self._temas.agregar_tema(aux_tema)
-            self._controlador_anterior.actualizar_lista_temas(aux_tema)  # Actualiza lista widget
+            self._controlador_anterior.actualizar_lista_temas(self._tema)  # Actualiza lista widget
             self._vista.informamos_tema_creado(nuevo_nombre)  # Muestra un mensaje de éxito
             print(f"Éxito: El tema '{nuevo_nombre}' se ha creado exitosamente.")
         except Exception as e:

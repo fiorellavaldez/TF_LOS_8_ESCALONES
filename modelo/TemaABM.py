@@ -32,8 +32,8 @@ class TemaABM:
         return False  # Si no lo encontramos, devolvemos False
 
     def agregar_tema(self, tema:Tema):
-        self.__lista_temas.append(tema)
         TemasDAO().agregar_tema(tema.get_nombreTema())
+        self.__lista_temas = self.obtener_temas() # Vuelvo a cargar toda la lista para obtener el ID
 
     def quitar_tema(self, tema:Tema):
         lista_aux=[]
