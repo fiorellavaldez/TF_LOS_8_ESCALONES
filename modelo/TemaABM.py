@@ -3,7 +3,6 @@ from modelo.Tema import Tema
 
 class TemaABM:
     def __init__(self):
-        #self.__lista_temas = TemasDAO().get_all_temas()
         self.__lista_temas = self.obtener_temas()
     
     @property
@@ -11,7 +10,6 @@ class TemaABM:
         return self.__lista_temas
     
     def obtener_temas(self):
-        #self.__lista_temas = TemasDAO().get_all_temas()
         lista=TemasDAO().get_all_temas()
         lista_temas=[]
         for id_tema, nombre_tema, estado_tema in lista: 
@@ -19,27 +17,13 @@ class TemaABM:
         return lista_temas # Lista de objetos Tema
     
     def actualizar_tema(self, tema:Tema):
-        #print("Actualizar Temas!")
         for t in range(0,len(self.__lista_temas)):
             if self.__lista_temas[t].get_idTema() == tema.get_idTema():
                 self.__lista_temas[t].set_nombreTema(tema.get_nombreTema())
         
         TemasDAO().actualizar_tema(tema.get_idTema(), tema.get_nombreTema())
-    
-    '''   No me funcionaba este metodo hice abajo la consulta nueva y funciona :)
+     
     def existe_tema(self, tema:Tema):
-        tope =len(self.__lista_temas)
-        id = 0
-        encontrado = False
-        while id < tope and not encontrado:
-            if self.__lista_temas[id].get_nombreTema() == tema.get_nombreTema():
-                encontrado = True
-            id +=1
-        return encontrado
-    '''
-    
-    def existe_tema(self, tema:Tema):
-
         # Iteramos sobre todos los temas
         for t in self.__lista_temas:
             # Comparamos los nombres de los temas ignorando mayúsculas/minúsculas y espacios adicionales

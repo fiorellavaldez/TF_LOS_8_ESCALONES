@@ -15,7 +15,6 @@ class ControladorVistaConfiguracionTemaABMEditModifica(ControladorVistaConfigura
         nuevo_nombre = self._vista.lineEdit_Tema.text()
         aux_tema=Tema(self._tema.get_idTema(),nuevo_nombre)
         if self._temas.existe_tema(aux_tema):
-            # AQUI HAY QUE INCLUIR UNA VEMTANA CON EL MENSAJE DE ERROR
             self._vista.aviso_tema_existe()
             print("Tema ya existe")
             return
