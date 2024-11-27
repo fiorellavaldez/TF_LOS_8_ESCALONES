@@ -19,7 +19,6 @@ class ControladorVistaSeleccionarJugadoresABM:
         self.MainWindow.show()
         with open("vista/estilos.qss") as f:
             self.MainWindow.setStyleSheet(f.read())
-        print("Estoy en ControladorVistaSeleccionarJugadoresABM")
 
         #Aplicar estilos desde un archivo relativo
         #self.__aplicar_estilos()

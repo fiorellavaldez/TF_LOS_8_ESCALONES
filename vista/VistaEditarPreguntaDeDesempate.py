@@ -11,6 +11,7 @@ class Ui_MainWindow(object):
         self.__respuesta = respuesta
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(735, 384)
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/icono_modificar.png'))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -20,6 +21,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(9)
+        font.setBold(True)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout_3.addWidget(self.label)
@@ -92,7 +94,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Editar pregunta de desempate"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt;\">Editar pregunta</span></p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Enunciado:"))
         self.textEdit_2.setHtml(_translate("MainWindow", self.__enunciado))

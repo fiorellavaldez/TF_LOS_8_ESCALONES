@@ -6,6 +6,8 @@ from PyQt6.QtWidgets import QHeaderView
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.resize(1080, 720)
+        MainWindow.setWindowTitle("Seleccionar jugadores")
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/configuracion_icono.png'))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("fondo_seleccion_jugadores")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)

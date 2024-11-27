@@ -5,6 +5,7 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
         Widget.resize(405, 181)
+        Widget.setWindowIcon(QtGui.QIcon('vista/img/icono_modificar.png'))
         self.buttonBox_Confirmar = QtWidgets.QDialogButtonBox(parent=Widget)
         self.buttonBox_Confirmar.setGeometry(QtCore.QRect(130, 140, 156, 24))
         font = QtGui.QFont()
@@ -26,10 +27,11 @@ class Ui_Widget(object):
         self.label_Titulo.setEnabled(True)
         font = QtGui.QFont()
         font.setPointSize(28)
+        font.setBold(True)
         self.label_Titulo.setFont(font)
         self.label_Titulo.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.label_Titulo.setObjectName("label_Titulo")
-        self.verticalLayout.addWidget(self.label_Titulo)
+        self.verticalLayout.addWidget(self.label_Titulo, alignment=QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.label_Mensaje = QtWidgets.QLabel(parent=Widget)
         self.label_Mensaje.setGeometry(QtCore.QRect(20, 80, 371, 20))
         font = QtGui.QFont()
@@ -75,8 +77,8 @@ class Ui_Widget(object):
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
-        Widget.setWindowTitle(_translate("VistaConfiguracionTemaABMEdit", "VistaConfiguracionTemaABMEdit"))
-        self.label_Titulo.setText(_translate("Widget", "Tema Nuevo"))
+        Widget.setWindowTitle(_translate("VistaConfiguracionTemaABMEdit", "Configurar Tema"))
+        self.label_Titulo.setText(_translate("Widget", "Tema nuevo"))
         self.label_Mensaje.setText(_translate("Widget", "Ingrese nombre del nuevo tema:"))
 
 

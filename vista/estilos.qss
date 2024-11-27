@@ -191,6 +191,42 @@ QWidget#wd_nombre_jugador{
 }
 
 
+QLabel[tipo="nombre_ganador"]{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0.625, x2:1, y2:0.631, stop:0 rgba(174, 133, 37, 255), stop:0.271186 rgba(247, 239, 138, 255), stop:0.587571 rgba(210, 173, 71, 255), stop:1 rgba(237, 201, 103, 255));
+    border-radius: 3px;
+    margin-left: 80px;
+    margin-right:80px;
+    
+}
+
+QPushButton[tipo="boton_vista_ganador"]{
+    background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));
+    border-radius: 5px;
+    font-size: 20px;
+    color:#ffffff;
+    font-weight:bold;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 60px;
+    margin-right:60px;
+}
+
+QPushButton[tipo="boton_vista_ganador"]:hover{
+    background-color:#0022ff;
+    margin-bottom: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #ffffff;
+}
+
+QPushButton[tipo="boton_vista_ganador"]:pressed{
+    background-color:#000d61;
+}
+
+
+
+
 /* VISTA CONFIGURACION */
 QPushButton[tipo="boton_vista_configuracion"]{
     background-color:qlineargradient(spread:pad, x1:0.50965, y1:0.284, x2:0.491051, y2:1, stop:0 rgba(14, 72, 128, 255), stop:1 rgba(0, 0, 208, 255));

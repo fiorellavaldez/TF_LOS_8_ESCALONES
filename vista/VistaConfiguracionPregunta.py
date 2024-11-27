@@ -9,6 +9,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(1080, 720)
         # Establece el tamaño mínimo de la ventana
         MainWindow.setMinimumSize(400, 400)
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/configuracion_icono.png'))
         self.centralwidget = QtWidgets.QLabel(parent=MainWindow)
         self.centralwidget.setPixmap(QtGui.QPixmap("vista/img/fondo_escalones.png"))
         self.centralwidget.setScaledContents(True)
@@ -141,7 +142,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaConfiguracionPregunta", "VistaConfiguracionPregunta"))
+        MainWindow.setWindowTitle(_translate("VistaConfiguracionPregunta", "Configuración de Preguntas"))
         self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Seleccione el tema:</span></p></body></html>"))
         self.comboBox.setItemText(0, _translate("MainWindow", ""))
         self.label_2.setText(_translate("MainWindow", "Buscar:  "))

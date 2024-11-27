@@ -3,6 +3,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/configuracion_icono.png'))
         # Establece el tamaño inicial de la ventana
         MainWindow.resize(1080, 720)
         # Establece el tamaño mínimo de la ventana
@@ -114,7 +115,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaConfiguracion", "VistaConfiguracion"))
+        MainWindow.setWindowTitle(_translate("VistaConfiguracion", "Configuración"))
         self.label.setText(_translate("MainWindow", ""))
         self.pushButton_config_audio_video.setText(_translate("MainWindow", "Configuración de Audio"))
         self.pushButton.setText(_translate("MainWindow", "Modificar o crear Preguntas de ronda"))

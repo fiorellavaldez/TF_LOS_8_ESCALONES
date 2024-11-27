@@ -13,8 +13,10 @@ class DialogRonda(QtWidgets.QDialog):
         # Mensaje principal
         if correcta:
             mensaje = f"¡{jugador} respondió BIEN! 🎉"
+            self.setWindowIcon(QtGui.QIcon('vista/img/icono_resultado_correcto.png'))
         else:
             mensaje = f"¡{jugador} respondió MAL! 😔"
+            self.setWindowIcon(QtGui.QIcon('vista/img/icono_resultado_incorrecto.png'))
 
         lbl_mensaje = QtWidgets.QLabel(mensaje)
         lbl_mensaje.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)

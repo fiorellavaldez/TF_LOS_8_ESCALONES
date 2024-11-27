@@ -6,6 +6,8 @@ from PyQt6.QtWidgets import QHeaderView
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, lista_jugadores):
         MainWindow.resize(1080, 720)
+        MainWindow.setWindowTitle("Seleccionar jugadores")
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/icono_ventana.png'))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("fondo_seleccion_jugadores")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -15,10 +17,6 @@ class Ui_MainWindow(object):
         self.label.setScaledContents(True)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label.setMaximumSize(QtCore.QSize(400, 70))
-        # font = QtGui.QFont()
-        # font.setPointSize(30)
-        # font.setBold(True)
-        # self.label.setFont(font)
         self.verticalLayout_3.addWidget(self.label)
         self.verticalLayout.addLayout(self.verticalLayout_3)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -26,9 +24,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.label_2 = QtWidgets.QLabel(text= "Buscar:",parent=self.centralwidget)
         self.label_2.setObjectName("texto_buscar")
-        # font = QtGui.QFont()
-        # font.setPointSize(12)
-        # self.label_2.setFont(font)
         self.horizontalLayout_2.addWidget(self.label_2)
         self.lineEdit = QtWidgets.QLineEdit(parent=self.centralwidget)
         font = QtGui.QFont()
@@ -111,10 +106,6 @@ class Ui_MainWindow(object):
     def get_button_aceptar(self):
         return self.bt_aceptar
     
-    '''
-    def get_tabla(self):
-        return self.tableWidget
-    '''
     def aviso_repeticion_jugador(self,nombre):
         msg=QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Icon.Warning)

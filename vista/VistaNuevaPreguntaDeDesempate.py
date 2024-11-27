@@ -4,6 +4,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(435, 391)
+        MainWindow.setWindowIcon(QtGui.QIcon('vista/img/icono_agregar.png'))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -13,6 +14,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(9)
+        font.setBold(True)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout_3.addWidget(self.label)
@@ -79,8 +81,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("VistaConfiguracionPreguntasAgregarPreguntaDeDesempate", "VistaConfiguracionPreguntasAgregarPreguntaDeDesempate"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Nueva Pregunta de desempate</span></p></body></html>"))
+        MainWindow.setWindowTitle(_translate("VistaConfiguracionPreguntasAgregarPreguntaDeDesempate", "Agregar pregunta de desempate"))
+        self.label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Nueva pregunta de desempate</span></p></body></html>"))
         self.label_2.setText(_translate("MainWindow", "Enunciado:"))
         self.label_7.setText(_translate("MainWindow", " Respuesta:"))
         self.pushButton_12.setText(_translate("MainWindow", "Aceptar"))
