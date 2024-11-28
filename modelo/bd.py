@@ -5,7 +5,7 @@ class DataBaseMeta(type): #singleton
 
     __instances = None
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args, **kwargs): #similar a get_instance
         if cls.__instances is None:
             instance = super().__call__(*args, **kwargs)
             cls.__instances = instance

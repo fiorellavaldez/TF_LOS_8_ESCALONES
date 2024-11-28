@@ -58,7 +58,7 @@ class ControladorVistaGrillaJugadores:
         self.controlador_elegir_jugador = ControladorVistaSeleccionarJugadores(self, numero_jugador)
 
     def __jugador_nuevo(self):
-        self.MainWindow.hide()
+        #self.MainWindow.hide()
         self.controlador_jugador_nuevo= ControladorVistaJugadorNuevo(self)
 
     def __iniciar_partida(self):

@@ -1,6 +1,6 @@
 from abc import ABC
 
-class Pregunta:
+class Pregunta(ABC):
     def __init__(self, idTema, enunciado):
         self._idPregunta = None
         self._idtema = idTema
